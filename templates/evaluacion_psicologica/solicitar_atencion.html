@@ -1,0 +1,224 @@
+<div class="modal fade" id="modal_solicitar_atencion" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Solicitar Atención</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_atencion'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_atencion">
+        <input type="hidden" class="form-control" id="id_usuario_autenticado">
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+          <div class="card-body">
+            <div class='row'>
+              <div class="form-group mb-1 py-2">
+                <label for="fecha_atencion" class="form-label">
+                  <span class='required'>
+                    Fecha de atención
+                  </span>
+                </label>
+                <div class='input-group date fecha_atencion_paciente'>
+                  <span class='input-group-addon'></span>
+                  <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_atencion' name='fecha_atencion' required readOnly>
+                </div>
+              </div>
+
+              <div class="form-group mb-1 py-2">
+                <label for="licenciatura_atencion" class="form-label">
+                  <span class='required'>
+                    Licenciatura
+                  </span>
+                </label>
+                <select class='form-control' id='licenciatura_atencion' name='licenciatura_atencion' required></select>
+              </div>
+
+              <div class="form-group mb-1 py-2">
+                <label for="semestre_atencion" class="form-label">
+                  <span class='required'>
+                    Semestre
+                  </span>
+                </label>
+                <select class='form-control' id='semestre_atencion' name='semestre_atencion' required></select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label for="hijos_atencion" class="form-label">
+                <span class='required'>
+                  ¿Tiene hijos?
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsHijos" id="check_hijos_si" value="si">
+                <label class="form-check-label" for="check_hijos_si">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsHijos" id="check_hijos_no" value="no">
+                <label class="form-check-label" for="check_hijos_no">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+          <div class="card-body">
+            <div class='row'>
+              <div class="form-group mb-1 py-2">
+                <label for="estado_atencion" class="form-label">
+                  <span class='required'>
+                    Estados
+                  </span>
+                </label>
+                <select class='form-control' id='estado_atencion' name='estado_atencion' required></select>
+              </div>
+              
+              <div class="form-group mb-1 py-2">
+                <label for="municipio_atencion" class="form-label">
+                  <span class='required'>
+                    Municipio
+                  </span>
+                </label>
+                <select class='form-control' id='municipio_atencion' name='municipio_atencion' required></select>
+              </div>
+
+              <div class="form-group mb-1 py-2">
+                <label for="direccion_atencion" class="form-label">
+                  <span class='required'>
+                    Dirección
+                  </span>
+                </label>
+                <textarea type="text" class="form-control" id="direccion_atencion" name='direccion_atencion' required></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+          <div class="card-body">
+            <div class='row'>
+              <div class="form-group mb-1 py-2">
+                <label for="vive_con_atencion" class="form-label">
+                  <span class='required'>
+                    Actualmente vive con
+                  </span>
+                </label>
+                <select class='form-control' id='vive_con_atencion' name='vive_con_atencion' required></select>
+              </div>
+
+              <div class="form-group mb-1 py-2">
+                <label for="otro_vive_con_atencion" class="form-label">
+                    Otro
+                  </span>
+                </label>
+                <input type="text" class="form-control" id="otro_vive_con_atencion" name='otro_vive_con_atencion' placeholder="Otro" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+          <div class="card-body">
+            <div class='row'>
+              <div class="form-group mb-1 py-2">
+                <label for="grado_academico_atencion" class="form-label">
+                  <span class='required'>
+                    Grado académico de sus padres
+                  </span>
+                </label>
+                <select class='form-control' id='grado_academico_atencion' name='grado_academico_atencion' required></select>
+              </div>
+
+              <div class="form-group mb-1 py-2">
+                <label for="otro_grado_academico_atencion" class="form-label">
+                    Otro
+                  </span>
+                </label>
+                <input type="text" class="form-control" id="otro_grado_academico_atencion" name='otro_grado_academico_atencion' placeholder="Otro" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+          <div class="card-body">
+            <div class='row'>
+              <div class="form-group mb-1 py-2">
+                <label for="ingreso_familiar_atencion" class="form-label">
+                  <span class='required'>
+                    Ingreso familiar mensual
+                  </span>
+                </br>
+                  Nivel socioeconómico según INEGI
+                </label>
+                <select class='form-control' id='ingreso_familiar_atencion' name='ingreso_familiar_atencion' required></select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label for="trabaja_atencion" class="form-label">
+                <span class='required'>
+                  ¿Trabaja?
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsTrabaja" id="check_trabaja_si" value="si">
+                <label class="form-check-label" for="check_trabaja_si">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsTrabaja" id="check_trabaja_no" value="no">
+                <label class="form-check-label" for="check_trabaja_no">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>8</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label for="beca_atencion" class="form-label">
+                <span class='required'>
+                  ¿Cuenta con alguna beca o apoyo económico?
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeca" id="check_beca_si" value="si">
+                <label class="form-check-label" for="check_beca_si">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeca" id="check_beca_no" value="no">
+                <label class="form-check-label" for="check_beca_no">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_atencion">Cancelar</button>
+          <button type="button" class="btn btn-primary" id='btn_agregar_atencion'>
+            Agregar
+          </button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>

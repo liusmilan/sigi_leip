@@ -1,0 +1,228 @@
+<div class="modal fade" id="modal_motivo_consulta" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Motivo de Consulta</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_motivo_consulta'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_motivo_consulta">
+        <input type="hidden" class="form-control" id="id_usuario_autenticado">
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label for="pregunta_uno" class="form-label">
+                <span class='required'>
+                  1. ¿Del 1 al 5 qué tan mal se siente actualmente?
+                </span>
+                </br>
+                (Donde 1 es nada mal y 5 es muy mal)
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaUno" id="check_siente_uno" value="1">
+                <label class="form-check-label" for="check_siente_uno">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaUno" id="check_siente_dos" value="2">
+                <label class="form-check-label" for="check_siente_dos">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaUno" id="check_siente_tres" value="3">
+                <label class="form-check-label" for="check_siente_tres">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaUno" id="check_siente_cuatro" value="4">
+                <label class="form-check-label" for="check_siente_cuatro">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaUno" id="check_siente_cinco" value="5">
+                <label class="form-check-label" for="check_siente_cinco">5</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label for="pregunta_dos" class="form-label">
+                <span class='required'>
+                  1. ¿Del 1 al 5 qué tanto su estado actual afecta la vida cotidiana (trabajo, escuela, relaciones afectivas)?
+                </span>
+                </br>
+                (Donde 1 es nada y 5 es mucho)
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaDos" id="check_estado_uno" value="1">
+                <label class="form-check-label" for="check_estado_uno">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaDos" id="check_estado_dos" value="2">
+                <label class="form-check-label" for="check_estado_dos">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaDos" id="check_estado_tres" value="3">
+                <label class="form-check-label" for="check_estado_tres">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaDos" id="check_estado_cuatro" value="4">
+                <label class="form-check-label" for="check_estado_cuatro">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPreguntaDos" id="check_estado_cinco" value="5">
+                <label class="form-check-label" for="check_estado_cinco">5</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label for="pregunta_tres" class="form-label">
+                <span class='required'>
+                  3. ¿Cuál es el motivo por el cuál solicita cita a servicios psicológicos?
+                </span>
+                </br>
+                Explique con detalles
+              </label>
+              <textarea type="text" class="form-control" id="pregunta_tres" name='pregunta_tres' required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label for="pregunta_tres" class="form-label">
+                <span class='required'>
+                  4. Horario preferido para cita de valoración.
+                </span>
+                </br>
+                (Se recomienda especifivar varios días y horas)
+              </label>
+              </br>
+              </br>
+              
+              <div id="box_lunes">
+                <div class="form-group form-check py-2">
+                  <input class="form-check-input" type="checkbox" value="" id="check_mc_lunes">
+                  <label class="form-check-label" for="check_mc_lunes">
+                    Lunes
+                  </label>
+                </div>
+
+                <div class="form-group mb-1 py-2">
+                  <label for="horas_mc_lunes" class="form-label">
+                    Horas
+                  </label>
+                  <select class='form-control basic-multiple' id='horas_mc_lunes' multiple></select>
+                </div>
+                <hr/>
+              </div>
+              
+              <div id="box_martes">
+                <div class="form-group form-check py-2">
+                  <input class="form-check-input" type="checkbox" value="" id="check_mc_martes">
+                  <label class="form-check-label" for="check_mc_martes">
+                    Martes
+                  </label>
+                </div>
+
+                <div class="form-group mb-1 py-2">
+                  <label for="horas_mc_martes" class="form-label">
+                    Horas
+                  </label>
+                  <select class='form-control basic-multiple' id='horas_mc_martes' multiple></select>
+                </div>
+                <hr/>
+              </div>
+              
+              <div id="box_miercoles">
+                <div class="form-group form-check py-2">
+                  <input class="form-check-input" type="checkbox" value="" id="check_mc_miercoles">
+                  <label class="form-check-label" for="check_mc_miercoles">
+                    Miércoles
+                  </label>
+                </div>
+
+                <div class="form-group mb-1 py-2">
+                  <label for="horas_mc_miercoles" class="form-label">
+                    Horas
+                  </label>
+                  <select class='form-control basic-multiple' id='horas_mc_miercoles' multiple></select>
+                </div>
+                <hr/>
+              </div>
+
+              <div id="box_jueves">
+                <div class="form-group form-check py-2">
+                  <input class="form-check-input" type="checkbox" value="" id="check_mc_jueves">
+                  <label class="form-check-label" for="check_mc_jueves">
+                    Jueves
+                  </label>
+                </div>
+
+                <div class="form-group mb-1 py-2">
+                  <label for="horas_mc_jueves" class="form-label">
+                    Horas
+                  </label>
+                  <select class='form-control basic-multiple' id='horas_mc_jueves' multiple></select>
+                </div>
+                <hr/>
+              </div>
+
+              <div id="box_viernes">
+                <div class="form-group form-check py-2">
+                  <input class="form-check-input" type="checkbox" value="" id="check_mc_viernes">
+                  <label class="form-check-label" for="check_mc_viernes">
+                    Viernes
+                  </label>
+                </div>
+
+                <div class="form-group mb-1 py-2">
+                  <label for="horas_mc_viernes" class="form-label">
+                    Horas
+                  </label>
+                  <select class='form-control basic-multiple' id='horas_mc_viernes' multiple></select>
+                </div>
+                <hr/>
+              </div>
+
+              <div id="box_sabado">
+                <div class="form-group form-check py-2">
+                  <input class="form-check-input" type="checkbox" value="" id="check_mc_sabado">
+                  <label class="form-check-label" for="check_mc_sabado">
+                    Sábado
+                  </label>
+                </div>
+
+                <div class="form-group mb-1 py-2">
+                  <label for="horas_mc_sabado" class="form-label">
+                    Horas
+                  </label>
+                  <select class='form-control basic-multiple' id='horas_mc_sabado' multiple></select>
+                </div>
+                <hr/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_motivo_consulta">Cancelar</button>
+          <button type="button" class="btn btn-primary" id='btn_guardar_motivo_consulta'>
+            Guardar
+          </button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>

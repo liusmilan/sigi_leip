@@ -1,0 +1,221 @@
+<div class="modal fade" id="modal_agregar_editar_persona" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal_80">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Personas</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_persona'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_persona">
+
+        <form id="form_persona" name='form_persona'>
+          {% csrf_token %}
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class='bi bi-person-badge color_icon_blue me-2'></i>Datos personales
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class='row'>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="nombre_persona" class="form-label">
+                      <span class='required'>
+                        Nombre
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" id="nombre_persona" name='nombre_persona' placeholder="Nombre" required>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="segundo_nombre_persona" class="form-label">
+                        Segundo Nombre
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" id="segundo_nombre_persona" name='segundo_nombre_persona' placeholder="Segundo Nombre">
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="apellido_persona" class="form-label">
+                      <span class='required'>
+                        Apellido
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" id="apellido_persona" name='apellido_persona' placeholder="Apellido" required>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="segundo_apellido_persona" class="form-label">
+                      <span class='required'>
+                        Segundo Apellido
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" id="segundo_apellido_persona" name='segundo_apellido_persona' placeholder="Segundo Apellido" required>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="email_persona" class="form-label">
+                      <span class='required'>
+                        Correo electrónico
+                      </span>
+                    </label>
+                    <input type="email" class="form-control" id="email_persona" name='email_persona' placeholder="_@_" required>
+                  </div>
+                </div>
+                <div class='col-xl-6'>
+                  <div class="form-group mb-3 py-4">
+                    <label for="fecha_nacimiento" class="form-label">
+                      <span class='required'>
+                        Fecha de nacimiento
+                      </span>
+                    </label>
+                    <div class='input-group date fecha_nacimiento_persona'>
+                      <span class='input-group-addon'></span>
+                      <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_nacimiento' name='fecha_nacimiento' required readOnly>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-xl-6'>
+                  <div class="form-group mb-3 py-4">
+                    <label for="sexo" class="form-label">
+                      <span class='required'>
+                        Sexo
+                      </span>
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="check_sexo_masculino" value="masculino">
+                      <label class="form-check-label" for="check_sexo_masculino">Masculino</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="check_sexo_femenino" value="femenino">
+                      <label class="form-check-label" for="check_sexo_femenino">Femenino</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="check_sexo_otro" value="otro">
+                      <label class="form-check-label" for="check_sexo_otro">Otro</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="telefono_contacto" class="form-label">
+                      <span class='required'>
+                        Teléfono de contacto
+                      </span>
+                    </label>
+                    <input type="text" class="form-control input-number" id="telefono_contacto" name='telefono_contacto' required>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="persona_estado" class="form-label">
+                      <span class='required'>
+                        Estados
+                      </span>
+                    </label>
+                    <select class='form-control' id='persona_estado' name='persona_estado' required></select>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="persona_municipio" class="form-label">
+                      <span class='required'>
+                        Municipio
+                      </span>
+                    </label>
+                    <select class='form-control' id='persona_municipio' name='persona_municipio' required></select>
+                  </div>
+                </div>
+                <div class="form-group mb-3 py-4">
+                  <label for="direccion_persona" class="form-label">
+                    <span class='required'>
+                      Dirección
+                    </span>
+                  </label>
+                  <textarea type="text" class="form-control" id="direccion_persona" name='direccion_persona' required></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class='ri-user-voice-line color_icon_blue me-2'></i>En caso de una emergencia, llamar a
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class='row'>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="nombre_emergencia" class="form-label">
+                      <span class='required'>
+                        Nombre(s) y Apellidos
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" id="nombre_emergencia" name='nombre_emergencia' placeholder="Nombre(s) y Apellidos" required>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="parentesco" class="form-label">
+                      <span class='required'>
+                        Parentesco
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" id="parentesco" name='parentesco' placeholder="Parentesco" required>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="telefono_emergencia" class="form-label">
+                      <span class='required'>
+                        Teléfono de contacto
+                      </span>
+                    </label>
+                    <input type="text" class="form-control input-number" id="telefono_emergencia" name='telefono_emergencia' required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class='ri-parent-line color_icon_blue me-2'></i>Para menores de edad o personas que requieran de un acompañamiento especial
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class='row'>
+                <h7> Por favor indicar el nombre del o la responsable </h7>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
+                    <label for="nombre_responsable" class="form-label">
+                      <span>
+                        Nombre(s) y Apellidos
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" id="nombre_responsable" name='nombre_responsable' placeholder="Nombre(s) y Apellidos">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_persona">Cancelar</button>
+            <button type="button" class="btn btn-primary" id='btn_agregar_persona'>
+              Agregar
+            </button>
+          </div>
+        </form>        
+      </div>      
+    </div>
+  </div>
+</div>

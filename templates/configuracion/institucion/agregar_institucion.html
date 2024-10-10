@@ -1,0 +1,93 @@
+<div class="modal fade" id="modal_agregar_editar_institucion" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Institucion</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_institucion'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_institucion">
+
+        <form id="form_institucion" name='form_institucion'>
+          {% csrf_token %}
+          <div class="form-group mb-3 py-4">
+            <label for="tipo_institucion" class="form-label">
+              <span class='required'>
+                Tipo de Institución
+              </span>
+            </label>
+            <select class='form-control' id='tipo_institucion' name='tipo_institucion' required></select>
+          </div>
+
+          <div class="form-group mb-3 py-4">
+            <label for="nombre_institucion" class="form-label">
+              <span class='required'>
+                Nombre de la Institución
+              </span>
+            </label>
+            <input type="text" class="form-control" id="nombre_institucion" name='nombre_institucion' placeholder="Nombre de la Institución" required>
+          </div>
+
+          <div class="form-group mb-3 py-4">
+            <label for="descripcion_institucion" class="form-label">
+              <span class='required'>
+                Descripción
+              </span>
+            </label>
+            <textarea type="text" class="form-control" id="descripcion_institucion" name='descripcion_institucion' placeholder="Descricpción" required></textarea>
+          </div>
+
+          <div class="form-group mb-3 py-4">
+            <label for="domicilio_institucion" class="form-label">
+              <span class='required'>
+                Domicilio
+              </span>
+            </label>
+            <textarea type="text" class="form-control" id="domicilio_institucion" name='domicilio_institucion' placeholder="Domicilio" required></textarea>
+          </div>
+
+          <div class="form-group mb-3 py-4">
+            <label for="contacto_institucion" class="form-label">
+              <span class='required'>
+                Contacto
+              </span>
+            </label>
+            <input type="text" class="form-control input-number" id="contacto_institucion" name='contacto_institucion' required>
+          </div>
+
+          <div class="form-group mb-3 py-4">
+            <label for="correo_institucion" class="form-label">
+              <span class='required'>
+                Correo electrónico
+              </span>
+            </label>
+            <input type="email" class="form-control" id="correo_institucion" name='correo_institucion' placeholder="_@_" required>
+          </div>
+
+          <div class="form-group mb-3 py-4">
+            <label for="sitio_web_institucion" class="form-label">
+              <span class='required'>
+                Sitio Web
+              </span>
+            </label>
+            <input type="text" class="form-control" id="sitio_web_institucion" name='sitio_web_institucion' placeholder="https://_._" required>
+          </div>
+
+          <div class="form-group form-check py-4">
+            <input class="form-check-input" type="checkbox" value="" id="estado_institucion" name="estado_institucion">
+            <label class="form-check-label" for="estado_institucion">
+              Habilitada
+            </label>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_institucion">Cancelar</button>
+            <button type="button" class="btn btn-primary" id='btn_agregar_institucion'>
+              Agregar
+            </button>
+          </div>
+        </form>        
+      </div>      
+    </div>
+  </div>
+</div>

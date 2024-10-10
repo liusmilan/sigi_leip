@@ -1,0 +1,577 @@
+<div class="modal fade" id="modal_ssi_beck" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal_50">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Escala de Ideación Suicida de Beck (SSI BECK)</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_ssi_beck'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_ssi_beck">
+        <input type="hidden" class="form-control" id="id_usuario_autenticado">
+
+        {% comment %} 1 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Deseo de vivir</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta1" id="beck_check_pregunta_uno_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_uno_cero">Moderado a fuerte</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta1" id="beck_check_pregunta_uno_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_uno_uno">Débil</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta1" id="beck_check_pregunta_uno_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_uno_dos">Ninguno</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 2 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Deseo de morir</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta2" id="beck_check_pregunta_dos_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_dos_cero">Ninguno</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta2" id="beck_check_pregunta_dos_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_dos_uno">Débil</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta2" id="beck_check_pregunta_dos_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_dos_dos">Moderado a fuerte</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 3 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Razones para vivir/morir</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta3" id="beck_check_pregunta_tres_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_tres_cero">Porque seguir viviendo vale más que morir</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta3" id="beck_check_pregunta_tres_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_tres_uno">Aproximadamente iguales</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta3" id="beck_check_pregunta_tres_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_tres_dos">Porque la muerte vale más que seguir viviendo</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 4 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Deseo de intentar activamente el suicidio</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta4" id="beck_check_pregunta_cuatro_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_cuatro_cero">Ninguno</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta4" id="beck_check_pregunta_cuatro_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_cuatro_uno">Débil</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta4" id="beck_check_pregunta_cuatro_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_cuatro_dos">Moderado a fuerte</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 5 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Deseos pasivos de suicidio</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta5" id="beck_check_pregunta_cinco_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_cinco_cero">Puede tomar precauciones para salvaguardar la vida</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta5" id="beck_check_pregunta_cinco_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_cinco_uno">Puede dejar de vivir/morir por casualidad</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta5" id="beck_check_pregunta_cinco_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_cinco_dos">Puede evitar las etapas necesarias para seguir con vida</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 6 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Dimensión temporal (duración de la ideación/deseo suicida)</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta6" id="beck_check_pregunta_seis_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_seis_cero">Breve, períodos pasajeros</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta6" id="beck_check_pregunta_seis_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_seis_uno">Por amplios períodos de tiempo</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta6" id="beck_check_pregunta_seis_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_seis_dos">Continuo (crónico) o casi continuo</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 7 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Dimensión temporal (frecuencia del suicidio)</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta7" id="beck_check_pregunta_siete_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_siete_cero">Raro, ocasional</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta7" id="beck_check_pregunta_siete_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_siete_uno">Intermitente</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta7" id="beck_check_pregunta_siete_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_siete_dos">Persistente o continuo</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 8 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>8</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Actitud hacia la ideación/deseo</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta8" id="beck_check_pregunta_ocho_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_ocho_cero">Rechazo</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta8" id="beck_check_pregunta_ocho_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_ocho_uno">Ambivalente, indiferente</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta8" id="beck_check_pregunta_ocho_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_ocho_dos">Aceptación</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {% comment %} 9 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>9</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Control sobre la actividad suicida/deseos de acting out</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta9" id="beck_check_pregunta_nueve_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_nueve_cero">Tiene sentido del control</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta9" id="beck_check_pregunta_nueve_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_nueve_uno">Inseguro</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta9" id="beck_check_pregunta_nueve_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_nueve_dos">No tiene sentido del control</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 10 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>10</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Disuasivos para un intento activo (familia, religión, irreversibilidad)</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta10" id="beck_check_pregunta_diez_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_diez_cero">Puede no intentarlo a causa de un disuasivo</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta10" id="beck_check_pregunta_diez_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_diez_uno">Alguna preocupación sobre los medios pueden disuadirlo</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta10" id="beck_check_pregunta_diez_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_diez_dos">Mínima o ninguna preocupación o interés por ellos</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 11 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>11</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Razones para el intento contemplado</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta11" id="beck_check_pregunta_once_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_once_cero">Manipular el entorno, llamar la atención, vengarse</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta11" id="beck_check_pregunta_once_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_once_uno">Combinación de 0 y 2</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta11" id="beck_check_pregunta_once_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_once_dos">Escapar, solucionar los problemas, finalizar de forma absoluta</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 12 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>12</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Método (especificidad/planificación del intento contemplado)</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta12" id="beck_check_pregunta_doce_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_doce_cero">No considerado</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta12" id="beck_check_pregunta_doce_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_doce_uno">Considerado, pero detalles no calculados</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta12" id="beck_check_pregunta_doce_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_doce_dos">Detalles calculados/bien formulados</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 13 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>13</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Método (accesibilidad/oportunidad para el intento contemplado)</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta13" id="beck_check_pregunta_trece_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_trece_cero">Método no disponible, inaccesible.No hay oportunidad</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta13" id="beck_check_pregunta_trece_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_trece_uno">El método puede tomar tiempo o esfuerzo. Oportunidad escasa</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta13" id="beck_check_pregunta_trece_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_trece_dos">Método y oportunidad accesibles</label>
+              </div>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta13" id="beck_check_pregunta_trece_tres" value="3">
+              <label class="form-check-label" for="beck_check_pregunta_trece_tres">Futura oportunidad o accesibilidad del método previsto</label>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 14 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>14</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Sentido de «capacidad» para llevar adelante el intento</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta14" id="beck_check_pregunta_catorce_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_catorce_cero">No tiene valor, demasiado débil, miedoso, incompetente</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta14" id="beck_check_pregunta_catorce_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_catorce_uno">Inseguridad sobre su valor</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta14" id="beck_check_pregunta_catorce_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_catorce_dos">Seguro de su valor, capacidad</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 15 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>15</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Expectativas/espera del intento actual</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta15" id="beck_check_pregunta_quince_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_quince_cero">No</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta15" id="beck_check_pregunta_quince_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_quince_uno">Incierto</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta15" id="beck_check_pregunta_quince_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_quince_dos">Sí</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 16 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>16</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Preparación actual para el intento contemplado</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta16" id="beck_check_pregunta_dieciseis_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_dieciseis_cero">Ninguna</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta16" id="beck_check_pregunta_dieciseis_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_dieciseis_uno">Parcial (p. ej., empieza a almacenar pastillas, etc.)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta16" id="beck_check_pregunta_dieciseis_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_dieciseis_dos">Completa (p. ej., tiene las pastillas, pistola cargada, etc.)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {% comment %} 17 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>17</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Nota suicida</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta17" id="beck_check_pregunta_diecisiete_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_diecisiete_cero">Ninguna</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta17" id="beck_check_pregunta_diecisiete_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_diecisiete_uno">Piensa sobre ella o comenzada y no terminada</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta17" id="beck_check_pregunta_diecisiete_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_diecisiete_dos">Nota terminada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 18 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>18</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Actos finales en anticipación de la muerte (p. ej., testamento, póliza de seguros, etc.)</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta18" id="beck_check_pregunta_dieciocho_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_dieciocho_cero">Ninguno</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta18" id="beck_check_pregunta_dieciocho_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_dieciocho_uno">Piensa sobre ello o hace algunos arreglos</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta18" id="beck_check_pregunta_dieciocho_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_dieciocho_dos">Hace planes definitivos o terminó los arreglos finales</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 19 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>19</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Engaño/encubrimiento del intento contemplado</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta19" id="beck_check_pregunta_diecinueve_cero" value="0">
+                <label class="form-check-label" for="beck_check_pregunta_diecinueve_cero">Reveló las ideas abiertamente</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta19" id="beck_check_pregunta_diecinueve_uno" value="1">
+                <label class="form-check-label" for="beck_check_pregunta_diecinueve_uno">Frenó lo que estaba expresando</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsBeckPregunta19" id="beck_check_pregunta_diecinueve_dos" value="2">
+                <label class="form-check-label" for="beck_check_pregunta_diecinueve_dos">Intentó engañar, ocultar, mentir</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_ssi_beck">Cancelar</button>
+          <button type="button" class="btn btn-primary" id='btn_agregar_ssi_beck'>
+            Guardar
+          </button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>

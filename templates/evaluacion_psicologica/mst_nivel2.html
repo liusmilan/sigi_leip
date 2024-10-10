@@ -1,0 +1,2441 @@
+<div class="modal fade" id="modal_mst_nivel2" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal_50">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Evaluación Psicológica (MST Nivel 2)</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_mst_nivel2'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_mst_nivel2">
+        <input type="hidden" class="form-control" id="id_usuario_autenticado">
+
+        {% comment %} depresion {% endcomment %}
+        <div class="accordion" id="accordionDepresion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingDepresion">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDepresion" aria-expanded="false" aria-controls="collapseDepresion">
+                <strong>Depresión</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_depresion'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseDepresion" class="accordion-collapse collapse" aria-labelledby="headingDepresion" data-bs-parent="#accordionDepresion">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_depresion_no_aplica">
+                  <label class="form-check-label" for="mst2_depresion_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>En los últimos <strong>siete (7) días</strong></span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>¿Te has sentido inútil?</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta1" id="check_depresion_pregunta_uno_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_uno_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta1" id="check_depresion_pregunta_uno_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_uno_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta1" id="check_depresion_pregunta_uno_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_uno_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta1" id="check_depresion_pregunta_uno_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_uno_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta1" id="check_depresion_pregunta_uno_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_uno_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Has tenido la sensación de no tener nada que esperar</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta2" id="check_depresion_pregunta_dos_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_dos_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta2" id="check_depresion_pregunta_dos_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_dos_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta2" id="check_depresion_pregunta_dos_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_dos_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta2" id="check_depresion_pregunta_dos_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_dos_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta2" id="check_depresion_pregunta_dos_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_dos_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Te has sentido indefensa(o)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta3" id="check_depresion_pregunta_tres_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_tres_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta3" id="check_depresion_pregunta_tres_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_tres_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta3" id="check_depresion_pregunta_tres_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_tres_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta3" id="check_depresion_pregunta_tres_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_tres_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta3" id="check_depresion_pregunta_tres_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_tres_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Te has sentido triste</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta4" id="check_depresion_pregunta_cuatro_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_cuatro_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta4" id="check_depresion_pregunta_cuatro_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_cuatro_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta4" id="check_depresion_pregunta_cuatro_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_cuatro_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta4" id="check_depresion_pregunta_cuatro_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_cuatro_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta4" id="check_depresion_pregunta_cuatro_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_cuatro_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Te has sentido como un fracaso</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta5" id="check_depresion_pregunta_cinco_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_cinco_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta5" id="check_depresion_pregunta_cinco_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_cinco_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta5" id="check_depresion_pregunta_cinco_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_cinco_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta5" id="check_depresion_pregunta_cinco_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_cinco_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta5" id="check_depresion_pregunta_cinco_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_cinco_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 6 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Te has sentido deprimida(o)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta6" id="check_depresion_pregunta_seis_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_seis_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta6" id="check_depresion_pregunta_seis_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_seis_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta6" id="check_depresion_pregunta_seis_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_seis_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta6" id="check_depresion_pregunta_seis_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_seis_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta6" id="check_depresion_pregunta_seis_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_seis_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 7 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Te has sentido infeliz</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta7" id="check_depresion_pregunta_siete_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_siete_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta7" id="check_depresion_pregunta_siete_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_siete_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta7" id="check_depresion_pregunta_siete_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_siete_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta7" id="check_depresion_pregunta_siete_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_siete_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta7" id="check_depresion_pregunta_siete_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_siete_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 8 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>8</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Te has sentido desamparada(o)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta8" id="check_depresion_pregunta_ocho_uno" value="1">
+                        <label class="form-check-label" for="check_depresion_pregunta_ocho_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta8" id="check_depresion_pregunta_ocho_dos" value="2">
+                        <label class="form-check-label" for="check_depresion_pregunta_ocho_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta8" id="check_depresion_pregunta_ocho_tres" value="3">
+                        <label class="form-check-label" for="check_depresion_pregunta_ocho_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta8" id="check_depresion_pregunta_ocho_cuatro" value="4">
+                        <label class="form-check-label" for="check_depresion_pregunta_ocho_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsDepresionPregunta8" id="check_depresion_pregunta_ocho_cinco" value="5">
+                        <label class="form-check-label" for="check_depresion_pregunta_ocho_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='d-grid gap-3 mt-3'>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_depresion'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        {% comment %} ira {% endcomment %}
+        <div class="accordion" id="accordionIra">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingIra">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIra" aria-expanded="false" aria-controls="collapseIra">
+                <strong>Ira</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_ira'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseIra" class="accordion-collapse collapse" aria-labelledby="headingIra" data-bs-parent="#accordionIra">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_ira_no_aplica">
+                  <label class="form-check-label" for="mst2_ira_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>En los últimos <strong>siete (7) días</strong></span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Estaba más irritado de lo que la gente sabía</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta1" id="check_ira_pregunta_uno_uno" value="1">
+                        <label class="form-check-label" for="check_ira_pregunta_uno_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta1" id="check_ira_pregunta_uno_dos" value="2">
+                        <label class="form-check-label" for="check_ira_pregunta_uno_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta1" id="check_ira_pregunta_uno_tres" value="3">
+                        <label class="form-check-label" for="check_ira_pregunta_uno_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta1" id="check_ira_pregunta_uno_cuatro" value="4">
+                        <label class="form-check-label" for="check_ira_pregunta_uno_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta1" id="check_ira_pregunta_uno_cinco" value="5">
+                        <label class="form-check-label" for="check_ira_pregunta_uno_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me sentí enojada(o)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta2" id="check_ira_pregunta_dos_uno" value="1">
+                        <label class="form-check-label" for="check_ira_pregunta_dos_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta2" id="check_ira_pregunta_dos_dos" value="2">
+                        <label class="form-check-label" for="check_ira_pregunta_dos_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta2" id="check_ira_pregunta_dos_tres" value="3">
+                        <label class="form-check-label" for="check_ira_pregunta_dos_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta2" id="check_ira_pregunta_dos_cuatro" value="4">
+                        <label class="form-check-label" for="check_ira_pregunta_dos_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta2" id="check_ira_pregunta_dos_cinco" value="5">
+                        <label class="form-check-label" for="check_ira_pregunta_dos_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Sentí que estaba lista(o) para explorar</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta3" id="check_ira_pregunta_tres_uno" value="1">
+                        <label class="form-check-label" for="check_ira_pregunta_tres_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta3" id="check_ira_pregunta_tres_dos" value="2">
+                        <label class="form-check-label" for="check_ira_pregunta_tres_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta3" id="check_ira_pregunta_tres_tres" value="3">
+                        <label class="form-check-label" for="check_ira_pregunta_tres_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta3" id="check_ira_pregunta_tres_cuatro" value="4">
+                        <label class="form-check-label" for="check_ira_pregunta_tres_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta3" id="check_ira_pregunta_tres_cinco" value="5">
+                        <label class="form-check-label" for="check_ira_pregunta_tres_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Estaba de mal humor</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta4" id="check_ira_pregunta_cuatro_uno" value="1">
+                        <label class="form-check-label" for="check_ira_pregunta_cuatro_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta4" id="check_ira_pregunta_cuatro_dos" value="2">
+                        <label class="form-check-label" for="check_ira_pregunta_cuatro_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta4" id="check_ira_pregunta_cuatro_tres" value="3">
+                        <label class="form-check-label" for="check_ira_pregunta_cuatro_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta4" id="check_ira_pregunta_cuatro_cuatro" value="4">
+                        <label class="form-check-label" for="check_ira_pregunta_cuatro_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta4" id="check_ira_pregunta_cuatro_cinco" value="5">
+                        <label class="form-check-label" for="check_ira_pregunta_cuatro_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me sentí molesta(o)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta5" id="check_ira_pregunta_cinco_uno" value="1">
+                        <label class="form-check-label" for="check_ira_pregunta_cinco_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta5" id="check_ira_pregunta_cinco_dos" value="2">
+                        <label class="form-check-label" for="check_ira_pregunta_cinco_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta5" id="check_ira_pregunta_cinco_tres" value="3">
+                        <label class="form-check-label" for="check_ira_pregunta_cinco_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta5" id="check_ira_pregunta_cinco_cuatro" value="4">
+                        <label class="form-check-label" for="check_ira_pregunta_cinco_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsIraPregunta5" id="check_ira_pregunta_cinco_cinco" value="5">
+                        <label class="form-check-label" for="check_ira_pregunta_cinco_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='d-grid gap-3 mt-3'>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_ira'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        {% comment %} mania {% endcomment %}
+        <div class="accordion" id="accordionMania">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingMania">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMania" aria-expanded="false" aria-controls="collapseMania">
+                <strong>Manía</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_mania'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseMania" class="accordion-collapse collapse" aria-labelledby="headingMania" data-bs-parent="#accordionMania">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_mania_no_aplica">
+                  <label class="form-check-label" for="mst2_mania_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>En los últimos <strong>siete (7) días</strong></span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Pregunta #1</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta1" id="check_mania_pregunta_uno_uno" value="1">
+                        <label class="form-check-label" for="check_mania_pregunta_uno_uno">No me siento más feliz ni más alegre que de costumbre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta1" id="check_mania_pregunta_uno_dos" value="2">
+                        <label class="form-check-label" for="check_mania_pregunta_uno_dos">De vez en cuando me siento más feliz o más alegre que de costumbre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta1" id="check_mania_pregunta_uno_tres" value="3">
+                        <label class="form-check-label" for="check_mania_pregunta_uno_tres">A menudo me siento más feliz o más alegre que de costumbre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta1" id="check_mania_pregunta_uno_cuatro" value="4">
+                        <label class="form-check-label" for="check_mania_pregunta_uno_cuatro">Me siento más feliz o más alegre de lo habitual la mayor parte del tiempo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta1" id="check_mania_pregunta_uno_cinco" value="5">
+                        <label class="form-check-label" for="check_mania_pregunta_uno_cinco">Me siento más feliz o más alegre que de costumbre todo el tiempo</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Pregunta #2</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta2" id="check_mania_pregunta_dos_uno" value="1">
+                        <label class="form-check-label" for="check_mania_pregunta_dos_uno">No me siento más seguro que de mí mismo que de costumbre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta2" id="check_mania_pregunta_dos_dos" value="2">
+                        <label class="form-check-label" for="check_mania_pregunta_dos_dos">A veces me siento más seguro de mí mismo que de costumbre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta2" id="check_mania_pregunta_dos_tres" value="3">
+                        <label class="form-check-label" for="check_mania_pregunta_dos_tres">A menudo me siento más seguro de mí mismo que de costumbre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta2" id="check_mania_pregunta_dos_cuatro" value="4">
+                        <label class="form-check-label" for="check_mania_pregunta_dos_cuatro">Con frecuencia me siento más seguro de mí mismo que lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta2" id="check_mania_pregunta_dos_cinco" value="5">
+                        <label class="form-check-label" for="check_mania_pregunta_dos_cinco">Me siento extremadamente seguro de mí mismo todo el tiempo</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Pregunta #3</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta3" id="check_mania_pregunta_tres_uno" value="1">
+                        <label class="form-check-label" for="check_mania_pregunta_tres_uno">No necesito dormir menos de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta3" id="check_mania_pregunta_tres_dos" value="2">
+                        <label class="form-check-label" for="check_mania_pregunta_tres_dos">De vez en cuando necesito dormir menos de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta3" id="check_mania_pregunta_tres_tres" value="3">
+                        <label class="form-check-label" for="check_mania_pregunta_tres_tres"> A menudo necesito dormir menos de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta3" id="check_mania_pregunta_tres_cuatro" value="4">
+                        <label class="form-check-label" for="check_mania_pregunta_tres_cuatro">Con frecuencia necesito dormir menos de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta3" id="check_mania_pregunta_tres_cinco" value="5">
+                        <label class="form-check-label" for="check_mania_pregunta_tres_cinco">Puedo pasar todo el día y toda la noche sin dormir y aún así no sentirme cansado</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Pregunta #4</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta4" id="check_mania_pregunta_cuatro_uno" value="1">
+                        <label class="form-check-label" for="check_mania_pregunta_cuatro_uno">No hablo más de lo habitual</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta4" id="check_mania_pregunta_cuatro_dos" value="2">
+                        <label class="form-check-label" for="check_mania_pregunta_cuatro_dos">De vez en cuando hablo más de lo habitual</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta4" id="check_mania_pregunta_cuatro_tres" value="3">
+                        <label class="form-check-label" for="check_mania_pregunta_cuatro_tres">A menudo hablo más de lo habitual</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta4" id="check_mania_pregunta_cuatro_cuatro" value="4">
+                        <label class="form-check-label" for="check_mania_pregunta_cuatro_cuatro">Con frecuencia hablo más de lo habitual</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta4" id="check_mania_pregunta_cuatro_cinco" value="5">
+                        <label class="form-check-label" for="check_mania_pregunta_cuatro_cinco">Hablo constantemente y no me pueden interrumpir</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Pregunta #5</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta5" id="check_mania_pregunta_cinco_uno" value="1">
+                        <label class="form-check-label" for="check_mania_pregunta_cinco_uno">No he sido más activo (ni social, sexual, en el trabajo, en casa, o en la escuela) de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta5" id="check_mania_pregunta_cinco_dos" value="2">
+                        <label class="form-check-label" for="check_mania_pregunta_cinco_dos">En ocasiones he estado más de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta5" id="check_mania_pregunta_cinco_tres" value="3">
+                        <label class="form-check-label" for="check_mania_pregunta_cinco_tres"> A menudo he estado más activo de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta5" id="check_mania_pregunta_cinco_cuatro" value="4">
+                        <label class="form-check-label" for="check_mania_pregunta_cinco_cuatro">Con frecuencia he estado más activo de lo habitual</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsManiaPregunta5" id="check_mania_pregunta_cinco_cinco" value="5">
+                        <label class="form-check-label" for="check_mania_pregunta_cinco_cinco">Estoy constantemente más activo o en movimiento todo el tiempo</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='d-grid gap-3 mt-3'>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_mania'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        {% comment %} ansiedad {% endcomment %}
+        <div class="accordion" id="accordionAnsiedad">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAnsiedad">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnsiedad" aria-expanded="false" aria-controls="collapseAnsiedad">
+                <strong>Ansiedad</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_ansiedad'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseAnsiedad" class="accordion-collapse collapse" aria-labelledby="headingAnsiedad" data-bs-parent="#accordionAnsiedad">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_ansiedad_no_aplica">
+                  <label class="form-check-label" for="mst2_ansiedad_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>En los últimos <strong>siete (7) días</strong></span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Sentí miedo</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta1" id="check_ansiedad_pregunta_uno_uno" value="1">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_uno_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta1" id="check_ansiedad_pregunta_uno_dos" value="2">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_uno_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta1" id="check_ansiedad_pregunta_uno_tres" value="3">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_uno_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta1" id="check_ansiedad_pregunta_uno_cuatro" value="4">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_uno_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta1" id="check_ansiedad_pregunta_uno_cinco" value="5">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_uno_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me sentí ansioso(a)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta2" id="check_ansiedad_pregunta_dos_uno" value="1">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_dos_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta2" id="check_ansiedad_pregunta_dos_dos" value="2">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_dos_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta2" id="check_ansiedad_pregunta_dos_tres" value="3">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_dos_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta2" id="check_ansiedad_pregunta_dos_cuatro" value="4">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_dos_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta2" id="check_ansiedad_pregunta_dos_cinco" value="5">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_dos_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me sentí preocupado(a)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta3" id="check_ansiedad_pregunta_tres_uno" value="1">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_tres_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta3" id="check_ansiedad_pregunta_tres_dos" value="2">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_tres_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta3" id="check_ansiedad_pregunta_tres_tres" value="3">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_tres_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta3" id="check_ansiedad_pregunta_tres_cuatro" value="4">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_tres_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta3" id="check_ansiedad_pregunta_tres_cinco" value="5">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_tres_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me resultó difícil concentrarme en otra cosa que no fuera mi ansiedad</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta4" id="check_ansiedad_pregunta_cuatro_uno" value="1">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cuatro_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta4" id="check_ansiedad_pregunta_cuatro_dos" value="2">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cuatro_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta4" id="check_ansiedad_pregunta_cuatro_tres" value="3">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cuatro_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta4" id="check_ansiedad_pregunta_cuatro_cuatro" value="4">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cuatro_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta4" id="check_ansiedad_pregunta_cuatro_cinco" value="5">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cuatro_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me sentí nervioso(a)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta5" id="check_ansiedad_pregunta_cinco_uno" value="1">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cinco_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta5" id="check_ansiedad_pregunta_cinco_dos" value="2">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cinco_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta5" id="check_ansiedad_pregunta_cinco_tres" value="3">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cinco_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta5" id="check_ansiedad_pregunta_cinco_cuatro" value="4">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cinco_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta5" id="check_ansiedad_pregunta_cinco_cinco" value="5">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_cinco_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 6 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me sentí incómodo(a)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta6" id="check_ansiedad_pregunta_seis_uno" value="1">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_seis_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta6" id="check_ansiedad_pregunta_seis_dos" value="2">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_seis_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta6" id="check_ansiedad_pregunta_seis_tres" value="3">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_seis_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta6" id="check_ansiedad_pregunta_seis_cuatro" value="4">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_seis_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta6" id="check_ansiedad_pregunta_seis_cinco" value="5">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_seis_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 7 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Me sentí tenso(a)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta7" id="check_ansiedad_pregunta_siete_uno" value="1">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_siete_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta7" id="check_ansiedad_pregunta_siete_dos" value="2">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_siete_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta7" id="check_ansiedad_pregunta_siete_tres" value="3">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_siete_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta7" id="check_ansiedad_pregunta_siete_cuatro" value="4">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_siete_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsAnsiedadPregunta7" id="check_ansiedad_pregunta_siete_cinco" value="5">
+                        <label class="form-check-label" for="check_ansiedad_pregunta_siete_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='d-grid gap-3 mt-3'>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_ansiedad'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        {% comment %} sintomas somaticos {% endcomment %}
+        <div class="accordion" id="accordionSomatico">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSomatico">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSomatico" aria-expanded="false" aria-controls="collapseSomatico">
+                <strong>Síntomas Somáticos</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_somatico'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseSomatico" class="accordion-collapse collapse" aria-labelledby="headingSomatico" data-bs-parent="#accordionSomatico">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_somatico_no_aplica">
+                  <label class="form-check-label" for="mst2_somatico_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>Durante los últimos <strong>siete (7) días</strong>: ¿Cuánto le ha molestado alguno de los siguientes problemas?</span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dolor de estómago</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta1" id="check_somatico_pregunta_uno_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_uno_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta1" id="check_somatico_pregunta_uno_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_uno_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta1" id="check_somatico_pregunta_uno_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_uno_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dolor de espalda</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta2" id="check_somatico_pregunta_dos_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_dos_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta2" id="check_somatico_pregunta_dos_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_dos_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta2" id="check_somatico_pregunta_dos_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_dos_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dolor en brazo, piernas o articulaciones (rodillas, caderas, etc.)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta3" id="check_somatico_pregunta_tres_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_tres_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta3" id="check_somatico_pregunta_tres_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_tres_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta3" id="check_somatico_pregunta_tres_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_tres_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Calambres menstruales u otros problemas con sus períodos SOLO PARA MUJERES</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta4" id="check_somatico_pregunta_cuatro_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_cuatro_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta4" id="check_somatico_pregunta_cuatro_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_cuatro_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta4" id="check_somatico_pregunta_cuatro_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_cuatro_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dolores de cabeza</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta5" id="check_somatico_pregunta_cinco_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_cinco_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta5" id="check_somatico_pregunta_cinco_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_cinco_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta5" id="check_somatico_pregunta_cinco_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_cinco_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 6 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dolores en el pecho</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta6" id="check_somatico_pregunta_seis_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_seis_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta6" id="check_somatico_pregunta_seis_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_seis_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta6" id="check_somatico_pregunta_seis_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_seis_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 7 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Mareos</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta7" id="check_somatico_pregunta_siete_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_siete_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta7" id="check_somatico_pregunta_siete_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_siete_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta7" id="check_somatico_pregunta_siete_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_siete_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 8 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>8</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Desmayos</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta8" id="check_somatico_pregunta_ocho_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_ocho_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta8" id="check_somatico_pregunta_ocho_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_ocho_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta8" id="check_somatico_pregunta_ocho_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_ocho_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 9 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>9</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Sentir que su corazón late con fuerza o se acelera</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta9" id="check_somatico_pregunta_nueve_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_nueve_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta9" id="check_somatico_pregunta_nueve_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_nueve_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta9" id="check_somatico_pregunta_nueve_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_nueve_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 10 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>10</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dificultad para respirar</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta10" id="check_somatico_pregunta_diez_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_diez_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta10" id="check_somatico_pregunta_diez_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_diez_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta10" id="check_somatico_pregunta_diez_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_diez_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 11 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>11</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dolor o problemas durante las relaciones sexuales</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta11" id="check_somatico_pregunta_once_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_once_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta11" id="check_somatico_pregunta_once_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_once_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta11" id="check_somatico_pregunta_once_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_once_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {% comment %} pregunta 12 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>12</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Estreñimiento, diarrea o estómago suelto</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta12" id="check_somatico_pregunta_doce_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_doce_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta12" id="check_somatico_pregunta_doce_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_doce_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta12" id="check_somatico_pregunta_doce_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_doce_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 13 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>13</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Náuseas, gases o indigestión</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta13" id="check_somatico_pregunta_trece_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_trece_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta13" id="check_somatico_pregunta_trece_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_trece_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta13" id="check_somatico_pregunta_trece_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_trece_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 14 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>14</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Sentirse cansado o tener poca energía</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta14" id="check_somatico_pregunta_catorce_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_catorce_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta14" id="check_somatico_pregunta_catorce_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_catorce_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta14" id="check_somatico_pregunta_catorce_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_catorce_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 15 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>15</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Problemas para dormir</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta15" id="check_somatico_pregunta_quince_uno" value="0">
+                        <label class="form-check-label" for="check_somatico_pregunta_quince_uno">No me molesta en absoluto</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta15" id="check_somatico_pregunta_quince_dos" value="1">
+                        <label class="form-check-label" for="check_somatico_pregunta_quince_dos">Molesta un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSomaticoPregunta15" id="check_somatico_pregunta_quince_tres" value="2">
+                        <label class="form-check-label" for="check_somatico_pregunta_quince_tres">Molesta mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='d-grid gap-3 mt-3'>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_somatico'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        
+        {% comment %} sueño {% endcomment %}
+        <div class="accordion" id="accordionSuenno">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSuenno">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSuenno" aria-expanded="false" aria-controls="collapseSuenno">
+                <strong>Sueño</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_suenno'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseSuenno" class="accordion-collapse collapse" aria-labelledby="headingSuenno" data-bs-parent="#accordionSuenno">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_suenno_no_aplica">
+                  <label class="form-check-label" for="mst2_suenno_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>En los últimos <strong>siete (7) días</strong></span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Mi sueño fue inquieto</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta1" id="check_suenno_pregunta_uno_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_uno_uno">Nada</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta1" id="check_suenno_pregunta_uno_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_uno_dos">Un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta1" id="check_suenno_pregunta_uno_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_uno_tres">Un poco más</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta1" id="check_suenno_pregunta_uno_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_uno_cuatro">Bastante</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta1" id="check_suenno_pregunta_uno_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_uno_cinco">Mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Estaba satisfecho con mi sueño</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta2" id="check_suenno_pregunta_dos_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_dos_uno">Nada</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta2" id="check_suenno_pregunta_dos_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_dos_dos">Un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta2" id="check_suenno_pregunta_dos_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_dos_tres">Un poco más</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta2" id="check_suenno_pregunta_dos_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_dos_cuatro">Bastante</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta2" id="check_suenno_pregunta_dos_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_dos_cinco">Mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Mi sueño fue reparador</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta3" id="check_suenno_pregunta_tres_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_tres_uno">Nada</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta3" id="check_suenno_pregunta_tres_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_tres_dos">Un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta3" id="check_suenno_pregunta_tres_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_tres_tres">Un poco más</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta3" id="check_suenno_pregunta_tres_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_tres_cuatro">Bastante</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta3" id="check_suenno_pregunta_tres_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_tres_cinco">Mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Tuve dificultades para conciliar el sueño</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta4" id="check_suenno_pregunta_cuatro_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_cuatro_uno">Nada</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta4" id="check_suenno_pregunta_cuatro_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_cuatro_dos">Un poco</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta4" id="check_suenno_pregunta_cuatro_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_cuatro_tres">Un poco más</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta4" id="check_suenno_pregunta_cuatro_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_cuatro_cuatro">Bastante</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta4" id="check_suenno_pregunta_cuatro_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_cuatro_cinco">Mucho</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Tuve problemas para quedarme dormido</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta5" id="check_suenno_pregunta_cinco_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_cinco_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta5" id="check_suenno_pregunta_cinco_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_cinco_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta5" id="check_suenno_pregunta_cinco_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_cinco_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta5" id="check_suenno_pregunta_cinco_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_cinco_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta5" id="check_suenno_pregunta_cinco_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_cinco_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 6 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Tuve problemas para dormir</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta6" id="check_suenno_pregunta_seis_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_seis_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta6" id="check_suenno_pregunta_seis_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_seis_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta6" id="check_suenno_pregunta_seis_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_seis_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta6" id="check_suenno_pregunta_seis_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_seis_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta6" id="check_suenno_pregunta_seis_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_seis_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 7 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Dormí lo suficiente</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta7" id="check_suenno_pregunta_siete_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_siete_uno">Nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta7" id="check_suenno_pregunta_siete_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_siete_dos">Casi nunca</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta7" id="check_suenno_pregunta_siete_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_siete_tres">A veces</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta7" id="check_suenno_pregunta_siete_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_siete_cuatro">A menudo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta7" id="check_suenno_pregunta_siete_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_siete_cinco">Siempre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {% comment %} pregunta 8 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>8</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>La calidad de mi sueño fue...</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta8" id="check_suenno_pregunta_ocho_uno" value="1">
+                        <label class="form-check-label" for="check_suenno_pregunta_ocho_uno">Muy bien</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta8" id="check_suenno_pregunta_ocho_dos" value="2">
+                        <label class="form-check-label" for="check_suenno_pregunta_ocho_dos">Bien</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta8" id="check_suenno_pregunta_ocho_tres" value="3">
+                        <label class="form-check-label" for="check_suenno_pregunta_ocho_tres">Justo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta8" id="check_suenno_pregunta_ocho_cuatro" value="4">
+                        <label class="form-check-label" for="check_suenno_pregunta_ocho_cuatro">Pobre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSuennoPregunta8" id="check_suenno_pregunta_ocho_cinco" value="5">
+                        <label class="form-check-label" for="check_suenno_pregunta_ocho_cinco">Muy pobre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='d-grid gap-3 mt-3'>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_suenno'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        {% comment %} P y C repetitivo {% endcomment %}
+        <div class="accordion" id="accordionRepetitivo">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingRepetitivo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRepetitivo" aria-expanded="false" aria-controls="collapseRepetitivo">
+                <strong>P y C Repetitivo</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_repetitivo'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseRepetitivo" class="accordion-collapse collapse" aria-labelledby="headingRepetitivo" data-bs-parent="#accordionRepetitivo">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_repetitivo_no_aplica">
+                  <label class="form-check-label" for="mst2_repetitivo_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>En los últimos <strong>siete (7) días</strong></span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>En promedio, ¿Cuánto tiempo ocupan estos pensamientos o comportamientos cada día?</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta1" id="check_repetitivo_pregunta_uno_uno" value="0">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_uno_uno">Ninguno</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta1" id="check_repetitivo_pregunta_uno_dos" value="1">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_uno_dos">Leve (Menos de una hora al día)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta1" id="check_repetitivo_pregunta_uno_tres" value="2">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_uno_tres">Moderado (1 a 3 horas al día)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta1" id="check_repetitivo_pregunta_uno_cuatro" value="3">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_uno_cuatro">Severo (3 a 8 hiras al día)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta1" id="check_repetitivo_pregunta_uno_cinco" value="4">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_uno_cinco">Extremo (más de 8 horas al día)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>¿Cuánta angustia le causan estos pensamientos o comportamientos?</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta2" id="check_repetitivo_pregunta_dos_uno" value="0">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_dos_uno">Ninguno</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta2" id="check_repetitivo_pregunta_dos_dos" value="1">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_dos_dos">Leve (un poco perturbador)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta2" id="check_repetitivo_pregunta_dos_tres" value="2">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_dos_tres">Moderado (perturbador pero aún manejable)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta2" id="check_repetitivo_pregunta_dos_cuatro" value="3">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_dos_cuatro">Severo (muy perturbador)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta2" id="check_repetitivo_pregunta_dos_cinco" value="4">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_dos_cinco">Extremo (angustia abrumadora)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>¿Qué tan difícil te resulta controlar estos pensamientos o comportamientos?</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta3" id="check_repetitivo_pregunta_tres_uno" value="0">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_tres_uno">Control total</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta3" id="check_repetitivo_pregunta_tres_dos" value="1">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_tres_dos">Mucho control (generalmente capaz de controlar estos pensamientos o comportamientos)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta3" id="check_repetitivo_pregunta_tres_tres" value="2">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_tres_tres">Control moderado (A veces capaz de controlar estos pensamientos o comportamientos)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta3" id="check_repetitivo_pregunta_tres_cuatro" value="3">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_tres_cuatro">Poco control (Rara vez capaz de controlar estos pensamientos o comportamientos)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta3" id="check_repetitivo_pregunta_tres_cinco" value="4">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_tres_cinco">Sin control (incapaz de controlar estos pensamientos o comportamientos)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>En que medida estos pensamientos o comportamientos te hacen evitar hacer algo, ir a cualquier lugar o estar con alguien?</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta4" id="check_repetitivo_pregunta_cuatro_uno" value="0">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cuatro_uno">Sin evitación</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta4" id="check_repetitivo_pregunta_cuatro_dos" value="1">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cuatro_dos">Leve (evitación ocacional)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta4" id="check_repetitivo_pregunta_cuatro_tres" value="2">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cuatro_tres">Moderado (evite hacer estas cosas regularmente)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta4" id="check_repetitivo_pregunta_cuatro_cuatro" value="3">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cuatro_cuatro">Severo (evitacón frecuente y extensa)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta4" id="check_repetitivo_pregunta_cuatro_cinco" value="4">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cuatro_cinco">Extremo (evitacón casi total; confinado en casa)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>En qué medida interfieren estos pensamientos o comportamientos en la escuela, el trabajo o su vida social o familiar?</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta5" id="check_repetitivo_pregunta_cinco_uno" value="0">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cinco_uno">Ninguno</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta5" id="check_repetitivo_pregunta_cinco_dos" value="1">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cinco_dos">Leve (ligera interferencia)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta5" id="check_repetitivo_pregunta_cinco_tres" value="2">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cinco_tres">Moderado (Definido, interferencia, con funcionamiento, pero aún manejable)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta5" id="check_repetitivo_pregunta_cinco_cuatro" value="3">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cinco_cuatro">Severo (interferencia sustancial)</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsRepetitivoPregunta5" id="check_repetitivo_pregunta_cinco_cinco" value="4">
+                        <label class="form-check-label" for="check_repetitivo_pregunta_cinco_cinco">Extremo (interferencia casi total; incapacitado)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='d-grid gap-3 mt-3'>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_repetitivo'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        {% comment %} Sustancias {% endcomment %}
+        <div class="accordion" id="accordionSustancias">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSustancias">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSustancias" aria-expanded="false" aria-controls="collapseSustancias">
+                <strong>Sustancias</strong>
+                <div style='margin-left: 15%'>Valoración:
+                  <span class='badge bg-badge-gray' id='valoracion_sustancias'>0%</span>
+                </div>
+              </button>
+            </h2>
+            <div id="collapseSustancias" class="accordion-collapse collapse" aria-labelledby="headingSustancias" data-bs-parent="#accordionSustancias">
+              <div class="accordion-body">
+
+                <div class="form-group form-check py-4">
+                  <input class="form-check-input" type="checkbox" value="" id="mst2_sustancias_no_aplica">
+                  <label class="form-check-label" for="mst2_sustancias_no_aplica">
+                    No aplica
+                  </label>
+                </div>
+
+                <span>
+                  <p class="text-justify">Durante las últimas <strong>DOS (2) SEMANAS</strong>, ¿Con qué frecuencia aproximadamente usó alguno de los siguientes medicamentos <strong> por su cuenta</strong>, es decir, sin receta médica, en cantidades mayores o durante más tiempo de lo recetado?</p>
+                </span>
+
+                {% comment %} pregunta 1 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>a</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Analgésicos (Como Vicodin)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta1" id="check_sustancias_pregunta_uno_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_uno_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta1" id="check_sustancias_pregunta_uno_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_uno_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta1" id="check_sustancias_pregunta_uno_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_uno_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta1" id="check_sustancias_pregunta_uno_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_uno_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta1" id="check_sustancias_pregunta_uno_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_uno_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 2 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>b</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Estimulantes (como Ritalin, Adderall)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta2" id="check_sustancias_pregunta_dos_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_dos_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta2" id="check_sustancias_pregunta_dos_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_dos_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta2" id="check_sustancias_pregunta_dos_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_dos_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta2" id="check_sustancias_pregunta_dos_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_dos_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta2" id="check_sustancias_pregunta_dos_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_dos_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 3 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>c</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Sedantes o tranquilizantes (como pastillas para dormir o Valium)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta3" id="check_sustancias_pregunta_tres_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_tres_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta3" id="check_sustancias_pregunta_tres_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_tres_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta3" id="check_sustancias_pregunta_tres_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_tres_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta3" id="check_sustancias_pregunta_tres_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_tres_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta3" id="check_sustancias_pregunta_tres_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_tres_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <span>
+                  <p class="text-justify">O drogas como:</p>
+                </span>
+
+                {% comment %} pregunta 4 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>d</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Marijuana</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta4" id="check_sustancias_pregunta_cuatro_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cuatro_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta4" id="check_sustancias_pregunta_cuatro_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cuatro_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta4" id="check_sustancias_pregunta_cuatro_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cuatro_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta4" id="check_sustancias_pregunta_cuatro_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cuatro_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta4" id="check_sustancias_pregunta_cuatro_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cuatro_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 5 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>e</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Cocaína o Crack</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta5" id="check_sustancias_pregunta_cinco_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cinco_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta5" id="check_sustancias_pregunta_cinco_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cinco_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta5" id="check_sustancias_pregunta_cinco_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cinco_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta5" id="check_sustancias_pregunta_cinco_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cinco_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta5" id="check_sustancias_pregunta_cinco_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_cinco_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 6 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>f</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Drogas de club (como el éxtasis)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta6" id="check_sustancias_pregunta_seis_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_seis_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta6" id="check_sustancias_pregunta_seis_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_seis_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta6" id="check_sustancias_pregunta_seis_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_seis_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta6" id="check_sustancias_pregunta_seis_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_seis_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta6" id="check_sustancias_pregunta_seis_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_seis_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 7 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>g</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Alucinógenos (como el LSD)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta7" id="check_sustancias_pregunta_siete_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_siete_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta7" id="check_sustancias_pregunta_siete_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_siete_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta7" id="check_sustancias_pregunta_siete_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_siete_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta7" id="check_sustancias_pregunta_siete_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_siete_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta7" id="check_sustancias_pregunta_siete_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_siete_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 8 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>h</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Heroína</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta8" id="check_sustancias_pregunta_ocho_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_ocho_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta8" id="check_sustancias_pregunta_ocho_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_ocho_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta8" id="check_sustancias_pregunta_ocho_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_ocho_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta8" id="check_sustancias_pregunta_ocho_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_ocho_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta8" id="check_sustancias_pregunta_ocho_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_ocho_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 9 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>i</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Inhalantes o disolventes (como pegamento)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta9" id="check_sustancias_pregunta_nueve_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_nueve_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta9" id="check_sustancias_pregunta_nueve_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_nueve_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta9" id="check_sustancias_pregunta_nueve_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_nueve_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta9" id="check_sustancias_pregunta_nueve_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_nueve_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta9" id="check_sustancias_pregunta_nueve_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_nueve_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} pregunta 10 {% endcomment %}
+                <div class="card shadow-sm">
+                  <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>j</span>
+                  <div class="card-body">
+                    <div class="form-group mb-1 py-2">
+                      <label class="form-label">
+                        <span class='required'>
+                          <strong>Metanfetamina (como speed)</strong>
+                        </span>
+                      </label>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta10" id="check_sustancias_pregunta_diez_uno" value="0">
+                        <label class="form-check-label" for="check_sustancias_pregunta_diez_uno">Nunca</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta10" id="check_sustancias_pregunta_diez_dos" value="1">
+                        <label class="form-check-label" for="check_sustancias_pregunta_diez_dos">1 o 2 días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta10" id="check_sustancias_pregunta_diez_tres" value="2">
+                        <label class="form-check-label" for="check_sustancias_pregunta_diez_tres">Varios días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta10" id="check_sustancias_pregunta_diez_cuatro" value="3">
+                        <label class="form-check-label" for="check_sustancias_pregunta_diez_cuatro">Más de la mitad de los días</label>
+                      </div>
+                      </br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOptionsSustanciasPregunta10" id="check_sustancias_pregunta_diez_cinco" value="4">
+                        <label class="form-check-label" for="check_sustancias_pregunta_diez_cinco">Casi todos los días</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <span>
+                  <p class="text-justify">
+                    <strong>Nota:</strong>
+                    </br>
+                    Se le pide al médico que revice la puntuación de cada elemento de la medida durante la entrevista. Puntuaciones sobre los ítems individuales debe interpretarse de forma independiente porque cada ítem indaga sobre el uso de una sustancia distinta.  
+                  </p>
+                </span>
+
+                <div class='d-grid gap-3 mt-3'>
+                  </br>
+                  <button type="button" class="btn btn-primary" id='btn_valorar_sustancias'>Valorar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_mst_nivel2">Cancelar</button>
+          <button type="button" class="btn btn-primary" id='btn_agregar_mst_nivel2'>
+            Guardar
+          </button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>

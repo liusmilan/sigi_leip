@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<body>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class='row'>
+      <div class="col-xl-6">
+        <div class="form-group mb-1 py-1">
+          <label for="problema_actual_hc" class="form-label">
+            Describa con sus propias palabras la naturaleza del problema actual
+          </label>
+          <textarea type="text" class="form-control" id="problema_actual_hc" name='problema_actual_hc'></textarea>
+          </br>
+        </div>
+
+        <div class="form-group mb-1 py-1">
+          <label for="comienzo_problema_hc" class="form-label">
+            ¿Cuándo empezaron sus problemas?
+          </label>
+          <textarea type="text" class="form-control" id="comienzo_problema_hc" name='comienzo_problema_hc'></textarea>
+          </br>
+        </div>
+      </div>
+
+      <div class="col-xl-6">
+        <div class="form-group mb-1 py-1">
+          <label for="mejor_desc_problema_hc" class="form-label">
+            De las opciones presentadas, marque la que describa mejor su problema
+          </label>
+          </br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptionsDescripProblemaHc" id="check_desc_prob_hc_1" value="1">
+            <label class="form-check-label" for="check_desc_prob_hc_1">Es poco molesto</label>
+          </div>
+          </br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptionsDescripProblemaHc" id="check_desc_prob_hc_2" value="2">
+            <label class="form-check-label" for="check_desc_prob_hc_2">Es muy molesto</label>
+          </div>
+          </br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptionsDescripProblemaHc" id="check_desc_prob_hc_3" value="3">
+            <label class="form-check-label" for="check_desc_prob_hc_3">Es severo</label>
+          </div>
+          </br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptionsDescripProblemaHc" id="check_desc_prob_hc_4" value="4">
+            <label class="form-check-label" for="check_desc_prob_hc_4">Es muy severo</label>
+          </div>
+          </br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptionsDescripProblemaHc" id="check_desc_prob_hc_5" value="5">
+            <label class="form-check-label" for="check_desc_prob_hc_5">Totalmente incapacitante</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class="col-xl-6">
+        <div class="form-group mb-1 py-1">
+          <label for="empeora_problema_hc" class="form-label">
+            ¿Con qué empeora su problema?
+          </label>
+          <textarea type="text" class="form-control" id="empeora_problema_hc" name='empeora_problema_hc'></textarea>
+          </br>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="form-group mb-1 py-1">
+          <label for="mejora_problema_hc" class="form-label">
+            ¿Con qué mejora el problema, o que ha sido de ayuda para usted?
+          </label>
+          <textarea type="text" class="form-control" id="mejora_problema_hc" name='mejora_problema_hc'></textarea>
+          </br>
+        </div>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class="form-group mb-1 py-1">
+        <label class="form-label">
+          Siendo 1 <strong>(totalmente insatisfecho)</strong> y 7 <strong>(muy satisfecho)</strong>, ¿Qué tan satisfecho/a está con su vida considerada como un todo?
+        </label>
+        </br>
+        <label class="form-label" style="padding: 20px">
+          <strong>Insatisfecho</strong>
+        </label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisConSuVidaHc" id="check_satis_vida_hc_1" value="1">
+          <label class="form-check-label" for="check_satis_vida_hc_1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisConSuVidaHc" id="check_satis_vida_hc_2" value="2">
+          <label class="form-check-label" for="check_satis_vida_hc_2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisConSuVidaHc" id="check_satis_vida_hc_3" value="3">
+          <label class="form-check-label" for="check_satis_vida_hc_3">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisConSuVidaHc" id="check_satis_vida_hc_4" value="4">
+          <label class="form-check-label" for="check_satis_vida_hc_4">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisConSuVidaHc" id="check_satis_vida_hc_5" value="5">
+          <label class="form-check-label" for="check_satis_vida_hc_5">5</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisConSuVidaHc" id="check_satis_vida_hc_6" value="6">
+          <label class="form-check-label" for="check_satis_vida_hc_6">6</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisConSuVidaHc" id="check_satis_vida_hc_7" value="7">
+          <label class="form-check-label" for="check_satis_vida_hc_7">7</label>
+        </div>
+        <label class="form-label">
+          <strong>Muy satisfecho</strong>
+        </label>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class="form-group mb-1 py-1">
+        <label class="form-label">
+          Siendo 1 <strong>(totalmente relajado)</strong> y 7 <strong>(muy tenso)</strong>, ¿Cuál cree que ha sido su nivel de tensión durante el mes pasado?
+        </label>
+        </br>
+        <label class="form-label" style="padding: 20px">
+          <strong>Relajado</strong>
+        </label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsTensionHc" id="check_tension_hc_1" value="1">
+          <label class="form-check-label" for="check_tension_hc_1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsTensionHc" id="check_tension_hc_2" value="2">
+          <label class="form-check-label" for="check_tension_hc_2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsTensionHc" id="check_tension_hc_3" value="3">
+          <label class="form-check-label" for="check_tension_hc_3">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsTensionHc" id="check_tension_hc_4" value="4">
+          <label class="form-check-label" for="check_tension_hc_4">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsTensionHc" id="check_tension_hc_5" value="5">
+          <label class="form-check-label" for="check_tension_hc_5">5</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsTensionHc" id="check_tension_hc_6" value="6">
+          <label class="form-check-label" for="check_tension_hc_6">6</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptionsTensionHc" id="check_tension_hc_7" value="7">
+          <label class="form-check-label" for="check_tension_hc_7">7</label>
+        </div>
+        <label class="form-label">
+          <strong>Tenso</strong>
+        </label>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

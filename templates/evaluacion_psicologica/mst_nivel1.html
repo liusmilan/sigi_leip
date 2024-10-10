@@ -1,0 +1,932 @@
+<div class="modal fade" id="modal_mst_nivel1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal_50">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Evaluación Psicológica (MST Nivel 1)</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_mst_nivel1'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_mst_nivel1">
+        <input type="hidden" class="form-control" id="id_usuario_autenticado">
+
+        <div class="card shadow-sm card-light-background">
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <span>
+                Las preguntas siguientes hacen referencia a cosas que podrían haberle hecho sentir mal.
+              </br>
+                Por cada pregunta, señale el número que mejor describa hata qué punto (o con qué frecuencia) se ha sentido mal durante las últimas dos semanas.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 1 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Poco interés o satisfacción en hacer cosas?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta1" id="check_pregunta_uno_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_uno_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta1" id="check_pregunta_uno_uno" value="1">
+                <label class="form-check-label" for="check_pregunta_uno_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta1" id="check_pregunta_uno_dos" value="2">
+                <label class="form-check-label" for="check_pregunta_uno_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta1" id="check_pregunta_uno_tres" value="3">
+                <label class="form-check-label" for="check_pregunta_uno_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta1" id="check_pregunta_uno_cuatro" value="4">
+                <label class="form-check-label" for="check_pregunta_uno_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 2 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentirse bajo/a de ánimo, deprimido/a o desesperanzado/a?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta2" id="check_pregunta_dos_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_dos_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta2" id="check_pregunta_dos_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_dos_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta2" id="check_pregunta_dos_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_dos_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta2" id="check_pregunta_dos_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_dos_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta2" id="check_pregunta_dos_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_dos_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 3 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentirse más irritado/a, malhumorado/a o enfadado/a que normalmente?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta3" id="check_pregunta_tres_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_tres_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta3" id="check_pregunta_tres_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_tres_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta3" id="check_pregunta_tres_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_tres_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta3" id="check_pregunta_tres_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_tres_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta3" id="check_pregunta_tres_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_tres_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 4 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Dormir menos de lo normal pero todavía con mucha energía?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta4" id="check_pregunta_cuatro_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_cuatro_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta4" id="check_pregunta_cuatro_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_cuatro_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta4" id="check_pregunta_cuatro_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_cuatro_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta4" id="check_pregunta_cuatro_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_cuatro_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta4" id="check_pregunta_cuatro_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_cuatro_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 5 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Empezar más proyectos de lo normal o hacer cosas más arriesgdas de lo normal?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta5" id="check_pregunta_cinco_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_cinco_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta5" id="check_pregunta_cinco_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_cinco_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta5" id="check_pregunta_cinco_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_cinco_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta5" id="check_pregunta_cinco_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_cinco_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta5" id="check_pregunta_cinco_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_cinco_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {% comment %} 6 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentirse nervioso/a, ansioso/a, preocupado/a o al límite?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta6" id="check_pregunta_seis_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_seis_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta6" id="check_pregunta_seis_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_seis_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta6" id="check_pregunta_seis_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_seis_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta6" id="check_pregunta_seis_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_seis_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta6" id="check_pregunta_seis_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_seis_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 7 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentir pánico o estar atemorizado/a?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta7" id="check_pregunta_siete_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_siete_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta7" id="check_pregunta_siete_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_siete_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta7" id="check_pregunta_siete_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_siete_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta7" id="check_pregunta_siete_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_siete_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta7" id="check_pregunta_siete_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_siete_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 8 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>8</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Evitar situaciones que le ponen nervioso/a?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta8" id="check_pregunta_ocho_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_ocho_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta8" id="check_pregunta_ocho_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_ocho_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta8" id="check_pregunta_ocho_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_ocho_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta8" id="check_pregunta_ocho_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_ocho_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta8" id="check_pregunta_ocho_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_ocho_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 9 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>9</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Dolores o molestias inexplicados (por ejemplo: cabeza, espalda, articulaciones, abdomen, piernas)?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta9" id="check_pregunta_nueve_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_nueve_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta9" id="check_pregunta_nueve_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_nueve_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta9" id="check_pregunta_nueve_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_nueve_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta9" id="check_pregunta_nueve_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_nueve_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta9" id="check_pregunta_nueve_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_nueve_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 10 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>10</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentir que sus enfermedades no se toman lo suficientemente en serio?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta10" id="check_pregunta_diez_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_diez_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta10" id="check_pregunta_diez_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_diez_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta10" id="check_pregunta_diez_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_diez_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta10" id="check_pregunta_diez_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_diez_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta10" id="check_pregunta_diez_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_diez_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 11 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>11</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Tener pensamiento de dañarse a sí mismo/a?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta11" id="check_pregunta_once_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_once_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta11" id="check_pregunta_once_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_once_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta11" id="check_pregunta_once_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_once_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta11" id="check_pregunta_once_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_once_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta11" id="check_pregunta_once_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_once_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 12 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>12</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Oír cosas que otras personas no podían oír, como voces, incluso cuando no hay nadie alrededor?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta12" id="check_pregunta_doce_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_doce_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta12" id="check_pregunta_doce_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_doce_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta12" id="check_pregunta_doce_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_doce_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta12" id="check_pregunta_doce_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_doce_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta12" id="check_pregunta_doce_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_doce_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 13 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>13</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentir que alguien podría oír sus pensamientos o que usted podría escuchar lo que otra persona estaba pensando?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta13" id="check_pregunta_trece_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_trece_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta13" id="check_pregunta_trece_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_trece_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta13" id="check_pregunta_trece_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_trece_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta13" id="check_pregunta_trece_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_trece_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta13" id="check_pregunta_trece_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_trece_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 14 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>14</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Problemas de sueño que afectan a su calidad de sueño en general?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta14" id="check_pregunta_catorce_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_catorce_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta14" id="check_pregunta_catorce_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_catorce_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta14" id="check_pregunta_catorce_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_catorce_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta14" id="check_pregunta_catorce_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_catorce_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta14" id="check_pregunta_catorce_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_catorce_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 15 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>15</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Problemas con la memoria (por ejemplo, aprender nueva información) o con la ubicación (por ejemplo, encontrar el camino a casa)?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta15" id="check_pregunta_quince_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_quince_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta15" id="check_pregunta_quince_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_quince_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta15" id="check_pregunta_quince_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_quince_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta15" id="check_pregunta_quince_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_quince_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta15" id="check_pregunta_quince_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_quince_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 16 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>16</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Pensamientos desagradables, necesidades urgentes o imágenes repetidas en su cabeza?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta16" id="check_pregunta_dieciseis_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciseis_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta16" id="check_pregunta_dieciseis_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciseis_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta16" id="check_pregunta_dieciseis_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciseis_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta16" id="check_pregunta_dieciseis_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciseis_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta16" id="check_pregunta_dieciseis_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciseis_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 17 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>17</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentirse impulsado/a a realizar ciertos comportamientos o actos mentales una y otra vez?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta17" id="check_pregunta_diecisiete_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_diecisiete_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta17" id="check_pregunta_diecisiete_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_diecisiete_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta17" id="check_pregunta_diecisiete_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_diecisiete_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta17" id="check_pregunta_diecisiete_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_diecisiete_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta17" id="check_pregunta_diecisiete_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_diecisiete_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 18 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>18</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Sentirse indiferente o distanciado de sí mismo/a, de su cuerpo, de lo que le rodea o de sus recuerdos?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta18" id="check_pregunta_dieciocho_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciocho_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta18" id="check_pregunta_dieciocho_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciocho_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta18" id="check_pregunta_dieciocho_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciocho_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta18" id="check_pregunta_dieciocho_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciocho_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta18" id="check_pregunta_dieciocho_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_dieciocho_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 19 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>19</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿No saber quién es realmente o qué es lo que quiere de la vida?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta19" id="check_pregunta_diecinueve_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_diecinueve_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta19" id="check_pregunta_diecinueve_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_diecinueve_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta19" id="check_pregunta_diecinueve_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_diecinueve_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta19" id="check_pregunta_diecinueve_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_diecinueve_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta19" id="check_pregunta_diecinueve_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_diecinueve_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 20 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>20</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿No sentirse cercano a otras personas o no disfrutar de sus relaciones con ellas?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta20" id="check_pregunta_veinte_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_veinte_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta20" id="check_pregunta_veinte_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_veinte_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta20" id="check_pregunta_veinte_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_veinte_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta20" id="check_pregunta_veinte_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_veinte_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta20" id="check_pregunta_veinte_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_veinte_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 21 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>21</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Tomar al menos cuatro bebidas de cualquier tipo de alcohol en un solo día?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta21" id="check_pregunta_veintiuno_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_veintiuno_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta21" id="check_pregunta_veintiuno_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_veintiuno_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta21" id="check_pregunta_veintiuno_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_veintiuno_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta21" id="check_pregunta_veintiuno_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_veintiuno_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta21" id="check_pregunta_veintiuno_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_veintiuno_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 22 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>22</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Fumar cigarrillos, puros o en pipa, o usar tabaco en polvo, o masticar tabaco?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta22" id="check_pregunta_veintidos_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_veintidos_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta22" id="check_pregunta_veintidos_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_veintidos_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta22" id="check_pregunta_veintidos_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_veintidos_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta22" id="check_pregunta_veintidos_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_veintidos_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta22" id="check_pregunta_veintidos_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_veintidos_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 23 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>23</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2  ">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>¿Usar una de las medicinas siguientes A SU MANERA, esto es, sin la prescripción de un médico, en mayores cantidades o más tiempo de lo prescrito [por ejemplo: analgésicos (como Termalgín codeína),
+                    estimulantes (como Rubifén), sedantes o tranqulizantes (como pastillas para dormir o Valium), o drogas como marihuana, cocaína o crack, drogas de diseño (como el éxtasis), alucinógenos
+                     (como el LSD), heroína, inhalantes o disolventes (como el pegamento), o metanfetamina (como el speed)]?</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta23" id="check_pregunta_veintitres_cero" value="0">
+                <label class="form-check-label" for="check_pregunta_veintitres_cero">0. Nada (en ningún momento)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta23" id="check_pregunta_veintitres_uno" value="0">
+                <label class="form-check-label" for="check_pregunta_veintitres_uno">1. Algo (raro, menos de un día o dos)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta23" id="check_pregunta_veintitres_dos" value="0">
+                <label class="form-check-label" for="check_pregunta_veintitres_dos">2. Leve (varios días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta23" id="check_pregunta_veintitres_tres" value="0">
+                <label class="form-check-label" for="check_pregunta_veintitres_tres">3. Moderado (más de la mitad de los días)</label>
+              </div>
+            </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsPregunta23" id="check_pregunta_veintitres_cuatro" value="0">
+                <label class="form-check-label" for="check_pregunta_veintitres_cuatro">4. Grave (casi cada día)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_mst_nivel1">Cancelar</button>
+          <button type="button" class="btn btn-primary" id='btn_agregar_mst_nivel1'>
+            Guardar
+          </button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>

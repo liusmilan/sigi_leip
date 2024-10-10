@@ -1,0 +1,82 @@
+<div class="modal fade" id="modal_agregar_editar_usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_usuario'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_usuario">
+
+        <form id="form_usuario" name='form_usuario'>
+          {% csrf_token %}
+          <div class="form-group mb-3 py-4">
+            <label for="nombre_usuario" class="form-label">
+              <span class='required'>
+                Usuario
+              </span>
+              </label>
+            <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Usuario" required>
+          </div>
+          <div class="form-group mb-3 py-4">
+            <label for="contrasenna_usuario" class="form-label">
+              <span class='required'>
+                Contraseña
+              </span>
+              </label>
+            <input type="password" class="form-control" id="contrasenna_usuario" name="contrasenna_usuario" placeholder="Contraseña" required>
+          </div>
+          <div class="form-group mb-3 py-4">
+            <label for="confirmar_contrasenna_usuario" class="form-label">
+              <span class='required'>
+                Confirmar Contraseña
+              </span>
+              </label>
+            <input type="password" class="form-control" id="confirmar_contrasenna_usuario" name="confirmar_contrasenna_usuario" placeholder="Confirmar Contraseña" required>
+          </div>
+          <div class="form-group mb-3 py-4">
+            <label for="tipo_usuario" class="form-label">
+              <span class='required'>
+                Tipo Usuario
+              </span>
+            </label>
+            <select class='form-control' id='tipo_usuario' name='tipo_usuario' required></select>
+          </div>
+          <div class="form-group mb-3 py-4">
+            <label for="persona_usuario" class="form-label">
+              <span class='required'>
+                Persona
+              </span>
+            </label>
+            <select class='form-control' id='persona_usuario' name='persona_usuario' required></select>
+          </div>
+          <div class="form-group mb-3 py-4">
+            <label for="rol_usuario" class="form-label">
+              <span class='required'>
+                Rol
+              </span>
+            </label>
+            <select class='form-control basic-multiple' id='rol_usuario' name='rol_usuario' multiple></select>
+          </div>
+          <div class="form-group form-check py-4">
+            <input class="form-check-input" type="checkbox" value="" id="trabajador_ley" name="trabajador_ley">
+            <label class="form-check-label" for="trabajador_ley">
+              Trabajador ley
+            </label>
+          </div>
+          <div class="form-group form-check py-4">
+            <input class="form-check-input" type="checkbox" value="" id="usuario_habilitado" name="usuario_habilitado">
+            <label class="form-check-label" for="usuario_habilitado">
+              Habilitado
+            </label>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_usuario">Cancelar</button>
+            <button type="button" class="btn btn-primary" id='btn_agregar_usuario'>Agregar</button>
+          </div>
+        </form>        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="modal fade" id="modal_listado_talleres" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal_60">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Listado de Talleres</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_listado_talleres'></button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body py-4">
+          <table class="table align-middle table-row-dashed table-hover fs-6 gy-5 gs-5" id="tabla_listado_talleres">
+            <thead>
+              <tr class='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
+                <th scope="min-w-125px">Taller</th>
+                <th scope="min-w-125px">Modalidad</th>
+                <th scope="min-w-125px">Fecha de Inicio</th>
+                <th scope="min-w-125px">Fecha de Fin</th>
+                <th scope="min-w-125px">Especialista que imparte</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600 fw-bold">
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_listado_talleres">Cancelar</button>
+          <button type="button" class="btn btn-primary" id='btn_agregar_talleres_valoracion'>Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
