@@ -5,7 +5,6 @@ from estado_app.models import estado
 
 
 class municipio(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre = models.CharField(
         'Nombre', max_length=255, blank=False, null=False)
     estado = models.ForeignKey(

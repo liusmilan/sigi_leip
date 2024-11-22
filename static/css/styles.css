@@ -2848,7 +2848,7 @@ table {
 }
 .text-muted {
   --bs-text-opacity:1;
-  color:#a1a5b7!important
+  color:#a1a5b7 !important
 }
 .text-black-50 {
   --bs-text-opacity:1;
@@ -5632,4 +5632,29 @@ label.error {
   padding: .75rem !important;
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+.centrado {
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-mania-red {
+  color: #fff !important;
+  background-color: #f1416c;
+}
+
+.alert-mania-green {
+  color: #fff !important;
+  background-color: #50cd89;
+}
+
+.alert-mania-orange {
+  color: #fff !important;
+  background-color: #fd7e14;
+}
+
+.alert-mania-yellow {
+  color: #fff !important;
+  background-color: #ffc700;
 }

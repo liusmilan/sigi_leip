@@ -6,6 +6,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <input type="hidden" class="form-control" id="user_autenticado" value="{{request.user.id}}">
+    <input type="hidden" class="form-control" id="roles_user_autenticado" value="{{request.user.rol.all}}">
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="{% url "inicio:dashboard" %}" class="logo d-flex align-items-center">
@@ -32,7 +33,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{ user.username }}</h6>
-              <span>{{ user.tipo_usuario }}</span>
+              <span>{{ user.persona.email }}</span>
             </li>
             {% comment %}<li>
               <hr class="dropdown-divider">
@@ -69,7 +70,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" id="link_cambiar_contrasenna">
                 <i class="bi bi-key"></i>
                 <span>Cambiar contraseña</span>
               </a>

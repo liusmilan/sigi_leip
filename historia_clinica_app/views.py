@@ -2,6 +2,7 @@ import json
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from datetime import datetime
+from decimal import Decimal
 from django.views.generic import CreateView, TemplateView
 from .models import historia_clinica, atencion_psicologica, caracteristicas_infancia_adolescencia, estado, estado_civil, grado_academico, licenciatura, modalidad_conductas, modalidad_imagenes_me_veo, modalidad_imagenes_tengo, modalidad_pensamientos, modalidad_sensaciones_fisicas, modalidad_sentimientos, municipio, persona, religion, vive_con, vive_en
 from usuario_app.models import Usuario
@@ -36,14 +37,14 @@ class agregarEditarHistoriaClinica(CreateView):
         listChecksImgMeVeo = datos_hc.get('listChecksImgMeVeo')
         listChecksImgTengo = datos_hc.get('listChecksImgTengo')
         listChecksPensamientos = datos_hc.get('listChecksPensamientos')
-        infancia_adolescencia_otros = datos_hc.get('otros_prob_hc')
-        #  campos otros de las listas checkBoxs
-        conducta_otros = datos_hc.get('otros_cond_hc')
-        sentimientos_otros = datos_hc.get('otros_sent_hc')
-        sensaciones_fisicas_otros = datos_hc.get('otros_sf_hc')
-        imag_me_veo_otros_hc = datos_hc.get('otros_img_hc')
-        imag_tengo_otros_hc = datos_hc.get('otros_img_hc1')
-        pensamiento_otros_hc = datos_hc.get('otros_pensamiento_hc')
+        # campos otros de las listas checkBoxs
+        infancia_adolescencia_otros = datos_hc.get('infancia_adolescencia_otros')
+        conducta_otros = datos_hc.get('conducta_otros')
+        sentimientos_otros = datos_hc.get('sentimientos_otros')
+        sensaciones_fisicas_otros = datos_hc.get('sensaciones_fisicas_otros')
+        imag_me_veo_otros_hc = datos_hc.get('imag_me_veo_otros_hc')
+        imag_tengo_otros_hc = datos_hc.get('imag_tengo_otros_hc')
+        pensamiento_otros_hc = datos_hc.get('pensamiento_otros_hc')
         # datos del formulario
         lista_datos_hc = datos_hc.get('datos')
 
@@ -75,10 +76,9 @@ class agregarEditarHistoriaClinica(CreateView):
             id=id_grado_academico)
         estado_civil_obj = None if id_estado_civil == 'sel' or id_estado_civil == '-' else estado_civil.objects.get(
             id=id_estado_civil)
-        fecha_ultima_menstruacion = datetime.strptime(
-            dataDic['fecha_ultima_menst_hc'], '%d/%m/%Y') if dataDic['fecha_ultima_menst_hc'] != '' else None
-        peso = dataDic['peso_hc'] if dataDic['peso_hc'] != '' else -1
-        estatura = dataDic['estatura_hc'] if dataDic['estatura_hc'] != '' else -1
+        fecha_ultima_menstruacion = datetime.strptime(dataDic['fecha_ultima_menst_hc'], '%d/%m/%Y') if dataDic['fecha_ultima_menst_hc'] != '' else None
+        peso = Decimal(dataDic['peso_hc']) if dataDic['peso_hc'] != '' else -1
+        estatura = Decimal(dataDic['estatura_hc']) if dataDic['estatura_hc'] != '' else -1
         edad_padre = dataDic['edad_padre_hc'] if dataDic['edad_padre_hc'] != '' else None
         edad_murio_padre = dataDic['edad_muerte_padre_hc'] if dataDic['edad_muerte_padre_hc'] != '' else None
         edad_hijo_morir_padre = dataDic['edad_usted_morir_padre_hc'] if dataDic['edad_usted_morir_padre_hc'] != '' else None
@@ -160,12 +160,12 @@ class agregarEditarHistoriaClinica(CreateView):
                     insomnio=dataDic['fac_biolg_select_38'], dormir_mas_tiempo=dataDic['fac_biolg_select_39'], dormir_ratos=dataDic[
                         'fac_biolg_select_40'], despertarse_temprano=dataDic['fac_biolg_select_40'],
                     dolor_oido=dataDic['fac_biolg_select_42'], dolor_cabeza=dataDic['fac_biolg_select_44'], dolor_espalda=dataDic[
-                        'fac_biolg_select_45'], moretones_sangrado=dataDic['fac_biolg_select_46'],
+                        'fac_biolg_select_45'], moretones_sangrado=dataDic['fac_biolg_select_46'], menst_afecta_animo=datos_hc.get('menst_afecta_animo'),
                     prob_peso=dataDic['fac_biolg_select_47'], otros_fact_biolg=dataDic[
-                        'otros_fact_biolg_hc'], observaciones=dataDic['observaciones_hc'],
-                    problemas_de_hijos=datos_hc.get('prob_hijo_hc'), detalles_probl_relac_personas_trabj=datos_hc.get('detalle_rel_trabj'), detalle_pena_acerca_sexo=datos_hc.get('detalle_pena_sex'), detalles_visa_sexual_satisf=datos_hc.get('detalle_vida_sex_satisf'),
+                        'otros_fact_biolg_hc'], observaciones=dataDic['observaciones_hc'], detalle_primera_exp_sexual=dataDic['detalle_primera_exp_sexual_hc'],
+                    problemas_de_hijos=datos_hc.get('detalle_prob_hijo'), detalles_probl_relac_personas_trabj=datos_hc.get('detalle_rel_trabj'), detalle_pena_acerca_sexo=datos_hc.get('detalle_pena_sex'), detalles_visa_sexual_satisf=datos_hc.get('detalle_vida_sex_satisf'),
                     detalle_prob_por_rechazo_amoroso=datos_hc.get('detalle_rech_frac_amor'), detalle_prob_salud_fisica=datos_hc.get('detalle_prob_salud_fis'), tipo_frecuencia_ejerc_fisico=datos_hc.get('detalle_ejerc_fis'),
-                    tipo_fecha_cirugia=datos_hc.get('detalle_operado'), aplicado_por=Usuario.objects.get(id=id_usuario_autenticado).persona, atencion=atencion_obj)
+                    tipo_fecha_cirugia=datos_hc.get('detalle_operado'), aplicado_por=Usuario.objects.get(id=id_usuario_autenticado).persona, atencion=atencion_obj, quien_lo_envia=dataDic['quien_lo_envia_hc'], prob_emocion_mental=datos_hc.get('prob_emocion_mental'), cuales_pensamto_vuelven=dataDic['cuales_pensamto_vuelven_hc'])
 
                 agregarCaracteristicaInfanciaAdolescencia(listChecksInfanciaAdoles, obj, infancia_adolescencia_otros)
                 agregarModalidadConductas(listChecksConductas, obj, conducta_otros)
@@ -332,6 +332,7 @@ class agregarEditarHistoriaClinica(CreateView):
                 hc.edad_primera_menstruacion=edad_primera_menstruacion
                 hc.probl_menstruaciones=datos_hc.get('problema_menstruaciones')
                 hc.periodos_regulares=datos_hc.get('periodos_regulares')
+                hc.menst_afecta_animo=datos_hc.get('menst_afecta_animo')
                 hc.conoce_menstruacion=datos_hc.get('menstruacion_primera_vez')
                 hc.menstuacion_dolor=datos_hc.get('menstruacion_dolor')
                 hc.duracion_periodos=dataDic['durac_period_hc']
@@ -393,22 +394,28 @@ class agregarEditarHistoriaClinica(CreateView):
                 hc.tipo_frecuencia_ejerc_fisico=datos_hc.get('detalle_ejerc_fis')
                 hc.tipo_fecha_cirugia=datos_hc.get('detalle_operado')
                 hc.aplicado_por=Usuario.objects.get(id=id_usuario_autenticado).persona
+                hc.quien_lo_envia = dataDic['quien_lo_envia_hc']
+                hc.prob_emocion_mental = datos_hc.get('prob_emocion_mental')
+                hc.cuales_pensamto_vuelven = dataDic['cuales_pensamto_vuelven_hc']
+                hc.problemas_de_hijos=datos_hc.get('detalle_prob_hijo')
+                hc.detalle_primera_exp_sexual=dataDic['detalle_primera_exp_sexual_hc']
                 hc.save()
                 
-                eliminarCaracteristicaInfanciaAdolescencia(hc)
-                eliminarModalidadConductas(hc)
-                eliminarModalidadImagenesMeVeo(hc)
-                eliminarModalidadImagenesTengo(hc)
-                eliminarModalidadSensacionesFisicas(hc)
-                eliminarModalidadSentimientos(hc)
-                eliminarModalidadPensamientos(hc)
+                # eliminar datos de las relaciones
+                caracteristicas_infancia_adolescencia.objects.get(hc=hc).delete()
+                modalidad_conductas.objects.get(hc=hc).delete()
+                modalidad_imagenes_me_veo.objects.get(hc=hc).delete()
+                modalidad_imagenes_tengo.objects.get(hc=hc).delete()
+                modalidad_pensamientos.objects.get(hc=hc).delete()
+                modalidad_sensaciones_fisicas.objects.get(hc=hc).delete()
+                modalidad_sentimientos.objects.get(hc=hc).delete()
                 agregarCaracteristicaInfanciaAdolescencia(listChecksInfanciaAdoles, hc, infancia_adolescencia_otros)
-                agregarModalidadConductas(listChecksConductas, obj, conducta_otros)
-                agregarModalidadImagenesMeVeo(listChecksImgMeVeo, obj, imag_me_veo_otros_hc)
-                agregarModalidadImagenesTengo(listChecksImgTengo, obj, imag_tengo_otros_hc)
-                agregarModalidadPensamientos(listChecksPensamientos, obj, pensamiento_otros_hc)
-                agregarModalidadSensacionesFisicas(listChecksSensaFisicas, obj, sensaciones_fisicas_otros)
-                agregarModalidadSentimientos(listChecksSentimientos, obj, sentimientos_otros)
+                agregarModalidadConductas(listChecksConductas, hc, conducta_otros)
+                agregarModalidadImagenesMeVeo(listChecksImgMeVeo, hc, imag_me_veo_otros_hc)
+                agregarModalidadImagenesTengo(listChecksImgTengo, hc, imag_tengo_otros_hc)
+                agregarModalidadPensamientos(listChecksPensamientos, hc, pensamiento_otros_hc)
+                agregarModalidadSensacionesFisicas(listChecksSensaFisicas, hc, sensaciones_fisicas_otros)
+                agregarModalidadSentimientos(listChecksSentimientos, hc, sentimientos_otros)
 
                 mensaje = 'Se ha editado correctamente la Historia Clínica.'
                 tipo_mensaje = 'success'
@@ -456,7 +463,26 @@ class getHistoriaClinica(TemplateView):
             vive_con = {'id': hc.vive_con.id, 'nombre': hc.vive_con.vive_con} if hc.vive_con != None else None
             religion = {'id': hc.religion.id, 'nombre': hc.religion.nombre} if hc.religion != None else None
             grado_est = {'id': hc.grado_est.id, 'nombre': hc.grado_est.nombre} if hc.grado_est != None else None
-            
+            datos_persona = {
+                'nombre': atencion_obj.solicitante.nombre,
+                'segundo_nombre': atencion_obj.solicitante.segundo_nombre if atencion_obj.solicitante.segundo_nombre != None else None,
+                'apellido': atencion_obj.solicitante.apellido,
+                'segundo_apellido': atencion_obj.solicitante.segundo_apellido if atencion_obj.solicitante.segundo_apellido != None else None,
+                'correo': atencion_obj.solicitante.email,
+                'fecha_nacimiento': datetime.strftime(atencion_obj.solicitante.fecha_nacimiento, '%d/%m/%Y'),
+                'telefono_contacto': atencion_obj.solicitante.telefono,
+                'sexo': atencion_obj.solicitante.sexo,
+                'estado': {
+                    'id': atencion_obj.solicitante.estado.id,
+                    'nombre': atencion_obj.solicitante.estado.nombre
+                },
+                'municipio': {
+                    'id': atencion_obj.solicitante.municipio.id,
+                    'nombre': atencion_obj.solicitante.municipio.nombre
+                },
+                'direccion': atencion_obj.solicitante.direccion,
+                'parentesco': atencion_obj.solicitante.parentesco
+            }
            
             data['estado_nac'] = estado_nac
             data['municipio_nac'] = municipio_nac
@@ -609,7 +635,7 @@ class getHistoriaClinica(TemplateView):
             data['conoce_menstruacion'] = hc.conoce_menstruacion
             data['menstuacion_dolor'] = hc.menstuacion_dolor
             data['duracion_periodos'] = hc.duracion_periodos
-            data['fecha_ultima_menstruacion'] = hc.fecha_ultima_menstruacion
+            data['fecha_ultima_menstruacion'] = datetime.strftime(hc.fecha_ultima_menstruacion, '%d/%m/%Y') if hc.fecha_ultima_menstruacion else None
             data['debilidad_muscular'] = hc.debilidad_muscular
             data['tranquilizantes'] = hc.tranquilizantes
             data['diureticos'] = hc.diureticos
@@ -666,23 +692,25 @@ class getHistoriaClinica(TemplateView):
             data['detalle_prob_salud_fisica'] = hc.detalle_prob_salud_fisica
             data['tipo_frecuencia_ejerc_fisico'] = hc.tipo_frecuencia_ejerc_fisico
             data['tipo_fecha_cirugia'] = hc.tipo_fecha_cirugia
-            data['listChecksInfanciaAdoles'] = getCaracteristicasInfanciaAdolescencia(hc)
-            # data['listChecksInfanciaAdoles'] = caracteristicas_infancia_adolescencia.objects.filter(hc=hc)
-            # data['listChecksConductas'] = modalidad_conductas.objects.filter(hc=hc)
-            # data['listChecksImgMeVeo'] = modalidad_imagenes_me_veo.objects.filter(hc=hc)
-            # data['listChecksImgTengo'] = modalidad_imagenes_tengo.objects.filter(hc=hc)
-            # data['listChecksPensamientos'] = modalidad_pensamientos.objects.filter(hc=hc)
-            # data['listChecksSensaFisicas'] = modalidad_sensaciones_fisicas.objects.filter(
-            #     hc=hc)
-            # data['listChecksSentimientos'] = modalidad_sentimientos.objects.filter(
-            #     hc=hc)
+            data['quien_lo_envia'] = hc.quien_lo_envia
+            data['prob_emocion_mental'] = hc.prob_emocion_mental
+            data['cuales_pensamto_vuelven'] = hc.cuales_pensamto_vuelven
+            data['detalle_primera_exp_sexual'] = hc.detalle_primera_exp_sexual
+            data['menst_afecta_animo'] = hc.menst_afecta_animo
+            data['checksCaractInfanciaAdoles'] = getCaracteristicasInfanciaAdolescencia(hc)
+            data['checksConductas'] = getModalidadConductas(hc)
+            data['checksImgMeVeo'] = getModalidadImagenesMeVeo(hc)
+            data['checksImgTengo'] = getModalidadImagenesTengo(hc)
+            data['checksPensamientos'] = getModalidadPensamientos(hc)
+            data['checksSensaFisicas'] = getModalidadSensacionesFisicas(hc)
+            data['checksSentimientos'] = getModalidadSentimientos(hc)
+            data['datos_persona'] = datos_persona
             data['mensaje'] = 'existe'
             return JsonResponse(data)
         except historia_clinica.DoesNotExist:
             data['mensaje'] = 'no_existe'
             return JsonResponse(data)
         
-
 
 def agregarCaracteristicaInfanciaAdolescencia(lista, hc, otros):
     infancia_feliz = False
@@ -707,7 +735,7 @@ def agregarCaracteristicaInfanciaAdolescencia(lista, hc, otros):
         if 'check_infancia_feliz_hc' in lista:
             infancia_feliz = True
         if 'check_infancia_infeliz_hc' in lista:
-          infancia_feliz = True
+          infancia_infeliz = True
         if 'check_prob_emoc_cond_hc' in lista:
           prob_emoc_cond = True
         if 'check_prob_leg_hc' in lista:
@@ -859,59 +887,59 @@ def agregarModalidadSentimientos(lista, hc, otros):
     sin_esperanza = False
 
     if lista != None:
-        if 'check_cond_1' in lista:
+        if 'check_sent_1' in lista:
             enojado = True
-        if 'check_cond_2' in lista:
+        if 'check_sent_2' in lista:
             fastidiado = True
-        if 'check_cond_3' in lista:
+        if 'check_sent_3' in lista:
             triste = True
-        if 'check_cond_4' in lista:
+        if 'check_sent_4' in lista:
             deprimido = True
-        if 'check_cond_5' in lista:
+        if 'check_sent_5' in lista:
             envidioso = True
-        if 'check_cond_6' in lista:
+        if 'check_sent_6' in lista:
             culpable = True
-        if 'check_cond_7' in lista:
+        if 'check_sent_7' in lista:
             feliz = True
-        if 'check_cond_8' in lista:
+        if 'check_sent_8' in lista:
             ansioso = True
-        if 'check_cond_9' in lista:
+        if 'check_sent_9' in lista:
             con_miedo = True
-        if 'check_cond_10' in lista:
+        if 'check_sent_10' in lista:
             con_panico = True
-        if 'check_cond_11' in lista:
+        if 'check_sent_11' in lista:
             energetico = True
-        if 'check_cond_12' in lista:
+        if 'check_sent_12' in lista:
             en_conflicto = True
-        if 'check_cond_13' in lista:
+        if 'check_sent_13' in lista:
             avergonzado = True
-        if 'check_cond_14' in lista:
+        if 'check_sent_14' in lista:
             apenado = True
-        if 'check_cond_15' in lista:
+        if 'check_sent_15' in lista:
             esperanzado = True
-        if 'check_cond_16' in lista:
+        if 'check_sent_16' in lista:
             desamparado = True
-        if 'check_cond_17' in lista:
+        if 'check_sent_17' in lista:
             relajado = True
-        if 'check_cond_18' in lista:
+        if 'check_sent_18' in lista:
             celoso = True
-        if 'check_cond_19' in lista:
+        if 'check_sent_19' in lista:
             infeliz = True
-        if 'check_cond_20' in lista:
+        if 'check_sent_20' in lista:
             aburrido = True
-        if 'check_cond_21' in lista:
+        if 'check_sent_21' in lista:
             sin_descanso = True
-        if 'check_cond_22' in lista:
+        if 'check_sent_22' in lista:
             solitario = True
-        if 'check_cond_23' in lista:
+        if 'check_sent_23' in lista:
             satisfecho = True
-        if 'check_cond_24' in lista:
+        if 'check_sent_24' in lista:
             excitado = True
-        if 'check_cond_25' in lista:
+        if 'check_sent_25' in lista:
             optimista = True
-        if 'check_cond_26' in lista:
+        if 'check_sent_26' in lista:
             tenso = True
-        if 'check_cond_27' in lista:
+        if 'check_sent_27' in lista:
             sin_esperanza = True
 
     obj = modalidad_sentimientos.objects.create(enojado=enojado, fastidiado=fastidiado, triste=triste, deprimido=deprimido, envidioso=envidioso, culpable=culpable, feliz=feliz, ansioso=ansioso, con_miedo=con_miedo, con_panico=con_panico, energetico=energetico, en_conflicto=en_conflicto, avergonzado=avergonzado,
@@ -1151,7 +1179,7 @@ def agregarModalidadPensamientos(lista, hc, otros):
         if 'check_pensamiento_2' in lista:
             confidente = True
         if 'check_pensamiento_3' in lista:
-            valgo_penal = True
+            valgo_pena = True
         if 'check_pensamiento_4' in lista:
             ambocioso = True
         if 'check_pensamiento_5' in lista:
@@ -1229,63 +1257,236 @@ def agregarModalidadPensamientos(lista, hc, otros):
                                                 inadecuado=inadecuado, confuso=confuso, flojo=flojo, no_digno_confianza=no_digno_confianza, deshonesto=deshonesto, con_ideas_suicidas=con_ideas_suicidas, perseverante=perseverante, buen_sentido_humor=buen_sentido_humor, trabajo_duro=trabajo_duro, indeseable=indeseable, en_conflicto=en_conflicto, dificultades_concentrarse=dificultades_concentrarse, prob_memoria=prob_memoria, atractivo=atractivo, no_puedo_tomar_decisiones=no_puedo_tomar_decisiones, feo=feo, considerado=considerado, degenerado=degenerado, otros=otros, hc=hc)
 
 
-def eliminarCaracteristicaInfanciaAdolescencia(hc):
-    for it in caracteristicas_infancia_adolescencia.objects.filter(hc=hc):
-        it.delete()
-
-
-def eliminarModalidadConductas(hc):
-    for it in modalidad_conductas.objects.filter(hc=hc):
-        it.delete()
-
-
-def eliminarModalidadSentimientos(hc):
-    for it in modalidad_sentimientos.objects.filter(hc=hc):
-        it.delete()
-
-
-def eliminarModalidadSensacionesFisicas(hc):
-    for it in modalidad_sensaciones_fisicas.objects.filter(hc=hc):
-        it.delete()
-
-
-def eliminarModalidadImagenesMeVeo(hc):
-    for it in modalidad_imagenes_me_veo.objects.filter(hc=hc):
-        it.delete()
-
-
-def eliminarModalidadImagenesTengo(hc):
-    for it in modalidad_imagenes_tengo.objects.filter(hc=hc):
-        it.delete()
-
-
-def eliminarModalidadPensamientos(hc):
-    for it in modalidad_pensamientos.objects.filter(hc=hc):
-        it.delete()
-
-
 def getCaracteristicasInfanciaAdolescencia(hc):
-    lista_resultado = []
+    resultado = {}
+    datos_hc = caracteristicas_infancia_adolescencia.objects.get(hc=hc)
+    resultado = {'id': datos_hc.id,
+                'infancia_feliz': datos_hc.infancia_feliz,
+                'infancia_infeliz': datos_hc.infancia_infeliz,
+                'prob_emoc_cond': datos_hc.prob_emoc_cond,
+                'prob_leg': datos_hc.prob_leg,
+                'muerte_familia': datos_hc.muerte_familia,
+                'prob_med': datos_hc.prob_med,
+                'ignorado': datos_hc.ignorado,
+                'pocos_amigos': datos_hc.pocos_amigos,
+                'prob_escuela': datos_hc.prob_escuela,
+                'convicciones_religiosas': datos_hc.convicciones_religiosas,
+                'uso_drogas': datos_hc.uso_drogas,
+                'uso_alcohol': datos_hc.uso_alcohol,
+                'castigado_sev': datos_hc.castigado_sev,
+                'abusado_sex': datos_hc.abusado_sex,
+                'prob_financieros': datos_hc.prob_financieros,
+                'int_mol_sev': datos_hc.int_mol_sev,
+                'prob_alim': datos_hc.prob_alim,
+                'otros': datos_hc.otros}
+
+    return resultado
+
+
+def getModalidadConductas(hc):
+    resultado = {}
+    datos_conductas = modalidad_conductas.objects.get(hc=hc)
+    resultado = {'id': datos_conductas.id,
+                'comer_de_mas': datos_conductas.comer_de_mas,
+                'consumir_drogas': datos_conductas.consumir_drogas,
+                'no_hacer_desea': datos_conductas.no_hacer_desea,
+                'conductas_incorrectas': datos_conductas.conductas_incorrectas,
+                'beber_demasiado': datos_conductas.beber_demasiado,
+                'trabajar_demasiado': datos_conductas.trabajar_demasiado,
+                'demorando_algo': datos_conductas.demorando_algo,
+                'relaciones_impulsivas': datos_conductas.relaciones_impulsivas,
+                'perdida_control': datos_conductas.perdida_control,
+                'intentos_suicidas': datos_conductas.intentos_suicidas,
+                'compulsiones': datos_conductas.compulsiones,
+                'fumar': datos_conductas.fumar,
+                'dejar_hacer_algo': datos_conductas.dejar_hacer_algo,
+                'tics_nerviosos': datos_conductas.tics_nerviosos,
+                'dificultad_concentrarse': datos_conductas.dificultad_concentrarse,
+                'trastornos_suenio': datos_conductas.trastornos_suenio,
+                'evitacion_fobica': datos_conductas.evitacion_fobica,
+                'gastar_mucho_dinero': datos_conductas.gastar_mucho_dinero,
+                'no_encontrar_trabajo': datos_conductas.no_encontrar_trabajo,
+                'insomnio': datos_conductas.insomnio,
+                'tomar_riesgos': datos_conductas.tomar_riesgos,
+                'perezoso': datos_conductas.perezoso,
+                'prob_alimentacion': datos_conductas.prob_alimentacion,
+                'conducta_agresiva': datos_conductas.conducta_agresiva,
+                'llanto': datos_conductas.llanto,
+                'enojado_ocaciones': datos_conductas.enojado_ocaciones,
+                'otros': datos_conductas.otros}
     
-    for item in caracteristicas_infancia_adolescencia.objects.filter(hc=hc):
-        resultado[item.id] = item.id
-        resultado[item.infancia_feliz] = item.infancia_feliz
-        resultado[item.infancia_infeliz] = item.infancia_infeliz
-        resultado[item.prob_emoc_cond] = item.prob_emoc_cond
-        resultado[item.prob_leg] = item.prob_leg
-        resultado[item.muerte_familia] = item.muerte_familia
-        resultado[item.prob_med] = item.prob_med
-        resultado[item.ignorado] = item.ignorado
-        resultado[item.pocos_amigos] = item.pocos_amigos
-        resultado[item.prob_escuela] = item.prob_escuela
-        resultado[item.convicciones_religiosas] = item.convicciones_religiosas
-        resultado[item.uso_drogas] = item.uso_drogas
-        resultado[item.uso_alcohol] = item.uso_alcohol
-        resultado[item.castigado_sev] = item.castigado_sev
-        resultado[item.abusado_sex] = item.abusado_sex
-        resultado[item.prob_financieros] = item.prob_financieros
-        resultado[item.int_mol_sev] = item.int_mol_sev
-        resultado[item.prob_alim] = item.prob_alim
-        resultado[item.otros] = item.otros
+    return resultado
+
+
+def getModalidadSentimientos(hc):
+    resultado = {}
+    datos_sentimientos = modalidad_sentimientos.objects.get(hc=hc)
+    resultado = {'id': datos_sentimientos.id,
+            'enojado': datos_sentimientos.enojado,
+            'fastidiado': datos_sentimientos.fastidiado,
+            'triste': datos_sentimientos.triste,
+            'deprimido': datos_sentimientos.deprimido,
+            'envidioso': datos_sentimientos.envidioso,
+            'culpable': datos_sentimientos.culpable,
+            'feliz': datos_sentimientos.feliz,
+            'ansioso': datos_sentimientos.ansioso,
+            'con_miedo': datos_sentimientos.con_miedo,
+            'con_panico': datos_sentimientos.con_panico,
+            'energetico': datos_sentimientos.energetico,
+            'en_conflicto': datos_sentimientos.en_conflicto,
+            'avergonzado': datos_sentimientos.avergonzado,
+            'apenado': datos_sentimientos.apenado,
+            'esperanzado': datos_sentimientos.esperanzado,
+            'desamparado': datos_sentimientos.desamparado,
+            'relajado': datos_sentimientos.relajado,
+            'celoso': datos_sentimientos.celoso,
+            'infeliz': datos_sentimientos.infeliz,
+            'aburrido': datos_sentimientos.aburrido,
+            'sin_descanso': datos_sentimientos.sin_descanso,
+            'solitario': datos_sentimientos.solitario,
+            'satisfecho': datos_sentimientos.satisfecho,
+            'excitado': datos_sentimientos.excitado,
+            'optimista': datos_sentimientos.optimista,
+            'tenso': datos_sentimientos.tenso,
+            'sin_esperanza': datos_sentimientos.sin_esperanza,
+            'otros': datos_sentimientos.otros
+    }
+  
+    return resultado
+
+
+def getModalidadSensacionesFisicas(hc):
+    resultado = {}
+    datos_sen_fis = modalidad_sensaciones_fisicas.objects.get(hc=hc)
+    resultado = {'id': datos_sen_fis.id,
+            'dolor_abdominal': datos_sen_fis.dolor_abdominal,
+            'dolor_orinar': datos_sen_fis.dolor_orinar,
+            'dolor_menstruacion': datos_sen_fis.dolor_menstruacion,
+            'dolor_cabeza': datos_sen_fis.dolor_cabeza,
+            'mareos': datos_sen_fis.mareos,
+            'palpitaciones': datos_sen_fis.palpitaciones,
+            'espasmos_musculares': datos_sen_fis.espasmos_musculares,
+            'tensiones': datos_sen_fis.tensiones,
+            'trastornos_sexuales': datos_sen_fis.trastornos_sexuales,
+            'incapacidad_relajarse': datos_sen_fis.incapacidad_relajarse,
+            'alteraciones_intestinales': datos_sen_fis.alteraciones_intestinales,
+            'hormigueos': datos_sen_fis.hormigueos,
+            'problemas_piel': datos_sen_fis.problemas_piel,
+            'boca_seca': datos_sen_fis.boca_seca,
+            'sensacion_quemaduras': datos_sen_fis.sensacion_quemaduras,
+            'latidos_cardiacos_rapidos': datos_sen_fis.latidos_cardiacos_rapidos,
+            'no_ser_tocado': datos_sen_fis.no_ser_tocado,
+            'entumecimiento': datos_sen_fis.entumecimiento,
+            'problemas_estomacales': datos_sen_fis.problemas_estomacales,
+            'tics': datos_sen_fis.tics,
+            'fatiga': datos_sen_fis.fatiga,
+            'dolor_espalda': datos_sen_fis.dolor_espalda,
+            'temblores': datos_sen_fis.temblores,
+            'desmayos': datos_sen_fis.desmayos,
+            'escuchar_ruidos': datos_sen_fis.escuchar_ruidos,
+            'ojos_llorosos': datos_sen_fis.ojos_llorosos,
+            'catarro': datos_sen_fis.catarro,
+            'nauseas': datos_sen_fis.nauseas,
+            'vertigo': datos_sen_fis.vertigo,
+            'sudoracion_excesiva': datos_sen_fis.sudoracion_excesiva,
+            'alteraciones_visuales': datos_sen_fis.alteraciones_visuales,
+            'problemas_audicion': datos_sen_fis.problemas_audicion,
+            'variacion_peso': datos_sen_fis.variacion_peso,
+            'otros': datos_sen_fis.otros
+            }
+
+    return resultado
+
+
+def getModalidadImagenesMeVeo(hc):
+    resultado = {}
+    datos_img_veo = modalidad_imagenes_me_veo.objects.get(hc=hc)
+    resultado = {
+        'id': datos_img_veo.id,
+        'siendo_feliz': datos_img_veo.siendo_feliz,
+        'herido_sentimientos': datos_img_veo.herido_sentimientos,
+        'incapaz_afrontar_prob': datos_img_veo.incapaz_afrontar_prob,
+        'exitoso': datos_img_veo.exitoso,
+        'perdiendo_control': datos_img_veo.perdiendo_control,
+        'siendo_seguido': datos_img_veo.siendo_seguido,
+        'hablan_mi': datos_img_veo.hablan_mi,
+        'desamparado': datos_img_veo.desamparado,
+        'lastimando_otros': datos_img_veo.lastimando_otros,
+        'cargo_cosas': datos_img_veo.cargo_cosas,
+        'fallando': datos_img_veo.fallando,
+        'atrapado': datos_img_veo.atrapado,
+        'siendo_promiscuo': datos_img_veo.siendo_promiscuo,
+        'siendo_agreivo': datos_img_veo.siendo_agreivo,
+        'otros': datos_img_veo.otros
+    }
+        
+    return resultado
+        
+
+def getModalidadImagenesTengo(hc):
+    resultado = {}
     
-    return lista_resultado
+    datos_img_tengo = modalidad_imagenes_tengo.objects.get(hc=hc)
+    resultado = {
+        'id': datos_img_tengo.id,
+        'img_sexuales_placenteras': datos_img_tengo.img_sexuales_placenteras,
+        'img_sexuales_no_placenteras': datos_img_tengo.img_sexuales_no_placenteras,
+        'img_desagradables_infancia': datos_img_tengo.img_desagradables_infancia,
+        'img_corporal_negativa': datos_img_tengo.img_corporal_negativa,
+        'imagino_amado': datos_img_tengo.imagino_amado,
+        'img_soledad': datos_img_tengo.img_soledad,
+        'img_seduccion': datos_img_tengo.img_seduccion,
+        'otros': datos_img_tengo.otros
+    }
+
+    return resultado
+
+
+def getModalidadPensamientos(hc):
+    resultado = {}
+    datos_pensamientos = modalidad_pensamientos.objects.get(hc=hc)
+    resultado = {
+        'id': datos_pensamientos.id,
+        'inteligente': datos_pensamientos.inteligente,
+        'confidente': datos_pensamientos.confidente,
+        'valgo_pena': datos_pensamientos.valgo_pena,
+        'ambocioso': datos_pensamientos.ambocioso,
+        'sensitivo': datos_pensamientos.sensitivo,
+        'leal': datos_pensamientos.leal,
+        'confiable_fidedigno': datos_pensamientos.confiable_fidedigno,
+        'lleno_penas': datos_pensamientos.lleno_penas,
+        'indigno': datos_pensamientos.indigno,
+        'don_nadie': datos_pensamientos.don_nadie,
+        'inutil': datos_pensamientos.inutil,
+        'malo': datos_pensamientos.malo,
+        'loco': datos_pensamientos.loco,
+        'estupido': datos_pensamientos.estupido,
+        'ingenuo': datos_pensamientos.ingenuo,
+        'honesto': datos_pensamientos.honesto,
+        'incompetente': datos_pensamientos.incompetente,
+        'pensamientos_horribles': datos_pensamientos.pensamientos_horribles,
+        'con_desviaciones': datos_pensamientos.con_desviaciones,
+        'sin_atractivos': datos_pensamientos.sin_atractivos,
+        'sin_carinio': datos_pensamientos.sin_carinio,
+        'inadecuado': datos_pensamientos.inadecuado,
+        'confuso': datos_pensamientos.confuso,
+        'flojo': datos_pensamientos.flojo,
+        'no_digno_confianza': datos_pensamientos.no_digno_confianza,
+        'deshonesto': datos_pensamientos.deshonesto,
+        'con_ideas_suicidas': datos_pensamientos.con_ideas_suicidas,
+        'perseverante': datos_pensamientos.perseverante,
+        'buen_sentido_humor': datos_pensamientos.buen_sentido_humor,
+        'trabajo_duro': datos_pensamientos.trabajo_duro,
+        'indeseable': datos_pensamientos.indeseable,
+        'en_conflicto': datos_pensamientos.en_conflicto,
+        'dificultades_concentrarse': datos_pensamientos.dificultades_concentrarse,
+        'prob_memoria': datos_pensamientos.prob_memoria,
+        'atractivo': datos_pensamientos.atractivo,
+        'no_puedo_tomar_decisiones': datos_pensamientos.no_puedo_tomar_decisiones,
+        'feo': datos_pensamientos.feo,
+        'considerado': datos_pensamientos.considerado,
+        'degenerado': datos_pensamientos.degenerado,
+        'otros': datos_pensamientos.otros
+    }
+        
+    return resultado

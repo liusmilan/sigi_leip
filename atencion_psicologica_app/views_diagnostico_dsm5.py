@@ -22,6 +22,10 @@ class agregarEditarDiagnosticoDSM5(CreateView):
         id_atencion = request.GET.get('id_atencion', '')
         atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
         datosDiagnosticoDSM5 = request.GET.getlist('diagnosticos[]', '')
+        
+        # guardar las observaciones del examen en la atencion
+        atencion_obj.observaciones = request.GET.get('observaciones', '')
+        atencion_obj.save()
 
         if accion == 'editar':
             # eliminar los diagnosticos de la atencion en la tabla atencion_diagnostico_dsm5
@@ -45,7 +49,8 @@ class getAllDiagnosticosDSM5(TemplateView):
     def get(self, request, *args, **kwargs):
         id_atencion = request.GET.get('id_atencion', '')
         atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
-        data_atencion = {'id': atencion_obj.id}
+        data_atencion = {'id': atencion_obj.id,
+                         'observaciones': atencion_obj.observaciones}
         diag = atencion_diagnostico_dsm5.objects.filter(atencion=atencion_obj)
 
         if len(diag) > 0:
@@ -67,6 +72,7 @@ class getAllDiagnosticosDSM5(TemplateView):
                                     'grupo': data_grupo}
                 data['diagnostico'] = data_diagnostico
                 lista_diagnosticos.append(data)
+            
             mensaje = 'success'
             return JsonResponse({'diagnosticos': lista_diagnosticos, 'atencion': data_atencion, 'mensaje': mensaje})
         else:

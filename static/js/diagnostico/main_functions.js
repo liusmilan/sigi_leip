@@ -85,16 +85,18 @@ var diagnostico = function() {
               $.each(response.grupos, function (key, value) {
                 var option = $("<option/>").val(value.id).text(value.nombre);
 
-                if (id_grupo_trastorno != '') {
-                  // llenar select grupo de trastorno en modal editar
-                  if (value.id == id_grupo_trastorno) {
-                    $('#grupo_diagnostico').find("option").end().append(option.attr('selected', true));
+                if (value.estado == 'HABILITADO') {
+                  if (id_grupo_trastorno != '') {
+                    // llenar select grupo de trastorno en modal editar
+                    if (value.id == id_grupo_trastorno) {
+                      $('#grupo_diagnostico').find("option").end().append(option.attr('selected', true));
+                    } else {
+                      $('#grupo_diagnostico').find("option").end().append(option);
+                    }
                   } else {
+                    // llenar select grupo de trastorno en modal agregar
                     $('#grupo_diagnostico').find("option").end().append(option);
                   }
-                } else {
-                  // llenar select grupo de trastorno en modal agregar
-                  $('#grupo_diagnostico').find("option").end().append(option);
                 }
               });
 
@@ -427,16 +429,18 @@ var diagnostico = function() {
           $.each(response.categorias_trastorno, function (key, value) {
             var option = $("<option/>").val(value.id).text(value.nombre);
 
-            if (id_categoria != '') {
-              // llenar select categoria en modal de editar
-              if (value.id == id_categoria) {
-                $('#categoria_diagnostico').find("option").end().append(option.attr('selected', true));
+            if (value.estado == 'HABILITADO') {
+              if (id_categoria != '') {
+                // llenar select categoria en modal de editar
+                if (value.id == id_categoria) {
+                  $('#categoria_diagnostico').find("option").end().append(option.attr('selected', true));
+                } else {
+                  $('#categoria_diagnostico').find("option").end().append(option);
+                }              
               } else {
+                // llenar select categoria en modal de agregar
                 $('#categoria_diagnostico').find("option").end().append(option);
-              }              
-            } else {
-              // llenar select categoria en modal de agregar
-              $('#categoria_diagnostico').find("option").end().append(option);
+              }
             }            
           });
 

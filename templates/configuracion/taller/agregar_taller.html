@@ -41,8 +41,24 @@
             </span>
           </label>
           <div class='input-group date fecha_inicio_taller'>
-            <span class='input-group-addon'></span>
             <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_inicio' name='fecha_inicio' required readOnly>
+            <div class='input-group-append'>
+              <span class='input-group-text'><i class='bi bi-calendar'></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 py-4">
+          <label for="hora_inicio" class="form-label">
+            <span class='required'>
+              Hora de inicio
+            </span>
+          </label>
+          <div class='input-group'>
+            <input type='text' class='form-control timepicker' id='hora_inicio' placeholder='HH:mm'>
+            <div class='input-group-append'>
+              <span class='input-group-text'><i class='bi bi-clock'></i></span>
+            </div>
           </div>
         </div>
 
@@ -53,8 +69,10 @@
             </span>
           </label>
           <div class='input-group date fecha_fin_taller'>
-            <span class='input-group-addon'></span>
             <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_fin' name='fecha_fin' required readOnly>
+            <div class='input-group-append'>
+              <span class='input-group-text'><i class='bi bi-calendar'></i></span>
+            </div>
           </div>
         </div>
 

@@ -12,7 +12,6 @@ from diagnostico_app.models import diagnostico
 
 # Create your models here.
 class atencion_psicologica(models.Model):
-    id = models.AutoField(primary_key=True)
     fecha_atencion = models.DateTimeField(
         'Fecha atencion', blank=True, null=True)
     hijos = models.BooleanField(default=True)
@@ -34,13 +33,14 @@ class atencion_psicologica(models.Model):
     semestre = models.ForeignKey(
         semestre, on_delete=models.CASCADE, blank=True, null=False)
     vive_con = models.ForeignKey(
-        vive_con, on_delete=models.CASCADE, blank=True, null=False)
+        vive_con, on_delete=models.CASCADE, blank=True, null=True)
     ingreso_familiar = models.ForeignKey(
         ingreso_familiar, on_delete=models.CASCADE, blank=True, null=False)
     grado_academico = models.ForeignKey(
-        grado_academico, on_delete=models.CASCADE, blank=True, null=False)
+        grado_academico, on_delete=models.CASCADE, blank=True, null=True)
     diagnostico = models.ManyToManyField(
         diagnostico, through='atencion_diagnostico_dsm5')
+    observaciones = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'atencion_psicologica'
@@ -49,7 +49,6 @@ class atencion_psicologica(models.Model):
 
 
 class atencion_diagnostico_dsm5(models.Model):
-    id = models.AutoField(primary_key=True)
     atencion = models.ForeignKey(
         atencion_psicologica, on_delete=models.CASCADE, blank=True, null=True)
     diagnostico = models.ForeignKey(

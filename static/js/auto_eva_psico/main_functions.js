@@ -31,14 +31,14 @@ var auto_eva_psico = function() {
     $('#btn_cerrar_modal_auto_eva_psico').on('click', function() {
       limpiarCampos();
       $('#modal_auto_eva_psico').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de auto_eva_psico ==/
     $('#btn_cancelar_modal_auto_eva_psico').on('click', function() {
       limpiarCampos();
       $('#modal_auto_eva_psico').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para agregar o editar un auto_eva_psico ==/
@@ -165,10 +165,10 @@ var auto_eva_psico = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);

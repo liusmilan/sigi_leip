@@ -74,7 +74,7 @@ class agregarPersonaAsignada(CreateView):
             # se esta agregando
             obj = asignar.objects.create(
                 tipo_persona=tipo_persona, hora=hora, fecha=fecha, persona_asignada=persona_obj, atencion=atencion_obj)
-            mensaje = 'Se hah guardado correctamento los datos.'
+            mensaje = 'Se han guardado correctamente los datos.'
             tipo_mensaje = 'success'
             accion = 'agregar'
             result = JsonResponse(
@@ -89,7 +89,7 @@ class agregarPersonaAsignada(CreateView):
             asig.tipo_persona = tipo_persona
             asig.atencion = atencion_obj
             asig.save()
-            mensaje = 'Se hah guardado correctamento los datos.'
+            mensaje = 'Se han guardado correctamente los datos.'
             tipo_mensaje = 'success'
             accion = 'editar'
             result = JsonResponse(

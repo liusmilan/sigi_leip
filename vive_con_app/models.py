@@ -4,10 +4,9 @@ from django.db import models
 
 
 class vive_con(models.Model):
-    id = models.AutoField(primary_key=True)
     vive_con = models.CharField(
         'Vive con', max_length=255, blank=False, null=False)
-    estado = models.CharField('Estado', max_length=255, default=False)
+    estado = models.CharField('Estado', max_length=255)
 
     class Meta:
         verbose_name = 'vive_con'

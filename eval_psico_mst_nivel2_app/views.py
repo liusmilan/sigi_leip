@@ -127,6 +127,8 @@ class agregarEditarMstNivel2(CreateView):
             'color_evaluacion_sustancia')
         nivel_evaluacion_sustancia = datos_mst_nivel2.get(
             'nivel_evaluacion_sustancia')
+        
+        observaciones=datos_mst_nivel2.get('observaciones')
 
         if accion == 'agregar':
             # se esta agregando
@@ -137,7 +139,7 @@ class agregarEditarMstNivel2(CreateView):
                                             somaticos_pregunta1=somaticos_pregunta1, somaticos_pregunta2=somaticos_pregunta2, somaticos_pregunta3=somaticos_pregunta3, somaticos_pregunta4=somaticos_pregunta4, somaticos_pregunta5=somaticos_pregunta5, somaticos_pregunta6=somaticos_pregunta6, somaticos_pregunta7=somaticos_pregunta7, somaticos_pregunta8=somaticos_pregunta8, somaticos_pregunta9=somaticos_pregunta9, somaticos_pregunta10=somaticos_pregunta10, somaticos_pregunta11=somaticos_pregunta11, somaticos_pregunta12=somaticos_pregunta12, somaticos_pregunta13=somaticos_pregunta13, somaticos_pregunta14=somaticos_pregunta14, somaticos_pregunta15=somaticos_pregunta15, evaluacion_somaticos=evaluacion_somaticos, color_evaluacion_somaticos=color_evaluacion_somaticos, nivel_evaluacion_somaticos=nivel_evaluacion_somaticos,
                                             suenno_pregunta1=suenno_pregunta1, suenno_pregunta2=suenno_pregunta2, suenno_pregunta3=suenno_pregunta3, suenno_pregunta4=suenno_pregunta4, suenno_pregunta5=suenno_pregunta5, suenno_pregunta6=suenno_pregunta6, suenno_pregunta7=suenno_pregunta7, suenno_pregunta8=suenno_pregunta8, evaluacion_suenno=evaluacion_suenno, color_evaluacion_suenno=color_evaluacion_suenno, nivel_evaluacion_suenno=nivel_evaluacion_suenno,
                                             repetitivo_pregunta1=repetitivo_pregunta1, repetitivo_pregunta2=repetitivo_pregunta2, repetitivo_pregunta3=repetitivo_pregunta3, repetitivo_pregunta4=repetitivo_pregunta4, repetitivo_pregunta5=repetitivo_pregunta5, evaluacion_repetitivo=evaluacion_repetitivo, color_evaluacion_repetitivo=color_evaluacion_repetitivo, nivel_evaluacion_repetitivo=nivel_evaluacion_repetitivo,
-                                            sustancia_pregunta1=sustancia_pregunta1, sustancia_pregunta2=sustancia_pregunta2, sustancia_pregunta3=sustancia_pregunta3, sustancia_pregunta4=sustancia_pregunta4, sustancia_pregunta5=sustancia_pregunta5, sustancia_pregunta6=sustancia_pregunta6, sustancia_pregunta7=sustancia_pregunta7, sustancia_pregunta8=sustancia_pregunta8, sustancia_pregunta9=sustancia_pregunta9, sustancia_pregunta10=sustancia_pregunta10, evaluacion_sustancia=evaluacion_sustancia, color_evaluacion_sustancia=color_evaluacion_sustancia, nivel_evaluacion_sustancia=nivel_evaluacion_sustancia)
+                                            sustancia_pregunta1=sustancia_pregunta1, sustancia_pregunta2=sustancia_pregunta2, sustancia_pregunta3=sustancia_pregunta3, sustancia_pregunta4=sustancia_pregunta4, sustancia_pregunta5=sustancia_pregunta5, sustancia_pregunta6=sustancia_pregunta6, sustancia_pregunta7=sustancia_pregunta7, sustancia_pregunta8=sustancia_pregunta8, sustancia_pregunta9=sustancia_pregunta9, sustancia_pregunta10=sustancia_pregunta10, evaluacion_sustancia=evaluacion_sustancia, color_evaluacion_sustancia=color_evaluacion_sustancia, nivel_evaluacion_sustancia=nivel_evaluacion_sustancia, observaciones=observaciones)
             mensaje = 'Se ha guardado correctamente la Evaluación psicológica (Mst Nivel 2).'
             tipo_mensaje = 'success'
             accion = 'agregar'
@@ -241,6 +243,8 @@ class agregarEditarMstNivel2(CreateView):
             m.evaluacion_sustancia = evaluacion_sustancia
             m.color_evaluacion_sustancia = color_evaluacion_sustancia
             m.nivel_evaluacion_sustancia = nivel_evaluacion_sustancia
+            
+            m.observaciones = observaciones
 
             m.save()
             mensaje = 'Se ha editado correctamente la Evaluación psicológica (Mst Nivel 2).'
@@ -355,6 +359,8 @@ class getMstNivel2(TemplateView):
             data['evaluacion_sustancia'] = m.evaluacion_sustancia
             data['color_evaluacion_sustancia'] = m.color_evaluacion_sustancia
             data['nivel_evaluacion_sustancia'] = m.nivel_evaluacion_sustancia
+            
+            data['observaciones'] = m.observaciones
 
             data['mensaje'] = 'existe'
             return JsonResponse(data)

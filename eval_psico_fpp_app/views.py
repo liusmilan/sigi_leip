@@ -58,11 +58,12 @@ class agregarEditarFPP(CreateView):
         total = request.GET.get('total', '')
         color = request.GET.get('color', '')
         nivel = request.GET.get('nivel', '')
+        observaciones = request.GET.get('observaciones', '')
 
         if accion == 'agregar':
             # se esta agregando
             obj = fpp.objects.create(atencion=atencion_obj, pregunta1=pregunta1, pregunta2=pregunta2, pregunta3=pregunta3, pregunta4=pregunta4, pregunta5=pregunta5, pregunta6=pregunta6, pregunta7=pregunta7, pregunta8=pregunta8, pregunta9=pregunta9, pregunta10=pregunta10, pregunta11=pregunta11, pregunta12=pregunta12, pregunta13=pregunta13, pregunta14=pregunta14, pregunta15=pregunta15, pregunta16=pregunta16, pregunta17=pregunta17,
-                                     pregunta18=pregunta18, pregunta19=pregunta19, pregunta20=pregunta20, pregunta21=pregunta21, pregunta22=pregunta22, pregunta23=pregunta23, pregunta24=pregunta24, pregunta25=pregunta25, pregunta26=pregunta26, pregunta27=pregunta27, pregunta28=pregunta28, pregunta29=pregunta29, pregunta30=pregunta30, pregunta31=pregunta31, pregunta32=pregunta32, pregunta33=pregunta33, total=total, color=color, nivel=nivel)
+                                     pregunta18=pregunta18, pregunta19=pregunta19, pregunta20=pregunta20, pregunta21=pregunta21, pregunta22=pregunta22, pregunta23=pregunta23, pregunta24=pregunta24, pregunta25=pregunta25, pregunta26=pregunta26, pregunta27=pregunta27, pregunta28=pregunta28, pregunta29=pregunta29, pregunta30=pregunta30, pregunta31=pregunta31, pregunta32=pregunta32, pregunta33=pregunta33, total=total, color=color, nivel=nivel, observaciones=observaciones)
             mensaje = 'Se ha guardado correctamente la Evaluación psicológica (FPP).'
             tipo_mensaje = 'success'
             accion = 'agregar'
@@ -108,6 +109,7 @@ class agregarEditarFPP(CreateView):
             f.total = total
             f.color = color
             f.nivel = nivel
+            f.observaciones = observaciones
             f.save()
             mensaje = 'Se ha editado correctamente la Evaluación psicológica (FPP).'
             tipo_mensaje = 'success'
@@ -163,6 +165,7 @@ class getFPP(TemplateView):
             data['total'] = f.total
             data['color'] = f.color
             data['nivel'] = f.nivel
+            data['observaciones'] = f.observaciones
             data['mensaje'] = 'existe'
             return JsonResponse(data)
         except fpp.DoesNotExist:

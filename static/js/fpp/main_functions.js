@@ -21,6 +21,7 @@ var fpp = function() {
             $('#modal_fpp').modal('show');
             $('#modal_fpp').find('.modal-title').text('Evaluación Psicológica (FPP)');
             accion = 'agregar';
+            $('#box_evaluacion_fpp').css('display', 'none');
           }
         },
         error: function(response) {}
@@ -31,21 +32,21 @@ var fpp = function() {
     $('#btn_cerrar_modal_fpp').on('click', function() {
       limpiarCampos();
       $('#modal_fpp').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de fpp ==/
     $('#btn_cancelar_modal_fpp').on('click', function() {
       limpiarCampos();
       $('#modal_fpp').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para agregar o editar un fpp ==/
     $('#btn_agregar_fpp').on('click', function() {
       var id_atencion = $('#id_atencion').val();
       var valor_pregunta1 = devolverValorPregunta('#fpp_check_pregunta_uno_uno', '#fpp_check_pregunta_uno_dos', '#fpp_check_pregunta_uno_tres', '#fpp_check_pregunta_uno_cuatro', '#fpp_check_pregunta_uno_cinco');
-      var valor_pregunta2 = devolverValorPregunta('#fpp_check_pregunta_dos_uno', 'fpp_#check_pregunta_dos_dos', '#fpp_check_pregunta_dos_tres', '#fpp_check_pregunta_dos_cuatro', '#fpp_check_pregunta_dos_cinco');
+      var valor_pregunta2 = devolverValorPregunta('#fpp_check_pregunta_dos_uno', '#fpp_check_pregunta_dos_dos', '#fpp_check_pregunta_dos_tres', '#fpp_check_pregunta_dos_cuatro', '#fpp_check_pregunta_dos_cinco');
       var valor_pregunta3 = devolverValorPregunta('#fpp_check_pregunta_tres_uno', '#fpp_check_pregunta_tres_dos', '#fpp_check_pregunta_tres_tres', '#fpp_check_pregunta_tres_cuatro', '#fpp_check_pregunta_tres_cinco');
       var valor_pregunta4 = devolverValorPregunta('#fpp_check_pregunta_cuatro_uno', '#fpp_check_pregunta_cuatro_dos', '#fpp_check_pregunta_cuatro_tres', '#fpp_check_pregunta_cuatro_cuatro', '#fpp_check_pregunta_cuatro_cinco');
       var valor_pregunta5 = devolverValorPregunta('#fpp_check_pregunta_cinco_uno', '#fpp_check_pregunta_cinco_dos', '#fpp_check_pregunta_cinco_tres', '#fpp_check_pregunta_cinco_cuatro', '#fpp_check_pregunta_cinco_cinco');
@@ -79,8 +80,10 @@ var fpp = function() {
       var valor_pregunta33 = devolverValorPregunta('#fpp_check_pregunta_treintatres_uno', '#fpp_check_pregunta_treintatres_dos', '#fpp_check_pregunta_treintatres_tres', '#fpp_check_pregunta_treintatres_cuatro', '#fpp_check_pregunta_treintatres_cinco');
 
       var total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5 + valor_pregunta6 + valor_pregunta7 + valor_pregunta8 + valor_pregunta9 + valor_pregunta10 + valor_pregunta11 + valor_pregunta12 + valor_pregunta13 + valor_pregunta14 + valor_pregunta15 + valor_pregunta16 + valor_pregunta17 + valor_pregunta18 + valor_pregunta19 + valor_pregunta20 + valor_pregunta21 + valor_pregunta22 + valor_pregunta23 + valor_pregunta24 + valor_pregunta25 + valor_pregunta26 + valor_pregunta27 + valor_pregunta28 + valor_pregunta29 + valor_pregunta30 + valor_pregunta31 + valor_pregunta32 + valor_pregunta33;
-      var nivel = devolverNivel(total);
-      var color = devolverColor(nivel);
+      var promedio = total/33
+      var nivel = devolverNivel(promedio);
+      var color = devolverColor(nivel).codigo;
+      var observaciones = $('#observaciones_fpp').val();
       var textOriginalBtn = '<span class="indicator-label"> Agregar</span>'
       var loadingTextBtn = '<span class="indicator-progress"> Guardando... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>'
       var btn = $(this);
@@ -130,7 +133,8 @@ var fpp = function() {
             pregunta30: valor_pregunta30,
             pregunta31: valor_pregunta31,
             pregunta32: valor_pregunta32,
-            pregunta33: valor_pregunta33
+            pregunta33: valor_pregunta33,
+            observaciones: observaciones
           },
           dataType: "json",
           success: function(response) {
@@ -146,10 +150,10 @@ var fpp = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);
@@ -181,7 +185,14 @@ var fpp = function() {
             $('#modal_fpp').modal('show');
             $('#modal_fpp').find('.modal-title').text('Evaluación Psicológica (FPP)');
             accion = 'editar';
+            $('#box_evaluacion_fpp').css('display', 'block');
+            var clase_span = $('#evaluacion_fpp').attr('class');
+            $('#evaluacion_fpp').removeClass(clase_span);
+            $('#evaluacion_fpp').text(response.total);
+            $('#evaluacion_fpp').addClass('badge bg-badge-gray');
             
+            $('#observaciones_fpp').val(response.observaciones);
+
             if (response.pregunta1) {
               marcarPreguntas('uno', response.pregunta1);
             }
@@ -339,6 +350,7 @@ var fpp = function() {
     $("input[type='radio'][name=inlineRadioOptionsFPPPregunta31]").prop('checked', false);
     $("input[type='radio'][name=inlineRadioOptionsFPPPregunta32]").prop('checked', false);
     $("input[type='radio'][name=inlineRadioOptionsFPPPregunta33]").prop('checked', false);
+    $('#observaciones_fpp').val('');
     accion = '';
   }
 
@@ -395,13 +407,13 @@ var fpp = function() {
   function devolverNivel(valor) {
     var nivel = '';
 
-    if ((valor >= 0) && (valor <= 16)) {
+    if ((valor >= 0) && (valor <= 3)) {
       nivel = 'Muy bajo';
-    } else if ((valor >= 17) && (valor <= 33)) {
+    } else if ((valor >= 4) && (valor <= 7)) {
       nivel = 'Bajo';
-    } else if ((valor >= 34) && (valor <= 50)) {
+    } else if ((valor >= 8) && (valor <= 11)) {
       nivel = 'Moderado';
-    } else if (valor > 50) {
+    } else if ((valor >= 12) && (valor <= 15)) {
       nivel = 'Alto';
     }
 
@@ -409,23 +421,27 @@ var fpp = function() {
   }
 
   function devolverColor(nivel) {
-    var color = '';
+    var resultado = {};
     var verde = '#7ceda7';
     var amarillo = '#faf032';
     var naranja = '#eb870e';
     var rojo = '#eb150e';
 
     if (nivel == 'Muy bajo') {
-      color = rojo;
+      resultado.codigo = rojo;
+      resultado.color = 'red';
     } else if (nivel == 'Bajo') {
-      color = naranja;
+      resultado.codigo = naranja;
+      resultado.color = 'orange';
     } else if (nivel == 'Moderado') {
-      color = amarillo;
+      resultado.codigo = amarillo;
+      resultado.color = 'yellow';
     } else if (nivel == 'Alto') {
-      color = verde;
+      resultado.codigo = verde;
+      resultado.color = 'green';
     }
 
-    return color;
+    return resultado;
   }
 
   return {

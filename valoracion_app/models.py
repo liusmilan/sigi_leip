@@ -9,7 +9,6 @@ from taller_app.models import taller
 
 
 class valoracion(models.Model):
-    id = models.AutoField(primary_key=True)
     fecha_valoracion = models.DateTimeField(
         'Fecha valoracion', blank=True, null=True)
     valorado_por = models.ForeignKey(
@@ -32,7 +31,6 @@ class valoracion(models.Model):
 
 
 class valoracion_taller(models.Model):
-    id = models.AutoField(primary_key=True)
     valoracion = models.ForeignKey(
         valoracion, on_delete=models.CASCADE, blank=True, null=True)
     taller = models.ForeignKey(

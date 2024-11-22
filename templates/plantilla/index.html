@@ -14,10 +14,6 @@
 	<link href="{% static "/assets/img/favicon.png" %}" rel="icon" />
 	<link href="{% static "/assets/img/apple-touch-icon.png" %}" rel="apple-touch-icon" />
 
-  <!-- Google Fonts -->
-  {% comment %} <link href="https://fonts.gstatic.com" rel="preconnect"> {% endcomment %}
-  {% comment %} <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> {% endcomment %}
-
   <!-- Vendor CSS Files -->
 	<link href="{% static "/assets/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
 	<link href="{% static "/assets/vendor/bootstrap-icons/bootstrap-icons.css" %}" rel="stylesheet" type="text/css" />
@@ -52,15 +48,12 @@
   {% comment %} <link href="{% static "/bootstrap-datepicker/bootstrap-datepicker.min.css" %}" rel="stylesheet" type="text/css" /> {% endcomment %}
   <link href="{% static "/bootstrap-datepicker/bootstrap-datepicker.css" %}" rel="stylesheet" type="text/css" />
 
-	{% block css %} {% endblock %}
+  <!-- timepicker -->
+  <link href="{% static "/jquery.timepicker/jquery.timepicker.min.css" %}" rel="stylesheet" type="text/css" />
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link href="{% static "/css/styles.css" %}" rel="stylesheet" type="text/css" />
+
+	{% block css %} {% endblock %}
 </head>
 
 <body>
@@ -84,20 +77,15 @@
         
       </div>
     </section>
+    <!--begin::modals de las atenciones-->
+  {% include "seguridad/usuario/cambiar_contrasenna.html" %}
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      &copy; Copyright <strong><span>SIGI_LEIP</span></strong>. Todos los Derechos Reservados
     </div>
   </footer><!-- End Footer -->
 
@@ -139,10 +127,15 @@
   <script src="{% static "/bootstrap-datepicker/bootstrap-datepicker.es.min.js" %}"></script>
   <!-- pluging jQuery-validate -->
   <script src="{% static "/jquery-validate/jquery.validate.min.js" %}"></script>
+  <!-- pluging timepicker-->
+  <script src="{% static "/jquery.timepicker/jquery.timepicker.min.js" %}"></script>
 
   <!-- main scripts -->
   <script src="{% static "/js/notificaciones.js" %}"></script>
   <script src="{% static "/js/main/main_functions.js" %}"></script>
+
+  <!-- cambiar contrasenna scripts -->
+  <script src="{% static '/js/usuario/cambiar_contrasenna.js' %}"></script>
  
 	{% block scripts %} {% endblock %}
 </body>

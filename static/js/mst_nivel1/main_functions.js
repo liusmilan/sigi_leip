@@ -21,6 +21,7 @@ var mst_nivel1 = function() {
             $('#modal_mst_nivel1').modal('show');
             $('#modal_mst_nivel1').find('.modal-title').text('Evaluación Psicológica (MST Nivel 1)');
             accion = 'agregar';
+            $('#box_evaluacion_mst1').css('display', 'none');
           }
         },
         error: function(response) {}
@@ -31,19 +32,20 @@ var mst_nivel1 = function() {
     $('#btn_cerrar_modal_mst_nivel1').on('click', function() {
       limpiarCampos();
       $('#modal_mst_nivel1').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de mst_nivel1 ==/
     $('#btn_cancelar_modal_mst_nivel1').on('click', function() {
       limpiarCampos();
       $('#modal_mst_nivel1').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para agregar o editar un mst_nivel1 ==/
     $('#btn_agregar_mst_nivel1').on('click', function() {
       var id_atencion = $('#id_atencion').val();
+      var observaciones = $('#observaciones_mst1').val();
       var valor_pregunta1 = devolverValorPregunta('#check_pregunta_uno_cero', '#check_pregunta_uno_uno', '#check_pregunta_uno_dos', '#check_pregunta_uno_tres', '#check_pregunta_uno_cuatro');
       var valor_pregunta2 = devolverValorPregunta('#check_pregunta_dos_cero', '#check_pregunta_dos_uno', '#check_pregunta_dos_dos', '#check_pregunta_dos_tres', '#check_pregunta_dos_cuatro');
       var valor_pregunta3 = devolverValorPregunta('#check_pregunta_tres_cero', '#check_pregunta_tres_uno', '#check_pregunta_tres_dos', '#check_pregunta_tres_tres', '#check_pregunta_tres_cuatro');
@@ -70,7 +72,7 @@ var mst_nivel1 = function() {
 
       var total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5 + valor_pregunta6 + valor_pregunta7 + valor_pregunta8 + valor_pregunta9 + valor_pregunta10 + valor_pregunta11 + valor_pregunta12 + valor_pregunta13 + valor_pregunta14 + valor_pregunta15 + valor_pregunta16 + valor_pregunta17 + valor_pregunta18 + valor_pregunta19 + valor_pregunta20 + valor_pregunta21 + valor_pregunta22 + valor_pregunta23;
       var nivel = devolverNivel(total);
-      var color = devolverColor(nivel);
+      var color = devolverColor(nivel).codigo;
       var textOriginalBtn = '<span class="indicator-label"> Agregar</span>'
       var loadingTextBtn = '<span class="indicator-progress"> Guardando... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>'
       var btn = $(this);
@@ -88,6 +90,7 @@ var mst_nivel1 = function() {
             total: total,
             nivel: nivel,
             color: color,
+            observaciones: observaciones,
             pregunta1: valor_pregunta1,
             pregunta2: valor_pregunta2,
             pregunta3: valor_pregunta3,
@@ -126,10 +129,10 @@ var mst_nivel1 = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);
@@ -161,6 +164,14 @@ var mst_nivel1 = function() {
             $('#modal_mst_nivel1').modal('show');
             $('#modal_mst_nivel1').find('.modal-title').text('Evaluación Psicológica (MST Nivel 1)');
             accion = 'editar';
+            $('#box_evaluacion_mst1').css('display', 'block');
+            var clase_span = $('#evaluacion_mst1').attr('class');
+            $('#evaluacion_mst1').removeClass(clase_span);
+            $('#evaluacion_mst1').text(response.total + ' - ' + response.nivel);
+            $('#evaluacion_mst1').addClass('badge bg-badge-' + devolverColor(response.nivel).color);
+
+
+            $('#observaciones_mst1').val(response.observaciones);
 
             marcarPreguntas('uno', response.pregunta1);
             marcarPreguntas('dos', response.pregunta2);
@@ -217,6 +228,7 @@ var mst_nivel1 = function() {
     $("input[type='radio'][name=inlineRadioOptionsPregunta22]").prop('checked', false);
     $("input[type='radio'][name=inlineRadioOptionsPregunta23]").prop('checked', false);
     accion = '';
+    $('#observaciones_mst1').val('');
   }
 
   /== funcion para devolver el valor de la pregunta seleccionada ==/
@@ -286,23 +298,27 @@ var mst_nivel1 = function() {
   }
 
   function devolverColor(nivel) {
-    var color = '';
+    var resultado = {};
     var verde = '#7ceda7';
     var amarillo = '#faf032';
     var naranja = '#eb870e';
     var rojo = '#eb150e';
 
     if (nivel == 'Muy bajo') {
-      color = verde;
+      resultado.codigo = verde;
+      resultado.color = 'green';
     } else if (nivel == 'Bajo') {
-      color = amarillo;
+      resultado.codigo = amarillo;
+      resultado.color = 'yellow';
     } else if (nivel == 'Moderado') {
-      color = naranja;
+      resultado.codigo = naranja;
+      resultado.color = 'orange';
     } else if (nivel == 'Alto') {
-      color = rojo;
+      resultado.codigo = rojo;
+      resultado.color = 'red';
     }
 
-    return color;
+    return resultado;
   }
 
   function deseleccionarFilasTabla() {

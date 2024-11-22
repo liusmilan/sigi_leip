@@ -103,7 +103,8 @@ var asignar_entrevistador = function() {
   $('.fecha_entrevista_asignar').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    todayHighlight: true
+    todayHighlight: true,
+    autoclose: true
   });
 
 
@@ -131,14 +132,14 @@ var asignar_entrevistador = function() {
     $('#btn_cerrar_modal_asignar_entrevistador').on('click', function() {
       limpiarCampos();
       $('#modal_asignar_entrevistador').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de asignar entrevistador ==/
     $('#btn_cancelar_modal_asignar_entrevistador').on('click', function() {
       limpiarCampos();
       $('#modal_asignar_entrevistador').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para guardar el entrevistador asignado ==/
@@ -182,10 +183,10 @@ var asignar_entrevistador = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);
@@ -432,8 +433,6 @@ var asignar_entrevistador = function() {
     $.each($('#entrevistador_asignar').find("option"), function (key, value) {
       $(value).remove();
     });
-
-    llenarSelectEntrevistador('');
   }
 
   function validarCampos() {

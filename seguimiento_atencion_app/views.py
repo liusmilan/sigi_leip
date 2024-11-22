@@ -37,3 +37,48 @@ class agregarSeguimientoAtencion(CreateView):
         result = JsonResponse(
             {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje, 'accion': accion})
         return result
+
+
+def getAllSeguimientos(request):
+    id_atencion = request.GET.get('id_atencion', '')
+    print('////////////////////////////////////////////////////////////')
+    print(id_atencion)
+    atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
+    seguimientos = seguimiento_atencion.objects.filter(atencion=atencion_obj)
+
+    if len(seguimientos) > 0:
+        lista_seguimientos = []
+        for s in seguimientos:
+            data = {}
+            data_persona = {'id': s.persona.id,
+                                'nombre': s.persona.nombre,
+                                'segundo_nombre': s.persona.segundo_nombre,
+                                'apellido': s.persona.apellido,
+                                'segundo_apellido': s.persona.segundo_apellido}
+            data_estado = {'id': s.estado.id,
+                           'nombre': s.estado.nombre
+                           }
+            data['id'] = s.id
+            data['fecha'] = datetime.strftime(s.fecha, '%d/%m/%Y')
+            data['persona'] = data_persona
+            data['estado'] = data_estado
+            data['observaciones'] = s.observaciones
+            lista_seguimientos.append(data)
+        mensaje = 'success'
+        return JsonResponse({'seguimientos': lista_seguimientos, 'mensaje': mensaje})
+    else:
+        mensaje = 'no_existe'
+        return JsonResponse({'mensaje': mensaje})
+
+
+def eliminarSeguimiento(request):
+    id_seguimiento = request.GET.get('id_seguimiento', '')
+    try:
+        seguimiento_atencion.objects.get(id=id_seguimiento).delete()
+        mensaje = 'Se ha eliminado el Seguimiento seleccionado correctamente.'
+        tipo_mensaje = 'success'
+        return JsonResponse({'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
+    except seguimiento_atencion.DoesNotExist:
+        mensaje = 'Este Seguimiento no se encuentra registrado en la Base de Datos.'
+        tipo_mensaje = 'error'
+        return JsonResponse({'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})

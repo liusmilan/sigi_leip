@@ -5,7 +5,6 @@ from categoria_trastorno_app.models import categoria_trastorno
 
 
 class grupo_trastorno(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre = models.CharField(
         'Nombre', max_length=255, blank=False, null=False)
     categoria = models.ForeignKey(

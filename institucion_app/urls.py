@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from .views import listadoInstituciones, agregarEditarInstitucion, getInstitucion, eliminarInstitucion, getAllInstituciones
+from .views import listadoInstituciones, agregarEditarInstitucion, getInstitucion, eliminarInstitucion, getAllInstituciones, getInstitucionesByTipoInstitucion
 
 urlpatterns = [
     path('lista_institucion/', login_required(listadoInstituciones.as_view()),
@@ -14,6 +14,8 @@ urlpatterns = [
          name='eliminar_institucion'),
     path('get_all_instituciones/', getAllInstituciones,
          name='get_all_instituciones'),
+    path('get_instituciones_by_tipo_institucion/', getInstitucionesByTipoInstitucion,
+         name='get_instituciones_by_tipo_institucion'),
 ]
 
 # URLS de vistas implicitas

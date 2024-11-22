@@ -9,6 +9,12 @@
         <input type="hidden" class="form-control" id="id_fpp">
         <input type="hidden" class="form-control" id="id_usuario_autenticado">
 
+        <div class="form-group mb-1 py-2" id='box_evaluacion_fpp'>
+          <div style='margin-left: 30%'>Evaluación:
+            <span class='badge bg-badge-gray' id='evaluacion_fpp'>0</span>
+          </div>
+        </div>
+
         <div class="card shadow-sm card-light-background">
           <div class="card-body">
             <div class="form-group mb-1 py-2">
@@ -1173,6 +1179,14 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="form-group mb-1 py-2">
+          <label class="form-label">
+            <strong>Observaciones</strong>
+          </label>
+          <textarea type="text" class="form-control" id="observaciones_fpp" name='observaciones_fpp'></textarea>
+          </br>
         </div>
 
         <div class="modal-footer">

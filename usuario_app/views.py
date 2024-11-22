@@ -67,7 +67,6 @@ class listadoUsuarios(ListView):
                 data['trabajador_ley'] = u.trabajador_ley
                 data['persona'] = data_persona
                 data['usuario_activo'] = u.usuario_activo
-                data['tipo_usuario'] = u.tipo_usuario
                 data['usuario_administrador'] = u.usuario_administrador
                 # data['roles'] = devolverRolesDelUsuario(user.id)
                 data['roles'] = serializers.serialize(
@@ -84,7 +83,6 @@ class agregarEditarUsuario(CreateView):
     def get(self, request, *args, **kwargs):
         id = request.GET.get('id', '')
         nombre_usuario = request.GET.get('usuario', '')
-        tipo_usuario = request.GET.get('tipo_usuario', '')
         id_persona = request.GET.get('persona', '')
         persona_obj = persona.objects.get(id=id_persona)
         contrasenna = request.GET.get('contrasenna', '')
@@ -103,6 +101,7 @@ class agregarEditarUsuario(CreateView):
         else:
             usuario_activo = False
 
+
         if id != '':
             # se esta editando
             try:
@@ -110,9 +109,8 @@ class agregarEditarUsuario(CreateView):
                 u.username = nombre_usuario
                 u.trabajador_ley = trabajador_ley
                 u.persona = persona_obj
-                u.tipo_usuario = tipo_usuario
                 u.usuario_activo = usuario_activo
-                u.set_password(contrasenna)
+                # u.set_password(contrasenna)
                 u.save()
 
                 # guardar los roles
@@ -124,6 +122,10 @@ class agregarEditarUsuario(CreateView):
                         rol=r1,
                         usuario=u
                     )
+                
+                # editando la persona asociada
+                persona_obj.activo = usuario_activo
+                persona_obj.save()
 
                 mensaje = 'Se ha editado correctamente el Usuario.'
                 tipo_mensaje = 'success'
@@ -148,32 +150,15 @@ class agregarEditarUsuario(CreateView):
                     {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
                 return result
             else:
-                # obj = Usuario.objects.create(
-                #     username=nombre_usuario,
-                #     tipo_usuario=tipo_usuario,
-                #     persona=persona_obj,
-                #     trabajador_ley=trabajador_ley,
-                #     usuario_activo=usuario_activo
-                # )
-                obj = Usuario(
-                    username=nombre_usuario,
-                    tipo_usuario=tipo_usuario,
-                    persona=persona_obj,
-                    trabajador_ley=trabajador_ley,
-                    usuario_activo=usuario_activo
-                )
-
+                obj = Usuario(username=nombre_usuario, persona=persona_obj, trabajador_ley=trabajador_ley, usuario_activo=usuario_activo)
                 obj.set_password(contrasenna)
                 obj.save()
 
                 # guardar los roles
                 for r2 in roles_usuario:
-                    UsuarioRol.objects.create(
-                        rol=r2,
-                        usuario=obj
-                    )
+                    UsuarioRol.objects.create(rol=r2, usuario=obj)
 
-                mensaje = 'Se ha agregado correctamente la Persona.'
+                mensaje = 'Se ha agregado correctamente el Usuario.'
                 tipo_mensaje = 'success'
                 accion = 'agregar'
                 result = JsonResponse(
@@ -200,7 +185,6 @@ class getUsuario(TemplateView):
             data['trabajador_ley'] = u.trabajador_ley
             data['persona'] = data_persona
             data['usuario_activo'] = u.usuario_activo
-            data['tipo_usuario'] = u.tipo_usuario
             data['usuario_administrador'] = u.usuario_administrador
             data['roles'] = serializers.serialize(
                 'json', u.rol.all())
@@ -233,3 +217,67 @@ class eliminarUsuario(DeleteView):
             result = JsonResponse(
                 {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
             return result
+
+
+def existeUsuario(request):
+    nombre_usuario = request.GET.get('usuario', '')
+    
+    try:
+        user = Usuario.objects.get(username=nombre_usuario)
+        mensaje = 'Ya existe un Usuario registrado con este nombre. Por favor agregue otro.'
+        tipo_mensaje = 'error'
+        result = JsonResponse({'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
+        return result
+    except Usuario.DoesNotExist:
+        tipo_mensaje = 'success'
+        result = JsonResponse({'mensaje': '', 'tipo_mensaje': tipo_mensaje})
+        return result
+
+
+def cambiarContrasenna(request):
+    id_user_aut = request.GET.get('id_user_aut', '')
+    contrasenna = request.GET.get('contrasenna', '')
+    
+    try:
+        u = Usuario.objects.get(id=id_user_aut)
+        u.set_password(contrasenna)
+        u.save()
+
+        mensaje = "Se ha cambiado correctamente la contraseña."
+        tipo_mensaje = 'success'
+        result = JsonResponse({'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
+        return result
+    except Usuario.DoesNotExist:
+        mensaje = 'Este Usuario no se encuentra registrado en la Base de Datos.'
+        tipo_mensaje = 'error'
+        result = JsonResponse({'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
+        return result
+    
+
+def crear_cuenta(request):
+    return render(request,'seguridad/usuario/crear_cuenta.html')
+
+
+def agregarUsuarioSinAutenticacion(request):
+    nombre_usuario = request.GET.get('usuario', '')
+    id_persona = request.GET.get('persona', '')
+    persona_obj = persona.objects.get(id=id_persona)
+    contrasenna = request.GET.get('contrasenna', '')
+    rol_user = rol.objects.get(nombre='SOLICITANTE')
+    
+    if request.GET.get('trabajador_ley', '') == 'true':
+        trabajador_ley = True
+    else:
+        trabajador_ley = False
+
+    print(persona_obj);
+        
+    obj = Usuario(username=nombre_usuario, persona=persona_obj, trabajador_ley=trabajador_ley, usuario_activo=True)
+    obj.set_password(contrasenna)
+    obj.save()
+    
+    UsuarioRol.objects.create(rol=rol_user, usuario=obj)
+    
+    tipo_mensaje = 'success'
+    result = JsonResponse({'tipo_mensaje': tipo_mensaje})
+    return result

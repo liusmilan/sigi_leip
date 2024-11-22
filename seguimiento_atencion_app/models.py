@@ -6,7 +6,6 @@ from atencion_psicologica_app.models import atencion_psicologica
 
 # Create your models here.
 class seguimiento_atencion(models.Model):
-    id = models.AutoField(primary_key=True)
     fecha = models.DateTimeField('Fecha', blank=False, null=False)
     persona = models.ForeignKey(
         persona, on_delete=models.CASCADE, blank=False, null=False)

@@ -26,10 +26,24 @@ class listadoTipoAtencion(ListView):
             lista_tipo_atencion = []
             for ta in self.get_queryset():
                 data = {}
+                categorias = []
                 data['id'] = ta.id
                 data['nombre'] = ta.nombre
-                data['categoria'] = ta.categoria
+                data['derivar'] = ta.derivar
+                data['taller'] = ta.taller
+                data['consulta'] = ta.consulta
                 data['estado'] = ta.estado
+                
+                if ta.derivar:
+                    categorias.append('<span class="badge badge-light-success">' + 'Derivar' + '</span>')
+                
+                if ta.taller:
+                    categorias.append('<span class="badge badge-light-success">' + 'Taller' + '</span>')
+                
+                if ta.consulta:
+                    categorias.append('<span class="badge badge-light-success">' + 'Consulta' + '</span>')
+                
+                data['categorias'] = '<br>'.join(categorias)
                 lista_tipo_atencion.append(data)
             return HttpResponse(json.dumps(lista_tipo_atencion), 'application/json')
         else:
@@ -40,13 +54,17 @@ class agregarEditarTipoAtencion(CreateView):
     model = tipo_atencion
 
     def get(self, request, *args, **kwargs):
-        id = request.GET.get('id', '')
-        nombre = request.GET.get('nombre', '')
-        categoria = request.GET.get('categoria', '')
-        estado = request.GET.get('estado', '')
+        params = request.GET.get('params', '')
+        datos = json.loads(params)
+        id = datos.get('id')
+        nombre = datos.get('nombre')
+        derivar = datos.get('derivar')
+        taller = datos.get('taller')
+        consulta = datos.get('consulta')
+        estado = datos.get('estado')
         habilitado = ''
 
-        if estado == 'true':
+        if estado:
             habilitado = 'HABILITADO'
         else:
             habilitado = 'DESABILITADO'
@@ -56,7 +74,9 @@ class agregarEditarTipoAtencion(CreateView):
             try:
                 ta = tipo_atencion.objects.get(id=id)
                 ta.nombre = nombre
-                ta.categoria = categoria
+                ta.derivar = derivar
+                ta.taller = taller
+                ta.consulta = consulta
                 ta.estado = habilitado
                 ta.save()
                 mensaje = 'Se ha editado correctamente el Tipo de Atención.'
@@ -82,7 +102,7 @@ class agregarEditarTipoAtencion(CreateView):
                 return result
             except tipo_atencion.DoesNotExist:
                 obj = tipo_atencion.objects.create(
-                    nombre=nombre, categoria=categoria, estado=habilitado)
+                    nombre=nombre, derivar=derivar, taller=taller, consulta=consulta, estado=habilitado)
                 mensaje = 'Se ha agregado correctamente el Tipo de Atención.'
                 tipo_mensaje = 'success'
                 accion = 'agregar'
@@ -99,11 +119,16 @@ class getTipoAtencion(TemplateView):
 
         try:
             ta = tipo_atencion.objects.get(id=id)
-            nombre = ta.nombre
-            categoria = ta.categoria
-            estado = ta.estado
+            data = {}
+            data['id'] = ta.id
+            data['nombre'] = ta.nombre
+            data['derivar'] = ta.derivar
+            data['taller'] = ta.taller
+            data['consulta'] = ta.consulta
+            data['estado'] = ta.estado
+            tipo_mensaje = 'success'
             result = JsonResponse(
-                {'nombre': nombre, 'estado': estado})
+                {'tipo_atencion': data, 'tipo_mensaje': tipo_mensaje})
             return result
         except tipo_atencion.DoesNotExist:
             mensaje = 'Este Tipo de Atención no se encuentra registrado en la Base de Datos.'
@@ -143,7 +168,9 @@ def getAllTipoAtencion(request):
             data = {}
             data['id'] = ta.id
             data['nombre'] = ta.nombre
-            data['categoria'] = ta.categoria
+            data['derivar'] = ta.derivar
+            data['taller'] = ta.taller
+            data['consulta'] = ta.consulta
             data['estado'] = ta.estado
             lista_ta.append(data)
         mensaje = 'success'

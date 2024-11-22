@@ -43,7 +43,7 @@ class agregarEditarViveEn(CreateView):
         vive = request.GET.get('vive_en', '')
         estado = request.GET.get('estado', '')
         habilitado = ''
-
+        
         if estado == 'true':
             habilitado = 'HABILITADO'
         else:
@@ -128,3 +128,21 @@ class eliminarViveEn(DeleteView):
             result = JsonResponse(
                 {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
             return result
+
+
+def getAllViveEn(request):
+    vives = vive_en.objects.all()
+
+    if len(vives) > 0:
+        lista_vives = []
+        for v in vives:
+            data = {}
+            data['id'] = v.id
+            data['nombre'] = v.vive_en
+            data['estado'] = v.estado
+            lista_vives.append(data)
+        mensaje = 'success'
+        return JsonResponse({'vives': lista_vives, 'mensaje': mensaje})
+    else:
+        mensaje = 'error'
+        return JsonResponse({'mensaje': mensaje})

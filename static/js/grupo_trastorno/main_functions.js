@@ -337,17 +337,19 @@ var grupo_trastorno = function() {
           $.each(response.categorias_trastorno, function (key, value) {
             var option = $("<option/>").val(value.id).text(value.nombre);
 
-            if (id_categoria != '') {
-              // llenar select categoria en modal de editar
-              if (value.id == id_categoria) {
-                $('#categoria_grupo').find("option").end().append(option.attr('selected', true));
+            if (value.estado == 'HABILITADO') {
+              if (id_categoria != '') {
+                // llenar select categoria en modal de editar
+                if (value.id == id_categoria) {
+                  $('#categoria_grupo').find("option").end().append(option.attr('selected', true));
+                } else {
+                  $('#categoria_grupo').find("option").end().append(option);
+                }         
               } else {
+                // llenar select categoria en modal de agregar
                 $('#categoria_grupo').find("option").end().append(option);
-              }              
-            } else {
-              // llenar select categoria en modal de agregar
-              $('#categoria_grupo').find("option").end().append(option);
-            }            
+              }
+            }
           });
 
           $('#categoria_grupo').trigger("chosen:updated").trigger("change");

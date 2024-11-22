@@ -315,14 +315,14 @@ var disponibilidad_horario_consulta = function() {
     $('#btn_cerrar_modal_disponibilidad_horario_consulta').on('click', function() {
       limpiarCampos();
       $('#modal_disponibilidad_horario_consulta').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para cerrar modal de disponibilidad horario consulta ==/
     $('#btn_cancelar_modal_disponibilidad_horario_consulta').on('click', function() {
       limpiarCampos();
       $('#modal_disponibilidad_horario_consulta').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     $('#check_disp_lunes').on('click', function() {
@@ -473,10 +473,10 @@ var disponibilidad_horario_consulta = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);

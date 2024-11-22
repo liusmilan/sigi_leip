@@ -20,6 +20,44 @@
               <div class='row'>
                 <div class="col-xl-6">
                   <div class="form-group mb-3 py-4">
+                    <label for="tipo_persona" class="form-label">
+                      <span class='required'>
+                        Tipo de Persona
+                      </span>
+                    </label>
+                    <select class='form-control' id='tipo_persona' name='tipo_persona' required></select>
+                  </div>
+                </div>                
+              </div>
+
+              <div id='item_comun_univ'>
+                <div class='row'>
+                  <div class="col-xl-6">
+                    <div class="form-group mb-3 py-4">
+                      <label for="codigo_udg" class="form-label">
+                        <span class='required'>
+                          Código UDG
+                        </span>
+                      </label>
+                      <input type="text" class="form-control" id="codigo_udg" name='codigo_udg' placeholder="Código UDG" required>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="form-group mb-3 py-4">
+                      <label for="tipo_persona_udg" class="form-label">
+                        <span class='required'>
+                          Tipo de Persona en UDG
+                        </span>
+                      </label>
+                      <select class='form-control' id='tipo_persona_udg' name='tipo_persona_udg' required></select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class='row'>
+                <div class="col-xl-6">
+                  <div class="form-group mb-3 py-4">
                     <label for="nombre_persona" class="form-label">
                       <span class='required'>
                         Nombre
@@ -89,16 +127,33 @@
                     </label>
                     </br>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="check_sexo_masculino" value="masculino">
-                      <label class="form-check-label" for="check_sexo_masculino">Masculino</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsSexo" id="check_sexo_hombre" value="H">
+                      <label class="form-check-label" for="check_sexo_hombre">Hombre</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="check_sexo_femenino" value="femenino">
-                      <label class="form-check-label" for="check_sexo_femenino">Femenino</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsSexo" id="check_sexo_mujer" value="M">
+                      <label class="form-check-label" for="check_sexo_mujer">Mujer</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3 py-4">
+                    <label for="genero" class="form-label">
+                      <span class='required'>
+                        Género
+                      </span>
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGenero" id="check_genero_masculino" value="M">
+                      <label class="form-check-label" for="check_genero_masculino">Masculino</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="check_sexo_otro" value="otro">
-                      <label class="form-check-label" for="check_sexo_otro">Otro</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGenero" id="check_genero_femenino" value="F">
+                      <label class="form-check-label" for="check_genero_femenino">Femenino</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGenero" id="check_genero_no_binario" value="B">
+                      <label class="form-check-label" for="check_genero_no_binario">No Binario</label>
                     </div>
                   </div>
                 </div>
@@ -116,7 +171,7 @@
                   <div class="form-group mb-3 py-4">
                     <label for="persona_estado" class="form-label">
                       <span class='required'>
-                        Estados
+                        Estado
                       </span>
                     </label>
                     <select class='form-control' id='persona_estado' name='persona_estado' required></select>

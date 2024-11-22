@@ -10,7 +10,8 @@ var valoracion = function() {
   $('.fecha_valoracion_atencion').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    todayHighlight: true
+    todayHighlight: true,
+    autoclose: true
   });
 
   function initEvents() {
@@ -29,6 +30,7 @@ var valoracion = function() {
 
     /== evento para mostrar modal de valoracion ==/
     $('#btn_add_decidir_valoracion').on('click', function() {
+      console.log(lista_talleres, 'lista_talleres-add-open');
       var id_atencion = $('#id_atencion').val();
 
       $.ajax({
@@ -44,11 +46,8 @@ var valoracion = function() {
             $('#modal_decidir_valoracion').modal('show');
             accion = 'agregar';
             llenarCampoValoradoPor();
-            $('#seccion_tipo_institucion').css('display', 'none');
-            $('#seccion_institucion').css('display', 'none');
-            $('#btn_add_taller').css('display', 'none');
-            $('#btn_eliminar_taller').css('display', 'none');
-            $('#tabla_valoracion_talleres').css('display', 'none');
+            ocultarCampos();
+            console.log(lista_talleres, 'lista_talleres-open');
 
             $('#tipo_atencion_valoracion').select2({
               dropdownParent: $('#modal_decidir_valoracion .modal-body'),
@@ -62,8 +61,6 @@ var valoracion = function() {
                 }
               }
             });
-
-            llenarSelectTipoAtencion('');
 
             $('#tipo_institucion_valoracion').select2({
               dropdownParent: $('#modal_decidir_valoracion .modal-body'),
@@ -90,7 +87,8 @@ var valoracion = function() {
                 }
               }
             });
-      
+
+            llenarSelectTipoAtencion('');
             llenarSelectTipoInstitucion('');
           }
         },
@@ -102,14 +100,66 @@ var valoracion = function() {
     $('#btn_cerrar_modal_decidir_valoracion').on('click', function() {
       limpiarCampos();
       $('#modal_decidir_valoracion').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para cancelar modal de solicitar atencion ==/
     $('#btn_cancelar_modal_decidir_valoracion').on('click', function() {
       limpiarCampos();
       $('#modal_decidir_valoracion').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
+    });
+
+    /== evento para mostrar las instituciones o los talleres ==/
+    $('#tipo_atencion_valoracion').on('change', function() {
+      var id_tipo_atencion = $(this).val();
+      var textoSeleccionado = $(this).find('option:selected').text();
+      
+      if (id_tipo_atencion == 'sel' || id_tipo_atencion == '-') {
+        $('#seccion_tipo_institucion').css('display', 'none');
+        $('#seccion_institucion').css('display', 'none');
+        $('#btn_add_taller').css('display', 'none');
+        $('#btn_eliminar_taller').css('display', 'none');
+        $('#tabla_valoracion_talleres').css('display', 'none');
+      } else {
+        $.ajax({
+          url: "/tipo_atencion/get_tipo_atencion",
+          data: {
+            id: id_tipo_atencion
+          },
+          dataType: "json",
+          success: function(response) {
+            if (response.tipo_mensaje == 'success') {
+              // ocultarCampos();
+
+              if (response.tipo_atencion.derivar == true) {
+                $('#seccion_tipo_institucion').css('display', 'block');
+                $('#seccion_institucion').css('display', 'block');
+              } else {
+                $('#seccion_tipo_institucion').css('display', 'none');
+                $('#seccion_institucion').css('display', 'none');
+              }
+
+              if (response.tipo_atencion.taller == true) {
+                $('#btn_add_taller').css('display', 'block');
+                $('#btn_eliminar_taller').css('display', 'block');
+                $('#tabla_valoracion_talleres').css('display', 'block');
+                //ocultar la primera columna luego de agregar en la tabla
+                $('#tabla_valoracion_talleres th:nth-child(1), #tabla_valoracion_talleres td:nth-child(1)').hide();
+              } else {
+                $('#btn_add_taller').css('display', 'none');
+                $('#btn_eliminar_taller').css('display', 'none');
+                $('#tabla_valoracion_talleres tbody').empty();
+                lista_talleres = [];
+                $('#tabla_valoracion_talleres').css('display', 'none');
+              }
+            } else {
+              notificacion('Error', response.mensaje, 'error');
+            }
+          },
+          error: function(response) {}
+        });
+      }
     });
 
     /== evento para cargar las instituciones segun el tipo ==/
@@ -127,33 +177,38 @@ var valoracion = function() {
         $('#institucion_valoracion').find("option").end().append(optionEmpty.attr('selected', true));
       } else {
         $.ajax({
-          url: "/institucion/get_all_instituciones",
+          url: "/institucion/get_instituciones_by_tipo_institucion",
+          data: {
+            tipo_institucion: id_tipo_inst == 'privada' ? 'pv' : 'pu'
+          },
           type: "get",
           dataType: "json",
           success: function(response) {
-            if (response.mensaje == 'success') {
+            if (response.mensaje == 'existe') {
               $('#institucion_valoracion').find("option").end().append(optionSeleccione);
 
               $.each(response.instituciones, function (key, value) {
                 var option = $("<option/>").val(value.id).text(value.nombre);
 
-                if (id_institucion != '') {
-                  // llenar select institucion en modal editar
-                  if (value.id == id_institucion) {
-                    $('#institucion_valoracion').find("option").end().append(option.attr('selected', true));
+                if (value.estado) {
+                  if (id_institucion != '') {
+                    // llenar select institucion en modal editar
+                    if (value.id == id_institucion) {
+                      $('#institucion_valoracion').find("option").end().append(option.attr('selected', true));
+                    } else {
+                      if ((id_tipo_inst == 'publica') && (value.tipo_institucion == 'pu')) {
+                        $('#institucion_valoracion').find("option").end().append(option);  
+                      } else if ((id_tipo_inst == 'privada') && (value.tipo_institucion == 'pv')) {
+                        $('#institucion_valoracion').find("option").end().append(option);  
+                      }
+                    }
                   } else {
+                    // llenar select institucion en modal agregar
                     if ((id_tipo_inst == 'publica') && (value.tipo_institucion == 'pu')) {
                       $('#institucion_valoracion').find("option").end().append(option);  
                     } else if ((id_tipo_inst == 'privada') && (value.tipo_institucion == 'pv')) {
                       $('#institucion_valoracion').find("option").end().append(option);  
                     }
-                  }
-                } else {
-                  // llenar select institucion en modal agregar
-                  if ((id_tipo_inst == 'publica') && (value.tipo_institucion == 'pu')) {
-                    $('#institucion_valoracion').find("option").end().append(option);  
-                  } else if ((id_tipo_inst == 'privada') && (value.tipo_institucion == 'pv')) {
-                    $('#institucion_valoracion').find("option").end().append(option);  
                   }
                 }
               });
@@ -168,78 +223,22 @@ var valoracion = function() {
       }
     });
 
-    /== evento para mostrar las instituciones o los talleres ==/
-    $('#tipo_atencion_valoracion').on('change', function() {
-      var textoSeleccionado = $(this).find('option:selected').text();
-      
-      if (textoSeleccionado.toLowerCase().indexOf('derivar') != -1) {
-        $('#seccion_tipo_institucion').css('display', 'block');
-        $('#seccion_institucion').css('display', 'block');
-        $('#btn_add_taller').css('display', 'none');
-        $('#btn_eliminar_taller').css('display', 'none');
-        $('#tabla_valoracion_talleres').css('display', 'none');
-
-        // $('#tipo_institucion_valoracion').select2({
-        //   dropdownParent: $('#modal_decidir_valoracion .modal-body'),
-        //   width: '100%',
-        //   language: {
-        //     noResults: function() {
-        //       return "No hay resultado";        
-        //     },
-        //     searching: function() {
-        //       return "Buscando..";
-        //     }
-        //   }
-        // });
-
-        // $('#institucion_valoracion').select2({
-        //   dropdownParent: $('#modal_decidir_valoracion .modal-body'),
-        //   width: '100%',
-        //   language: {
-        //     noResults: function() {
-        //       return "No hay resultado";        
-        //     },
-        //     searching: function() {
-        //       return "Buscando..";
-        //     }
-        //   }
-        // });
-
-        // llenarSelectTipoInstitucion('');
-      } else if (textoSeleccionado.toLowerCase().indexOf('taller') != -1) {
-        $('#seccion_tipo_institucion').css('display', 'none');
-        $('#seccion_institucion').css('display', 'none');
-        $('#btn_add_taller').css('display', 'block');
-        $('#btn_eliminar_taller').css('display', 'block');
-        $('#tabla_valoracion_talleres').css('display', 'block');
-        //ocultar la primera columna luego de agregar en la tabla
-        $('#tabla_valoracion_talleres th:nth-child(1), #tabla_valoracion_talleres td:nth-child(1)').hide();
-      } else {
-        $('#seccion_tipo_institucion').css('display', 'none');
-        $('#seccion_institucion').css('display', 'none');
-        $('#btn_add_taller').css('display', 'none');
-        $('#btn_eliminar_taller').css('display', 'none');
-        $('#tabla_valoracion_talleres').css('display', 'none');
-      }
-    });
-
     /== evento para cancelar modal del listado de los talleres ==/
     $('#btn_cancelar_modal_listado_talleres').on('click', function() {
+      $('#tabla_listado_talleres').DataTable().destroy();
       $('#modal_listado_talleres').modal('hide');
     });
 
     /== evento para mostrar modal de los talleres ==/
     $('#btn_add_taller').on('click', function() {
       $('#modal_listado_talleres').modal('show');
-      var tabla = $('#tabla_listado_talleres').DataTable();
-      tabla.destroy();
       
       $.ajax({
         url: "/taller/get_talleres",
         type: "get",
         dataType: "json",
         success: function(response) {
-          tabla = new DataTable('#tabla_listado_talleres', {
+          var tabla = $('#tabla_listado_talleres').DataTable({
             language: {
               "decimal": "",
               "emptyTable": "No hay información",
@@ -263,6 +262,7 @@ var valoracion = function() {
             deferRender: true,
             pageLength: 5,
             destroy: true,
+            ascrollx: true,
             "aLengthMenu": [5, 10, 25, 50],
             order: [[0, 'desc']],
             data: response.talleres,
@@ -273,23 +273,24 @@ var valoracion = function() {
               { data: 'fecha_fin'},
               { data: 'especialista'}
             ],
-            initComplete: function() {
-              // $('#dropdown_acciones_listado_talleres').css('display', 'none');
-            }
+            rowCallback: function(row, data) {
+              $($(row).find('td')[2]).html(data.fecha_inicio + (data.hora_inicio ? ' ' + data.hora_inicio : ''));
+            },
+            initComplete: function() {}
           });
       
           //evento para seleccionar una fila en la tabla
-          // evento para capturar los datos de la columna seleccionada en la tabla
-          tabla.on('click', 'tbody tr', function(e) {
+          // Reasignar el evento para seleccionar una fila en la tabla
+          $('#tabla_listado_talleres tbody').off('click', 'tr');
+          $('#tabla_listado_talleres tbody').on('click', 'tr', function(e) {
             let classList = e.currentTarget.classList;
-            let data;
-      
+            let rowData;
             if (classList.contains('selected')) {
               classList.remove('selected');
             } else {
-              // tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+              tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
               classList.add('selected');
-              data = tabla.row(this).data();
+              rowData = tabla.row(this).data();
             }
           });
         },
@@ -313,7 +314,7 @@ var valoracion = function() {
         } else {
           $.each(lista, function (key, value) {
             //crear la fila con los datos que se van a agregar a la tabla
-            var fila = '<tr><td>' + parseInt(value.id) + '</td><td>' + value.nombre + '</td><td>' + value.modalidad.nombre + '</td><td>' + value.fecha_inicio + '</td><td>' + value.fecha_fin + '</td><td>' + value.especialista + '</td></tr>';
+            var fila = '<tr><td>' + parseInt(value.id) + '</td><td>' + value.nombre + '</td><td>' + value.modalidad.nombre + '</td><td>' + value.fecha_inicio + (value.hora_inicio ? ' ' + value.hora_inicio : '') + '</td><td>' + value.fecha_fin + '</td><td>' + value.especialista + '</td></tr>';
             //agregar datos a la tabla
             $('#tabla_valoracion_talleres tbody').append(fila);
             //ocultar la primera columna luego de agregar en la tabla
@@ -386,6 +387,8 @@ var valoracion = function() {
         id_atencion: id_atencion
       }
 
+      console.log(params, 'params');
+
       var validacion = validarFormulario(params);
 
       if (validacion !== '') {
@@ -406,20 +409,23 @@ var valoracion = function() {
               $('#modal_decidir_valoracion').modal('hide');
   
               swal({
-                title: "",
+                title: "Información",
                 text: response.mensaje,
                 type: response.tipo_mensaje,
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                limpiarCampos();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             }
           },
-          error: function(response) {}
+          error: function(response) {
+            notificacion('Error', 'Ha ocurrido un error al guardar los datos.', 'error');
+          }
         });
       }
     });
@@ -455,8 +461,6 @@ var valoracion = function() {
               }
             });
 
-            llenarSelectTipoAtencion(response.datos.tipo_atencion.id);
-
             if (response.talleres.length > 0) {
               //llenar tabla de talleres
               $.each(response.talleres, function (key, value) {
@@ -467,37 +471,41 @@ var valoracion = function() {
               });
             }
 
+            // crear selects de las instituciones
+            $('#tipo_institucion_valoracion').select2({
+              dropdownParent: $('#modal_decidir_valoracion .modal-body'),
+              width: '100%',
+              language: {
+                noResults: function() {
+                  return "No hay resultado";        
+                },
+                searching: function() {
+                  return "Buscando..";
+                }
+              }
+            });
+
+            $('#institucion_valoracion').select2({
+              dropdownParent: $('#modal_decidir_valoracion .modal-body'),
+              width: '100%',
+              language: {
+                noResults: function() {
+                  return "No hay resultado";        
+                },
+                searching: function() {
+                  return "Buscando..";
+                }
+              }
+            });
+
             if (response.datos.tipo_institucion != "") {
-              //llenar selects de instituciones
-              $('#tipo_institucion_valoracion').select2({
-                dropdownParent: $('#modal_decidir_valoracion .modal-body'),
-                width: '100%',
-                language: {
-                  noResults: function() {
-                    return "No hay resultado";        
-                  },
-                  searching: function() {
-                    return "Buscando..";
-                  }
-                }
-              });
-
-              $('#institucion_valoracion').select2({
-                dropdownParent: $('#modal_decidir_valoracion .modal-body'),
-                width: '100%',
-                language: {
-                  noResults: function() {
-                    return "No hay resultado";        
-                  },
-                  searching: function() {
-                    return "Buscando..";
-                  }
-                }
-              });
-
               llenarSelectTipoInstitucion(response.datos.tipo_institucion);
               id_institucion = response.datos.institucion.id;
+            } else {
+              llenarSelectTipoInstitucion('');
             }
+
+            llenarSelectTipoAtencion(response.datos.tipo_atencion.id);
           }
         },
         error: function(response) {}
@@ -541,16 +549,18 @@ var valoracion = function() {
           $.each(response.tipos_atenciones, function (key, value) {
             var option = $("<option/>").val(value.id).text(value.nombre);
 
-            if (id_tipo_atencion != '') {
-              // llenar select tipo_atencion en modal de editar
-              if (value.id == id_tipo_atencion) {
-                $('#tipo_atencion_valoracion').find("option").end().append(option.attr('selected', true));
+            if (value.estado == 'HABILITADO') {
+              if (id_tipo_atencion != '') {
+                // llenar select tipo_atencion en modal de editar
+                if (value.id == id_tipo_atencion) {
+                  $('#tipo_atencion_valoracion').find("option").end().append(option.attr('selected', true));
+                } else {
+                  $('#tipo_atencion_valoracion').find("option").end().append(option);
+                }              
               } else {
+                // llenar select categoria en modal de agregar
                 $('#tipo_atencion_valoracion').find("option").end().append(option);
-              }              
-            } else {
-              // llenar select categoria en modal de agregar
-              $('#tipo_atencion_valoracion').find("option").end().append(option);
+              }
             }            
           });
 
@@ -596,15 +606,21 @@ var valoracion = function() {
 
   function limpiarCampos() {
     id_institucion = '';
+    id_valoracion = '';
+    idRowData = '';
     accion = '';
     $('#fecha_valoracion').val('');
-    $('#tipo_institucion_valoracion').val('sel');
+    $('#tabla_valoracion_talleres tbody').empty();
+    lista_talleres = [];
+    // $('#tipo_institucion_valoracion').val('sel');
     
     $.each($('#tipo_atencion_valoracion').find("option"), function (key, value) {
       $(value).remove();
     });
-
-    llenarSelectTipoAtencion('');
+    
+    $.each($('#tipo_institucion_valoracion').find("option"), function (key, value) {
+      $(value).remove();
+    });
   }
 
   function llenarCampoValoradoPor() {
@@ -682,6 +698,14 @@ var valoracion = function() {
     }
 
     return error;
+  }
+
+  function ocultarCampos() {
+    $('#seccion_tipo_institucion').css('display', 'none');
+    $('#seccion_institucion').css('display', 'none');
+    $('#btn_add_taller').css('display', 'none');
+    $('#btn_eliminar_taller').css('display', 'none');
+    $('#tabla_valoracion_talleres').css('display', 'none');
   }
 
   return {

@@ -1,6 +1,7 @@
 var motivo_consulta = function() {
   var $ = jQuery.noConflict();
   var accion = '';
+  var id_atencion = '';
   const listaHorasMC = [
     {
       id: 0,
@@ -179,7 +180,6 @@ var motivo_consulta = function() {
   });
 
   function initEvents() {
-
     /== evento para mostrar modal agregar motivo de consulta ==/
     $('#btn_add_motivo_consulta').on('click', function() {
       var id_atencion = $('#id_atencion').val();
@@ -198,7 +198,7 @@ var motivo_consulta = function() {
 
     /== evento para mostrar modal editar motivo de consulta ==/
     $('#btn_edit_motivo_consulta').on('click', function() {
-      var id_atencion = $('#id_atencion').val();
+      id_atencion = $('#id_atencion').val();
 
       $.ajax({
         url: "/motivo_consulta/get_motivo_consulta_by_atencion",
@@ -218,6 +218,9 @@ var motivo_consulta = function() {
             llenarDatosPreguntaUno(response.pregunta_uno);
             llenarDatosPreguntaDos(response.pregunta_dos);
             accion = 'editar';
+
+            $('#box_edit_horarios').css('display', 'block');
+             $('#card_horarios').find('input, textarea, select, button').prop('disabled', true);
 
             //pregunta_ cuatro
             if (response.horario_lunes.horas != '') {
@@ -289,14 +292,14 @@ var motivo_consulta = function() {
     $('#btn_cerrar_modal_motivo_consulta').on('click', function() {
       limpiarCampos();
       $('#modal_motivo_consulta').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para cerrar modal de motivo de consulta ==/
     $('#btn_cancelar_modal_motivo_consulta').on('click', function() {
       limpiarCampos();
       $('#modal_motivo_consulta').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     $('#check_mc_lunes').on('click', function() {
@@ -453,10 +456,10 @@ var motivo_consulta = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
 
 
@@ -469,6 +472,17 @@ var motivo_consulta = function() {
             btn.html(textOriginalBtn);
           }
         });
+      }
+    });
+
+    /== evento para mostrar los horarios del nomenclador cuando se seleccione el check en modal editar ==/
+    $('#check_edit_hr').on('change', function() {
+      if (this.checked) {
+        $('#card_horarios').find('input, textarea, select, button').prop('disabled', false);
+        horariosAccionAgregar();
+      } else {
+        $('#card_horarios').find('input, textarea, select, button').prop('disabled', true);
+        horariosAccionEditar();
       }
     });
   }
@@ -492,6 +506,41 @@ var motivo_consulta = function() {
     $(select).trigger("chosen:updated").trigger("change");
   }
 
+  // function llenarSelectHorasEditar(select, arregloHoras) {
+  //   $.ajax({
+  //     url: "/horario/horario_cita_valoracion",
+  //     type: "get",
+  //     dataType: "json",
+  //     success: function(response) {
+        
+  //     },
+  //     error: function(response) {}
+  //   });
+
+
+
+  //   // limpiar select
+  //   $.each($(select).find("option"), function (key, value) {
+  //     $(value).remove();
+  //   });
+
+  //   for(var i=0; i<arregloHoras.length-1; i++) {
+  //     var opt = devolverValueOption(arregloHoras[i]);
+      
+  //     if (opt != '') {
+  //       var option = opt;
+  //       $(select).find("option").end().append(option.attr('selected', true));
+  //     }
+  //   }
+
+  //   $(select).trigger("chosen:updated").trigger("change");
+
+
+
+
+    
+  // }
+
   function devolverValueOption(id) {
     var option = '';
 
@@ -510,7 +559,9 @@ var motivo_consulta = function() {
     $("input[type='radio'][name=inlineRadioOptionsPreguntaDos]").prop('checked', false);
     $('#check_siente_uno').prop('checked', true);
     $('#check_estado_uno').prop('checked', true);
+    $('#check_edit_hr').prop('checked', false);
     accion = '';
+    id_atencion = '';
   }
 
   function validarCampos() {
@@ -589,74 +640,9 @@ var motivo_consulta = function() {
       $('#check_siente_uno').prop('checked', true);
       $('#check_estado_uno').prop('checked', true);
       accion = 'agregar';
+      $('#box_edit_horarios').css('display', 'none');
       
-      $.ajax({
-        url: "/horario/horario_cita_valoracion",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
-          if (response[0].horario_lunes.horas != '') {
-            $('#box_lunes').css('display','block');
-            var horas_lunes = (response[0].horario_lunes.horas).split(',');
-            llenarSelectHoras('#horas_mc_lunes', horas_lunes);
-            $('#check_mc_lunes').prop('checked', true);
-          } else {
-            $('#box_lunes').css('display','none');
-            $('#check_mc_lunes').prop('checked', false);
-          }
-
-          if (response[0].horario_martes.horas != '') {
-            $('#box_martes').css('display','block');
-            var horas_martes = (response[0].horario_martes.horas).split(',');
-            llenarSelectHoras('#horas_mc_martes', horas_martes);
-            $('#check_mc_martes').prop('checked', true);
-          } else {
-            $('#box_martes').css('display','none');
-            $('#check_mc_martes').prop('checked', false);
-          }
-
-          if (response[0].horario_miercoles.horas != '') {
-            $('#box_miercoles').css('display','block');
-            var horas_miercoles = (response[0].horario_miercoles.horas).split(',');
-            llenarSelectHoras('#horas_mc_miercoles', horas_miercoles);
-            $('#check_mc_miercoles').prop('checked', true);
-          } else {
-            $('#box_miercoles').css('display','none');
-            $('#check_mc_miercoles').prop('checked', false);
-          }
-
-          if (response[0].horario_jueves.horas != '') {
-            $('#box_jueves').css('display','block');
-            var horas_jueves = (response[0].horario_jueves.horas).split(',');
-            llenarSelectHoras('#horas_mc_jueves', horas_jueves);
-            $('#check_mc_jueves').prop('checked', true);
-          } else {
-            $('#box_jueves').css('display','none');
-            $('#check_mc_jueves').prop('checked', false);
-          }
-
-          if (response[0].horario_viernes.horas != '') {
-            $('#box_viernes').css('display','block');
-            var horas_viernes = (response[0].horario_viernes.horas).split(',');
-            llenarSelectHoras('#horas_mc_viernes', horas_viernes);
-            $('#check_mc_viernes').prop('checked', true);
-          } else {
-            $('#box_viernes').css('display','none');
-            $('#check_mc_viernes').prop('checked', false);
-          }
-
-          if (response[0].horario_sabado.horas != '') {
-            $('#box_sabado').css('display','block');
-            var horas_sabado = (response[0].horario_sabado.horas).split(',');
-            llenarSelectHoras('#horas_mc_sabado', horas_sabado);
-            $('#check_mc_sabado').prop('checked', true);
-          } else {
-            $('#box_sabado').css('display','none');
-            $('#check_mc_sabado').prop('checked', false);
-          }
-        },
-        error: function(response) {}
-      });
+      horariosAccionAgregar();
     }  
   }
 
@@ -674,6 +660,149 @@ var motivo_consulta = function() {
       $('#id_atencion').val('');
     });
   }
+
+  function horariosAccionAgregar() {
+    $.ajax({
+      url: "/horario/horario_cita_valoracion",
+      type: "get",
+      dataType: "json",
+      success: function(response) {
+        if (response[0].horario_lunes.horas != '') {
+          $('#box_lunes').css('display','block');
+          var horas_lunes = (response[0].horario_lunes.horas).split(',');
+          llenarSelectHoras('#horas_mc_lunes', horas_lunes);
+          $('#check_mc_lunes').prop('checked', true);
+        } else {
+          $('#box_lunes').css('display','none');
+          $('#check_mc_lunes').prop('checked', false);
+        }
+
+        if (response[0].horario_martes.horas != '') {
+          $('#box_martes').css('display','block');
+          var horas_martes = (response[0].horario_martes.horas).split(',');
+          llenarSelectHoras('#horas_mc_martes', horas_martes);
+          $('#check_mc_martes').prop('checked', true);
+        } else {
+          $('#box_martes').css('display','none');
+          $('#check_mc_martes').prop('checked', false);
+        }
+
+        if (response[0].horario_miercoles.horas != '') {
+          $('#box_miercoles').css('display','block');
+          var horas_miercoles = (response[0].horario_miercoles.horas).split(',');
+          llenarSelectHoras('#horas_mc_miercoles', horas_miercoles);
+          $('#check_mc_miercoles').prop('checked', true);
+        } else {
+          $('#box_miercoles').css('display','none');
+          $('#check_mc_miercoles').prop('checked', false);
+        }
+
+        if (response[0].horario_jueves.horas != '') {
+          $('#box_jueves').css('display','block');
+          var horas_jueves = (response[0].horario_jueves.horas).split(',');
+          llenarSelectHoras('#horas_mc_jueves', horas_jueves);
+          $('#check_mc_jueves').prop('checked', true);
+        } else {
+          $('#box_jueves').css('display','none');
+          $('#check_mc_jueves').prop('checked', false);
+        }
+
+        if (response[0].horario_viernes.horas != '') {
+          $('#box_viernes').css('display','block');
+          var horas_viernes = (response[0].horario_viernes.horas).split(',');
+          llenarSelectHoras('#horas_mc_viernes', horas_viernes);
+          $('#check_mc_viernes').prop('checked', true);
+        } else {
+          $('#box_viernes').css('display','none');
+          $('#check_mc_viernes').prop('checked', false);
+        }
+
+        if (response[0].horario_sabado.horas != '') {
+          $('#box_sabado').css('display','block');
+          var horas_sabado = (response[0].horario_sabado.horas).split(',');
+          llenarSelectHoras('#horas_mc_sabado', horas_sabado);
+          $('#check_mc_sabado').prop('checked', true);
+        } else {
+          $('#box_sabado').css('display','none');
+          $('#check_mc_sabado').prop('checked', false);
+        }
+      },
+      error: function(response) {}
+    });
+  }
+
+  function horariosAccionEditar() {
+    $.ajax({
+        url: "/motivo_consulta/get_motivo_consulta_by_atencion",
+        data: {
+          id_atencion: id_atencion
+        },
+        dataType: "json",
+        success: function(response) {
+          //pregunta_ cuatro
+          if (response.horario_lunes.horas != '') {
+            $('#box_lunes').css('display','block');
+            var horas_lunes = (response.horario_lunes.horas).split(',');
+            llenarSelectHoras('#horas_mc_lunes', horas_lunes);
+            $('#check_mc_lunes').prop('checked', true);
+          } else {
+            $('#box_lunes').css('display','none');
+            $('#check_mc_lunes').prop('checked', false);
+          }
+  
+          if (response.horario_martes.horas != '') {
+            $('#box_martes').css('display','block');
+            var horas_martes = (response.horario_martes.horas).split(',');
+            llenarSelectHoras('#horas_mc_martes', horas_martes);
+            $('#check_mc_martes').prop('checked', true);
+          } else {
+            $('#box_martes').css('display','none');
+            $('#check_mc_martes').prop('checked', false);
+          }
+  
+          if (response.horario_miercoles.horas != '') {
+            $('#box_miercoles').css('display','block');
+            var horas_miercoles = (response.horario_miercoles.horas).split(',');
+            llenarSelectHoras('#horas_mc_miercoles', horas_miercoles);
+            $('#check_mc_miercoles').prop('checked', true);
+          } else {
+            $('#box_miercoles').css('display','none');
+            $('#check_mc_miercoles').prop('checked', false);
+          }
+  
+          if (response.horario_jueves.horas != '') {
+            $('#box_jueves').css('display','block');
+            var horas_jueves = (response.horario_jueves.horas).split(',');
+            llenarSelectHoras('#horas_mc_jueves', horas_jueves);
+            $('#check_mc_jueves').prop('checked', true);
+          } else {
+            $('#box_jueves').css('display','none');
+            $('#check_mc_jueves').prop('checked', false);
+          }
+  
+          if (response.horario_viernes.horas != '') {
+            $('#box_viernes').css('display','block');
+            var horas_viernes = (response.horario_viernes.horas).split(',');
+            llenarSelectHoras('#horas_mc_viernes', horas_viernes);
+            $('#check_mc_viernes').prop('checked', true);
+          } else {
+            $('#box_viernes').css('display','none');
+            $('#check_mc_viernes').prop('checked', false);
+          }
+  
+          if (response.horario_sabado.horas != '') {
+            $('#box_sabado').css('display','block');
+            var horas_sabado = (response.horario_sabado.horas).split(',');
+            llenarSelectHoras('#horas_mc_sabado', horas_sabado);
+            $('#check_mc_sabado').prop('checked', true);
+          } else {
+            $('#box_sabado').css('display','none');
+            $('#check_mc_sabado').prop('checked', false);
+          }
+        },
+        error: function(response) {}
+      });
+    }
 
   function llenarDatosPreguntaUno(check) {
     switch (check) {

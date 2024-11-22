@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from .views import listadoAtencionesPsicologicas, agregarAtencionPsicologica, existenNomencladoresDependientes, getAtencionBySolicitante
+from .views import listadoAtencionesPsicologicas, agregarAtencionPsicologica, existenNomencladoresDependientes, getAtencionBySolicitante, getAtencionByAtencion, exportarExamenes, getDatosGraficoSolicitudesAtencion
 from .views_diagnostico_dsm5 import agregarEditarDiagnosticoDSM5, getAllDiagnosticosDSM5
 
 urlpatterns = [
@@ -13,6 +13,12 @@ urlpatterns = [
          name='nom_dependientes'),
     path('get_atencion_by_solicitante/', login_required(getAtencionBySolicitante.as_view()),
          name='get_atencion_by_solicitante'),
+    path('get_atencion_by_atencion/', login_required(getAtencionByAtencion.as_view()),
+         name='get_atencion_by_atencion'),
+    path('exportar_examenes/', exportarExamenes,
+         name='exportar_examenes'),
+    path('get_datos_grafico_solicitudes_atencion/', getDatosGraficoSolicitudesAtencion,
+         name='get_datos_grafico_solicitudes_atencion'),
 ]
 
 # URLS de vistas implicitas

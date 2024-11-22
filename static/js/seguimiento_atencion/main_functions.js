@@ -1,5 +1,7 @@
 var seguimiento_atencion = function() {
   var $ = jQuery.noConflict();
+  var idRowDataHs = '';
+  var lista_seguimientos = [];
 
   $('.fecha_seguimiento_atencion').datepicker({
     format: 'dd/mm/yyyy',
@@ -8,6 +10,20 @@ var seguimiento_atencion = function() {
   });
   
   function initEvents() {
+    /== evento para seleccionar una fila de la tabla de los historicos de seguimiento ==/
+    $('#tabla_historico_seguimiento').on('click', 'tr', function() {
+        if ($(this).hasClass('table-active')) {
+            $(this).removeClass('table-active');
+        } else {
+            $('tbody tr').removeClass('table-active');
+            $(this).addClass('table-active');
+        }
+        if ($(this).hasClass('table-active')) {
+            // Coger los datos de la fila
+            idRowDataHs = parseInt($(this).children('td').map(function() { return $(this).text(); }).get(0));
+        }
+    });
+
     /== evento para mostrar modal de seguimiento atencion ==/
     $('#btn_add_seguimiento_atencion').on('click', function() {
       var id_user_aut = $('#user_autenticado').val();
@@ -50,14 +66,14 @@ var seguimiento_atencion = function() {
     $('#btn_cerrar_modal_seguimiento').on('click', function() {
       limpiarCampos();
       $('#modal_seguimiento_atencion').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de seguimiento atencion ==/
     $('#btn_cancelar_modal_seguimiento_atencion').on('click', function() {
       limpiarCampos();
       $('#modal_seguimiento_atencion').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para guardar el seguimiento atencion ==/
@@ -99,10 +115,10 @@ var seguimiento_atencion = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);
@@ -115,6 +131,74 @@ var seguimiento_atencion = function() {
         });
       }
     });
+
+    /== evento para mostrar modal con el historico de los seguimientos ==/
+    $('#btn_historico_seguimiento').on('click', function(){
+      var id_atencion = $('#id_atencion').val();
+
+      $.ajax({
+        url: "/seguimiento_atencion/get_all_seguimiento",
+        type: "get",
+        data: {id_atencion: id_atencion},
+        dataType: "json",
+        success: function(response) {
+          if (response.mensaje == 'no_existe') {
+            deseleccionarFilasTabla();
+            notificacion('Error', 'Esta Atención aún no tiene registrado ningún Seguimiento. Por favor primero registre al menos uno.', 'error');
+          } else {
+            $('#modal_historico_seguimiento').modal('show');
+            //lenar lista de seguimientos
+            $.each(response.seguimientos, function (key, value) {
+              var nombre_persona = value.persona.nombre + (value.persona.segundo_nombre ? ' ' + value.persona.segundo_nombre + ' ' : ' ') + value.persona.apellido + (value.persona.segundo_apellido ? ' ' + value.persona.segundo_apellido : '');
+              lista_seguimientos.push({'id': value.id, 'fecha': value.fecha, 'persona': nombre_persona, 'estado': value.estado.nombre, 'observaciones': value.observaciones});
+            });
+            
+            //llenar tabla de historico
+            llenarTablaHistoricos(lista_seguimientos);
+          }
+        },
+        error: function(response) {}
+      });
+    });
+
+    /== evento para eliminar los historicos de los seguimientos ==/
+    $('#btn_eliminar_historico_seguimiento').on('click', function() {
+      $.ajax({
+        url: "/seguimiento_atencion/eliminar_seguimiento",
+        type: "get",
+        data: {id_seguimiento: idRowDataHs},
+        dataType: "json",
+        success: function(response) {
+          if (response.tipo_mensaje == 'success') {
+            // Eliminar seguimiento de la lista
+            lista_seguimientos = lista_seguimientos.filter(function(s) {
+                return s.id != idRowDataHs;
+            });
+            // Eliminar la fila de la tabla
+            $(this).remove();
+            llenarTablaHistoricos(lista_seguimientos);
+          } else if (response.tipo_mensaje == 'error') {
+            notificacion('Error', response.mensaje, response.tipo_mensaje);
+          }
+        },
+        error: function(response) {
+          notificacion('Error', 'Se produjo un error al eliminar el Seguimiento', 'error');
+        }
+      });
+    });
+
+    $('#btn_cancelar_modal_historico_seguimiento').on('click', function() {
+      lista_seguimientos = [];
+      $(document).trigger('actualizar_lista_atenciones');
+      $('#modal_historico_seguimiento').modal('hide');
+    });
+    
+    $('#btn_cerrar_modal_historico_seguimiento').on('click', function() {
+      lista_seguimientos = [];
+      $(document).trigger('actualizar_lista_atenciones');
+      $('#modal_historico_seguimiento').modal('hide');
+    });
+
   }
   
   function deseleccionarFilasTabla() {
@@ -140,7 +224,10 @@ var seguimiento_atencion = function() {
    
     $.each(estados, function (key, value) {
       var option = $("<option/>").val(value.id).text(value.nombre);
-      $('#estado_seguimiento').find("option").end().append(option);
+      
+      if (value.estado == 'HABILITADO') {
+        $('#estado_seguimiento').find("option").end().append(option);
+      }
     });
     
     $('#estado_seguimiento').trigger("chosen:updated").trigger("change");
@@ -186,6 +273,18 @@ var seguimiento_atencion = function() {
     }
 
     return error;
+  }
+
+  /== funcion para llenar la tabla de historicos de seguimiento ==/
+  function llenarTablaHistoricos(lista) {
+    // Limpiar la tabla antes de llenarla
+    $('#tabla_historico_seguimiento tbody').empty();
+    // llenar la tabla
+    $.each(lista, function (key, value) {
+      var fila = '<tr><td>' + parseInt(value.id) + '</td><td>' + value.fecha + '</td><td>' + value.persona + '</td><td>' + value.estado + '</td><td>' + value.observaciones + '</td></tr>';
+      $('#tabla_historico_seguimiento tbody').append(fila);
+      $('#tabla_historico_seguimiento th:nth-child(1), #tabla_historico_seguimiento td:nth-child(1)').hide();
+    });
   }
 
   return {

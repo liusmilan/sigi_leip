@@ -69,7 +69,7 @@ class agregarEditarValoracion(CreateView):
 
             if len(talleres) > 0:
                 eliminarTalleres(v)
-                guardarTalleres(talleres, obj)
+                guardarTalleres(talleres, v)
 
             mensaje = 'Se ha editado correctamente la Valoración.'
             tipo_mensaje = 'success'

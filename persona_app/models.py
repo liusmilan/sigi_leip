@@ -1,12 +1,11 @@
 from django.db import models
 from estado_app.models import estado
 from municipio_app.models import municipio
+from tipo_persona_udg_app.models import tipo_persona_udg
+
 
 # Create your models here.
-
-
 class persona(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre = models.CharField(
         'Nombre', max_length=255, blank=False, null=False)
     segundo_nombre = models.CharField(
@@ -17,6 +16,7 @@ class persona(models.Model):
     email = models.EmailField('Correo electrónico',
                               blank=True, null=True)
     sexo = models.CharField('Sexo', max_length=255, blank=True, null=True)
+    genero = models.CharField('Genero', max_length=255, blank=True, null=True)
     fecha_nacimiento = models.DateTimeField(
         'Fecha nacimiento', blank=True, null=True)
     telefono = models.CharField(
@@ -31,8 +31,6 @@ class persona(models.Model):
         'Teléfono de emergencia', max_length=255, blank=True, null=True)
     nombre_responsable = models.CharField(
         'Nombre del responsable', max_length=255, blank=True, null=True)
-    tipo_persona_udg = models.CharField(
-        'Tipo de persona UDG', max_length=255, blank=True, null=True)
     codigo_udg = models.CharField(
         'Código UDG', max_length=255, blank=True, null=True)
     estado = models.ForeignKey(
@@ -40,6 +38,8 @@ class persona(models.Model):
     municipio = models.ForeignKey(
         municipio, on_delete=models.CASCADE, null=True, blank=True)
     activo = models.BooleanField(default=True)
+    tipo_persona = models.CharField('Tipo de Persona', max_length=255, blank=True, null=True)
+    tipo_persona_udg = models.ForeignKey(tipo_persona_udg, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name = 'persona'

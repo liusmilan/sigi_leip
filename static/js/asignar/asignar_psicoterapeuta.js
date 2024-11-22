@@ -103,7 +103,8 @@ var asignar_psicoterapeuta = function() {
   $('.fecha_consulta_asignar').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    todayHighlight: true
+    todayHighlight: true,
+    autoclose: true
   });
 
 
@@ -131,14 +132,14 @@ var asignar_psicoterapeuta = function() {
     $('#btn_cerrar_modal_asignar_psicoterapeuta').on('click', function() {
       limpiarCampos();
       $('#modal_asignar_psicoterapeuta').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de asignar psicoterapeuta ==/
     $('#btn_cancelar_modal_asignar_psicoterapeuta').on('click', function() {
       limpiarCampos();
       $('#modal_asignar_psicoterapeuta').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para guardar el psicoterapeuta asignado ==/
@@ -182,10 +183,10 @@ var asignar_psicoterapeuta = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);
@@ -432,7 +433,6 @@ var asignar_psicoterapeuta = function() {
       $(value).remove();
     });
 
-    llenarSelectPsicoterapeuta('');
   }
 
   function validarCampos() {

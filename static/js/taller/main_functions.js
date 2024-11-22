@@ -4,14 +4,23 @@ var taller = function() {
   $('.fecha_inicio_taller').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    todayHighlight: true
+    todayHighlight: true,
+    autoclose: true
   });
 
   $('.fecha_fin_taller').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    todayHighlight: true
+    todayHighlight: true,
+    autoclose: true
   });
+
+  $('.timepicker').timepicker({
+    showMeridian: false,
+    minuteStep: 1,
+    defaultTime: true
+  });
+
 
   function initEvents() {
     existenModalidades();
@@ -62,6 +71,7 @@ var taller = function() {
       var fecha_inicio = $('#fecha_inicio').val();
       var fecha_fin = $('#fecha_fin').val();
       var estado = $('#estado_taller').is(":checked");
+      var hora_inicio = $('#hora_inicio').val();
       var textOriginalBtn = '<span class="indicator-label"> Agregar</span>'
       var loadingTextBtn = '<span class="indicator-progress"> Guardando... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>'
       var btn = $(this);
@@ -80,6 +90,7 @@ var taller = function() {
             especialista: especialista,
             fecha_inicio: fecha_inicio,
             fecha_fin: fecha_fin,
+            hora_inicio: hora_inicio,
             estado: estado
           },
           dataType: "json",
@@ -153,6 +164,7 @@ var taller = function() {
           $('#especialista_taller').val(response.especialista);
           $('#fecha_inicio').val(response.fecha_inicio);
           $('#fecha_fin').val(response.fecha_fin);
+          $('#hora_inicio').val(response.hora_inicio);
           
           if (response.estado == 'HABILITADO') {
             $('#estado_taller').prop('checked', true);
@@ -275,6 +287,9 @@ var taller = function() {
         { data: 'especialista'},
         { data: 'estado' }
       ],
+      rowCallback: function(row, data) {
+        $($(row).find('td')[2]).html(data.fecha_inicio + (data.hora_inicio ? ' ' + data.hora_inicio : ''));
+      },
       initComplete: function() {
         $('#dropdown_acciones_listado_talleres').css('display', 'none');
       }
@@ -384,6 +399,7 @@ var taller = function() {
     $("#especialista_taller").val('');
     $("#fecha_inicio").val('');
     $("#fecha_fin").val('');
+    $("#hora_inicio").val('');
     $("#estado_taller0").prop("checked", false);
 
     $.each($('#modalidad_taller').find("option"), function (key, value) {
@@ -400,6 +416,7 @@ var taller = function() {
     var especialista = $('#especialista_taller').val();
     var fecha_inicio = $('#fecha_inicio').val();
     var fecha_fin = $('#fecha_fin').val();
+    var hora_inicio = $('#hora_inicio').val();
     var mensaje_error = '';
     
     if (nombre == '' || nombre == null) {
@@ -411,6 +428,8 @@ var taller = function() {
     } else if (fecha_inicio == '' || fecha_inicio == null) {
       mensaje_error = 'error.';
     } else if (fecha_fin == '' || fecha_fin == null) {
+      mensaje_error = 'error.';
+    } else if (hora_inicio == '' || hora_inicio == null) {
       mensaje_error = 'error.';
     }
 

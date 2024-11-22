@@ -4,11 +4,11 @@ from django.db import models
 
 
 class tipo_atencion(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre = models.CharField(
         'Nombre', max_length=255, blank=False, null=False)
-    categoria = models.CharField(
-        'Categoria', max_length=255, blank=True, null=True)
+    derivar = models.BooleanField(null=True, blank=True)
+    taller = models.BooleanField(null=True, blank=True)
+    consulta = models.BooleanField(null=True, blank=True)
     estado = models.CharField('Estado', max_length=255, default=False)
 
     class Meta:

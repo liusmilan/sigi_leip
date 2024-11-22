@@ -4,7 +4,6 @@ from atencion_psicologica_app.models import atencion_psicologica
 
 # Create your models here.
 class mst_nivel2(models.Model):
-    id = models.AutoField(primary_key=True)
     depresion_pregunta1 = models.IntegerField(blank=False, null=False)
     depresion_pregunta2 = models.IntegerField(blank=False, null=False)
     depresion_pregunta3 = models.IntegerField(blank=False, null=False)
@@ -115,6 +114,7 @@ class mst_nivel2(models.Model):
         max_length=255, blank=True, null=True)
     nivel_evaluacion_sustancia = models.CharField(
         max_length=255, blank=True, null=True)
+    observaciones = models.TextField(blank=True, null=True)
 
     atencion = models.ForeignKey(
         atencion_psicologica, on_delete=models.CASCADE, blank=False, null=False)

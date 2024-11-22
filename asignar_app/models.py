@@ -6,7 +6,6 @@ from atencion_psicologica_app.models import atencion_psicologica
 
 
 class asignar(models.Model):
-    id = models.AutoField(primary_key=True)
     persona_asignada = models.ForeignKey(
         persona, on_delete=models.CASCADE, blank=False, null=False)
     fecha = models.DateTimeField('Fecha', blank=False, null=False)

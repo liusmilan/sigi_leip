@@ -21,6 +21,7 @@ var ssi_beck = function() {
             $('#modal_ssi_beck').modal('show');
             $('#modal_ssi_beck').find('.modal-title').text('Escala de Ideación Suicida de Beck (SSI BECK)');
             accion = 'agregar';
+            $('#box_evaluacion_beck').css('display', 'none');
           }
         },
         error: function(response) {}
@@ -31,14 +32,14 @@ var ssi_beck = function() {
     $('#btn_cerrar_modal_ssi_beck').on('click', function() {
       limpiarCampos();
       $('#modal_ssi_beck').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de ssi_beck ==/
     $('#btn_cancelar_modal_ssi_beck').on('click', function() {
       limpiarCampos();
       $('#modal_ssi_beck').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento para agregar o editar un ssi_beck ==/
@@ -63,16 +64,22 @@ var ssi_beck = function() {
       var valor_pregunta17 = devolverValorPregunta('#beck_check_pregunta_diecisiete_cero', '#beck_check_pregunta_diecisiete_uno', '#beck_check_pregunta_diecisiete_dos', '');
       var valor_pregunta18 = devolverValorPregunta('#beck_check_pregunta_dieciocho_cero', '#beck_check_pregunta_dieciocho_uno', '#beck_check_pregunta_dieciocho_dos', '');
       var valor_pregunta19 = devolverValorPregunta('#beck_check_pregunta_diecinueve_cero', '#beck_check_pregunta_diecinueve_uno', '#beck_check_pregunta_diecinueve_dos', '');
-      var total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5 + valor_pregunta6 + valor_pregunta7 + valor_pregunta8 + valor_pregunta9 + valor_pregunta10 + valor_pregunta11 + valor_pregunta12 + valor_pregunta13 + valor_pregunta14 + valor_pregunta15 + valor_pregunta16 + valor_pregunta17 + valor_pregunta18 + valor_pregunta19;
+      var valor_pregunta13_final = 0;
+
+      if (valor_pregunta13 > -1) {
+        valor_pregunta13_final = valor_pregunta13 == 3 ? valor_pregunta13 - 1 : valor_pregunta13
+      }
+
+      var total = (valor_pregunta1 > -1 ? valor_pregunta1 : 0) + (valor_pregunta2 > -1 ? valor_pregunta2 : 0) + (valor_pregunta3 > -1 ? valor_pregunta3 : 0) + (valor_pregunta4 > -1 ? valor_pregunta4 : 0) + (valor_pregunta5 > -1 ? valor_pregunta5 : 0) + (valor_pregunta6 > -1 ? valor_pregunta6 : 0) + (valor_pregunta7 > -1 ? valor_pregunta7 : 0) + (valor_pregunta8 > -1 ? valor_pregunta8 : 0) + (valor_pregunta9 > -1 ? valor_pregunta9 : 0) + (valor_pregunta10 > -1 ? valor_pregunta10 : 0) + (valor_pregunta11 > -1 ? valor_pregunta11 : 0) + (valor_pregunta12 > -1 ? valor_pregunta12 : 0) + (valor_pregunta13_final) + (valor_pregunta14 > -1 ? valor_pregunta14 : 0) + (valor_pregunta15 > -1 ? valor_pregunta15 : 0) + (valor_pregunta16 > -1 ? valor_pregunta16 : 0) + (valor_pregunta17 > -1 ? valor_pregunta17 : 0) + (valor_pregunta18 > -1 ? valor_pregunta18 : 0) + (valor_pregunta19 > -1 ? valor_pregunta19 : 0);
       var nivel = devolverNivel(total);
-      var color = devolverColor(nivel);
+      var color = devolverColor(nivel).codigo;
+      var observaciones = $('#observaciones_beck').val();
       var textOriginalBtn = '<span class="indicator-label"> Agregar</span>'
       var loadingTextBtn = '<span class="indicator-progress"> Guardando... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>'
       var btn = $(this);
       btn.html(loadingTextBtn);
 
-      if (valor_pregunta1 == -1 || valor_pregunta2 == -1 || valor_pregunta3 == -1 || valor_pregunta4 == -1 || valor_pregunta5 == -1 || valor_pregunta6 == -1 || valor_pregunta7 == -1 || valor_pregunta8 == -1 || valor_pregunta9 == -1 || valor_pregunta10 == -1 || valor_pregunta11 == -1 || valor_pregunta12 == -1 || valor_pregunta13 == -1 || valor_pregunta14 == -1 || valor_pregunta15 == -1 || valor_pregunta16 == -1 || valor_pregunta17 == -1 || valor_pregunta18 == -1 || valor_pregunta19 == -1) {
-        console.info(valor_pregunta1 == -1, valor_pregunta2 == -1, valor_pregunta3 == -1, valor_pregunta4 == -1, valor_pregunta5 == -1, valor_pregunta6 == -1, valor_pregunta7 == -1, valor_pregunta8 == -1, valor_pregunta9 == -1, valor_pregunta10 == -1, valor_pregunta11 == -1, valor_pregunta12 == -1, valor_pregunta13 == -1, valor_pregunta14 == -1, valor_pregunta15 == -1, valor_pregunta16 == -1, valor_pregunta17 == -1, valor_pregunta18 == -1, valor_pregunta19 == -1);
+      if (valor_pregunta1 == -1 || valor_pregunta2 == -1 || valor_pregunta3 == -1 || valor_pregunta4 == -1 || valor_pregunta5 == -1) {
         btn.html(textOriginalBtn);
         notificacion('Error', 'Existen preguntas que no ha respondido', 'error');
       } else {
@@ -102,7 +109,8 @@ var ssi_beck = function() {
             pregunta16: valor_pregunta16,
             pregunta17: valor_pregunta17,
             pregunta18: valor_pregunta18,
-            pregunta19: valor_pregunta19
+            pregunta19: valor_pregunta19,
+            observaciones: observaciones
           },
           dataType: "json",
           success: function(response) {
@@ -118,10 +126,10 @@ var ssi_beck = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);
@@ -153,7 +161,14 @@ var ssi_beck = function() {
             $('#modal_ssi_beck').modal('show');
             $('#modal_ssi_beck').find('.modal-title').text('Escala de Ideación Suicida de Beck (SSI BECK)');
             accion = 'editar';
+            $('#box_evaluacion_beck').css('display', 'block');
+            var clase_span = $('#evaluacion_beck').attr('class');
+            $('#evaluacion_beck').removeClass(clase_span);
+            $('#evaluacion_beck').text(response.total + ' - ' + response.nivel);
+            $('#evaluacion_beck').addClass('badge bg-badge-' + devolverColor(response.nivel).color);
 
+
+            $('#observaciones_beck').val(response.observaciones);
             marcarPreguntas('uno', response.pregunta1);
             marcarPreguntas('dos', response.pregunta2);
             marcarPreguntas('tres', response.pregunta3);
@@ -201,6 +216,7 @@ var ssi_beck = function() {
     $("input[type='radio'][name=inlineRadioOptionsBeckPregunta18]").prop('checked', false);
     $("input[type='radio'][name=inlineRadioOptionsBeckPregunta19]").prop('checked', false);
     accion = '';
+    $('#observaciones_beck').val('');
   }
 
   function deseleccionarFilasTabla() {
@@ -264,37 +280,41 @@ var ssi_beck = function() {
   function devolverNivel(valor) {
     var nivel = '';
 
-    if ((valor >= 0) && (valor <= 16)) {
-      nivel = 'Muy bajo';
-    } else if ((valor >= 17) && (valor <= 33)) {
-      nivel = 'Bajo';
-    } else if ((valor >= 34) && (valor <= 50)) {
+    if ((valor >= 0) && (valor <= 3)) {
+      nivel = 'Rango normal o asintomático';
+    } else if ((valor >= 4) && (valor <= 8)) {
+      nivel = 'Leve';
+    } else if ((valor >= 9) && (valor <= 14)) {
       nivel = 'Moderado';
-    } else if (valor > 50) {
-      nivel = 'Alto';
+    } else if (valor > 15) {
+      nivel = 'Severo';
     }
 
     return nivel;
   }
 
   function devolverColor(nivel) {
-    var color = '';
+    var resultado = {};
     var verde = '#7ceda7';
     var amarillo = '#faf032';
     var naranja = '#eb870e';
     var rojo = '#eb150e';
 
-    if (nivel == 'Muy bajo') {
-      color = verde;
-    } else if (nivel == 'Bajo') {
-      color = amarillo;
+    if (nivel == 'Rango normal o asintomático') {
+      resultado.codigo = verde;
+      resultado.color = 'green';
+    } else if (nivel == 'Leve') {
+      resultado.codigo = amarillo;
+      resultado.color = 'yellow';
     } else if (nivel == 'Moderado') {
-      color = naranja;
-    } else if (nivel == 'Alto') {
-      color = rojo;
+      resultado.codigo = naranja;
+      resultado.color = 'orange';
+    } else if (nivel == 'Severo') {
+      resultado.codigo = rojo;
+      resultado.color = 'red';
     }
 
-    return color;
+    return resultado;
   }
 
   return {

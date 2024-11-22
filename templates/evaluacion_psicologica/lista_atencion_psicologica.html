@@ -42,6 +42,17 @@
             </div>
           </div>
           <div class="d-flex justify-content-end" id='block_actions_atencion_psicologica'>
+            <!--actualizar tabla-->
+            <button type="button" class="btn btn-primary btn-hover-scale me-5 centrado" id='btn_actualizar_tabla'>
+              <i class="ri-refresh-line"></i>
+            </button>
+
+            <!--filtros-->
+            <button type="button" class="btn btn-primary btn-hover-scale me-5" id='btn_filtros_atencion'>
+              <i class="bi bi-funnel-fill"></i>
+              Filtros
+            </button>
+
             <!--btn solicitar atencion-->
             <button type="button" class="btn btn-primary btn-hover-scale me-5" id='btn_solicitar_atencion'>
               Solicitar Atención
@@ -49,6 +60,44 @@
 
             <!--Dropdown con las demas acciones-->
             <div id='dropdown_acciones_atenciones_psicologicas'>
+              <!-- Exportar -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-active-light-primary dropdown-toggle btn-hover-scale me-5" data-bs-toggle="dropdown" aria-expanded="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" d="m12 5l-.707-.707l.707-.707l.707.707zm1 9a1 1 0 1 1-2 0zM6.293 9.293l5-5l1.414 1.414l-5 5zm6.414-5l5 5l-1.414 1.414l-5-5zM13 5v9h-2V5z"/><path stroke="currentColor" stroke-width="4" d="M5 16v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1"/></g></svg>
+                  Exportar
+                </button>
+                <ul class="dropdown-menu">
+                  {% with user_roles=request.user.rol.all %}
+                    {% if user_roles|length == 1 %}
+                        {% if user_roles.0.nombre == 'SOLICITANTE' %}
+                            <li>
+                              <button class="dropdown-item btn-export-examen" id='btn_exportar_examen_mst_nivel1_fpp' name='btn_export_1'>
+                                MST Nivel 1 y FPP
+                              </button>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li>
+                          <button class="dropdown-item btn-export-examen" id='btn_exportar_examen_mst_nivel1_fpp' name='btn_export_1'>
+                            MST Nivel 1 y FPP
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item btn-export-examen" id='btn_exportar_examen_mst_nivel2' name='btn_export_2'>
+                            MST Nivel 2-Beck-DSM5
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item btn-export-examen" id='btn_exportar_historia_clinica' name='btn_export_3'>
+                            Historia Clínica
+                          </button>
+                        </li>
+                    {% endif %}
+                  {% endwith %}
+                </ul>
+              </div>
+
+              <!-- Agregar -->
               <div class="btn-group">
                 <button type="button" class="btn btn-primary btn-active-light-primary dropdown-toggle btn-hover-scale me-5" data-bs-toggle="dropdown" aria-expanded="false">
                   Acciones para Agregar
@@ -74,16 +123,11 @@
                           FPP
                         </button>
                       </li>
-                      <li>
+                      {% comment %} <li>
                         <button class="dropdown-item" id='btn_add_autoevaluacion_psicologica'>
                           Autoevaluación Psicológica
                         </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_add_disponibilidad_consulta'>
-                          Disponobilidad Horario para Consulta
-                        </button>
-                      </li>
+                      </li> {% endcomment %}
                     {% endif %}
 
                     {% if r.nombre == 'ASIGNAR' %}
@@ -110,6 +154,11 @@
                           SSI BECK
                         </button>
                       </li>
+                      <li>
+                        <button class="dropdown-item" id='btn_add_disponibilidad_consulta'>
+                          Disponibilidad Horario para Consulta
+                        </button>
+                      </li>
                     {% endif %}
 
                     {% if r.nombre == 'SEGUIMIENTO' %}
@@ -134,11 +183,6 @@
                           Historia Clínica
                         </button>
                       </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_add_reportes_consulta'>
-                          Reportes de Consulta
-                        </button>
-                      </li>
                     {% endif %}
 
                     {% if r.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
@@ -151,19 +195,47 @@
                   {% endwith %}
                   {% endwith %}
 
-                  {% if has_cons == true and has_eva == true %}
-                      <li>
-                        <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
-                          Diagnóstico Provicional DSM-5
-                        </button>
-                      </li>
-                  {% endif %}
+                  {% with user_roles=request.user.rol.all %}
+                    {% if user_roles|length == 1 %}
+                        {% if not user_roles.0.nombre == 'SOLICITANTE' %}
+                            <li>
+                              <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
+                                Diagnóstico DSM-5
+                              </button>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li>
+                          <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
+                            Diagnóstico DSM-5
+                          </button>
+                        </li>
+                    {% endif %}
+                  {% endwith %}
+
+                  {% with user_roles=request.user.rol.all %}
+                    {% if user_roles|length > 1 %}
+                        {% if user_roles.0.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
+                          <li>
+                            <button class="dropdown-item" id='btn_add_mst_n2'>
+                              MST nivel 2
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_ssi_beck'>
+                              SSI BECK
+                            </button>
+                          </li>
+                        {% endif %}
+                    {% endif %}
+                  {% endwith %}
                 </ul>
               </div>
 
+              <!-- Editar -->
               <div class="btn-group">
                 <button type="button" class="btn btn-primary btn-active-light-primary dropdown-toggle btn-hover-scale me-5" data-bs-toggle="dropdown" aria-expanded="false">
-                  Acciones para Editar
+                  Acciones para Detalles/Editar
                 </button>
                 <ul class="dropdown-menu">
                   {% with has_cons_edit=false %}
@@ -186,16 +258,11 @@
                           FPP
                         </button>
                       </li>
-                      <li>
+                      {% comment %} <li>
                         <button class="dropdown-item" id='btn_edit_autoevaluacion_psicologica'>
                           Autoevaluación Psicológica
                         </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_disponibilidad_consulta'>
-                          Disponobilidad Horario para Consulta
-                        </button>
-                      </li>
+                      </li> {% endcomment %}
                     {% endif %}
 
                     {% if r.nombre == 'ASIGNAR' %}
@@ -222,6 +289,11 @@
                           SSI BECK
                         </button>
                       </li>
+                      <li>
+                        <button class="dropdown-item" id='btn_edit_disponibilidad_consulta'>
+                          Disponibilidad Horario para Consulta
+                        </button>
+                      </li>
                     {% endif %}
 
                     {% if r.nombre == 'VALORACION_PSICOLOGICA' %}
@@ -238,11 +310,11 @@
                           Historia Clínica
                         </button>
                       </li>
-                      <li>
+                      {% comment %} <li>
                         <button class="dropdown-item" id='btn_edit_reportes_consulta'>
                           Reportes de Consulta
                         </button>
-                      </li>
+                      </li> {% endcomment %}
                     {% endif %}
                   {% endfor %}
                   {% if r.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
@@ -253,13 +325,51 @@
                   {% endif %}
                   {% endwith %}
                   {% endwith %}
-                  {% if has_cons_edit == true and has_eva_edit == true %}
-                    <li>
-                      <button class="dropdown-item" id='btn_edit_diagnostico_provicional_dsm5'>
-                        Diagnóstico Provicional DSM-5
-                      </button>
-                    </li>
-                  {% endif %}
+
+                  {% with user_roles=request.user.rol.all %}
+                    {% if user_roles|length == 1 %}
+                        {% if not user_roles.0.nombre == 'SOLICITANTE' %}
+                            <li>
+                              <button class="dropdown-item" id='btn_historico_seguimiento'>
+                                Histórico de Seguimiento
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item" id='btn_edit_diagnostico_provicional_dsm5'>
+                                Diagnóstico DSM-5
+                              </button>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li>
+                          <button class="dropdown-item" id='btn_historico_seguimiento'>
+                            Histórico de Seguimiento
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_diagnostico_provicional_dsm5'>
+                            Diagnóstico DSM-5
+                          </button>
+                        </li>
+                    {% endif %}
+                  {% endwith %}
+
+                  {% with user_roles=request.user.rol.all %}
+                    {% if user_roles|length > 1 %}
+                      {% if user_roles.0.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
+                        <li>
+                          <button class="dropdown-item" id='btn_add_mst_n2'>
+                            MST nivel 2
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_ssi_beck'>
+                            SSI BECK
+                          </button>
+                        </li>
+                      {% endif %}
+                    {% endif %}
+                  {% endwith %}
                 </ul>
               </div> 
           </div>
@@ -270,19 +380,30 @@
         <table class="table align-middle table-row-dashed table-hover fs-6 gy-5 gs-5" id="tabla_atenciones_psicologicas">
           <thead>
             <tr class='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
-              <th scope="min-w-125px">Solicitante</th>
+              <th scope="min-w-200px">Solicitante</th>
               <th scope="min-w-125px">Solicitud de Atención Psicológica</th>
               <th scope="min-w-125px">Entrevistador Asignado</th>
               <th scope="min-w-125px">Especialista Asignado</th>
               <th scope="min-w-125px">Instrumentos Aplicados</th>
               <th scope="min-w-125px">MST nivel 1</th>
+
+              {% comment %} {% with user_roles=request.user.rol.all %}
+                {% if user_roles|length == 1 %}
+                    {% if not user_roles.0.nombre == 'SOLICITANTE' %}
+                      <th scope="min-w-125px">IDS Pregunta 11</th>
+                      <th scope="min-w-125px">SSI Beck</th>
+                    {% endif %}
+                {% else %}
+                  <th scope="min-w-125px">IDS Pregunta 11</th>
+                  <th scope="min-w-125px">SSI Beck</th>
+                {% endif %}
+              {% endwith %} {% endcomment %}
               <th scope="min-w-125px">IDS Pregunta 11</th>
               <th scope="min-w-125px">SSI Beck</th>
               <th scope="min-w-125px">FPP</th>
               <th scope="min-w-125px">Ingresos Familiares Mensuales</th>
               <th scope="min-w-125px">Tipo de Atención</th>
               <th scope="min-w-125px">Estado de Atención</th>
-              <th scope="min-w-125px">Detalles de Atención</th>
             </tr>
           </thead>
           <tbody class="text-gray-600 fw-bold">
@@ -299,7 +420,8 @@
   {% include "evaluacion_psicologica/asignar_entrevistador.html" %}
   {% include "evaluacion_psicologica/disponibilidad_horario_consulta.html" %}
   {% include "evaluacion_psicologica/asignar_psicoterapeuta.html" %}
-  {% include "evaluacion_psicologica/seguimiento_atencion.html" %}
+  {% include "evaluacion_psicologica/seguimiento/seguimiento_atencion.html" %}
+  {% include "evaluacion_psicologica/seguimiento/historico_seguimiento.html" %}
   {% include "evaluacion_psicologica/mst_nivel1.html" %}
   {% include "evaluacion_psicologica/fpp.html" %}
   {% include "evaluacion_psicologica/ssi_beck.html" %}
@@ -310,6 +432,7 @@
   {% include "evaluacion_psicologica/decidir_valoracion/listado_talleres.html" %}
   {% include "evaluacion_psicologica/mst_nivel2.html" %}
   {% include "evaluacion_psicologica/historia_clinica/historia_clinica_main.html" %}
+  {% include "evaluacion_psicologica/filtros.html" %}
 {% endblock %}
 
 {% block scripts %}

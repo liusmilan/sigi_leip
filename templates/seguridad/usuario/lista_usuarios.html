@@ -60,6 +60,12 @@
                       Eliminar
                     </button>
                   </li>
+                  <li>
+                    <button class="dropdown-item" id='btn_cambiar_contrasenna'>
+                      <i class='bi bi-key'></i>
+                      Cambiar contraseña
+                    </button>
+                  </li>
                 </ul>
               </div>
             </div>    
@@ -74,8 +80,7 @@
               <th scope="min-w-125px">Nombre</th>
               <th scope="min-w-125px">Persona</th>
               <th scope="min-w-125px">Rol</th>
-              <th scope="min-w-125px">Tipo de usuario</th>
-              <th scope="min-w-125px">Trabajador ley</th>
+              <th scope="min-w-125px">Autorización de datos</th>
               <th scope="min-w-125px">Activo</th>
             </tr>
           </thead>
@@ -90,6 +95,7 @@
 
   <!--begin::modal agregar usuario-->
   {% include "seguridad/usuario/agregar_usuario.html" %}
+  {% include "seguridad/usuario/cambiar_contrasenna_from_user.html" %}
   <!--end::modal agregar usuario-->
 
 {% endblock %}
@@ -97,4 +103,5 @@
 {% block scripts %}
   {% load static %}
   <script src="{% static '/js/usuario/main_functions.js' %}"></script>
+  <script src="{% static '/js/usuario/cambiar_contrasenna.js' %}"></script>
 {% endblock %}

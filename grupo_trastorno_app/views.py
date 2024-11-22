@@ -159,26 +159,24 @@ def getAllGruposTrastorno(request):
         return JsonResponse({'mensaje': mensaje})
 
 
-class getGruposByCategoria(TemplateView):
-    model = grupo_trastorno
+def getGruposByCategoria(request):
+    id_categoria = request.GET.get('id_categoria', '')
+    obj_categoria = categoria_trastorno.objects.get(id=id_categoria)
+    grupos = grupo_trastorno.objects.filter(categoria=obj_categoria)
 
-    def get(self, request, *args, **kwargs):
-        id_categoria = request.GET.get('id_categoria', '')
-        obj_categoria = categoria_trastorno.objects.get(id=id_categoria)
-        grupos = grupo_trastorno.objects.filter(categoria=obj_categoria)
-
-        if len(grupos) > 0:
-            lista_grupos = []
-            for g in grupos:
-                data = {}
-                data_categoria = {'id': g.categoria.id,
-                                  'nombre': g.categoria.nombre}
-                data['id'] = g.id
-                data['nombre'] = g.nombre
-                data['categoria'] = data_categoria
-                lista_grupos.append(data)
-            mensaje = 'success'
-            return JsonResponse({'grupos': lista_grupos, 'mensaje': mensaje})
-        else:
-            mensaje = 'error'
-            return JsonResponse({'mensaje': mensaje})
+    if len(grupos) > 0:
+        lista_grupos = []
+        for g in grupos:
+            data = {}
+            data_categoria = {'id': g.categoria.id,
+                              'nombre': g.categoria.nombre}
+            data['id'] = g.id
+            data['nombre'] = g.nombre
+            data['categoria'] = data_categoria
+            data['estado'] = g.estado
+            lista_grupos.append(data)
+        mensaje = 'success'
+        return JsonResponse({'grupos': lista_grupos, 'mensaje': mensaje})
+    else:
+        mensaje = 'error'
+        return JsonResponse({'mensaje': mensaje})

@@ -5,13 +5,25 @@ var atenciones_psicologicas = function() {
   $('.fecha_atencion_paciente').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
+    todayHighlight: true,
+    autoclose: true
+  });
+ 
+  $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true,
+    language: 'es',
     todayHighlight: true
   });
 
   function initEvents() {
     mostrarOcultarAlertas();
     getAtencionesPsicologicas();
-    
+
+    $(document).on('actualizar_lista_atenciones', function(){
+      getAtencionesPsicologicas();
+    });
+
     /== evento para mostrar modal de solicitar atencion ==/
     $('#btn_solicitar_atencion').on('click', function() {
       $('#modal_solicitar_atencion').modal('show');
@@ -122,15 +134,15 @@ var atenciones_psicologicas = function() {
           if (response.mensaje == 'no_existe') {
             llenarSelectEstados('');
             llenarSelectSemestres('');
-            llenarSelectLicenciaturas('');
+            llenarSelectLicenciaturas('#licenciatura_atencion', '');
             llenarSelectViveCon('', '');
             llenarSelectGradoAcademico('', '');
-            llenarSelectIngresoFamiliar('');
+            llenarSelectIngresoFamiliar('#ingreso_familiar_atencion', '');
           } else if (response.mensaje == 'existe') {
             llenarSelectSemestres('');
             llenarSelectViveCon('', '');
-            llenarSelectIngresoFamiliar('');
-            llenarSelectLicenciaturas(response.atencion.licenciatura.id);
+            llenarSelectIngresoFamiliar('#ingreso_familiar_atencion', '');
+            llenarSelectLicenciaturas('#licenciatura_atencion', response.atencion.licenciatura.id);
             llenarSelectEstados(response.atencion.estado.id);
             id_municipio = response.atencion.municipio.id;
             $('#direccion_atencion').val(response.atencion.direccion);
@@ -150,16 +162,16 @@ var atenciones_psicologicas = function() {
 
     /== evento para cerrar modal de solicitar atencion ==/
     $('#btn_cerrar_modal_atencion').on('click', function() {
-      //limpiarCampos();
+      limpiarCampos();
       $('#modal_solicitar_atencion').modal('hide');
-      location.reload();
+      getAtencionesPsicologicas();
     });
 
     /== evento para cerrar modal de solicitar atencion ==/
     $('#btn_cancelar_modal_atencion').on('click', function() {
-      //limpiarCampos();
+      limpiarCampos();
       $('#modal_solicitar_atencion').modal('hide');
-      location.reload();
+      getAtencionesPsicologicas();
     });
 
     /== evento para cargar los municipios segun el estado que se escoja ==/
@@ -276,7 +288,7 @@ var atenciones_psicologicas = function() {
             vive_con_otro: otro_vive_con_atencion ? otro_vive_con_atencion : '',
             grado_academico_otro: otro_grado_academico_atencion ? otro_grado_academico_atencion : '',
             id_vive_con: (vive != 'sel') && (vive != '-') ? vive : '',
-            id_grado_academico: (grado != 'sel') && (grado != '-') ? grado : '',
+            id_grado_academico: ((grado != 'sel') && (grado != '-')) ? grado : '',
             id_estado: estado,
             id_municipio: municipio,
             id_solicitante: id_solicitante,
@@ -300,10 +312,10 @@ var atenciones_psicologicas = function() {
                   showCancelButton: false,
                   confirmButtonClass: "btn-success",
                   confirmButtonText: "Aceptar",
-                  closeOnConfirm: false
+                  closeOnConfirm: true
                 },
                 function() {
-                  location.reload();
+                  getAtencionesPsicologicas();
                 });
               }              
             } else if (response.tipo_mensaje == 'error') {
@@ -312,12 +324,259 @@ var atenciones_psicologicas = function() {
             }
           },
           error: function(response) {
+            notificacion('Error', 'Ocurrió un error al guardar los datos', 'error');
             btn.html(textOriginalBtn);
           }
         });
       }
-      
     });
+
+    // filtros
+    /== evento para mostrar modal de filtros ==/
+    $('#btn_filtros_atencion').on('click', function() {
+      $('#modal_filtros_atencion').modal('show');
+
+      $('#filtro_estado_atencion').select2({
+        dropdownParent: $('#modal_filtros_atencion .modal-body'),
+        width: '100%',
+        language: {
+          noResults: function() {
+            return "No hay resultado";        
+          },
+          searching: function() {
+            return "Buscando..";
+          }
+        }
+      });
+
+      $('#filtro_tipo_atencion').select2({
+        dropdownParent: $('#modal_filtros_atencion .modal-body'),
+        width: '100%',
+        language: {
+          noResults: function() {
+            return "No hay resultado";        
+          },
+          searching: function() {
+            return "Buscando..";
+          }
+        }
+      });
+      
+      $('#filtro_carrera').select2({
+        dropdownParent: $('#modal_filtros_atencion .modal-body'),
+        width: '100%',
+        language: {
+          noResults: function() {
+            return "No hay resultado";        
+          },
+          searching: function() {
+            return "Buscando..";
+          }
+        }
+      });
+
+      $('#filtro_ingreso_familiar').select2({
+        dropdownParent: $('#modal_filtros_atencion .modal-body'),
+        width: '100%',
+        language: {
+          noResults: function() {
+            return "No hay resultado";        
+          },
+          searching: function() {
+            return "Buscando..";
+          }
+        }
+      });
+
+      $('#filtro_sexo').select2({
+        dropdownParent: $('#modal_filtros_atencion .modal-body'),
+        width: '100%',
+        language: {
+          noResults: function() {
+            return "No hay resultado";        
+          },
+          searching: function() {
+            return "Buscando..";
+          }
+        }
+      });
+
+      $('#filtro_genero').select2({
+        dropdownParent: $('#modal_filtros_atencion .modal-body'),
+        width: '100%',
+        language: {
+          noResults: function() {
+            return "No hay resultado";        
+          },
+          searching: function() {
+            return "Buscando..";
+          }
+        }
+      });
+
+      limpiarFiltros();
+    });
+    
+    $('#btn_limpiar_filtros_atencion').on('click', function() {
+      limpiarFiltros();
+      getAtencionesPsicologicas();
+    });
+
+    $('#btn_cancelar_modal_filtros_atencion').on('click', function() {
+      $('#modal_filtros_atencion').modal('hide');
+      getAtencionesPsicologicas();
+    });
+    
+    $('#btn_cerrar_modal_filtros_atencion').on('click', function() {
+      $('#modal_filtros_atencion').modal('hide');
+      getAtencionesPsicologicas();
+    });
+    
+    $('#btn_actualizar_tabla').on('click', function() {
+      limpiarFiltros();
+      getAtencionesPsicologicas();
+    });
+
+    /== validar que la fecha de inicio no sea menor que la fecha de fin ==/
+    $('#filtro_fecha_atencion_inicio, #filtro_fecha_atencion_fin').on('change', function() {
+      var fechaInicio = $('#filtro_fecha_atencion_inicio').datepicker('getDate');
+      var fechaFin = $('#filtro_fecha_atencion_fin').datepicker('getDate');
+      
+      if (fechaInicio && fechaFin) {
+        if (fechaFin < fechaInicio) {
+          notificacion('Error', 'La fecha de fin no puede ser menor que la fecha de inicio.', 'error');
+          $('#filtro_fecha_atencion_fin').val('');
+        }
+      }
+    });
+
+    $('#btn_buscar_filtros_atencion').on('click', function() {
+      getAtencionesPsicologicas();
+      $('#modal_filtros_atencion').modal('hide');
+    });
+
+    /== desabilitar btn buscar si los campos estan vacios ==/
+    const checkInputs = () => {
+      const filtro_estado_atencion = $('#filtro_estado_atencion').val();
+      const filtro_tipo_atencion = $('#filtro_tipo_atencion').val();
+      const filtro_fecha_atencion_inicio = $('#filtro_fecha_atencion_inicio').val();
+      const filtro_fecha_atencion_fin = $('#filtro_fecha_atencion_fin').val();
+      const filtro_carrera = $('#filtro_carrera').val();
+      const filtro_inicio_mst_nivel1 = $('#filtro_inicio_mst_nivel1').val();
+      const filtro_fin_mst_nivel1 = $('#filtro_fin_mst_nivel1').val();
+      const filtro_inicio_fpp = $('#filtro_inicio_fpp').val();
+      const filtro_fin_fpp = $('#filtro_fin_fpp').val();
+      const filtro_inicio_p11 = $('#filtro_inicio_p11').val();
+      const filtro_fin_p11 = $('#filtro_fin_p11').val();
+      const filtro_ingreso_familiar = $('#filtro_ingreso_familiar').val();
+      const filtro_inicio_beck = $('#filtro_inicio_beck').val();
+      const filtro_fin_beck = $('#filtro_fin_beck').val();
+      const filtro_sexo = $('#filtro_sexo').val();
+      const filtro_genero = $('#filtro_genero').val();
+
+      if (filtro_estado_atencion != 'sel' || filtro_tipo_atencion != 'sel' || filtro_carrera != 'sel' || filtro_fecha_atencion_inicio && filtro_fecha_atencion_fin || filtro_inicio_mst_nivel1 && filtro_fin_mst_nivel1 || filtro_ingreso_familiar != 'sel' || filtro_inicio_fpp && filtro_fin_fpp || filtro_inicio_p11 && filtro_fin_p11 || filtro_inicio_beck && filtro_fin_beck || filtro_sexo != 'sel' || filtro_genero != 'sel') {
+        $('#btn_buscar_filtros_atencion').prop('disabled', false);
+      } else {
+        $('#btn_buscar_filtros_atencion').prop('disabled', true);
+      }
+    };
+
+    $('select, input[type="text"]').on('change keyup', checkInputs);
+
+    $('#modal_filtros_atencion').on('shown.bs.modal', function() {
+      checkInputs(); // Verificar el estado cuando el modal se muestra
+    });
+
+    /== exportar examenes mst1 ==/
+    $('#btn_exportar_examen_mst_nivel1_fpp').on('click', function() {
+      var id_atencion = $('#id_atencion').val();
+
+      $.ajax({
+          url: '/atencion_psicologica/exportar_examenes',
+          data: {
+              'excel': 'mst1',
+              'id_atencion': id_atencion
+          },
+          type: 'GET',
+          success: function(response) {
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+            link.download = 'MST Nivel 1 y FPP.xlsx';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            getAtencionesPsicologicas();
+          },
+          error: function(response) {
+            getAtencionesPsicologicas();
+            notificacion('Error', 'A la Atención seleccionada le faltan exámenes por generar.', 'error');
+          },
+          xhrFields: {
+              responseType: 'blob'
+          }
+      });
+    });
+    
+    /== exportar examenes mst2 ==/
+    $('#btn_exportar_examen_mst_nivel2').on('click', function() {
+      var id_atencion = $('#id_atencion').val();
+
+      $.ajax({
+          url: '/atencion_psicologica/exportar_examenes',
+          data: {
+              'excel': 'mst2',
+              'id_atencion': id_atencion
+          },
+          type: 'GET',
+          success: function(response) {
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+            link.download = 'Entrevista de valoración presencial.xlsx';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            getAtencionesPsicologicas();
+          },
+          error: function(response) {
+            getAtencionesPsicologicas();
+            notificacion('Error', 'A la Atención seleccionada le faltan exámenes por generar.', 'error');
+          },
+          xhrFields: {
+              responseType: 'blob'
+          }
+      });
+    });
+
+    /== exportar historia clinica ==/
+    $('#btn_exportar_historia_clinica').on('click', function() {
+      var id_atencion = $('#id_atencion').val();
+
+      $.ajax({
+          url: '/atencion_psicologica/exportar_examenes',
+          data: {
+              'excel': 'historia_clinica',
+              'id_atencion': id_atencion
+          },
+          type: 'GET',
+          success: function(response) {
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+            link.download = 'Historia Clínica.xlsx';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            getAtencionesPsicologicas();
+          },
+          error: function(response) {
+            getAtencionesPsicologicas();
+            notificacion('Error', 'A la Atención seleccionada le faltan exámenes por generar.', 'error');
+          },
+          xhrFields: {
+              responseType: 'blob'
+          }
+      });
+    });
+
   }
 
   /== funcion para mostrar-ocultar las alertas y el btn de acciones y solicitar atencion ==/
@@ -391,20 +650,37 @@ var atenciones_psicologicas = function() {
     $.ajax({
       url: "/atencion_psicologica/lista_atencion_psicologica",
       data: {
-        'id_user_aut': $('#user_autenticado').val()
+        'id_user_aut': $('#user_autenticado').val(),
+        'filtro_estado_atencion': $('#filtro_estado_atencion').val(),
+        'filtro_ingreso_familiar': $('#filtro_ingreso_familiar').val(),
+        'filtro_tipo_atencion': $('#filtro_tipo_atencion').val(),
+        'filtro_fecha_atencion_inicio': $('#filtro_fecha_atencion_inicio').val(),
+        'filtro_fecha_atencion_fin': $('#filtro_fecha_atencion_fin').val(),
+        'filtro_carrera': $('#filtro_carrera').val(),
+        'filtro_inicio_mst_nivel1': $('#filtro_inicio_mst_nivel1').val(),
+        'filtro_fin_mst_nivel1': $('#filtro_fin_mst_nivel1').val(),
+        'filtro_inicio_fpp': $('#filtro_inicio_fpp').val(),
+        'filtro_fin_fpp': $('#filtro_fin_fpp').val(),
+        'filtro_inicio_p11': $('#filtro_inicio_p11').val(),
+        'filtro_fin_p11': $('#filtro_fin_p11').val(),
+        'filtro_sexo': $('#filtro_sexo').val(),
+        'filtro_genero': $('#filtro_genero').val()
       },
       type: "get",
       dataType: "json",
       success: function(response) {
+        deseleccionarFilasTabla();
         listarAtencionesPsicologicas(response);
       },
-      error: function(response) {}
+      error: function(response) {
+        console.error("Error al obtener las atenciones psicológicas");
+      }
     });
   }
 
   /== funcion para crear el listado de atenciones psicologicas ==/
   function listarAtencionesPsicologicas(datos) {
-    let tabla = new DataTable('#tabla_atenciones_psicologicas', {
+    var tabla = $('#tabla_atenciones_psicologicas').DataTable({
       language: {
         "decimal": "",
         "emptyTable": "No hay información",
@@ -429,8 +705,18 @@ var atenciones_psicologicas = function() {
       pageLength: 10,
       destroy: true,
       scrollX: true,
+      scrollY: '400px',
+      scrollColapse: true,
       "aLengthMenu": [5, 10, 25, 50],
       order: [[0, 'desc']],
+      columnDefs: [
+        {
+          width: '300px', targets: [0,2,3]
+        },
+        {
+          width: '200px', targets: [9]
+        },
+      ],
       data: datos,
       columns: [
         { data: 'solicitante.nombre' },
@@ -438,14 +724,13 @@ var atenciones_psicologicas = function() {
         { data: 'entrevistador.nombre' },
         { data: 'psicoterapeuta.nombre' },
         { data: 'instrumentos_aplicados' },
-        { data: 'mst_nivel1' },
-        { data: 'mst_nivel1' },
-        { data: 'ssi_beck' },
-        { data: 'fpp' },
+        { data: 'mst_nivel1.total' },
+        { data: 'mst_nivel1.pregunta11' },
+        { data: 'ssi_beck.total' },
+        { data: 'fpp.total' },
         { data: 'ingreso_familiar.ingreso' },
-        { data: 'tipo_atencion' },
-        { data: 'seguimiento.estado.nombre' },
-        { data: 'detalles' }
+        { data: 'tipo_atencion.tipo_atencion' },
+        { data: 'seguimiento.estado.nombre' }
       ],
       rowCallback: function(row, data) {
         $($(row).find('td')[0]).html(data.solicitante.nombre + (data.solicitante.segundo_nombre ? ' ' + data.solicitante.segundo_nombre + ' ' : ' ') + data.solicitante.apellido + (data.solicitante.segundo_apellido ? ' ' + data.solicitante.segundo_apellido : ''));
@@ -466,7 +751,7 @@ var atenciones_psicologicas = function() {
 
         if (data.fpp) {
           $($(row).find('td')[8]).html(data.fpp.total);
-          $($(row).find('td')[8]).css('background-color', data.fpp.color);
+          // $($(row).find('td')[8]).css('background-color', data.fpp.color);
         } else {
           $($(row).find('td')[8]).html('');
         }
@@ -477,34 +762,53 @@ var atenciones_psicologicas = function() {
         } else {
           $($(row).find('td')[7]).html('');
         }
-        
-        // $($(row).find('td')[13]).html(data.activo ? 'Sí' : 'No');
       },
       initComplete: function() {
         $('#dropdown_acciones_atenciones_psicologicas').css('display', 'none');
+
+        $.ajax({
+          url: "/usuario/get_usuario",
+          data: {
+            'id': $('#user_autenticado').val()
+          },
+          type: "get",
+          dataType: "json",
+          success: function(response) {
+            const rolesArray = JSON.parse(response.roles);
+            const listaRoles = rolesArray.map(rol => rol.fields.nombre);
+
+            if (listaRoles.length == 1) {
+              if (listaRoles.includes("SOLICITANTE")) {
+                tabla.columns(6).visible(false);
+                tabla.columns(7).visible(false);
+              }
+            }
+          },
+          error: function(response) {
+            console.error("Error al obtener los datos del usuario autenticado");
+          }
+        });
       }
     });
 
-    //evento para seleccionar una fila en la tabla
-    // evento para capturar los datos de la columna seleccionada en la tabla
-    tabla.on('click', 'tbody tr', function(e) {
-      let classList = e.currentTarget.classList;
-      let data;
-
-      if (classList.contains('selected')) {
-        classList.remove('selected');
-        $('#btn_solicitar_atencion').css('display', 'block');
-        $('#dropdown_acciones_atenciones_psicologicas').css('display', 'none');
-        $('#id_atencion').val('');
-      } else {
-        tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
-        classList.add('selected');
-        $('#btn_solicitar_atencion').css('display', 'none');
-        $('#dropdown_acciones_atenciones_psicologicas').css('display', 'block');
-
-        data = tabla.row(this).data();
-        $('#id_atencion').val(data.id);
-      }
+    // Reasignar el evento para seleccionar una fila en la tabla
+    $('#tabla_atenciones_psicologicas tbody').off('click', 'tr');
+    $('#tabla_atenciones_psicologicas tbody').on('click', 'tr', function(e) {
+        let classList = e.currentTarget.classList;
+        let rowData;
+        if (classList.contains('selected')) {
+            classList.remove('selected');
+            $('#btn_solicitar_atencion').css('display', 'block');
+            $('#dropdown_acciones_atenciones_psicologicas').css('display', 'none');
+            $('#id_atencion').val('');
+        } else {
+            tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+            classList.add('selected');
+            $('#btn_solicitar_atencion').css('display', 'none');
+            $('#dropdown_acciones_atenciones_psicologicas').css('display', 'block');
+            rowData = tabla.row(this).data();
+            $('#id_atencion').val(rowData.id);
+        }
     });
   }
 
@@ -599,7 +903,7 @@ var atenciones_psicologicas = function() {
   }
 
   /== funcion para llenar el select de las licenciaturas ==/
-  function llenarSelectLicenciaturas(id_licenciatura) {
+  function llenarSelectLicenciaturas(select, id_licenciatura) {
     $.ajax({
       url: "/licenciatura/get_all_licenciatura",
       type: "get",
@@ -610,9 +914,9 @@ var atenciones_psicologicas = function() {
 
         if (response.mensaje == 'success') {
           if (id_licenciatura != '') {
-            $('#licenciatura_atencion').find("option").end().append(optionSeleccione);
+            $(select).find("option").end().append(optionSeleccione);
           } else {
-            $('#licenciatura_atencion').find("option").end().append(optionSeleccione.attr('selected', true));
+            $(select).find("option").end().append(optionSeleccione.attr('selected', true));
           }
           
           $.each(response.licenciaturas, function (key, value) {
@@ -622,20 +926,20 @@ var atenciones_psicologicas = function() {
               if (id_licenciatura != '') {
                 // llenar select licenciatura en modal de editar
                 if (value.id == id_licenciatura) {
-                  $('#licenciatura_atencion').find("option").end().append(option.attr('selected', true));
+                  $(select).find("option").end().append(option.attr('selected', true));
                 } else {
-                  $('#licenciatura_atencion').find("option").end().append(option);
+                  $(select).find("option").end().append(option);
                 }                          
               } else {
                 // llenar select licenciatura en modal de agregar
-                $('#licenciatura_atencion').find("option").end().append(option);
+                $(select).find("option").end().append(option);
               }
             }
           });
 
-          $('#licenciatura_atencion').trigger("chosen:updated").trigger("change");
+          $(select).trigger("chosen:updated").trigger("change");
         } else if (response.mensaje == 'error') {
-          $('#licenciatura_atencion').find("option").end().append(optionEmpty.attr('selected', true));
+          $(select).find("option").end().append(optionEmpty.attr('selected', true));
         }
       },
       error: function(response) {
@@ -751,7 +1055,7 @@ var atenciones_psicologicas = function() {
   }
 
   /== funcion para llenar el select ingreso familiar ==/
-  function llenarSelectIngresoFamiliar(id_ingreso) {
+  function llenarSelectIngresoFamiliar(select, id_ingreso) {
     $.ajax({
       url: "/ingreso_familiar/get_all_ingreso_familiar",
       type: "get",
@@ -762,9 +1066,9 @@ var atenciones_psicologicas = function() {
 
         if (response.mensaje == 'success') {
           if (id_ingreso != '') {
-            $('#ingreso_familiar_atencion').find("option").end().append(optionSeleccione);
+            $(select).find("option").end().append(optionSeleccione);
           } else {
-            $('#ingreso_familiar_atencion').find("option").end().append(optionSeleccione.attr('selected', true));
+            $(select).find("option").end().append(optionSeleccione.attr('selected', true));
           }
           
           $.each(response.ingresos_familiares, function (key, value) {
@@ -774,20 +1078,20 @@ var atenciones_psicologicas = function() {
               if (id_ingreso != '') {
                 // llenar select ingresos_familiares en modal de editar
                 if (value.id == id_ingreso) {
-                  $('#ingreso_familiar_atencion').find("option").end().append(option.attr('selected', true));
+                  $(select).find("option").end().append(option.attr('selected', true));
                 } else {
-                  $('#ingreso_familiar_atencion').find("option").end().append(option);
+                  $(select).find("option").end().append(option);
                 }                          
               } else {
                 // llenar select ingresos_familiares en modal de agregar
-                $('#ingreso_familiar_atencion').find("option").end().append(option);
+                $(select).find("option").end().append(option);
               }
             }
           });
 
-          $('#ingreso_familiar_atencion').trigger("chosen:updated").trigger("change");
+          $(select).trigger("chosen:updated").trigger("change");
         } else if (response.mensaje == 'error') {
-          $('#ingreso_familiar_atencion').find("option").end().append(optionEmpty.attr('selected', true));
+          $(select).find("option").end().append(optionEmpty.attr('selected', true));
         }
       },
       error: function(response) {
@@ -901,13 +1205,179 @@ var atenciones_psicologicas = function() {
     $.each($('#grado_academico_atencion').find("option"), function (key, value) {
       $(value).remove();
     });
+  }
 
-    llenarSelectEstados('');
-    llenarSelectGradoAcademico('', '');
-    llenarSelectIngresoFamiliar('');
-    llenarSelectLicenciaturas('');
-    llenarSelectSemestres('');
-    llenarSelectViveCon('', '');
+  function deseleccionarFilasTabla() {
+    var tabla = $('#tabla_atenciones_psicologicas').DataTable();
+    tabla.rows().every(function() {
+      var rowNode = this.node();
+
+      if ($(rowNode).hasClass('selected')) {
+        $(rowNode).removeClass('selected');
+      }
+
+      $('#btn_solicitar_atencion').css('display', 'block');
+      $('#dropdown_acciones_atenciones_psicologicas').css('display', 'none');
+      $('#id_atencion').val('');
+    });
+  }
+
+  function llenarSelectEstadoAtencion(id_estado_atencion) {
+    $.ajax({
+      url: "/estado_atencion/get_all_estados_atencion",
+      type: "get",
+      dataType: "json",
+      success: function(response) {
+        var optionSeleccione = $("<option/>").val('sel').text("Seleccione...");
+        var optionEmpty = $("<option/>").val('-').text('-----------');
+
+        if (response.mensaje == 'success') {
+          if (id_estado_atencion != '') {
+            $('#filtro_estado_atencion').find("option").end().append(optionSeleccione);
+          } else {
+            $('#filtro_estado_atencion').find("option").end().append(optionSeleccione.attr('selected', true));
+          }
+          
+          $.each(response.estados, function (key, value) {
+            var option = $("<option/>").val(value.id).text(value.nombre);
+
+            if (value.estado == 'HABILITADO') {
+              $('#filtro_estado_atencion').find("option").end().append(option);
+
+              if (id_estado_atencion != '') {
+                if (value.id == id_estado_atencion) {
+                  $('#filtro_estado_atencion').find("option").end().append(option.attr('selected', true));
+                } else {
+                  $('#filtro_estado_atencion').find("option").end().append(option);
+                }                          
+              } else {
+                $('#filtro_estado_atencion').find("option").end().append(option);
+              }
+            }
+          });
+
+          $('#filtro_estado_atencion').trigger("chosen:updated").trigger("change");
+        } else if (response.mensaje == 'error') {
+          $('#filtro_estado_atencion').find("option").end().append(optionEmpty.attr('selected', true));
+        }
+      },
+      error: function(response) {
+        
+      }
+    });
+  }
+
+  function llenarSelectTipoAtencion(id_tipo_atencion) {
+    $.ajax({
+      url: "/tipo_atencion/get_all_tipo_atencion",
+      type: "get",
+      dataType: "json",
+      success: function(response) {
+        var optionSeleccione = $("<option/>").val('sel').text("Seleccione...");
+        var optionEmpty = $("<option/>").val('-').text('-----------');
+
+        if (response.mensaje == 'success') {
+          if (id_tipo_atencion != '') {
+            $('#filtro_tipo_atencion').find("option").end().append(optionSeleccione);
+          } else {
+            $('#filtro_tipo_atencion').find("option").end().append(optionSeleccione.attr('selected', true));
+          }
+          
+          $.each(response.tipos_atenciones, function (key, value) {
+            var option = $("<option/>").val(value.id).text(value.nombre);
+
+            if (value.estado == 'HABILITADO') {
+              $('#filtro_tipo_atencion').find("option").end().append(option);
+
+              if (id_tipo_atencion != '') {
+                if (value.id == id_tipo_atencion) {
+                  $('#filtro_tipo_atencion').find("option").end().append(option.attr('selected', true));
+                } else {
+                  $('#filtro_tipo_atencion').find("option").end().append(option);
+                }                          
+              } else {
+                $('#filtro_tipo_atencion').find("option").end().append(option);
+              }
+            }
+          });
+
+          $('#filtro_tipo_atencion').trigger("chosen:updated").trigger("change");
+        } else if (response.mensaje == 'error') {
+          $('#filtro_tipo_atencion').find("option").end().append(optionEmpty.attr('selected', true));
+        }
+      },
+      error: function(response) {
+        
+      }
+    });
+  }
+
+  function llenarSelectSexo() {
+    var optionSeleccione = $("<option/>").val('sel').text("Seleccione...");
+    var option_hombre = $("<option/>").val('H').text('Hombre');
+    var option_mujer = $("<option/>").val('M').text('Mujer');
+    $('#filtro_sexo').find("option").end().append(optionSeleccione);
+    $('#filtro_sexo').find("option").end().append(option_hombre);
+    $('#filtro_sexo').find("option").end().append(option_mujer);
+    $('#filtro_sexo').trigger("chosen:updated").trigger("change");
+  }
+
+  function llenarSelectGenero() {
+    var optionSeleccione = $("<option/>").val('sel').text("Seleccione...");
+    var option_masculino = $("<option/>").val('M').text('Masculino');
+    var option_femenino = $("<option/>").val('F').text('Femenino');
+    var option_no_binario = $("<option/>").val('B').text('No Binario');
+    $('#filtro_genero').find("option").end().append(optionSeleccione);
+    $('#filtro_genero').find("option").end().append(option_masculino);
+    $('#filtro_genero').find("option").end().append(option_femenino);
+    $('#filtro_genero').find("option").end().append(option_no_binario);
+    $('#filtro_genero').trigger("chosen:updated").trigger("change");
+  }
+
+  function limpiarFiltros() {
+    $('#filtro_fecha_atencion_inicio').val('');
+    $('#filtro_fecha_atencion_fin').val('');
+    $('#filtro_inicio_mst_nivel1').val('');
+    $('#filtro_fin_mst_nivel1').val('');
+    $('#filtro_inicio_fpp').val('');
+    $('#filtro_fin_fpp').val('');
+    $('#filtro_inicio_p11').val('');
+    $('#filtro_fin_p11').val('');
+    $('#filtro_inicio_beck').val('');
+    $('#filtro_fin_beck').val('');
+    $('#filtro_sexo').val('');
+    $('#filtro_genero').val('');
+
+    $.each($('#filtro_estado_atencion').find("option"), function (key, value) {
+      $(value).remove();
+    });
+
+    $.each($('#filtro_tipo_atencion').find("option"), function (key, value) {
+      $(value).remove();
+    });
+    
+    $.each($('#filtro_carrera').find("option"), function (key, value) {
+      $(value).remove();
+    });
+
+    $.each($('#filtro_ingreso_familiar').find("option"), function (key, value) {
+      $(value).remove();
+    });
+    
+    $.each($('#filtro_sexo').find("option"), function (key, value) {
+      $(value).remove();
+    });
+    
+    $.each($('#filtro_genero').find("option"), function (key, value) {
+      $(value).remove();
+    });
+    
+    llenarSelectEstadoAtencion('');
+    llenarSelectTipoAtencion('');
+    llenarSelectLicenciaturas('#filtro_carrera', '');
+    llenarSelectIngresoFamiliar('#filtro_ingreso_familiar', '');
+    llenarSelectSexo();
+    llenarSelectGenero();
   }
 
   return {

@@ -5,7 +5,6 @@ from atencion_psicologica_app.models import atencion_psicologica
 
 
 class disponibilidad_horario_consulta(models.Model):
-    id = models.AutoField(primary_key=True)
     atencion = models.ForeignKey(
         atencion_psicologica, on_delete=models.CASCADE, blank=False, null=False)
     dia = models.CharField('Dia', max_length=255, blank=False, null=False)

@@ -109,17 +109,19 @@ var diagnostico_dsm5 = function() {
               $.each(response.diagnosticos, function (key, value) {
                 var option = $("<option/>").val(value.id).text(value.nombre);
 
-                if (id_diag_dsm5 != '') {
-                  // llenar select diagnostico_dsm5 en modal editar
-                  if (value.id == id_diag_dsm5) {
-                    $('#diagnostico_dsm5').find("option").end().append(option.attr('selected', true));
+                if (value.estado == 'HABILITADO') {
+                    if (id_diag_dsm5 != '') {
+                    // llenar select diagnostico_dsm5 en modal editar
+                    if (value.id == id_diag_dsm5) {
+                      $('#diagnostico_dsm5').find("option").end().append(option.attr('selected', true));
+                    } else {
+                      $('#diagnostico_dsm5').find("option").end().append(option);
+                    }
                   } else {
+                    // llenar select diagnostico_dsm5 en modal agregar
                     $('#diagnostico_dsm5').find("option").end().append(option);
                   }
-                } else {
-                  // llenar select diagnostico_dsm5 en modal agregar
-                  $('#diagnostico_dsm5').find("option").end().append(option);
-                }
+                }                
               });
 
               $('#diagnostico_dsm5').trigger("chosen:updated").trigger("change");
@@ -189,6 +191,7 @@ var diagnostico_dsm5 = function() {
     /== evento para agregar o editar los diagnosticos_dsm5 ==/
     $('#btn_agregar_diagnostico_dsm5').on('click', function() {
       var id_atencion = $('#id_atencion').val();
+      var observaciones = $('#observaciones_dsm5').val();
       var textOriginalBtn = '<span class="indicator-label"> Agregar</span>'
       var loadingTextBtn = '<span class="indicator-progress"> Guardando... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>'
       var btn = $(this);
@@ -200,7 +203,8 @@ var diagnostico_dsm5 = function() {
           data: {
             id_atencion: id_atencion,
             'diagnosticos[]': JSON.stringify(lista_diagnosticos_dsm5),
-            accion: accion
+            accion: accion,
+            observaciones: observaciones
           },
           dataType: "json",
           success: function(response) {
@@ -217,10 +221,10 @@ var diagnostico_dsm5 = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             }
           },
@@ -249,6 +253,10 @@ var diagnostico_dsm5 = function() {
             mostrarPersonaAutenticada();
             accion = 'editar';
             verificarRoleUsuario();
+            $('#observaciones_dsm5').val(response.atencion.observaciones);
+
+            // vaciar la tabla
+            $('#tabla_diagnosticos_dsm5 tbody').empty();
 
             //llenar tabla de diagnosticos_dsm5
             $.each(response.diagnosticos, function (key, value) {
@@ -311,17 +319,19 @@ var diagnostico_dsm5 = function() {
           $.each(response.categorias_trastorno, function (key, value) {
             var option = $("<option/>").val(value.id).text(value.nombre);
 
-            if (id_categoria != '') {
-              // llenar select categoria en modal de editar
-              if (value.id == id_categoria) {
-                $('#categoria_diagnostico_dsm5').find("option").end().append(option.attr('selected', true));
+            if (value.estado == 'HABILITADO') {
+              if (id_categoria != '') {
+                // llenar select categoria en modal de editar
+                if (value.id == id_categoria) {
+                  $('#categoria_diagnostico_dsm5').find("option").end().append(option.attr('selected', true));
+                } else {
+                  $('#categoria_diagnostico_dsm5').find("option").end().append(option);
+                }              
               } else {
+                // llenar select categoria en modal de agregar
                 $('#categoria_diagnostico_dsm5').find("option").end().append(option);
-              }              
-            } else {
-              // llenar select categoria en modal de agregar
-              $('#categoria_diagnostico_dsm5').find("option").end().append(option);
-            }            
+              }
+            }
           });
 
           $('#categoria_diagnostico_dsm5').trigger("chosen:updated").trigger("change");
@@ -362,7 +372,10 @@ var diagnostico_dsm5 = function() {
   function limpiarModalDiagnosticoDsm5() {
     lista_diagnosticos_dsm5 = [];
     idRowData = '';
-    location.reload();
+    $('#observaciones_dsm5').val('');
+    $(document).trigger('actualizar_lista_atenciones');
+    // hay que ver como eliminar todos los registros de una tabla o como vaciar una tabla
+    $('#tabla_diagnosticos_dsm5 tbody').empty();
   }
 
   /== funcion para agregar datos a la tabla desde el modal ==/

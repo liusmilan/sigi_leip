@@ -6,7 +6,6 @@ from atencion_psicologica_app.models import atencion_psicologica
 
 
 class motivo_consulta(models.Model):
-    id = models.AutoField(primary_key=True)
     pregunta_uno = models.CharField(
         'Pregunta uno', max_length=255, blank=False, null=False)
     pregunta_dos = models.CharField(
@@ -25,7 +24,6 @@ class motivo_consulta(models.Model):
 
 
 class horario_motivo_consulta(models.Model):
-    id = models.AutoField(primary_key=True)
     dia = models.CharField('Dia', max_length=255, blank=False, null=False)
     hora = models.CharField('Hora', max_length=255, blank=False, null=False)
     motivo_consulta = models.ForeignKey(

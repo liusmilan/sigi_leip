@@ -1091,91 +1091,91 @@
               <div class="row">
                 <div class="col-xl-3">
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_1">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_1">
                     <label class="form-check-label" for="check_pensamiento_1">
                       Inteligente
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_2">
                     <label class="form-check-label" for="check_pensamiento_2">
                       Confidente
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_3">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_3">
                     <label class="form-check-label" for="check_pensamiento_3">
                       Que valgo la pena
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_4">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_4">
                     <label class="form-check-label" for="check_pensamiento_4">
                       Ambicioso
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_5">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_5">
                     <label class="form-check-label" for="check_pensamiento_5">
                       Sensitivo
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_6">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_6">
                     <label class="form-check-label" for="check_pensamiento_6">
                       Leal
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_7">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_7">
                     <label class="form-check-label" for="check_pensamiento_7">
                       Confiable, fidedigno
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_8">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_8">
                     <label class="form-check-label" for="check_pensamiento_8">
                       Lleno de penas
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_9">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_9">
                     <label class="form-check-label" for="check_pensamiento_9">
                       Indigno
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_10">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_10">
                     <label class="form-check-label" for="check_pensamiento_10">
                       Un don nadie
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_11">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_11">
                     <label class="form-check-label" for="check_pensamiento_11">
                       Inútil
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_12">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_12">
                     <label class="form-check-label" for="check_pensamiento_12">
                       Malo
                     </label>
                   </div>
 
                   <div class="form-group form-check px-10 py-2">
-                    <input class="form-check-input" type="checkbox" value="" id="check_pensamiento_13">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_13">
                     <label class="form-check-label" for="check_pensamiento_13">
                       Loco
                     </label>
@@ -1411,6 +1411,14 @@
                       <label class="form-check-label" for="check_pensamientos_no_hc">No</label>
                     </div>
                   </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      Si contestó Sí ¿Cuáles?
+                    </label>
+                    <textarea type="text" class="form-control" id="cuales_pensamto_vuelven_hc" name='cuales_pensamto_vuelven_hc'></textarea>
+                    </br>
+                  </div> 
                 </div>
               </div>
 
@@ -2077,6 +2085,13 @@
                     </label>
                     <textarea type="text" class="form-control" id="gente_no_gusta_hc" name='gente_no_gusta_hc'></textarea>
                   </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_primera_exp_sexual_hc" class="form-label">
+                      ¿Algun detalle relevante respecto de su primera experiencia sexual o de alguna experiencia posterior?
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_primera_exp_sexual_hc" name='detalle_primera_exp_sexual_hc'></textarea>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2221,7 +2236,7 @@
 
                   <div class="form-group mb-1 py-1">
                     <label class="form-label">
-                      ¿Sus primeras menstuaciones significaron un problema?
+                      ¿Sus primeras menstruaciones significaron un problema?
                     </label>
                     </br>
                     <div class="form-check form-check-inline">
@@ -2251,9 +2266,7 @@
 
                   <div class="form-group mb-1 py-1">
                     <label for="fecha_ultima_menst_hc" class="form-label">
-                      <span class='required'>
-                        Fecha de su último período menstrual
-                      </span>
+                      Fecha de su último período menstrual
                     </label>
                     <div class='input-group date fecha_ultimo_periodo_menst_hc'>
                       <span class='input-group-addon'></span>
@@ -2299,6 +2312,21 @@
                       Duración de sus períodos
                     </label>
                     <input type="text" class="form-control" id="durac_period_hc" name='durac_period_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Su menstruación afecta su estado de ánimo?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsMensAfectaAnimo" id="check_menst_afecta_animo_si_hc" value="0">
+                      <label class="form-check-label" for="check_menst_afecta_animo_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsMensAfectaAnimo" id="check_menst_afecta_animo_no_hc" value="1">
+                      <label class="form-check-label" for="check_menst_afecta_animo_no_hc">No</label>
+                    </div> 
                   </div>
                 </div>
               </div>

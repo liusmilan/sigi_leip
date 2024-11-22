@@ -28,7 +28,6 @@ class UsuarioManager(BaseUserManager):
 
 
 class Usuario(AbstractBaseUser):
-    id = models.AutoField(primary_key=True)
     username = models.CharField(
         'Nombre de usuario', unique=True, max_length=255)
     trabajador_ley = models.BooleanField(default=False)
@@ -36,8 +35,6 @@ class Usuario(AbstractBaseUser):
         persona, on_delete=models.CASCADE, blank=True, null=True)
     usuario_activo = models.BooleanField(default=True)
     usuario_administrador = models.BooleanField(default=False)
-    tipo_usuario = models.CharField(
-        'Tipo de Usuario', max_length=255, blank=True, null=True)
     rol = models.ManyToManyField(rol, through='UsuarioRol')
     objects = UsuarioManager()
 
@@ -63,7 +60,6 @@ class Usuario(AbstractBaseUser):
 
 
 class UsuarioRol(models.Model):
-    id = models.AutoField(primary_key=True)
     rol = models.ForeignKey(
         rol, on_delete=models.CASCADE, blank=True, null=True)
     usuario = models.ForeignKey(

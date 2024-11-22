@@ -1,7 +1,6 @@
 var usuario = function () {
   var $ = jQuery.noConflict();
   var id_persona = '';
-  var id_tipo_usuario = '';
   var lista_roles = '';
 
   jQuery.validator.setDefaults({
@@ -40,21 +39,8 @@ var usuario = function () {
       $('#modal_agregar_editar_usuario').modal('show');
       $('#modal_agregar_editar_usuario').find('.modal-title').text('Agregar Usuarios');
       $('#btn_agregar_usuario').text('Agregar');
-
+      
       $('#persona_usuario').select2({
-        dropdownParent: $('#modal_agregar_editar_usuario .modal-body'),
-        width: '100%',
-        language: {
-          noResults: function() {
-            return "No hay resultado";        
-          },
-          searching: function() {
-            return "Buscando..";
-          }
-        }
-      });
-
-      $('#tipo_usuario').select2({
         dropdownParent: $('#modal_agregar_editar_usuario .modal-body'),
         width: '100%',
         language: {
@@ -82,7 +68,6 @@ var usuario = function () {
       });
 
       llenarSelectPersonas('');
-      llenarSelectTipoUsuario('');
       llenarSelectRoles('');
     });
    
@@ -91,9 +76,7 @@ var usuario = function () {
       if ($('#form_usuario').valid() == true) {
         var id = $('#id_usuario').val();
         var usuario = $('#nombre_usuario').val();
-        var contrasenna = $('#contrasena_usuario').val();
-        var tipo_usuario = $('#tipo_usuario').val();
-        var tipo_usuario_text = $('#tipo_usuario').find('option[value = ' + tipo_usuario + ']').text();
+        var contrasenna = $('#contrasenna_usuario').val();
         var persona = $('#persona_usuario').val();
         var roles = $('#rol_usuario').val();
         var trabajador_ley = $('#trabajador_ley').is(":checked");
@@ -103,10 +86,7 @@ var usuario = function () {
         var btn = $(this);
         btn.html(loadingTextBtn);
 
-        if (tipo_usuario == 'sel' || tipo_usuario == '-') {
-          btn.html(textOriginalBtn);
-          notificacion('Error', 'Debe de escojer un Tipo de usuario', 'error');
-        } else if (persona == 'sel' || persona == '-') {
+        if (persona == 'sel' || persona == '-') {
           btn.html(textOriginalBtn);
           notificacion('Error', 'Debe de escojer una Persona', 'error');
         } else if (roles.length == 0) {
@@ -119,7 +99,6 @@ var usuario = function () {
               id: id ? id : '',
               usuario: usuario,
               contrasenna: contrasenna,
-              tipo_usuario: tipo_usuario_text,
               persona: persona,
               'roles[]': roles,
               trabajador_ley: trabajador_ley,
@@ -170,6 +149,9 @@ var usuario = function () {
       $('#modal_agregar_editar_usuario').modal('show');
       $('#modal_agregar_editar_usuario').find('.modal-title').text('Editar Usuario');
       $('#btn_agregar_usuario').text('Editar');
+      $('#user_pass').css('display', 'none');
+      $('#user_confirm_pass').css('display', 'none');
+
       let id = $('#id_usuario').val();
 
       $.ajax({
@@ -180,8 +162,6 @@ var usuario = function () {
         dataType: "json",
         success: function(response) {
           $('#nombre_usuario').val(response.nombre_usuario);
-          $('#contrasenna_usuario').val("");
-          $('#confirmar_contrasenna_usuario').val("");
 
           $('#persona_usuario').select2({
             dropdownParent: $('#modal_agregar_editar_usuario .modal-body'),
@@ -196,19 +176,6 @@ var usuario = function () {
             }
           });
     
-          $('#tipo_usuario').select2({
-            dropdownParent: $('#modal_agregar_editar_usuario .modal-body'),
-            width: '100%',
-            language: {
-              noResults: function() {
-                return "No hay resultado";        
-              },
-              searching: function() {
-                return "Buscando..";
-              }
-            }
-          });
-
           $('#rol_usuario').select2({
             dropdownParent: $('#modal_agregar_editar_usuario .modal-body'),
             width: '100%',
@@ -247,7 +214,6 @@ var usuario = function () {
           }
 
           llenarSelectPersonas(response.persona.id);
-          llenarSelectTipoUsuario(response.tipo_usuario);
           llenarSelectRoles(roles);
         }
       });
@@ -332,6 +298,8 @@ var usuario = function () {
       pageLength: 10,
       destroy: true,
       scrollX: true,
+      scrollY: '400px',
+      scrollColapse: true,
       "aLengthMenu": [5, 10, 25, 50],
       order: [[0, 'desc']],
       data: datos,
@@ -339,15 +307,14 @@ var usuario = function () {
         { data: 'nombre' },
         { data: 'persona.nombre' },
         { data: 'roles' },
-        { data: 'tipo_usuario' },
         { data: 'trabajador_ley' },
         { data: 'usuario_activo' }
       ],
       rowCallback: function(row, data) {
         $($(row).find('td')[1]).html(data.persona.nombre + ' ' + data.persona.segundo_nombre + ' ' + data.persona.apellido + ' ' + data.persona.segundo_apellido);
         //$($(row).find('td')[3]).html(data.tipo_usuario == 'cu' ? 'Comunidad Universitaria' : data.tipo_usuario == 'pg' ? 'Población General' : '');
-        $($(row).find('td')[4]).html(data.trabajador_ley ? 'Sí' : 'No');
-        $($(row).find('td')[5]).html(data.usuario_activo ? 'Sí' : 'No');
+        $($(row).find('td')[3]).html(data.trabajador_ley ? 'Sí' : 'No');
+        $($(row).find('td')[4]).html(data.usuario_activo ? 'Sí' : 'No');
 
         //roles
         var roles_json=$.parseJSON(data.roles);
@@ -472,19 +439,25 @@ var usuario = function () {
           }
           
           $.each(response.personas, function (key, value) {
-            if (value.activo == true) {
-              var option = $("<option/>").val(value.id).text(value.nombre + (value.segundo_nombre ? ' ' + value.segundo_nombre + ' ' : ' ') + value.apellido + (value.segundo_apellido ? ' ' + value.segundo_apellido : ' '));
+            var option = $("<option/>").val(value.id).text(value.nombre + (value.segundo_nombre ? ' ' + value.segundo_nombre + ' ' : ' ') + value.apellido + (value.segundo_apellido ? ' ' + value.segundo_apellido : ' '));
 
-              if (id_persona != '') {
-                // llenar select personas en modal de editar
-                if (value.id == id_persona) {
-                  $('#persona_usuario').find("option").end().append(option.attr('selected', true));
-                } else {
-                  $('#persona_usuario').find("option").end().append(option);
-                }              
+            if (id_persona != '') {
+              // llenar select personas en modal de editar
+              if (value.id == id_persona) {
+                $('#persona_usuario').find("option").end().append(option.attr('selected', true));
               } else {
-                // llenar select personas en modal de agregar
-                $('#persona_usuario').find("option").end().append(option);
+                if (!value.has_user) {
+                  if (value.activo == true) {
+                    $('#persona_usuario').find("option").end().append(option);
+                  }
+                }
+              }              
+            } else {
+              // llenar select personas en modal de agregar
+              if (!value.has_user) {
+                if (value.activo == true) {
+                  $('#persona_usuario').find("option").end().append(option);
+                }
               }
             }
           });
@@ -498,40 +471,6 @@ var usuario = function () {
         
       }
     });
-  }
-
-  /== funcion para llenar el select de tipo de usuario ==/
-  function llenarSelectTipoUsuario(id_tipo_usuario) {
-    var optionSeleccione = $("<option/>").val('sel').text("Seleccione...");
-    var optionEmpty = $("<option/>").val('-').text('-----------');
-    var option1 = $("<option/>").val('cu').text('Comunidad Universitaria');
-    var option2 = $("<option/>").val('pg').text('Población General');
-
-    if (id_tipo_usuario != '') {
-      $('#tipo_usuario').find("option").end().append(optionSeleccione);
-    } else {
-      $('#tipo_usuario').find("option").end().append(optionSeleccione.attr('selected', true));
-    }
-
-    if (id_tipo_usuario != '') {
-      // llenar select tipo usuario en modal de editar
-      if ('Comunidad Universitaria' == id_tipo_usuario) {
-        $('#tipo_usuario').find("option").end().append(option1.attr('selected', true));
-        $('#tipo_usuario').find("option").end().append(option2);
-      } else if ('Población General' == id_tipo_usuario) {
-        $('#tipo_usuario').find("option").end().append(option1);
-        $('#tipo_usuario').find("option").end().append(option2.attr('selected', true));
-      } else {
-        $('#tipo_usuario').find("option").end().append(option1);
-        $('#tipo_usuario').find("option").end().append(option2);
-      }        
-    } else {
-      // llenar select tipo usuario en modal de agregar
-      $('#tipo_usuario').find("option").end().append(option1);
-      $('#tipo_usuario').find("option").end().append(option2);
-    } 
-
-    $('#tipo_usuario').trigger("chosen:updated").trigger("change");
   }
 
   /== funcion para llenar el select de los roles ==/
@@ -600,23 +539,17 @@ var usuario = function () {
       $(value).remove();
     });
 
-    $.each($('#tipo_usuario').find("option"), function (key, value) {
-      $(value).remove();
-    });
-
     $.each($('#rol_usuario').find("option"), function (key, value) {
       $(value).remove();
     });
 
     llenarSelectPersonas('');
-    llenarSelectTipoUsuario('');
     llenarSelectRoles('');
 
     $("#trabajador_ley").prop("checked", false);
     $("#usuario_habilitado").prop("checked", false);
 
     id_persona = '';
-    id_tipo_usuario = '';
     lista_roles = '';
   }
 

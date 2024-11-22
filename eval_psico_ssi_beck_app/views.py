@@ -40,11 +40,12 @@ class agregarEditarSSIBeck(CreateView):
         total = request.GET.get('total', '')
         color = request.GET.get('color', '')
         nivel = request.GET.get('nivel', '')
+        observaciones = request.GET.get('observaciones', '')
 
         if accion == 'agregar':
             # se esta agregando
             obj = ssi_beck.objects.create(atencion=atencion_obj, pregunta1=pregunta1, pregunta2=pregunta2, pregunta3=pregunta3, pregunta4=pregunta4, pregunta5=pregunta5, pregunta6=pregunta6, pregunta7=pregunta7, pregunta8=pregunta8, pregunta9=pregunta9, pregunta10=pregunta10, pregunta11=pregunta11,
-                                          pregunta12=pregunta12, pregunta13=pregunta13, pregunta14=pregunta14, pregunta15=pregunta15, pregunta16=pregunta16, pregunta17=pregunta17, pregunta18=pregunta18, pregunta19=pregunta19, total=total, color=color, nivel=nivel)
+                                          pregunta12=pregunta12, pregunta13=pregunta13, pregunta14=pregunta14, pregunta15=pregunta15, pregunta16=pregunta16, pregunta17=pregunta17, pregunta18=pregunta18, pregunta19=pregunta19, total=total, color=color, nivel=nivel, observaciones=observaciones)
             mensaje = 'Se ha guardado correctamente la Escala de Ideación Suicida de Beck (SSI BECK).'
             tipo_mensaje = 'success'
             accion = 'agregar'
@@ -76,6 +77,7 @@ class agregarEditarSSIBeck(CreateView):
             s.total = total
             s.color = color
             s.nivel = nivel
+            s.observaciones = observaciones
             s.save()
             mensaje = 'Se ha editado correctamente la Escala de Ideación Suicida de Beck (SSI BECK).'
             tipo_mensaje = 'success'
@@ -117,6 +119,7 @@ class getSSIBeck(TemplateView):
             data['total'] = s.total
             data['color'] = s.color
             data['nivel'] = s.nivel
+            data['observaciones'] = s.observaciones
             data['mensaje'] = 'existe'
             return JsonResponse(data)
         except ssi_beck.DoesNotExist:

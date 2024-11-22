@@ -4,7 +4,6 @@ from django.db import models
 
 
 class ingreso_familiar(models.Model):
-    id = models.AutoField(primary_key=True)
     ingreso = models.CharField(
         'Ingresos Familiares Mensuales', max_length=255, blank=False, null=True)
     nivel = models.CharField('Nivel', max_length=255, blank=False, null=False)

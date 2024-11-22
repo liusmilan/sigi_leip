@@ -13,24 +13,23 @@ from persona_app.models import persona
 
 # Create your models here.
 class historia_clinica(models.Model):
-    id = models.AutoField(primary_key=True)
     # seccion 1
-    estado_nac = models.OneToOneField(
+    estado_nac = models.ForeignKey(
         estado, on_delete=models.CASCADE, blank=True, null=True)
-    municipio_nac = models.OneToOneField(
+    municipio_nac = models.ForeignKey(
         municipio, on_delete=models.CASCADE, blank=True, null=True)
-    estado_civil = models.OneToOneField(
+    estado_civil = models.ForeignKey(
         estado_civil, on_delete=models.CASCADE, blank=True, null=True)
     ocupacion = models.CharField(max_length=255, blank=True, null=True)
-    carrera = models.OneToOneField(
+    carrera = models.ForeignKey(
         licenciatura, on_delete=models.CASCADE, blank=True, null=True)
-    vive_en = models.OneToOneField(
+    vive_en = models.ForeignKey(
         vive_en, on_delete=models.CASCADE, blank=True, null=True)
-    vive_con = models.OneToOneField(
+    vive_con = models.ForeignKey(
         vive_con, on_delete=models.CASCADE, blank=True, null=True)
-    religion = models.OneToOneField(
+    religion = models.ForeignKey(
         religion, on_delete=models.CASCADE, blank=True, null=True)
-    grado_est = models.OneToOneField(
+    grado_est = models.ForeignKey(
         grado_academico, on_delete=models.CASCADE, blank=True, null=True)
     nombre_emergencia = models.CharField(max_length=255, blank=True, null=True)
     tlf_emergencia = models.CharField(max_length=255, blank=True, null=True)
@@ -57,6 +56,8 @@ class historia_clinica(models.Model):
     tiempo_forma_hacerse_danio_suicidio = models.TextField(
         blank=True, null=True)
     familia_suicidio = models.BooleanField(null=True, blank=True)
+    quien_lo_envia = models.CharField(null=True, blank=True, max_length=255)
+    prob_emocion_mental = models.BooleanField(null=True, blank=True)
     # seccion 2
     nombre_padre = models.CharField(max_length=255, blank=True, null=True)
     edad_padre = models.IntegerField(blank=True, null=True)
@@ -129,6 +130,7 @@ class historia_clinica(models.Model):
     idea_mas_loca = models.TextField(blank=True, null=True)
     afectar_negativamente_humor = models.TextField(blank=True, null=True)
     pensamientos_vuelven_vuelve = models.BooleanField(null=True, blank=True)
+    cuales_pensamto_vuelven = models.TextField(blank=True, null=True)
     no_cometer_errores = models.IntegerField(blank=True, null=True)
     bueno_todo = models.IntegerField(blank=True, null=True)
     no_relevar_info_pers = models.IntegerField(blank=True, null=True)
@@ -192,6 +194,7 @@ class historia_clinica(models.Model):
     mejor_amigo_piensa_soy = models.TextField(blank=True, null=True)
     prob_por_rechazo_amoroso = models.BooleanField(null=True, blank=True)
     detalle_prob_por_rechazo_amoroso = models.TextField(blank=True, null=True)
+    detalle_primera_exp_sexual = models.TextField(blank=True, null=True)
     # factores biologicos
     prob_salud_fisica = models.BooleanField(null=True, blank=True)
     detalle_prob_salud_fisica = models.TextField(blank=True, null=True)
@@ -257,9 +260,10 @@ class historia_clinica(models.Model):
     dolor_espalda = models.IntegerField(blank=True, null=True)
     moretones_sangrado = models.IntegerField(blank=True, null=True)
     prob_peso = models.IntegerField(blank=True, null=True)
+    menst_afecta_animo = models.BooleanField(null=True, blank=True)
     otros_fact_biolg = models.TextField(blank=True, null=True)
     observaciones = models.TextField(blank=True, null=True)
-    aplicado_por = models.OneToOneField(
+    aplicado_por = models.ForeignKey(
         persona, on_delete=models.CASCADE, blank=True, null=True)
     atencion = models.OneToOneField(
         atencion_psicologica, on_delete=models.CASCADE, blank=False, null=False)
@@ -271,7 +275,6 @@ class historia_clinica(models.Model):
 
 
 class caracteristicas_infancia_adolescencia(models.Model):
-    id = models.AutoField(primary_key=True)
     infancia_feliz = models.BooleanField(null=True, blank=True)
     infancia_infeliz = models.BooleanField(null=True, blank=True)
     prob_emoc_cond = models.BooleanField(null=True, blank=True)
@@ -300,7 +303,6 @@ class caracteristicas_infancia_adolescencia(models.Model):
 
 
 class modalidad_conductas(models.Model):
-    id = models.AutoField(primary_key=True)
     comer_de_mas = models.BooleanField(null=True, blank=True)
     consumir_drogas = models.BooleanField(null=True, blank=True)
     no_hacer_desea = models.BooleanField(null=True, blank=True)
@@ -338,7 +340,6 @@ class modalidad_conductas(models.Model):
 
 
 class modalidad_sentimientos(models.Model):
-    id = models.AutoField(primary_key=True)
     enojado = models.BooleanField(null=True, blank=True)
     fastidiado = models.BooleanField(null=True, blank=True)
     triste = models.BooleanField(null=True, blank=True)
@@ -367,8 +368,7 @@ class modalidad_sentimientos(models.Model):
     tenso = models.BooleanField(null=True, blank=True)
     sin_esperanza = models.BooleanField(null=True, blank=True)
     otros = models.TextField(blank=True, null=True)
-    hc = models.ForeignKey(
-        historia_clinica, on_delete=models.CASCADE, blank=True, null=True)
+    hc = models.ForeignKey(historia_clinica, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = 'modalidad_sentimientos'
@@ -377,7 +377,6 @@ class modalidad_sentimientos(models.Model):
 
 
 class modalidad_sensaciones_fisicas(models.Model):
-    id = models.AutoField(primary_key=True)
     dolor_abdominal = models.BooleanField(null=True, blank=True)
     dolor_orinar = models.BooleanField(null=True, blank=True)
     dolor_menstruacion = models.BooleanField(null=True, blank=True)
@@ -422,7 +421,6 @@ class modalidad_sensaciones_fisicas(models.Model):
 
 
 class modalidad_imagenes_me_veo(models.Model):
-    id = models.AutoField(primary_key=True)
     siendo_feliz = models.BooleanField(null=True, blank=True)
     herido_sentimientos = models.BooleanField(null=True, blank=True)
     incapaz_afrontar_prob = models.BooleanField(null=True, blank=True)
@@ -448,7 +446,6 @@ class modalidad_imagenes_me_veo(models.Model):
 
 
 class modalidad_imagenes_tengo(models.Model):
-    id = models.AutoField(primary_key=True)
     img_sexuales_placenteras = models.BooleanField(null=True, blank=True)
     img_sexuales_no_placenteras = models.BooleanField(null=True, blank=True)
     img_desagradables_infancia = models.BooleanField(null=True, blank=True)
@@ -467,7 +464,6 @@ class modalidad_imagenes_tengo(models.Model):
 
 
 class modalidad_pensamientos(models.Model):
-    id = models.AutoField(primary_key=True)
     inteligente = models.BooleanField(null=True, blank=True)
     confidente = models.BooleanField(null=True, blank=True)
     valgo_pena = models.BooleanField(null=True, blank=True)

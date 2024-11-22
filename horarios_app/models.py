@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 class horario(models.Model):
-    id = models.AutoField(primary_key=True)
     dia = models.CharField(
         'Dia', max_length=255, blank=True, null=True)
     hora = models.CharField(

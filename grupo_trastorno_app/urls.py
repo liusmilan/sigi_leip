@@ -14,7 +14,7 @@ urlpatterns = [
          name='eliminar_grupo_trastorno'),
     path('get_all_grupo_trastornos/', getAllGruposTrastorno,
          name='get_all_grupo_trastornos'),
-    path('get_grupos_by_categoria/', getGruposByCategoria.as_view(),
+    path('get_grupos_by_categoria/', getGruposByCategoria,
          name='get_grupos_by_categoria'),
 ]
 

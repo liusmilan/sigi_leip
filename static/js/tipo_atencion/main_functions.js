@@ -17,14 +17,14 @@ var tipo_atencion = function() {
     $('#btn_cerrar_modal_tipo_atencion').on('click', function() {
       limpiarCampos();
       $('#modal_agregar_editar_tipo_atencion').modal('hide');
-      location.reload();
+      getTiposAtencion();
     });
 
     /== evento para cerrar modal de agregar tipo de atencion ==/
     $('#btn_cancelar_modal_tipo_atencion').on('click', function() {
       limpiarCampos();
       $('#modal_agregar_editar_tipo_atencion').modal('hide');
-      location.reload();
+      getTiposAtencion();
     });
 
     /== evento para agregar o editar un tipo de atencion ==/
@@ -32,26 +32,34 @@ var tipo_atencion = function() {
       var id = $('#id_tipo_atencion').val();
       var estado = $('#estado_tipo_atencion').is(":checked");
       var nombre = $('#nombre_tipo_atencion').val();
-      var categoria = devolverCategoria();
+      var derivar = $('#check_derivar_ta').is(":checked") ? true : false;
+      var taller = $('#check_taller_ta').is(":checked") ? true : false;
+      var consulta = $('#check_consulta_ta').is(":checked") ? true : false;
       var textOriginalBtn = '<span class="indicator-label"> Agregar</span>'
       var loadingTextBtn = '<span class="indicator-progress"> Guardando... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>'
       var btn = $(this);
       btn.html(loadingTextBtn);
 
+      var params = {
+        id: id ? id : '',
+        estado: estado,
+        nombre: nombre,
+        derivar: derivar,
+        taller: taller,
+        consulta: consulta
+      }
+
       if (nombre == '' || nombre == null) {
         btn.html(textOriginalBtn);
         notificacion('Error', 'El nombre del Tipo de Atención es obligatorio', 'error');
-      } else if (categoria == '') {
+      } else if (!validarCheckboxes()) {
         btn.html(textOriginalBtn);
         notificacion('Error', 'Debe de seleccionar una Categoría', 'error');
       } else {
         $.ajax({
           url: "/tipo_atencion/agregar_tipo_atencion",
           data: {
-            id: id ? id : '',
-            estado: estado,
-            categoria: categoria,
-            nombre: nombre
+            params: JSON.stringify(params)
           },
           dataType: "json",
           success: function(response) {
@@ -74,10 +82,10 @@ var tipo_atencion = function() {
                   showCancelButton: false,
                   confirmButtonClass: "btn-success",
                   confirmButtonText: "Aceptar",
-                  closeOnConfirm: false
+                  closeOnConfirm: true
                 },
                 function() {
-                  location.reload();
+                  getTiposAtencion();
                 });
               }              
             } else if (response.tipo_mensaje == 'error') {
@@ -106,25 +114,31 @@ var tipo_atencion = function() {
         },
         dataType: "json",
         success: function(response) {
-          $('#nombre_tipo_atencion').val(response.nombre);
+          if (response.tipo_mensaje == 'success') {
+            $('#nombre_tipo_atencion').val(response.tipo_atencion.nombre);
 
-          if (response.categoria == 'Derivar') {
-            $('#check_derivar').prop('checked', true);
-          } else if (response.categoria == 'Taller') {
-            $('#check_taller').prop('checked', true);
-          } else if (response.categoria == 'Otro') {
-            $('#check_otro').prop('checked', true);
-          }
+            if (response.tipo_atencion.derivar == true) {
+              $('#check_derivar_ta').prop('checked', true);
+            }
 
-          if (response.estado == 'HABILITADO') {
-            $('#estado_tipo_atencion').prop('checked', true);
+            if (response.tipo_atencion.taller == true) {
+              $('#check_taller_ta').prop('checked', true);
+            }
+            
+            if (response.tipo_atencion.consulta == true) {
+              $('#check_consulta_ta').prop('checked', true);
+            }
+
+            if (response.tipo_atencion.estado == 'HABILITADO') {
+              $('#estado_tipo_atencion').prop('checked', true);
+            } else {
+              $('#estado_tipo_atencion').prop('checked', false);
+            }
           } else {
-            $('#estado_tipo_atencion').prop('checked', false);
+            notificacion('Error', response.mensaje, 'error');
           }
         },
-        error: function(response) {
-
-        }
+        error: function(response) {}
       });
     });
 
@@ -154,11 +168,11 @@ var tipo_atencion = function() {
             showCancelButton: false,
             confirmButtonClass: "btn-primary",
             confirmButtonText: "Aceptar",
-            closeOnConfirm: false
+            closeOnConfirm: true
           },
           function() {
             $('#id_tipo_atencion').val('');
-            location.reload();
+            getTiposAtencion();
           });
         }        
       });
@@ -172,21 +186,18 @@ var tipo_atencion = function() {
       type: "get",
       dataType: "json",
       success: function(response) {
+        deseleccionarFilasTablaTipoAtencion();
         listarTiposAtencion(response);
       },
       error: function(response) {
-        
+        console.error("Error al obtener los tipos de atenciones");
       }
     });
   }
 
   /== funcion para crear el listado de tipos de atencion ==/
   function listarTiposAtencion(datos) {
-    // if ($.fn.DataTable.isDataTable('#tabla_tipos_atencion')) {
-    //   $('#tabla_tipos_atencion').DataTable().destroy();
-    // }
-
-    let tabla = new DataTable('#tabla_tipos_atencion', {
+    var tabla = $('#tabla_tipos_atencion').DataTable({
       language: {
         "decimal": "",
         "emptyTable": "No hay información",
@@ -215,7 +226,7 @@ var tipo_atencion = function() {
       data: datos,
       columns: [
         { data: 'nombre' },
-        { data: 'categoria'},
+        { data: 'categorias'},
         { data: 'estado' }
       ],
       initComplete: function() {
@@ -223,11 +234,11 @@ var tipo_atencion = function() {
       }
     });
 
-    //evento para seleccionar una fila en la tabla
-    // evento para capturar los datos de la columna seleccionada en la tabla
-    tabla.on('click', 'tbody tr', function(e) {
+    // Reasignar el evento para seleccionar una fila en la tabla
+    $('#tabla_tipos_atencion tbody').off('click', 'tr');
+    $('#tabla_tipos_atencion tbody').on('click', 'tr', function(e) {
       let classList = e.currentTarget.classList;
-      let data;
+      let rowData;
 
       if (classList.contains('selected')) {
         classList.remove('selected');
@@ -240,8 +251,8 @@ var tipo_atencion = function() {
         $('#btn_nuevo_tipo_atencion').css('display', 'none');
         $('#dropdown_acciones_listado_tipo_atencion').css('display', 'block');
 
-        data = tabla.row(this).data();
-        $('#id_tipo_atencion').val(data.id);
+        rowData = tabla.row(this).data();
+        $('#id_tipo_atencion').val(rowData.id);
       }
     });
   }
@@ -268,7 +279,7 @@ var tipo_atencion = function() {
             closeOnConfirm: false
           },
           function() {
-            location.reload();
+            getTiposAtencion();
           });
         } else {
           notificacion('Eliminación fallida', response.mensaje, response.tipo_mensaje);
@@ -285,25 +296,39 @@ var tipo_atencion = function() {
     $('#id_tipo_atencion').val('');
     $('#nombre_tipo_atencion').val('');
     $("#estado_tipo_atencion").prop("checked", false);
-    $("input[type='radio'][name=inlineRadioOptions]").prop('checked', false);
+    // $("input[type='radio'][name=inlineRadioOptions]").prop('checked', false);
+    $('.checksTipoAtencion').each(function() {
+          $($(this)).prop('checked', false);
+    });
+
   }
 
-  /== funcion para devolver categoria ==/
-  function devolverCategoria() {
-    var derivar = $('#check_derivar').is(":checked");
-    var taller = $('#check_taller').is(":checked");
-    var otro = $('#check_otro').is(":checked");
-    var categoria = '';
+  function deseleccionarFilasTablaTipoAtencion() {
+    var tabla = $('#tabla_tipos_atencion').DataTable();
+    tabla.rows().every(function() {
+      var rowNode = this.node();
 
-    if (derivar == true) {
-      categoria = 'Derivar';
-    } else if (taller == true) {
-      categoria = 'Taller';
-    } else if (otro == true) {
-      categoria = 'Otro';
-    }
+      if ($(rowNode).hasClass('selected')) {
+        $(rowNode).removeClass('selected');
+      }
 
-    return categoria
+      $('#btn_nuevo_tipo_atencion').css('display', 'block');
+      $('#dropdown_acciones_listado_tipo_atencion').css('display', 'none');
+      $('#id_tipo_atencion').val('');
+    });
+  }
+
+  function validarCheckboxes() {
+    const checkboxes = document.querySelectorAll('input[name="check_tipo_atencion"]');
+    let check = false;
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        check = true;
+      }
+    });
+
+    return check;
   }
 
   return {

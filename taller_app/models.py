@@ -4,7 +4,6 @@ from django.db import models
 
 
 class modalidad(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre = models.CharField(
         'Nombre', max_length=255, blank=False, null=False)
 
@@ -18,7 +17,6 @@ class modalidad(models.Model):
 
 
 class taller(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre = models.CharField(
         'Nombre', max_length=255, blank=False, null=False)
     modalidad = models.ForeignKey(
@@ -30,6 +28,7 @@ class taller(models.Model):
     especialista = models.CharField(
         'Especialista', max_length=255, blank=True, null=True)
     estado = models.CharField('Estado', max_length=255, default=False)
+    hora_inicio = models.CharField('Hora inicio', max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = 'taller'

@@ -175,3 +175,28 @@ def getAllInstituciones(request):
     else:
         mensaje = 'error'
         return JsonResponse({'mensaje': mensaje})
+
+
+def getInstitucionesByTipoInstitucion(request):
+    tipo_institucion = request.GET.get('tipo_institucion', '')
+    instituciones = institucion.objects.filter(tipo_institucion=tipo_institucion)
+
+    if len(instituciones) > 0:
+        lista_inst = []
+        for i in instituciones:
+            data = {}
+            data['id'] = i.id
+            data['nombre'] = i.nombre
+            data['tipo_institucion'] = i.tipo_institucion
+            data['estado'] = i.estado_institucion
+            data['descripcion'] = i.descripcion
+            data['domicilio'] = i.domicilio
+            data['contacto'] = i.contacto
+            data['correo'] = i.correo
+            data['sitio_web'] = i.sitio_web
+            lista_inst.append(data)
+        mensaje = 'existe'
+        return JsonResponse({'instituciones': lista_inst, 'mensaje': mensaje})
+    else:
+        mensaje = 'no existe'
+        return JsonResponse({'mensaje': mensaje})

@@ -48,11 +48,11 @@
             </label>
             </br>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptionsSexoHc" id="check_sexo_hombre_hc" value="hombre">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsSexoHc" id="check_sexo_hombre_hc" value="H">
               <label class="form-check-label" for="check_sexo_hombre_hc">Hombre</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptionsSexoHc" id="check_sexo_mujer_hc" value="mujer">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsSexoHc" id="check_sexo_mujer_hc" value="M">
               <label class="form-check-label" for="check_sexo_mujer_hc">Mujer</label>
             </div>
           </div>
@@ -215,6 +215,13 @@
             </label>
             <input type="text" class="form-control input-number" id="telefono_contacto_hc" name='telefono_contacto_hc'>
           </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="quien_lo_envia_hc" class="form-label">
+                ¿Quién lo envía?
+            </label>
+            <input type="text" class="form-control" id="quien_lo_envia_hc" name='quien_lo_envia_hc'>
+          </div>
           </br>
         </div>
         <div class="col-xl-6">
@@ -268,7 +275,7 @@
         <div class="col-md-3">
           <div class="form-group mb-1 py-1">
             <label for="estatura_hc" class="form-label">
-              Estatura
+              Estatura (cm)
             </label>
             <input type="text" class="form-control input-number" id="estatura_hc" name='estatura_hc' placeholder="Estatura">
           </div>
@@ -367,21 +374,6 @@
         </div>
         <div class="col-xl-6">
           <div class="form-group mb-1 py-1">
-            <label for="terapia_anterior1_hc" class="form-label">
-              ¿Ha estado en terapia antes?
-            </label>
-            </br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptionsTerapiaAnteriorHc1" id="check_terapia_anterior_si_hc1" value="0">
-              <label class="form-check-label" for="check_terapia_anterior_si_hc1">Sí</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptionsTerapiaAnteriorHc1" id="check_terapia_anterior_no_hc1" value="1">
-              <label class="form-check-label" for="check_terapia_anterior_no_hc1">No</label>
-            </div>
-          </div>
-
-          <div class="form-group mb-1 py-1">
             <label for="tipo_ayuda_hc" class="form-label">
               ¿Qué tipo de ayuda a buscado para su problema?
             </label>
@@ -437,20 +429,41 @@
           </br>
           </div>
 
-          <div class="form-group mb-1 py-1">
-            <label for="intento_suicidio_hc" class="form-label">
-              ¿Algún miembro de su familia ha intentado suicidarse?
-            </label>
-            </br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptionsIntentoSuicidioHc" id="check_intento_suicidio_si_hc" value="0">
-              <label class="form-check-label" for="check_intento_suicidio_si_hc">Sí</label>
+          <div class='row'>
+            <div class="col-xl-6">
+              <div class="form-group mb-1 py-1">
+                <label for="intento_suicidio_hc" class="form-label">
+                  ¿Algún miembro de su familia ha intentado suicidarse?
+                </label>
+                </br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsIntentoSuicidioHc" id="check_intento_suicidio_si_hc" value="0">
+                  <label class="form-check-label" for="check_intento_suicidio_si_hc">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsIntentoSuicidioHc" id="check_intento_suicidio_no_hc" value="1">
+                  <label class="form-check-label" for="check_intento_suicidio_no_hc">No</label>
+                </div>
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptionsIntentoSuicidioHc" id="check_intento_suicidio_no_hc" value="1">
-              <label class="form-check-label" for="check_intento_suicidio_no_hc">No</label>
+            <div class="col-xl-6">
+              <div class="form-group mb-1 py-1">
+                <label for="prob_emocion_mental" class="form-label">
+                  ¿Algún miembro de su familia sufre de problemas emocionales o mentales?
+                </label>
+                </br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsProbEmocionMentalHc" id="check_prob_emocion_mental_si_hc" value="0">
+                  <label class="form-check-label" for="check_prob_emocion_mental_si_hc">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsProbEmocionMentalHc" id="check_prob_emocion_mental_no_hc" value="1">
+                  <label class="form-check-label" for="check_prob_emocion_mental_no_hc">No</label>
+                </div>
+              </div>
             </div>
           </div>
+          
       </div>
     </div>
   </div>

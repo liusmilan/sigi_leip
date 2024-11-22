@@ -22,6 +22,8 @@ var mst_nivel2 = function() {
             $('#modal_mst_nivel2').find('.modal-title').text('Evaluación Psicológica (MST Nivel 2)');
             limpiarTodosCampos();
             accion = 'agregar';
+            $('#alerta_prob_mania').css('display', 'none');
+            $('#alerta_baja_prob_mania').css('display', 'none');
           }
         },
         error: function(response) {}
@@ -32,14 +34,14 @@ var mst_nivel2 = function() {
     $('#btn_cerrar_modal_mst_nivel2').on('click', function() {
       limpiarTodosCampos();
       $('#modal_mst_nivel2').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
     
     /== evento para cerrar modal de mst_nivel2 ==/
     $('#btn_cancelar_modal_mst_nivel2').on('click', function() {
       limpiarTodosCampos();
       $('#modal_mst_nivel2').modal('hide');
-      location.reload();
+      $(document).trigger('actualizar_lista_atenciones');
     });
 
     /== evento del check no aplica de depresion ==/
@@ -74,7 +76,7 @@ var mst_nivel2 = function() {
     $('#mst2_mania_no_aplica').on('click', function() {
       if ($(this).is(':checked')) {
         $('#btn_valorar_mania').prop('disabled', true);
-        $('#valoracion_mania').text('0%');
+        $('#valoracion_mania').text('0');
         $('#valoracion_mania').addClass('badge bg-badge-gray');
         limpiarBoxMania();
         desabilitarAllChecksMania(true);
@@ -102,7 +104,7 @@ var mst_nivel2 = function() {
     $('#mst2_somatico_no_aplica').on('click', function() {
       if ($(this).is(':checked')) {
         $('#btn_valorar_somatico').prop('disabled', true);
-        $('#valoracion_somatico').text('0%');
+        $('#valoracion_somatico').text('0');
         $('#valoracion_somatico').addClass('badge bg-badge-gray');
         limpiarBoxSomatico();
         desabilitarAllChecksSomaticos(true);
@@ -144,7 +146,7 @@ var mst_nivel2 = function() {
     $('#mst2_sustancias_no_aplica').on('click', function() {
       if ($(this).is(':checked')) {
         $('#btn_valorar_sustancias').prop('disabled', true);
-        $('#valoracion_sustancias').text('0%');
+        $('#valoracion_sustancias').text('0');
         $('#valoracion_sustancias').addClass('badge bg-badge-gray');
         limpiarBoxSustancia();
         desabilitarAllChecksSustancias(true);
@@ -197,8 +199,16 @@ var mst_nivel2 = function() {
         var clase_span = $('#valoracion_mania').attr('class');
         $('#valoracion_mania').removeClass(clase_span);
   
-        $('#valoracion_mania').text(evaluacion.evaluacion + '% - ' + valores_mania.nivel);
+        $('#valoracion_mania').text(evaluacion.evaluacion + ' - ' + valores_mania.nivel);
         $('#valoracion_mania').addClass('badge bg-badge-' + valores_mania.color);
+
+        if (evaluacion.evaluacion >= 6) {
+          $('#alerta_prob_mania').css('display', 'block');
+          $('#alerta_baja_prob_mania').css('display', 'none');
+        } else if (evaluacion.evaluacion <= 5) {
+          $('#alerta_baja_prob_mania').css('display', 'block');
+          $('#alerta_prob_mania').css('display', 'none');
+        }
       }
     });
 
@@ -229,7 +239,7 @@ var mst_nivel2 = function() {
         var clase_span = $('#valoracion_somatico').attr('class');
         $('#valoracion_somatico').removeClass(clase_span);
   
-        $('#valoracion_somatico').text(evaluacion.evaluacion + '% - ' + valores_somaticos.nivel);
+        $('#valoracion_somatico').text(evaluacion.evaluacion + ' - ' + valores_somaticos.nivel);
         $('#valoracion_somatico').addClass('badge bg-badge-' + valores_somaticos.color);
       }
     });
@@ -277,7 +287,7 @@ var mst_nivel2 = function() {
         var clase_span = $('#valoracion_sustancias').attr('class');
         $('#valoracion_sustancias').removeClass(clase_span);
   
-        $('#valoracion_sustancias').text(evaluacion.evaluacion + '% - ' + valores_sustancias.nivel);
+        $('#valoracion_sustancias').text(evaluacion.evaluacion + ' - ' + valores_sustancias.nivel);
         $('#valoracion_sustancias').addClass('badge bg-badge-' + valores_sustancias.color);
       }
     });
@@ -301,6 +311,7 @@ var mst_nivel2 = function() {
       var valores_repetitivos = devolverValoresRepetitivos(repetitivo.evaluacion);
       var sustancia = calcularValorSustancias();
       var valores_sustancias = devolverValoresSustancias(sustancia.evaluacion);
+      var observaciones = $('#observaciones_mst2').val();
       var textOriginalBtn = '<span class="indicator-label"> Agregar</span>'
       var loadingTextBtn = '<span class="indicator-progress"> Guardando... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>'
       var btn = $(this);
@@ -399,7 +410,8 @@ var mst_nivel2 = function() {
           sustancia_pregunta10: sustancia.valor_pregunta10,
           evaluacion_sustancia: sustancia.evaluacion,
           color_evaluacion_sustancia: valores_sustancias.color,
-          nivel_evaluacion_sustancia: valores_sustancias.nivel
+          nivel_evaluacion_sustancia: valores_sustancias.nivel,
+          observaciones: observaciones
         };
 
         $.ajax({
@@ -420,10 +432,10 @@ var mst_nivel2 = function() {
                 showCancelButton: false,
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
-                closeOnConfirm: false
+                closeOnConfirm: true
               },
               function() {
-                location.reload();
+                $(document).trigger('actualizar_lista_atenciones');
               });
             } else if (response.tipo_mensaje == 'error') {
               notificacion('Error',response.mensaje, response.tipo_mensaje);
@@ -456,6 +468,8 @@ var mst_nivel2 = function() {
             $('#modal_mst_nivel2').find('.modal-title').text('Evaluación Psicológica (MST Nivel 2)');
             accion = 'editar';
 
+            $('#observaciones_mst2').val(response.observaciones);
+
             if (response.evaluacion_depresion == 0) {
               marcarPreguntas('depresion', 'uno', response.depresion_pregunta1, response.evaluacion_depresion, response.color_evaluacion_depresion, response.nivel_evaluacion_depresion, false);
             } else {
@@ -487,6 +501,14 @@ var mst_nivel2 = function() {
               marcarPreguntas('mania', 'tres', response.mania_pregunta3, response.evaluacion_mania, response.color_evaluacion_mania, response.nivel_evaluacion_mania, false);
               marcarPreguntas('mania', 'cuatro', response.mania_pregunta4, response.evaluacion_mania, response.color_evaluacion_mania, response.nivel_evaluacion_mania, false);
               marcarPreguntas('mania', 'cinco', response.mania_pregunta5, response.evaluacion_mania, response.color_evaluacion_mania, response.nivel_evaluacion_mania, false);
+
+              if (response.evaluacion_mania >= 6) {
+                $('#alerta_prob_mania').css('display', 'block');
+                $('#alerta_baja_prob_mania').css('display', 'none');
+              } else if (response.evaluacion_mania <= 5) {
+                $('#alerta_baja_prob_mania').css('display', 'block');
+                $('#alerta_prob_mania').css('display', 'none');
+              }
             }
 
             if (response.evaluacion_ansiedad == 0) {
@@ -575,8 +597,13 @@ var mst_nivel2 = function() {
       var clase_span = $(id_valoraciom).attr('class');
       $(id_valoraciom).removeClass(clase_span);
   
-      $(id_valoraciom).text(evaluacion + '% - ' + nivel);
-      $(id_valoraciom).addClass('badge bg-badge-' + color);
+      if ((sintoma == 'sustancias') || sintoma == 'mania') {
+        $(id_valoraciom).text(evaluacion + ' - ' + nivel);
+        $(id_valoraciom).addClass('badge bg-badge-' + color);
+      } else {
+        $(id_valoraciom).text(evaluacion + '% - ' + nivel);
+        $(id_valoraciom).addClass('badge bg-badge-' + color);
+      }
 
       var check_uno = '#check_' + sintoma + '_pregunta_' + pregunta + '_uno';
       var check_dos = '#check_' + sintoma + '_pregunta_' + pregunta + '_dos';
@@ -631,7 +658,7 @@ var mst_nivel2 = function() {
       var clase_span = $('#valoracion_somatico').attr('class');
       $('#valoracion_somatico').removeClass(clase_span);
   
-      $('#valoracion_somatico').text(evaluacion + '% - ' + nivel);
+      $('#valoracion_somatico').text(evaluacion + ' - ' + nivel);
       $('#valoracion_somatico').addClass('badge bg-badge-' + color);
 
       var check_uno = '#check_somatico_pregunta_' + pregunta + '_uno';
@@ -655,6 +682,7 @@ var mst_nivel2 = function() {
   /== funcion para calcular el valor de la depresion ==/
   function calcularValorDepresion() {
     var evaluacion = 0;
+    var porciento = 0;
     var valor_pregunta1 = -1;
     var valor_pregunta2 = -1;
     var valor_pregunta3 = -1;
@@ -678,7 +706,8 @@ var mst_nivel2 = function() {
         evaluacion = -1;
       } else {
         var evaluacion_total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5 + valor_pregunta6 + valor_pregunta7 + valor_pregunta8;
-        evaluacion = (evaluacion_total/40)*100;
+        porciento = (evaluacion_total/40)*100;
+        evaluacion = Math.round(porciento);
       }
     }
 
@@ -700,6 +729,7 @@ var mst_nivel2 = function() {
   /== funcion para calcular el valor de la ira ==/
   function calcularValorIra() {
     var evaluacion = 0;
+    var porciento = 0;
     var valor_pregunta1 = -1;
     var valor_pregunta2 = -1;
     var valor_pregunta3 = -1;
@@ -717,7 +747,8 @@ var mst_nivel2 = function() {
         evaluacion = -1;
       } else {
         var evaluacion_total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5;
-        evaluacion = (evaluacion_total/25)*100;
+        porciento = (evaluacion_total/25)*100;
+        evaluacion = Math.round(porciento);
       }
     }  
 
@@ -771,6 +802,7 @@ var mst_nivel2 = function() {
   /== funcion para calcular el valor de la ansiedad ==/
   function calcularValorAnsiedad() {
     var evaluacion = 0;
+    var porciento = 0;
     var valor_pregunta1 = -1;
     var valor_pregunta2 = -1;
     var valor_pregunta3 = -1;
@@ -792,7 +824,8 @@ var mst_nivel2 = function() {
         evaluacion = -1;
       } else {
         var evaluacion_total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5 + valor_pregunta6 + valor_pregunta7;
-        evaluacion = (evaluacion_total/35)*100;
+        porciento = (evaluacion_total/35)*100;
+        evaluacion = Math.round(porciento);
       }
     }
 
@@ -878,6 +911,7 @@ var mst_nivel2 = function() {
   /== funcion para calcular el valor de la suenno ==/
   function calcularValorSuenno() {
     var evaluacion = 0;
+    var porciento = 0;
     var valor_pregunta1 = -1;
     var valor_pregunta2 = -1;
     var valor_pregunta3 = -1;
@@ -901,7 +935,8 @@ var mst_nivel2 = function() {
         evaluacion = -1;
       } else {
         var evaluacion_total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5 + valor_pregunta6 + valor_pregunta7 + valor_pregunta8;
-        evaluacion = (evaluacion_total/40)*100;
+        porciento = (evaluacion_total/40)*100;
+        evaluacion = Math.round(porciento);
       }
     }
 
@@ -923,6 +958,7 @@ var mst_nivel2 = function() {
   /== funcion para calcular el valor de la repetitivo ==/
   function calcularValorRepetitivo() {
     var evaluacion = 0;
+    var porciento = 0;
     var valor_pregunta1 = -1;
     var valor_pregunta2 = -1;
     var valor_pregunta3 = -1;
@@ -934,13 +970,14 @@ var mst_nivel2 = function() {
       valor_pregunta2 = devolverValorPregunta('#check_repetitivo_pregunta_dos_uno', '#check_repetitivo_pregunta_dos_dos', '#check_repetitivo_pregunta_dos_tres', '#check_repetitivo_pregunta_dos_cuatro', '#check_repetitivo_pregunta_dos_cinco', true);
       valor_pregunta3 = devolverValorPregunta('#check_repetitivo_pregunta_tres_uno', '#check_repetitivo_pregunta_tres_dos', '#check_repetitivo_pregunta_tres_tres', '#check_repetitivo_pregunta_tres_cuatro', '#check_repetitivo_pregunta_tres_cinco', true);
       valor_pregunta4 = devolverValorPregunta('#check_repetitivo_pregunta_cuatro_uno', '#check_repetitivo_pregunta_cuatro_dos', '#check_repetitivo_pregunta_cuatro_tres', '#check_repetitivo_pregunta_cuatro_cuatro', '#check_repetitivo_pregunta_cuatro_cinco', true);
-      valor_pregunta5 = devolverValorPregunta('#check_repetitivo_pregunta_cinco_uno', '#check_repetitivo_pregunta_cinco_dos', '#check_srepetitivo_pregunta_cinco_tres', '#check_repetitivo_pregunta_cinco_cuatro', '#check_repetitivo_pregunta_cinco_cinco', true);
+      valor_pregunta5 = devolverValorPregunta('#check_repetitivo_pregunta_cinco_uno', '#check_repetitivo_pregunta_cinco_dos', '#check_repetitivo_pregunta_cinco_tres', '#check_repetitivo_pregunta_cinco_cuatro', '#check_repetitivo_pregunta_cinco_cinco', true);
       
       if (valor_pregunta1 == -1 || valor_pregunta2 == -1 || valor_pregunta3 == -1 || valor_pregunta4 == -1 || valor_pregunta5 == -1) {
         evaluacion = -1;
       } else {
         var evaluacion_total = valor_pregunta1 + valor_pregunta2 + valor_pregunta3 + valor_pregunta4 + valor_pregunta5;
-        evaluacion = (evaluacion_total/20)*100;
+        porciento = (evaluacion_total/20)*100;
+        evaluacion = Math.round(porciento);
       }
     }
 
@@ -1409,6 +1446,8 @@ var mst_nivel2 = function() {
 
     limpiarBoxSustancia();
     $('#mst2_sustancias_no_aplica').prop('checked', false);
+
+    $('#observaciones_mst2').val('');
   }
 
   function deseleccionarFilasTabla() {

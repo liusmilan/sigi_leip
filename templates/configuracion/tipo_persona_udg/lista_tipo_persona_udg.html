@@ -1,0 +1,90 @@
+{% extends "plantilla/index.html" %} 
+
+{% block title %} SiGI-LEIP {% endblock %}
+
+{% block css %}
+{% load static %}
+  <link href="{% static "/css/styles.css" %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block contenido_barra_titulo %}
+  <h1>
+    Listado de Tipos de Persona en UDG
+  </h1>
+  <nav>
+    <ol class="breadcrumb py-0">
+      <li class="breadcrumb-item"><a href="{% url "inicio:dashboard" %}">Inicio</a></li>
+      <li class="breadcrumb-item">Configuración</li>
+      <li class="breadcrumb-item active">Listado de Tipos de Persona en UDG</li>
+    </ol>
+  </nav>
+{% endblock %}          
+
+{% block contenido %}
+  {% load static %}
+
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header border-0 pt-6">
+        <div class="card-title"></div>
+        <div class="card-toolbar">
+          <div class="d-flex justify-content-end">
+            <!--btn Agregar tipo de persona-->
+            <button type="button" class="btn btn-primary btn-hover-scale me-5" id='btn_nuevo_tipo_persona_udg'>
+              <i class='bi bi-plus-lg'></i> Agregar
+            </button>
+
+            <!--Dropdown con opciones de eliminar y editar-->
+            <div id='dropdown_acciones_listado_tipo_persona_udg'>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-active-light-primary dropdown-toggle btn-hover-scale me-5" data-bs-toggle="dropdown" aria-expanded="false">
+                  Acciones
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <button class="dropdown-item" id='btn_editar_tipo_persona_udg'>
+                      <i class='bi bi-pencil-fill'></i>
+                      Editar
+                    </button>
+                  </li>
+                  <li>
+                    <button class="dropdown-item" id='btn_eliminar_tipo_persona_udg'>
+                      <i class='bi bi-trash-fill'></i>
+                      Eliminar
+                    </button>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body py-4">
+        {% comment %} <h5 class="card-title">Listado de Estados de Atención</h5> {% endcomment %}
+
+        <table class="table align-middle table-row-dashed table-hover fs-6 gy-5 gs-5" id="tabla_tipo_persona_udg">
+          <thead>
+            <tr class='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
+              <th scope="min-w-125px">Nombre</th>
+              <th scope="min-w-125px">Estado</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 fw-bold">
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <!--begin::modal agregar tipo_persona_udg-->
+  {% include "configuracion/tipo_persona_udg/agregar_tipo_persona_udg.html" %}
+  <!--end::modal agregar tipo_persona_udg-->
+
+{% endblock %}
+
+{% block scripts %}
+  {% load static %}
+  <script src="{% static '/js/tipo_persona_udg/main_functions.js' %}"></script>
+{% endblock %}

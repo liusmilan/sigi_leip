@@ -38,6 +38,7 @@ class listadoTalleres(ListView):
                 data['fecha_fin'] = fecha_fin
                 data['especialista'] = t.especialista
                 data['estado'] = t.estado
+                data['hora_inicio'] = t.hora_inicio
                 lista_talleres.append(data)
             return HttpResponse(json.dumps(lista_talleres), 'application/json')
         else:
@@ -56,6 +57,7 @@ class agregarEditarTaller(CreateView):
         fecha_fin = datetime.strptime(fecha_fin_1, '%d/%m/%Y')
         especialista = request.GET.get('especialista', '')
         id_modalidad = request.GET.get('id_modalidad', '')
+        hora_inicio = request.GET.get('hora_inicio', '')
         modalidad_obj = modalidad.objects.get(id=id_modalidad)
         estado = request.GET.get('estado', '')
         habilitado = ''
@@ -74,6 +76,7 @@ class agregarEditarTaller(CreateView):
                 t.especialista = especialista
                 t.fecha_inicio = fecha_inicio
                 t.fecha_fin = fecha_fin
+                t.hora_inicio = hora_inicio
                 t.estado = habilitado
                 t.save()
                 mensaje = 'Se ha editado correctamente el Taller.'
@@ -90,22 +93,14 @@ class agregarEditarTaller(CreateView):
                 return result
         else:
             # se esta agregando
-            try:
-                taller.objects.get(nombre=nombre)
-                mensaje = 'Este Taller ya existe. Por favor agregue otro.'
-                tipo_mensaje = 'error'
-                result = JsonResponse(
-                    {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje})
-                return result
-            except taller.DoesNotExist:
-                obj = taller.objects.create(
-                    nombre=nombre, modalidad=modalidad_obj, especialista=especialista, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin, estado=habilitado)
-                mensaje = 'Se ha agregado correctamente el Taller.'
-                tipo_mensaje = 'success'
-                accion = 'agregar'
-                result = JsonResponse(
-                    {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje, 'accion': accion})
-                return result
+            obj = taller.objects.create(
+                    nombre=nombre, modalidad=modalidad_obj, especialista=especialista, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin, estado=habilitado, hora_inicio=hora_inicio)
+            mensaje = 'Se ha agregado correctamente el Taller.'
+            tipo_mensaje = 'success'
+            accion = 'agregar'
+            result = JsonResponse(
+                {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje, 'accion': accion})
+            return result    
 
 
 class getTaller(TemplateView):
@@ -128,6 +123,7 @@ class getTaller(TemplateView):
             data['fecha_fin'] = fecha_fin
             data['especialista'] = t.especialista
             data['estado'] = t.estado
+            data['hora_inicio'] = t.hora_inicio
             result = JsonResponse(data)
             return result
         except taller.DoesNotExist:
@@ -166,18 +162,20 @@ def getAllTalleres(request):
         lista_talleres = []
         for t in talleres:
             data = {}
-            fecha_inicio = datetime.strftime(t.fecha_inicio, '%d/%m/%Y')
-            fecha_fin = datetime.strftime(t.fecha_fin, '%d/%m/%Y')
-            data_modalidad = {'id': t.modalidad.id,
-                              'nombre': t.modalidad.nombre}
-            data['id'] = t.id
-            data['nombre'] = t.nombre
-            data['modalidad'] = data_modalidad
-            data['fecha_inicio'] = fecha_inicio
-            data['fecha_fin'] = fecha_fin
-            data['especialista'] = t.especialista
-            data['estado'] = t.estado
-            lista_talleres.append(data)
+            if t.estado == 'HABILITADO':
+                fecha_inicio = datetime.strftime(t.fecha_inicio, '%d/%m/%Y')
+                fecha_fin = datetime.strftime(t.fecha_fin, '%d/%m/%Y')
+                data_modalidad = {'id': t.modalidad.id,
+                                  'nombre': t.modalidad.nombre}
+                data['id'] = t.id
+                data['nombre'] = t.nombre
+                data['modalidad'] = data_modalidad
+                data['fecha_inicio'] = fecha_inicio
+                data['fecha_fin'] = fecha_fin
+                data['especialista'] = t.especialista
+                data['estado'] = t.estado
+                data['hora_inicio'] = t.hora_inicio
+                lista_talleres.append(data)
         mensaje = 'success'
         return JsonResponse({'talleres': lista_talleres, 'mensaje': mensaje})
     else:
