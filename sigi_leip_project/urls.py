@@ -77,4 +77,6 @@ urlpatterns = [
          include(('estado_civil_app.urls', 'estado_civil'))),
     path('historia_clinica/',
           include(('historia_clinica_app.urls', 'historia_clinica'))),
+    path('tipo_persona_udg/',
+          include(('tipo_persona_udg_app.urls', 'tipo_persona_udg'))),
 ]

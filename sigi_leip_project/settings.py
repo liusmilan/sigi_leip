@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'religion_app',
     'estado_civil_app',
     'historia_clinica_app',
+    'tipo_persona_udg_app',
 ]
 
 
@@ -85,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'usuario_app.middleware.closeSession',
 ]
 
 ROOT_URLCONF = 'sigi_leip_project.urls'
@@ -170,7 +172,12 @@ STATICFILES_DIRS = (BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # tiempo de vida de la sesion en segundos
-SESSION_COOKIE_AGE = 600
+#SESSION_COOKIE_AGE = 600
 
 # para que expire la sesion al cerrar el navegador
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+LOGIN_URL = "/accounts/login/"
+
+# tiempo en minutos de activa la sesion
+AUTO_LOGOUT_TIME = 30
