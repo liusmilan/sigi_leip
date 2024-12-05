@@ -4842,7 +4842,11 @@ table {
   transition:color .2s ease,background-color .2s ease
 }
 .text-active-gray-900 i {
-  transition:color .2s ease,background-color .2s ease
+  transition:color .2s ease,background-color .2s ease;
+  -webkit-transition:color .2s ease,background-color .2s ease;
+  -moz-transition:color .2s ease,background-color .2s ease;
+  -ms-transition:color .2s ease,background-color .2s ease;
+  -o-transition:color .2s ease,background-color .2s ease;
 }
 .text-active-gray-900.active {
   transition:color .2s ease,background-color .2s ease;
@@ -5657,4 +5661,8 @@ label.error {
 .alert-mania-yellow {
   color: #fff !important;
   background-color: #ffc700;
+}
+
+.align-left-table {
+  padding-right: 0px !important;
 }

@@ -48,11 +48,17 @@
             </button>
 
             <!--filtros-->
-            <button type="button" class="btn btn-primary btn-hover-scale me-5" id='btn_filtros_atencion'>
-              <i class="bi bi-funnel-fill"></i>
-              Filtros
-            </button>
-
+            {% with user_roles=request.user.rol.all %}
+              {% if user_roles|length > 1 %}
+                {% if not user_roles.0.nombre == 'SOLICITANTE' %}
+                  <button type="button" class="btn btn-primary btn-hover-scale me-5" id='btn_filtros_atencion'>
+                    <i class="bi bi-funnel-fill"></i>
+                    Filtros
+                  </button>
+                {% endif %}
+              {% endif %}
+            {% endwith %}
+            
             <!--btn solicitar atencion-->
             <button type="button" class="btn btn-primary btn-hover-scale me-5" id='btn_solicitar_atencion'>
               Solicitar Atención
@@ -62,10 +68,17 @@
             <div id='dropdown_acciones_atenciones_psicologicas'>
               <!-- Exportar -->
               <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-active-light-primary dropdown-toggle btn-hover-scale me-5" data-bs-toggle="dropdown" aria-expanded="false">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" d="m12 5l-.707-.707l.707-.707l.707.707zm1 9a1 1 0 1 1-2 0zM6.293 9.293l5-5l1.414 1.414l-5 5zm6.414-5l5 5l-1.414 1.414l-5-5zM13 5v9h-2V5z"/><path stroke="currentColor" stroke-width="4" d="M5 16v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1"/></g></svg>
-                  Exportar
-                </button>
+                {% with user_roles=request.user.rol.all %}
+                  {% if user_roles|length > 1 %}
+                    {% if not user_roles.0.nombre == 'SOLICITANTE' %}
+                      <button type="button" class="btn btn-primary btn-active-light-primary dropdown-toggle btn-hover-scale me-5" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" d="m12 5l-.707-.707l.707-.707l.707.707zm1 9a1 1 0 1 1-2 0zM6.293 9.293l5-5l1.414 1.414l-5 5zm6.414-5l5 5l-1.414 1.414l-5-5zM13 5v9h-2V5z"/><path stroke="currentColor" stroke-width="4" d="M5 16v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1"/></g></svg>
+                        Exportar
+                      </button>
+                    {% endif %}
+                  {% endif %}
+                {% endwith %}
+                
                 <ul class="dropdown-menu">
                   {% with user_roles=request.user.rol.all %}
                     {% if user_roles|length == 1 %}
@@ -377,33 +390,21 @@
       </div>
 
       <div class="card-body py-4">
-        <table class="table align-middle table-row-dashed table-hover fs-6 gy-5 gs-5" id="tabla_atenciones_psicologicas">
+        <table class="table align-middle table-row-dashed table-hover fs-6 gy-1 gs-0" id="tabla_atenciones_psicologicas">
           <thead>
             <tr class='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
-              <th scope="min-w-200px">Solicitante</th>
-              <th scope="min-w-125px">Solicitud de Atención Psicológica</th>
-              <th scope="min-w-125px">Entrevistador Asignado</th>
-              <th scope="min-w-125px">Especialista Asignado</th>
-              <th scope="min-w-125px">Instrumentos Aplicados</th>
-              <th scope="min-w-125px">MST nivel 1</th>
-
-              {% comment %} {% with user_roles=request.user.rol.all %}
-                {% if user_roles|length == 1 %}
-                    {% if not user_roles.0.nombre == 'SOLICITANTE' %}
-                      <th scope="min-w-125px">IDS Pregunta 11</th>
-                      <th scope="min-w-125px">SSI Beck</th>
-                    {% endif %}
-                {% else %}
-                  <th scope="min-w-125px">IDS Pregunta 11</th>
-                  <th scope="min-w-125px">SSI Beck</th>
-                {% endif %}
-              {% endwith %} {% endcomment %}
-              <th scope="min-w-125px">IDS Pregunta 11</th>
-              <th scope="min-w-125px">SSI Beck</th>
-              <th scope="min-w-125px">FPP</th>
-              <th scope="min-w-125px">Ingresos Familiares Mensuales</th>
-              <th scope="min-w-125px">Tipo de Atención</th>
-              <th scope="min-w-125px">Estado de Atención</th>
+              <th>Solicitante</th>
+              <th>Solicitud de Atención Psicológica</th>
+              <th>Entrevistador Asignado</th>
+              <th>Especialista Asignado</th>
+              <th>Formatos Aplicados</th>
+              <th>MST nivel 1</th>
+              <th>IDS Pregunta 11</th>
+              <th>SSI Beck</th>
+              <th>FPP</th>
+              <th>Ingresos Familiares Mensuales</th>
+              <th>Tipo de Atención</th>
+              <th>Estado de Atención</th>
             </tr>
           </thead>
           <tbody class="text-gray-600 fw-bold">

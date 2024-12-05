@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.generic import CreateView, TemplateView
 from .models import mst_nivel1, atencion_psicologica
+from asignar_app.models import asignar
+from usuario_app.views import existeRol
 
 
 # Create your views here.
@@ -100,8 +102,15 @@ class getMstNivel1(TemplateView):
 
     def get(self, request, *args, **kwargs):
         id_atencion = request.GET.get('id_atencion', '')
+        id_user = request.GET.get('id_usuario', '')
         atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
         data = {}
+
+        try:
+            evaluador_obj = asignar.objects.get(atencion=atencion_obj)
+            evaluador = True            
+        except asignar.DoesNotExist:
+            evaluador = False
 
         try:
             m = mst_nivel1.objects.get(atencion=atencion_obj)
@@ -132,6 +141,9 @@ class getMstNivel1(TemplateView):
             data['color'] = m.color
             data['nivel'] = m.nivel
             data['observaciones'] = m.observaciones
+            data['evaluador'] = evaluador
+            data['roles'] = {'solicitante': True if existeRol(id_user, 'SOLICITANTE').get('existe') == True and existeRol(id_user, 'SOLICITANTE').get('cant') == 1 else False,
+                             'administrador': existeRol(id_user, 'ADMINISTRADOR').get('existe')}
             data['mensaje'] = 'existe'
             return JsonResponse(data)
         except mst_nivel1.DoesNotExist:

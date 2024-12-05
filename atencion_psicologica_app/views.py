@@ -11,7 +11,7 @@ from django.views.generic import CreateView, ListView, DeleteView, TemplateView
 from django.db.models import Q, Count
 from datetime import datetime
 from django.utils.dateparse import parse_date                    
-from .models import persona, municipio, estado, licenciatura, semestre, ingreso_familiar, vive_con, grado_academico, atencion_psicologica
+from .models import atencion_diagnostico_dsm5, persona, municipio, estado, licenciatura, semestre, ingreso_familiar, vive_con, grado_academico, atencion_psicologica
 from asignar_app.models import asignar
 from seguimiento_atencion_app.models import seguimiento_atencion
 from eval_psico_mst_nivel1_app.models import mst_nivel1
@@ -95,8 +95,8 @@ class listadoAtencionesPsicologicas(ListView):
                             solicitante__usuario=usuario1)
         else:
             # el usuario tiene un solo rol y es solicitante?
-            roles_solicitante = UsuarioRol.objects.filter(
-                usuario__usuariorol__rol__nombre='SOLICITANTE')
+            # roles_solicitante = UsuarioRol.objects.filter(usuario__usuariorol__rol__nombre='SOLICITANTE')
+            roles_solicitante = roles_usuario.filter(rol__nombre='SOLICITANTE').distinct()
             # si el rol que tiene es solicitante
             if len(roles_solicitante) > 0:
                 # devolver todas las atenciones del usuario
@@ -270,6 +270,19 @@ class listadoAtencionesPsicologicas(ListView):
                         '<span class="badge badge-light-success">' + 'MST NIVEL 2' + '</span>')
                 except mst_nivel2.DoesNotExist:
                     mst2 = None
+                
+                # motivo de consulta
+                try:
+                    motivo_consulta1 = motivo_consulta.objects.get(atencion=a)
+                    examenes.append(
+                        '<span class="badge badge-light-success">' + 'MOTIVO DE CONSULTA' + '</span>')
+                except motivo_consulta.DoesNotExist:
+                    motivo_consulta1 = None
+                
+                # DSM5
+                if a.diagnostico.count() > 0:
+                    examenes.append(
+                        '<span class="badge badge-light-success">' + 'DSM 5' + '</span>')
 
                 data['id'] = a.id
                 data['fecha_atencion'] = fecha_atencion
@@ -294,7 +307,6 @@ class listadoAtencionesPsicologicas(ListView):
                 data['ssi_beck'] = ssi
                 data['fpp'] = fpp2
                 data['tipo_atencion'] = decidir_valoracion
-                data['detalles'] = None
                 data['grado_academico_otro'] = a.grado_academico_otro
                 data['vive_con_otro'] = a.vive_con_otro
                 lista_atenciones_psicologicas.append(data)
@@ -1380,16 +1392,23 @@ def exportarExamen2(atencion, libro, mst2, beck, dsm5):
     
     # examen SSI BECK
     hoja.write('C24', 'SSI BECK', white_celd_format)
-    hoja.write('D24', 'APLICA' if beck.total > 0 else 'NO APLICA', white_celd_format)
-    hoja.write('E24', beck.total if beck.total else 0, white_celd_format)
-    if beck.nivel == 'Rango normal o asintomático':
-        hoja.write('F24', beck.nivel, green_celd_format)
-    elif beck.nivel == 'Leve':
-        hoja.write('F24', beck.nivel, yellow_celd_format)
-    elif beck.nivel == 'Moderado':
-        hoja.write('F24', beck.nivel, orange_celd_format)
-    elif beck.nivel == 'Severo':
-        hoja.write('F24', beck.nivel, red_celd_format)
+    
+    if beck.nivel == 'No Aplica':
+        hoja.write('D24', 'NO APLICA', white_celd_format)
+        hoja.write('E24', '', white_celd_format)
+        hoja.write('F24', '', white_celd_format)
+    else:
+        hoja.write('D24', 'APLICA', white_celd_format)
+        hoja.write('E24', beck.total if beck.total else 0, white_celd_format)
+    
+        if beck.nivel == 'Rango normal o asintomático':
+            hoja.write('F24', beck.nivel, green_celd_format)
+        elif beck.nivel == 'Leve':
+            hoja.write('F24', beck.nivel, yellow_celd_format)
+        elif beck.nivel == 'Moderado':
+            hoja.write('F24', beck.nivel, orange_celd_format)
+        elif beck.nivel == 'Severo':
+            hoja.write('F24', beck.nivel, red_celd_format)
     
     hoja.write('G24', 'SSI. En los items 4 y 5 del SSI de BECK puntuo 0 (Cero), ello nos da un primer indicativo de la inexistencia de intencionalidad suicida', blue_celd_format4)
     # observaciones del examen SSI BECK
@@ -2439,12 +2458,15 @@ def createCeld(hoja, columna, valor, red_celd_format, orange_celd_format, yellow
 
 
 def getDatosGraficoSolicitudesAtencion(request):
+    id_user = request.GET.get('id_usuario', '')
+    usuario = Usuario.objects.get(id=id_user)
     data = {}
     total_atenciones = atencion_psicologica.objects.all()
     total_profesores = 0
     total_trabajadores = 0
     total_estudiantes = 0
     total_otros = 0
+    total_atenciones_usuario = atencion_psicologica.objects.filter(solicitante__usuario=usuario)
     
     if len(total_atenciones) > 0:
         for t in total_atenciones:
@@ -2464,5 +2486,6 @@ def getDatosGraficoSolicitudesAtencion(request):
     data['estudiantes'] = total_estudiantes
     data['trabajadores'] = total_trabajadores
     data['otros'] = total_otros
+    data['total_atenciones_usuario'] = len(total_atenciones_usuario)
     
     return JsonResponse({'data': data})

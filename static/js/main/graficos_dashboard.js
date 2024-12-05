@@ -1,13 +1,15 @@
 $(document).ready(function () {
-    // Realizar la solicitud AJAX
     $.ajax({
-        url: 'atencion_psicologica/get_datos_grafico_solicitudes_atencion', // Cambia esta URL a la ruta donde obtendrás los datos
-        method: 'GET', // Método de la solicitud (GET o POST)
-        dataType: 'json', // Tipo de datos que esperas recibir
+        url: 'atencion_psicologica/get_datos_grafico_solicitudes_atencion',
+        method: 'GET',
+        data: {
+          id_usuario: $('#user_autenticado').val()
+        },
+        dataType: 'json',
         success: function(data) {
           console.log(data, 'data');
-            // Actualiza el total de solicitudes
-            $('#total_solicitudes_atencion').text(data.total); // Cambia 'data.total' según tu estructura de datos
+            $('#total_solicitudes_atencion h6').text(data.data.total);
+            $('#total_solicitudes_usuario h6').text(data.data.total_atenciones_usuario);
 
             var chartData = [
               {
@@ -28,7 +30,6 @@ $(document).ready(function () {
               },
             ];
 
-            // Configuración del gráfico de donuts
             const chartOptions = {
                 tooltip: {
                     trigger: 'item'
@@ -56,17 +57,15 @@ $(document).ready(function () {
                     labelLine: {
                         show: false
                     },
-                    data: chartData // Asigna los datos del gráfico aquí
+                    data: chartData
                 }]
             };
 
-            // Inicializa y establece las opciones del gráfico
             const myChart = echarts.init(document.querySelector("#solicitudes_atencion_charts"));
             myChart.setOption(chartOptions);
         },
         error: function(xhr, status, error) {
-            console.error('Error en la solicitud AJAX:', error); // Manejo de errores
-            $('#total_solicitudes_atencion').text('Error al cargar datos'); // Mensaje de error
+          console.error('Error en la solicitud AJAX:', error);
         }
     });
 });

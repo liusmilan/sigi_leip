@@ -6,7 +6,8 @@
         <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_hc'></button>
       </div>
       <div class="modal-body">
-        <form id="form_hc">
+        <form id="form_hc" name="form_hc">
+          {% csrf_token %}
           <input type="hidden" class="form-control" id="id_usuario">
 
           <ul class="nav nav-tabs" id="myTab" role="tablist">

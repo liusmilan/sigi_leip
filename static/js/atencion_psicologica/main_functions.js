@@ -779,8 +779,14 @@ var atenciones_psicologicas = function() {
 
             if (listaRoles.length == 1) {
               if (listaRoles.includes("SOLICITANTE")) {
+                tabla.columns(2).visible(false);
+                tabla.columns(3).visible(false);
+                tabla.columns(4).visible(false);
+                tabla.columns(5).visible(false);
                 tabla.columns(6).visible(false);
                 tabla.columns(7).visible(false);
+                tabla.columns(8).visible(false);
+                tabla.columns(9).visible(false);
               }
             }
           },

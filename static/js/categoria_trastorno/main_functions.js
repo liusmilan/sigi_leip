@@ -7,7 +7,7 @@ var categoria_trastorno = function() {
     /== evento para mostrar modal de agregar categoria de trastorno ==/
     $('#btn_nuevo_categoria_trastorno').on('click', function() {
       $('#modal_agregar_editar_categoria_trastorno').modal('show');
-      $('#modal_agregar_editar_categoria_trastorno').find('.modal-title').text('Agregar Categoría de Trastornos del MSD-5');
+      $('#modal_agregar_editar_categoria_trastorno').find('.modal-title').text('Agregar Categoría de Trastornos del DSM-5');
       $('#btn_agregar_categoria_trastorno').text('Agregar');
       limpiarCampos();
     });
@@ -89,7 +89,7 @@ var categoria_trastorno = function() {
     /== evento para llenar los campos del modal editar categoria de trastorno ==/
     $('#btn_editar_categoria_trastorno').on('click', function() {
       $('#modal_agregar_editar_categoria_trastorno').modal('show');
-      $('#modal_agregar_editar_categoria_trastorno').find('.modal-title').text('Editar Categoría de Trastorno del MSD-5');
+      $('#modal_agregar_editar_categoria_trastorno').find('.modal-title').text('Editar Categoría de Trastorno del DSM-5');
       $('#btn_agregar_categoria_trastorno').text('Editar');
       let id = $('#id_categoria_trastorno').val();
 
@@ -229,6 +229,34 @@ var categoria_trastorno = function() {
 
   /== funcion para eliminar un categoria de trastorno ==/
   function eliminarCategoriaTrastorno(id) {
+    // verificar que la categoria no tenga grupos asociados
+    $.ajax({
+      url: "/grupo_trastorno/get_grupos_by_categoria",
+      data: {
+        id_categoria: id
+      },
+      dataType: "json",
+      success: function(response) {
+        if (response.mensaje == 'success') {
+          if (response.grupos.length > 0) {
+            notificacion('Error', 'No se puede eliminar la categoría seleccionada porque tiene un Grupo de Trastorno asociado', 'error');
+          } else {
+            eliminar(id);
+          }
+        }
+      },
+      error: function(response) { }
+    });
+  }
+
+  /== funcion para limpiar los campos del modal categoria de trastorno ==/
+  function limpiarCampos() {
+    $('#id_categoria_trastorno').val('');
+    $('#nombre_categoria_trastorno').val('');
+    $("#estado_categoria_trastorno").prop("checked", false);
+  }
+
+  function eliminar(id) {
     $.ajax({
       url: "/categoria_trastorno/eliminar_categoria_trastorno",
       data: {
@@ -255,17 +283,8 @@ var categoria_trastorno = function() {
           notificacion('Eliminación fallida', response.mensaje, response.tipo_mensaje);
         }
       },
-      error: function(response) {
-
-      }
-    });            
-  }
-
-  /== funcion para limpiar los campos del modal categoria de trastorno ==/
-  function limpiarCampos() {
-    $('#id_categoria_trastorno').val('');
-    $('#nombre_categoria_trastorno').val('');
-    $("#estado_categoria_trastorno").prop("checked", false);
+      error: function(response) { }
+    });
   }
 
   return {

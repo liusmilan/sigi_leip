@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import CreateView, TemplateView
 from .models import fpp, atencion_psicologica
+from asignar_app.models import asignar
+from usuario_app.views import existeRol
 
 
 # Create your views here.
@@ -125,8 +127,18 @@ class getFPP(TemplateView):
     def get(self, request, *args, **kwargs):
         id_atencion = request.GET.get('id_atencion', '')
         atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
+        id_user = request.GET.get('id_usuario', '')
         data = {}
+        
+        try:
+            evaluador_obj = asignar.objects.get(atencion=atencion_obj)
+            evaluador = True            
+        except asignar.DoesNotExist:
+            evaluador = False
 
+        print('//////////////////////////////////////////////////////////////////')
+        print(existeRol(id_user, 'SOLICITANTE'))
+        print(existeRol(id_user, 'SOLICITANTE').get('existe'))
         try:
             f = fpp.objects.get(atencion=atencion_obj)
             data['pregunta1'] = f.pregunta1
@@ -166,6 +178,9 @@ class getFPP(TemplateView):
             data['color'] = f.color
             data['nivel'] = f.nivel
             data['observaciones'] = f.observaciones
+            data['evaluador'] = evaluador
+            data['roles'] = {'solicitante': True if existeRol(id_user, 'SOLICITANTE').get('existe') == True and existeRol(id_user, 'SOLICITANTE').get('cant') == 1 else False,
+                             'administrador': existeRol(id_user, 'ADMINISTRADOR').get('existe')}
             data['mensaje'] = 'existe'
             return JsonResponse(data)
         except fpp.DoesNotExist:

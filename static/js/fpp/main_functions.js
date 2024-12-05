@@ -11,7 +11,10 @@ var fpp = function() {
       $.ajax({
         url: "/fpp/get_fpp",
         type: "get",
-        data: {id_atencion: id_atencion},
+        data: {
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
+        },
         dataType: "json",
         success: function(response) {
           if (response.mensaje == 'existe') {
@@ -174,7 +177,8 @@ var fpp = function() {
       $.ajax({
         url: "/fpp/get_fpp",
         data: {
-          id_atencion: id_atencion
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
         },
         dataType: "json",
         success: function(response) {
@@ -185,13 +189,30 @@ var fpp = function() {
             $('#modal_fpp').modal('show');
             $('#modal_fpp').find('.modal-title').text('Evaluación Psicológica (FPP)');
             accion = 'editar';
-            $('#box_evaluacion_fpp').css('display', 'block');
-            var clase_span = $('#evaluacion_fpp').attr('class');
-            $('#evaluacion_fpp').removeClass(clase_span);
-            $('#evaluacion_fpp').text(response.total);
-            $('#evaluacion_fpp').addClass('badge bg-badge-gray');
             
             $('#observaciones_fpp').val(response.observaciones);
+
+            if (response.evaluador == true && response.roles.solicitante == true) {
+              $('#btn_agregar_fpp').css('display', 'none');
+              $('#box_evaluacion_fpp').css('display', 'none');
+              $('#box_questions_fpp').find('input, textarea, select, button').prop('disabled', false);
+            } else if (response.roles.administrador == true) {
+              $('#btn_agregar_fpp').css('display', 'block');
+              $('#box_evaluacion_fpp').css('display', 'block');
+              var clase_span = $('#evaluacion_fpp').attr('class');
+              $('#evaluacion_fpp').removeClass(clase_span);
+              $('#evaluacion_fpp').text(response.total);
+              $('#evaluacion_fpp').addClass('badge bg-badge-gray');
+              $('#box_questions_fpp').find('input, textarea, select, button').prop('disabled', false);
+            } else {
+              $('#btn_agregar_fpp').css('display', 'block');
+              $('#box_evaluacion_fpp').css('display', 'block');
+              var clase_span = $('#evaluacion_fpp').attr('class');
+              $('#evaluacion_fpp').removeClass(clase_span);
+              $('#evaluacion_fpp').text(response.total);
+              $('#evaluacion_fpp').addClass('badge bg-badge-gray');
+              $('#box_questions_fpp').find('input, textarea, select, button').prop('disabled', true);
+            }
 
             if (response.pregunta1) {
               marcarPreguntas('uno', response.pregunta1);

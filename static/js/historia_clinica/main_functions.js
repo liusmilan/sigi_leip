@@ -442,7 +442,6 @@ var historia_clinica = (function () {
           listChecksPensamientos.push($(this).attr('id'));
         });
 
-
         var params = {
           accion: accion,
           id_usuario_autenticado: id_usuario_autenticado,
@@ -512,9 +511,11 @@ var historia_clinica = (function () {
         console.log(params, 'params');
 
         $.ajax({
-          url: "/historia_clinica/agregar_editar_hc",
+          type: 'POST',
+          url: "/historia_clinica/agregar_editar_hc/",
           data: {
-            params: JSON.stringify(params)
+            params: JSON.stringify(params),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(), // Token CSRF necesario
           },
           dataType: "json",
           success: function(response) {
@@ -732,6 +733,7 @@ var historia_clinica = (function () {
             $('#que_espera_terapia_hc').val(response.piensa_espera_terapia);
             $('#que_espera_terapia_hc').val(response.piensa_espera_terapia);
             $('#cuanto_durara_terapia_hc').val(response.tiempo_terapia);
+            $('#caract_terapeuta_hc').val(response.caract_posee_terapeuta);
 
             // seccion 5
             //  conductas
@@ -2056,7 +2058,6 @@ var historia_clinica = (function () {
     // observaciones
     $('#observaciones_hc').val('');
   }
-
 
   return {
     init: function () {

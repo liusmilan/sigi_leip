@@ -45,17 +45,82 @@
     </div>
   </div>
 
-  <div class="col-lg-4">
-    <!--Solicitudes de Atención Charts-->
-    <div class="card">
-      <div class="card-body pb-0">
-        <h5 class="card-title">Solicitudes de Atención <span id='total_solicitudes_atencion'></span></h5>
+  {% with user_roles=request.user.rol.all %}
+    {% if user_roles|length == 1 %}
+        {% if user_roles.0.nombre == 'SOLICITANTE' %}
+            <div class="col-lg-4">
+              <div class="card info-card customers-card">
+                <div class="card-body">
+                  <h5 class="card-title">Solicitudes de Atención <span>| Sistema</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3" id='total_solicitudes_atencion'>
+                      <h6></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <div id="solicitudes_atencion_charts" style="min-height: 400px;" class="echart"></div>
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Solicitudes de Atención <span>| Usuario</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3" id='total_solicitudes_usuario'>
+                      <h6></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="col-lg-4">
+          <div class="card info-card customers-card">
+            <div class="card-body">
+              <h5 class="card-title">Solicitudes de Atención <span>| Sistema</span></h5>
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-people"></i>
+                </div>
+                <div class="ps-3" id='total_solicitudes_atencion'>
+                  <h6></h6>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      </div>
-    </div>
-  </div>
+          <div class="card info-card revenue-card">
+            <div class="card-body">
+              <h5 class="card-title">Solicitudes de Atención <span>| Usuario</span></h5>
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-person"></i>
+                </div>
+                <div class="ps-3" id='total_solicitudes_usuario'>
+                  <h6></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <!--Solicitudes de Atención Charts-->
+          <div class="card">
+            <div class="card-body pb-0">
+              <h5 class="card-title">Solicitudes de Atención <span >| Personas</span></h5>
+              <div id="solicitudes_atencion_charts" style="min-height: 400px;" class="echart"></div>
+            </div>
+          </div>
+        </div>
+    {% endif %}
+  {% endwith %}
+  
 {% endblock %}
 
 {% block scripts %}

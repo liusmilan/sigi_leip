@@ -57,9 +57,9 @@
                   </div>
 
                   {% if messages %}
-                    <div id='message-container' style='display:none;'>
+                    <div class="alert alert-danger" role="alert">
                       {% for message in messages %}
-                        <div class='{{ message.tags }}'>{{ message }} </div>
+                        {{ message }}
                       {% endfor %}
                     </div>
                   {% endif %}

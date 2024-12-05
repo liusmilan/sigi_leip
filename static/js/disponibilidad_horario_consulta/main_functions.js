@@ -1,6 +1,7 @@
 var disponibilidad_horario_consulta = function() {
   var $ = jQuery.noConflict();
   var accion = '';
+  var id_atencion = '';
   const listaHorasMC = [
     {
       id: 0,
@@ -198,7 +199,7 @@ var disponibilidad_horario_consulta = function() {
 
     /== evento para mostrar modal editar disponibilidad horario consulta ==/
     $('#btn_edit_disponibilidad_consulta').on('click', function() {
-      var id_atencion = $('#id_atencion').val();
+      id_atencion = $('#id_atencion').val();
 
       $.ajax({
         url: "/disponibilidad_horario_consulta/get_disponibilidad_horario_consulta_by_atencion",
@@ -215,6 +216,9 @@ var disponibilidad_horario_consulta = function() {
             $('#modal_disponibilidad_horario_consulta').find('.modal-title').text('Disponibilidad de Horario de Consulta');
             $('#btn_guardar_disponibilidad_horario_consulta').text('Guardar');
             accion = 'editar';
+
+            $('#box_edit_horarios_disponibilidad').css('display', 'block');
+            $('#card_horarios_dispobilidad').find('input, textarea, select, button').prop('disabled', true);
 
             if (response.horario_lunes.horas != '') {
               $('#box_lunes_').css('display','block');
@@ -490,7 +494,18 @@ var disponibilidad_horario_consulta = function() {
       }
     });
 
-    
+    /== evento para mostrar los horarios del nomenclador cuando se seleccione el check en modal editar ==/
+    $('#check_edit_disp').on('change', function() {
+      if (this.checked) {
+        $('#card_horarios_dispobilidad').find('input, textarea, select, button').prop('disabled', false);
+        horariosAccionAgregar();
+        console.log('agregar');
+      } else {
+        $('#card_horarios_dispobilidad').find('input, textarea, select, button').prop('disabled', true);
+        horariosAccionEditar();
+        console.log('editar');
+      }
+    });
   }
 
   function mostrarModal(mensaje) {
@@ -501,74 +516,11 @@ var disponibilidad_horario_consulta = function() {
       $('#modal_disponibilidad_horario_consulta').modal('show');
       $('#modal_disponibilidad_horario_consulta').find('.modal-title').text('Disponibilidad de Horario de Consulta');
       accion = 'agregar';
+
+      $('#box_edit_horarios_disponibilidad').css('display', 'none');
+      $('#card_horarios_dispobilidad').find('input, textarea, select, button').prop('disabled', false);
       
-      $.ajax({
-        url: "/horario/horario_consulta_psicoterapeutica",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
-          if (response[0].horario_lunes.horas != '') {
-            $('#box_lunes_disp').css('display','block');
-            var horas_lunes = (response[0].horario_lunes.horas).split(',');
-            llenarSelectHoras('#horas_disp_lunes', horas_lunes, accion);
-            $('#check_disp_lunes').prop('checked', true);
-          } else {
-            $('#box_lunes_disp').css('display','none');
-            $('#check_disp_lunes').prop('checked', false);
-          }
-
-          if (response[0].horario_martes.horas != '') {
-            $('#box_martes_disp').css('display','block');
-            var horas_martes = (response[0].horario_martes.horas).split(',');
-            llenarSelectHoras('#horas_disp_martes', horas_martes, accion);
-            $('#check_disp_martes').prop('checked', true);
-          } else {
-            $('#box_martes_disp').css('display','none');
-            $('#check_disp_martes').prop('checked', false);
-          }
-
-          if (response[0].horario_miercoles.horas != '') {
-            $('#box_miercoles_disp').css('display','block');
-            var horas_miercoles = (response[0].horario_miercoles.horas).split(',');
-            llenarSelectHoras('#horas_disp_miercoles', horas_miercoles, accion);
-            $('#check_disp_miercoles').prop('checked', true);
-          } else {
-            $('#box_miercoles_disp').css('display','none');
-            $('#check_disp_miercoles').prop('checked', false);
-          }
-
-          if (response[0].horario_jueves.horas != '') {
-            $('#box_jueves_disp').css('display','block');
-            var horas_jueves = (response[0].horario_jueves.horas).split(',');
-            llenarSelectHoras('#horas_disp_jueves', horas_jueves, accion);
-            $('#check_disp_jueves').prop('checked', true);
-          } else {
-            $('#box_jueves_disp').css('display','none');
-            $('#check_disp_jueves').prop('checked', false);
-          }
-
-          if (response[0].horario_viernes.horas != '') {
-            $('#box_viernes_disp').css('display','block');
-            var horas_viernes = (response[0].horario_viernes.horas).split(',');
-            llenarSelectHoras('#horas_disp_viernes', horas_viernes, accion);
-            $('#check_disp_viernes').prop('checked', true);
-          } else {
-            $('#box_viernes_disp').css('display','none');
-            $('#check_disp_viernes').prop('checked', false);
-          }
-
-          if (response[0].horario_sabado.horas != '') {
-            $('#box_sabado_disp').css('display','block');
-            var horas_sabado = (response[0].horario_sabado.horas).split(',');
-            llenarSelectHoras('#horas_disp_sabado', horas_sabado, accion);
-            $('#check_disp_sabado').prop('checked', true);
-          } else {
-            $('#box_sabado_disp').css('display','none');
-            $('#check_disp_sabado').prop('checked', false);
-          }
-        },
-        error: function(response) {}
-      });
+      horariosAccionAgregar();
     }
   }
   
@@ -631,6 +583,179 @@ var disponibilidad_horario_consulta = function() {
     }
 
     return error;
+  }
+
+  function horariosAccionAgregar() {
+    $.ajax({
+      url: "/horario/horario_consulta_psicoterapeutica",
+      type: "get",
+      dataType: "json",
+      success: function(response) {
+        if (response[0].horario_lunes.horas != '') {
+          $('#box_lunes_disp').css('display','block');
+          var horas_lunes = (response[0].horario_lunes.horas).split(',');
+          llenarSelectHoras('#horas_disp_lunes', horas_lunes, accion);
+          $('#check_disp_lunes').prop('checked', true);
+        } else {
+          $('#box_lunes_disp').css('display','none');
+          $('#check_disp_lunes').prop('checked', false);
+        }
+
+        if (response[0].horario_martes.horas != '') {
+          $('#box_martes_disp').css('display','block');
+          var horas_martes = (response[0].horario_martes.horas).split(',');
+          llenarSelectHoras('#horas_disp_martes', horas_martes, accion);
+          $('#check_disp_martes').prop('checked', true);
+        } else {
+          $('#box_martes_disp').css('display','none');
+          $('#check_disp_martes').prop('checked', false);
+        }
+
+        if (response[0].horario_miercoles.horas != '') {
+          $('#box_miercoles_disp').css('display','block');
+          var horas_miercoles = (response[0].horario_miercoles.horas).split(',');
+          llenarSelectHoras('#horas_disp_miercoles', horas_miercoles, accion);
+          $('#check_disp_miercoles').prop('checked', true);
+        } else {
+          $('#box_miercoles_disp').css('display','none');
+          $('#check_disp_miercoles').prop('checked', false);
+        }
+
+        if (response[0].horario_jueves.horas != '') {
+          $('#box_jueves_disp').css('display','block');
+          var horas_jueves = (response[0].horario_jueves.horas).split(',');
+          llenarSelectHoras('#horas_disp_jueves', horas_jueves, accion);
+          $('#check_disp_jueves').prop('checked', true);
+        } else {
+          $('#box_jueves_disp').css('display','none');
+          $('#check_disp_jueves').prop('checked', false);
+        }
+
+        if (response[0].horario_viernes.horas != '') {
+          $('#box_viernes_disp').css('display','block');
+          var horas_viernes = (response[0].horario_viernes.horas).split(',');
+          llenarSelectHoras('#horas_disp_viernes', horas_viernes, accion);
+          $('#check_disp_viernes').prop('checked', true);
+        } else {
+          $('#box_viernes_disp').css('display','none');
+          $('#check_disp_viernes').prop('checked', false);
+        }
+
+        if (response[0].horario_sabado.horas != '') {
+          $('#box_sabado_disp').css('display','block');
+          var horas_sabado = (response[0].horario_sabado.horas).split(',');
+          llenarSelectHoras('#horas_disp_sabado', horas_sabado, accion);
+          $('#check_disp_sabado').prop('checked', true);
+        } else {
+          $('#box_sabado_disp').css('display','none');
+          $('#check_disp_sabado').prop('checked', false);
+        }
+      },
+      error: function(response) {}
+    });
+  }
+
+  function horariosAccionEditar() {
+    console.log(id_atencion);
+    $.ajax({
+      url: "/disponibilidad_horario_consulta/get_disponibilidad_horario_consulta_by_atencion",
+      data: {
+        id_atencion: id_atencion
+      },
+      dataType: "json",
+      success: function(response) {
+        if (response.horario_lunes.horas != '') {
+          $('#box_lunes_').css('display','block');
+          var horas_lunes = [];
+
+          for (it in JSON.parse(response.horario_lunes.horas)) {
+            horas_lunes.push(JSON.parse(response.horario_lunes.horas)[it].fields.hora);
+          }
+          
+          llenarSelectHoras('#horas_disp_lunes', horas_lunes, accion);
+          $('#check_disp_lunes').prop('checked', true);
+        } else {
+          $('#box_lunes_disp').css('display','none');
+          $('#check_disp_lunes').prop('checked', false);
+        }
+  
+        if (response.horario_martes.horas != '') {
+          $('#box_martes_disp').css('display','block');
+          var horas_martes = [];
+
+          for (it in JSON.parse(response.horario_martes.horas)) {
+            horas_martes.push(JSON.parse(response.horario_martes.horas)[it].fields.hora)
+          }
+
+          llenarSelectHoras('#horas_disp_martes', horas_martes, accion);
+          $('#check_disp_martes').prop('checked', true);
+        } else {
+          $('#box_martes_disp').css('display','none');
+          $('#check_disp_martes').prop('checked', false);
+        }
+  
+        if (response.horario_miercoles.horas != '') {
+          $('#box_miercoles_disp').css('display','block');
+          var horas_miercoles = [];
+
+          for (it in JSON.parse(response.horario_miercoles.horas)) {
+            horas_miercoles.push(JSON.parse(response.horario_miercoles.horas)[it].fields.hora)
+          }
+
+          llenarSelectHoras('#horas_disp_miercoles', horas_miercoles, accion);
+          $('#check_disp_miercoles').prop('checked', true);
+        } else {
+          $('#box_miercoles_disp').css('display','none');
+          $('#check_disp_miercoles').prop('checked', false);
+        }
+  
+        if (response.horario_jueves.horas != '') {
+          $('#box_jueves_disp').css('display','block');
+          var horas_jueves = [];
+
+          for (it in JSON.parse(response.horario_jueves.horas)) {
+            horas_jueves.push(JSON.parse(response.horario_jueves.horas)[it].fields.hora)
+          }
+
+          llenarSelectHoras('#horas_disp_jueves', horas_jueves, accion);
+          $('#check_disp_jueves').prop('checked', true);
+        } else {
+          $('#box_jueves_disp').css('display','none');
+          $('#check_disp_jueves').prop('checked', false);
+        }
+  
+        if (response.horario_viernes.horas != '') {
+          $('#box_viernes_disp').css('display','block');
+          var horas_viernes = [];
+
+          for (it in JSON.parse(response.horario_viernes.horas)) {
+            horas_viernes.push(JSON.parse(response.horario_viernes.horas)[it].fields.hora)
+          }
+
+          llenarSelectHoras('#horas_disp_viernes', horas_viernes, accion);
+          $('#check_disp_viernes').prop('checked', true);
+        } else {
+          $('#box_viernes_disp').css('display','none');
+          $('#check_disp_viernes').prop('checked', false);
+        }
+  
+        if (response.horario_sabado.horas != '') {
+          $('#box_sabado_disp').css('display','block');
+          var horas_sabado = [];
+
+          for (it in JSON.parse(response.horario_sabado.horas)) {
+            horas_sabado.push(JSON.parse(response.horario_sabado.horas)[it].fields.hora)
+          }
+
+          llenarSelectHoras('#horas_disp_sabado', horas_sabado, accion);
+          $('#check_disp_sabado').prop('checked', true);
+        } else {
+          $('#box_sabado_disp').css('display','none');
+          $('#check_disp_sabado').prop('checked', false);
+        }
+      },
+      error: function(response) {}
+    });
   }
 
   return {

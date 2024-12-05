@@ -4,6 +4,8 @@ from django.views.generic import CreateView, ListView, DeleteView, TemplateView
 from django.http import HttpResponse, JsonResponse
 from .models import motivo_consulta, horario_motivo_consulta
 from .models import atencion_psicologica
+from asignar_app.models import asignar
+from usuario_app.views import existeRol
 
 
 # Create your views here.
@@ -128,8 +130,15 @@ class getMotivoConsultaByAtencion(TemplateView):
 
     def get(self, request, *args, **kwargs):
         id_atencion = request.GET.get('id_atencion', '')
+        id_user = request.GET.get('id_usuario', '')
         atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
         data = {}
+        
+        try:
+            evaluador_obj = asignar.objects.get(atencion=atencion_obj)
+            evaluador = True            
+        except asignar.DoesNotExist:
+            evaluador = False
 
         try:
             mc = motivo_consulta.objects.get(atencion=atencion_obj)
@@ -149,6 +158,9 @@ class getMotivoConsultaByAtencion(TemplateView):
             data['horario_jueves'] = data_jueves
             data['horario_viernes'] = data_viernes
             data['horario_sabado'] = data_sabado
+            data['evaluador'] = evaluador
+            data['roles'] = {'solicitante': True if existeRol(id_user, 'SOLICITANTE').get('existe') == True and existeRol(id_user, 'SOLICITANTE').get('cant') == 1 else False,
+                             'administrador': existeRol(id_user, 'ADMINISTRADOR').get('existe')}
             data['mensaje'] = 'existe'
             return JsonResponse(data)
         except motivo_consulta.DoesNotExist:

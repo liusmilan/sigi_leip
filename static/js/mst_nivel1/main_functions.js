@@ -11,7 +11,10 @@ var mst_nivel1 = function() {
       $.ajax({
         url: "/mst_nivel1/get_mst_nivel1",
         type: "get",
-        data: {id_atencion: id_atencion},
+        data: {
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
+        },
         dataType: "json",
         success: function(response) {
           if (response.mensaje == 'existe') {
@@ -153,7 +156,8 @@ var mst_nivel1 = function() {
       $.ajax({
         url: "/mst_nivel1/get_mst_nivel1",
         data: {
-          id_atencion: id_atencion
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
         },
         dataType: "json",
         success: function(response) {
@@ -164,14 +168,28 @@ var mst_nivel1 = function() {
             $('#modal_mst_nivel1').modal('show');
             $('#modal_mst_nivel1').find('.modal-title').text('Evaluación Psicológica (MST Nivel 1)');
             accion = 'editar';
-            $('#box_evaluacion_mst1').css('display', 'block');
-            var clase_span = $('#evaluacion_mst1').attr('class');
-            $('#evaluacion_mst1').removeClass(clase_span);
-            $('#evaluacion_mst1').text(response.total + ' - ' + response.nivel);
-            $('#evaluacion_mst1').addClass('badge bg-badge-' + devolverColor(response.nivel).color);
-
-
+            
             $('#observaciones_mst1').val(response.observaciones);
+
+            if (response.evaluador == true && response.roles.solicitante == true) {
+              $('#btn_agregar_mst_nivel1').css('display', 'none');
+              $('#box_evaluacion_mst1').css('display', 'none');
+            } else if (response.roles.administrador == true) {
+              $('#btn_agregar_mst_nivel1').css('display', 'block');
+              $('#box_evaluacion_mst1').css('display', 'block');
+              var clase_span = $('#evaluacion_mst1').attr('class');
+              $('#evaluacion_mst1').removeClass(clase_span);
+              $('#evaluacion_mst1').text(response.total + ' - ' + response.nivel);
+              $('#evaluacion_mst1').addClass('badge bg-badge-' + devolverColor(response.nivel).color);
+            } else {
+              $('#btn_agregar_mst_nivel1').css('display', 'block');
+              $('#box_evaluacion_mst1').css('display', 'block');
+              var clase_span = $('#evaluacion_mst1').attr('class');
+              $('#evaluacion_mst1').removeClass(clase_span);
+              $('#evaluacion_mst1').text(response.total + ' - ' + response.nivel);
+              $('#evaluacion_mst1').addClass('badge bg-badge-' + devolverColor(response.nivel).color);
+              $('#box_questions_mst1').find('input, textarea, select, button').prop('disabled', true);
+            }
 
             marcarPreguntas('uno', response.pregunta1);
             marcarPreguntas('dos', response.pregunta2);

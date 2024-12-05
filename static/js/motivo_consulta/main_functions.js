@@ -187,7 +187,10 @@ var motivo_consulta = function() {
       $.ajax({
         url: "/motivo_consulta/get_motivo_consulta_by_atencion",
         type: "get",
-        data: {id_atencion: id_atencion},
+        data: {
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
+        },
         dataType: "json",
         success: function(response) {
           mostrarModal(response.mensaje);
@@ -203,7 +206,8 @@ var motivo_consulta = function() {
       $.ajax({
         url: "/motivo_consulta/get_motivo_consulta_by_atencion",
         data: {
-          id_atencion: id_atencion
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
         },
         dataType: "json",
         success: function(response) {
@@ -213,14 +217,24 @@ var motivo_consulta = function() {
           } else {
             $('#modal_motivo_consulta').modal('show');
             $('#modal_motivo_consulta').find('.modal-title').text('Motivo de Consulta');
-            $('#btn_guardar_motivo_consulta').text('Guardar');
             $('#pregunta_tres').val(response.pregunta_tres);
             llenarDatosPreguntaUno(response.pregunta_uno);
             llenarDatosPreguntaDos(response.pregunta_dos);
             accion = 'editar';
 
+            if (response.evaluador == true && response.roles.solicitante == true) {
+              $('#box_questions_mc').find('input, textarea, select, button').prop('disabled', true);
+              $('#btn_guardar_motivo_consulta').css('display', 'none');
+            } else if (response.roles.administrador == true) {
+              $('#btn_guardar_motivo_consulta').css('display', 'block');
+              $('#box_questions_mc').find('input, textarea, select, button').prop('disabled', false);
+            } else {
+              $('#box_questions_mc').find('input, textarea, select, button').prop('disabled', true);
+              $('#btn_guardar_motivo_consulta').css('display', 'none');
+            }
+
             $('#box_edit_horarios').css('display', 'block');
-             $('#card_horarios').find('input, textarea, select, button').prop('disabled', true);
+            $('#card_horarios').find('input, textarea, select, button').prop('disabled', true);
 
             //pregunta_ cuatro
             if (response.horario_lunes.horas != '') {
@@ -506,41 +520,6 @@ var motivo_consulta = function() {
     $(select).trigger("chosen:updated").trigger("change");
   }
 
-  // function llenarSelectHorasEditar(select, arregloHoras) {
-  //   $.ajax({
-  //     url: "/horario/horario_cita_valoracion",
-  //     type: "get",
-  //     dataType: "json",
-  //     success: function(response) {
-        
-  //     },
-  //     error: function(response) {}
-  //   });
-
-
-
-  //   // limpiar select
-  //   $.each($(select).find("option"), function (key, value) {
-  //     $(value).remove();
-  //   });
-
-  //   for(var i=0; i<arregloHoras.length-1; i++) {
-  //     var opt = devolverValueOption(arregloHoras[i]);
-      
-  //     if (opt != '') {
-  //       var option = opt;
-  //       $(select).find("option").end().append(option.attr('selected', true));
-  //     }
-  //   }
-
-  //   $(select).trigger("chosen:updated").trigger("change");
-
-
-
-
-    
-  // }
-
   function devolverValueOption(id) {
     var option = '';
 
@@ -641,6 +620,7 @@ var motivo_consulta = function() {
       $('#check_estado_uno').prop('checked', true);
       accion = 'agregar';
       $('#box_edit_horarios').css('display', 'none');
+      $('#card_horarios').find('input, textarea, select, button').prop('disabled', false);
       
       horariosAccionAgregar();
     }  

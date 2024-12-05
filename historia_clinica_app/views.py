@@ -15,13 +15,13 @@ def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
-class agregarEditarHistoriaClinica(CreateView):
-    model = historia_clinica
+def agregarEditarHistoriaClinica(request):
+    # model = historia_clinica
 
-    def get(self, request, *args, **kwargs):
+    # def get(self, request, *args, **kwargs):
         dataDic = {}
         dataPersonaDic = {}
-        params = request.GET.get('params', '')
+        params = request.POST.get('params', '')
         datos_hc = json.loads(params)
         accion = datos_hc.get('accion')
         id_atencion = datos_hc.get('id_atencion')

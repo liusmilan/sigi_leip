@@ -1,6 +1,7 @@
 import json
 from typing import Any
 from django import http
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -38,6 +39,10 @@ class Login(FormView):
     def form_valid(self, form):
         login(self.request, form.get_user())
         return super(Login, self).form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request, "Usuario o contraseña incorrectos.")
+        return super(Login, self).form_invalid(form)
 
 
 def logoutUsuario(request):
@@ -281,3 +286,17 @@ def agregarUsuarioSinAutenticacion(request):
     tipo_mensaje = 'success'
     result = JsonResponse({'tipo_mensaje': tipo_mensaje})
     return result
+
+# metodo que busca si un usuario tiene un solo rol
+def existeRol(id_user, nombre_rol):
+    existe = False
+    usuario1 = Usuario.objects.get(id=id_user)
+    roles_usuario = UsuarioRol.objects.filter(usuario=usuario1)
+    roles_solicitante = roles_usuario.filter(rol__nombre=nombre_rol).distinct()
+
+    if len(roles_solicitante) > 0:
+        existe = True
+    else:
+        existe = False
+    
+    return {'existe': existe, 'cant': len(roles_usuario)}
