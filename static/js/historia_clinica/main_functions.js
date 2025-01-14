@@ -10,6 +10,7 @@ var historia_clinica = (function () {
   var id_religion = "";
   var id_grado_academico = "";
 
+
   $(".fecha_nacimiento_seccion1_hc").datepicker({
     format: "dd/mm/yyyy",
     language: "es",
@@ -28,6 +29,8 @@ var historia_clinica = (function () {
   });
 
   function initEvents() {
+    const formLocker = new FormLocker('form_hc');
+
     /== evento para mostrar modal de hc ==/;
     $("#btn_add_historia_clinica").on("click", function () {
       var id_atencion = $("#id_atencion").val();
@@ -35,12 +38,19 @@ var historia_clinica = (function () {
       $.ajax({
         url: "/historia_clinica/get_hc",
         type: "get",
-        data: {id_atencion: id_atencion},
+        data: {
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
+        },
         dataType: "json",
         success: function(response) {
+          console.log(response, ' response');
           if (response.mensaje == 'existe') {
             deseleccionarFilasTabla();
             notificacion('Error', 'Ya existe una Historia Clínica registrada para esta Atención.', 'error');
+          } else if (response.psicoterapeuta == false && response.roles.solicitante == true) {
+            deseleccionarFilasTabla();
+            notificacion('Warning', 'Aún no se le han asignado consultas, por lo que no puede realizar la Historia Clínica.', 'warning');
           } else {
             llenarCampoAplicadoPor();
             crearSelectsFormularioHc();
@@ -399,6 +409,14 @@ var historia_clinica = (function () {
       }
     });
 
+     $('#check_cerrada').change(function() {
+      if ($(this).is(':checked')) {
+        $('#lbl_cerrada').text('Abierta');
+      } else {
+        $('#lbl_cerrada').text('Cerrada');
+      }
+    });
+
     /== evento para agregar HC ==/
     $('#form_hc').on('submit', function(e) {
       e.preventDefault();
@@ -412,139 +430,146 @@ var historia_clinica = (function () {
         $('#btn_agregar_hc').html(textOriginalBtn);
         notificacion('Error', 'Existen campos obligatorios que no ha llenado o seleccionado', 'error');
       } else {
-        var listChecksInfanciaAdoles = [];
-        var listChecksConductas = [];
-        var listChecksSentimientos = [];
-        var listChecksSensaFisicas = [];
-        var listChecksImgMeVeo = [];
-        var listChecksImgTengo = [];
-        var listChecksPensamientos = [];
+        if (!formLocker.isFormLocked()) {
+          var listChecksInfanciaAdoles = [];
+          var listChecksConductas = [];
+          var listChecksSentimientos = [];
+          var listChecksSensaFisicas = [];
+          var listChecksImgMeVeo = [];
+          var listChecksImgTengo = [];
+          var listChecksPensamientos = [];
 
-        $('.checksInfanciaAdoles:checked').each(function() {
-          listChecksInfanciaAdoles.push($(this).attr('id'));
-        });
-        $('.checkConductas:checked').each(function() {
-          listChecksConductas.push($(this).attr('id'));
-        });
-        $('.checkSentimientos:checked').each(function() {
-          listChecksSentimientos.push($(this).attr('id'));
-        });
-        $('.checkSensaFisicas:checked').each(function() {
-          listChecksSensaFisicas.push($(this).attr('id'));
-        });
-        $('.checkImgMeVeo:checked').each(function() {
-          listChecksImgMeVeo.push($(this).attr('id'));
-        });
-        $('.checkImgTengo:checked').each(function() {
-          listChecksImgTengo.push($(this).attr('id'));
-        });
-        $('.checkPensamientos:checked').each(function() {
-          listChecksPensamientos.push($(this).attr('id'));
-        });
+          $('.checksInfanciaAdoles:checked').each(function() {
+            listChecksInfanciaAdoles.push($(this).attr('id'));
+          });
+          $('.checkConductas:checked').each(function() {
+            listChecksConductas.push($(this).attr('id'));
+          });
+          $('.checkSentimientos:checked').each(function() {
+            listChecksSentimientos.push($(this).attr('id'));
+          });
+          $('.checkSensaFisicas:checked').each(function() {
+            listChecksSensaFisicas.push($(this).attr('id'));
+          });
+          $('.checkImgMeVeo:checked').each(function() {
+            listChecksImgMeVeo.push($(this).attr('id'));
+          });
+          $('.checkImgTengo:checked').each(function() {
+            listChecksImgTengo.push($(this).attr('id'));
+          });
+          $('.checkPensamientos:checked').each(function() {
+            listChecksPensamientos.push($(this).attr('id'));
+          });
 
-        var params = {
-          accion: accion,
-          id_usuario_autenticado: id_usuario_autenticado,
-          id_atencion: id_atencion,
-          datos: $(this).serializeArray(),
-          detalle_prob_hijo: $('#prob_hijo_hc').val(),
-          detalle_pena_sex: $('#detalle_pena_sex_hc').val(),
-          detalle_vida_sex_satisf: $('#detalle_vida_sex_satisf_hc').val(),
-          detalle_rel_trabj: $('#detalle_rel_trabj_hc').val(),
-          detalle_rech_frac_amor: $('#detalle_rech_frac_amor_hc').val(),
-          detalle_prob_salud_fis: $('#detalle_prob_salud_fis_hc').val(),
-          detalle_ejerc_fis: $('#detalle_ejerc_fis_hc').val(),
-          detalle_operado: $('#detalle_operado_hc').val(),
-          medico_cabecera: $('#check_medico_cabecera_si_hc').is(':checked') ? true : $('#check_medico_cabecera_no_hc').is(':checked') ? false : null,
-          peso_varia: $('#check_peso_varia_si_hc').is(':checked') ? true : $('#check_peso_varia_no_hc').is(':checked') ? false : null,
-          gusta_trabajo: $('#check_gusta_trabajo_si_hc').is(':checked') ? true : $('#check_gusta_trabajo_no_hc').is(':checked') ? false : null,
-          terapia_antes: $('#check_terapia_anterior_si_hc').is(':checked') ? true : $('#check_terapia_anterior_no_hc').is(':checked') ? false : null,
-          hospitalizado: $('#check_hospitalizado_si_hc').is(':checked') ? true : $('#check_hospitalizado_no_hc').is(':checked') ? false : null,
-          hacerse_danio_suicidio: $('#check_danio_suicidio_si_hc').is(':checked') ? true : $('#check_danio_suicidio_no_hc').is(':checked') ? false : null,
-          familia_intento_suicidio: $('#check_intento_suicidio_si_hc').is(':checked') ? true : $('#check_intento_suicidio_no_hc').is(':checked') ? false : null,
-          confia_padres: $('#check_confianza_padres_si_hc').is(':checked') ? true : $('#check_confianza_padres_no_hc').is(':checked') ? false : null,
-          sentir_amor_padres: $('#check_sentir_amor_padres_si_hc').is(':checked') ? true : $('#check_sentir_amor_padres_no_hc').is(':checked') ? false : null,
-          familia_interfiere_matrimonio: $('#check_interferencia_si_hc').is(':checked') ? true : $('#check_interferencia_no_hc').is(':checked') ? false : null,
-          problemas_relajarse: $('#check_prob_relax_si_hc').is(':checked') ? true : $('#check_prob_relax_no_hc').is(':checked') ? false : null,
-          pensamientos_vuelven_vuelven: $('#check_pensamientos_si_hc').is(':checked') ? true : $('#check_pensamientos_no_hc').is(':checked') ? false : null,
-          amigos_facil: $('#check_rel_int_amigos1_si_hc').is(':checked') ? true : $('#check_rel_int_amigos1_no_hc').is(':checked') ? false : null,
-          conserva_amigos: $('#check_rel_int_amigos2_si_hc').is(':checked') ? true : $('#check_rel_int_amigos2_no_hc').is(':checked') ? false : null,
-          citas_secundaria: $('#check_rel_int_cita_sec_si_hc').is(':checked') ? true : $('#check_rel_int_cita_sec_no_hc').is(':checked') ? false : null,
-          citas_preparatoria: $('#check_rel_int_cita_prepa_si_hc').is(':checked') ? true : $('#check_rel_int_cita_prepa_no_hc').is(':checked') ? false : null,
-          hijos_con_problemas: $('#check_hijos_con_prob_si_hc').is(':checked') ? true : $('#check_hijos_con_prob_no_hc').is(':checked') ? false : null,
-          pena_sexo: $('#check_pena_sex_si_hc').is(':checked') ? true : $('#check_pena_sex_no_hc').is(':checked') ? false : null,
-          vida_sexual_satisf: $('#check_vida_sex_satisf_si_hc').is(':checked') ? true : $('#check_vida_sex_satisf_no_hc').is(':checked') ? false : null,
-          problemas_relacion_trabajo: $('#check_rel_trabj_si_hc').is(':checked') ? true : $('#check_rel_trabj_no_hc').is(':checked') ? false : null,
-          problemas_rechazo_amoroso: $('#check_rech_frac_amor_si_hc').is(':checked') ? true : $('#check_rech_frac_amor_no_hc').is(':checked') ? false : null,
-          problemas_salud_fisica: $('#check_prob_salud_fis_si_hc').is(':checked') ? true : $('#check_prob_salud_fis_no_hc').is(':checked') ? false : null,
-          dieta_balanceada: $('#check_dieta_bal_si_hc').is(':checked') ? true : $('#check_dieta_bal_no_hc').is(':checked') ? false : null,
-          pract_ejerc_fisico: $('#check_ejerc_fis_si_hc').is(':checked') ? true : $('#check_ejerc_fis_no_hc').is(':checked') ? false : null,
-          operado: $('#check_operado_si_hc').is(':checked') ? true : $('#check_operado_no_hc').is(':checked') ? false : null,
-          problema_menstruaciones: $('#check_prob_menst_si_hc').is(':checked') ? true : $('#check_prob_menst_no_hc').is(':checked') ? false : null,
-          periodos_regulares: $('#check_per_reg_si_hc').is(':checked') ? true : $('#check_per_reg_no_hc').is(':checked') ? false : null,
-          menst_afecta_animo: $('#check_menst_afecta_animo_si_hc').is(':checked') ? true : $('#check_menst_afecta_animo_no_hc').is(':checked') ? false : null,
-          menstruacion_primera_vez: $('#check_saber_menst_si_hc').is(':checked') ? true : $('#check_saber_menst_no_hc').is(':checked') ? false : null,
-          menstruacion_dolor: $('#check_dolor_menst_si_hc').is(':checked') ? true : $('#check_dolor_menst_no_hc').is(':checked') ? false : null,
-          problema: $('input[name="inlineRadioOptionsDescripProblemaHc"]:checked').val() ? $('input[name="inlineRadioOptionsDescripProblemaHc"]:checked').val() : null,
-          satisfecho_vida: $('input[name="inlineRadioOptionsSatisConSuVidaHc"]:checked').val() ? $('input[name="inlineRadioOptionsSatisConSuVidaHc"]:checked').val() : null,
-          nivel_tension: $('input[name="inlineRadioOptionsTensionHc"]:checked').val() ? $('input[name="inlineRadioOptionsTensionHc"]:checked').val() : null,
-          situaciones_sociales: $('input[name="inlineRadioOptionsSituaSocHc"]:checked').val() ? $('input[name="inlineRadioOptionsSituaSocHc"]:checked').val() : null,
-          satisfaccion_pareja: $('input[name="inlineRadioOptionsSatisParejaHc"]:checked').val() ? $('input[name="inlineRadioOptionsSatisParejaHc"]:checked').val() : null,
-          amigo_familia_pareja: $('input[name="inlineRadioOptionsAmigosFamParejaHc"]:checked').val() ? $('input[name="inlineRadioOptionsAmigosFamParejaHc"]:checked').val() : null,
-          listChecksInfanciaAdoles: listChecksInfanciaAdoles,
-          listChecksConductas: listChecksConductas,
-          listChecksSentimientos: listChecksSentimientos,
-          listChecksSensaFisicas: listChecksSensaFisicas,
-          listChecksImgMeVeo: listChecksImgMeVeo,
-          listChecksImgTengo: listChecksImgTengo,
-          listChecksPensamientos: listChecksPensamientos,
-          infancia_adolescencia_otros: $('#otros_prob_hc').val(),
-          conducta_otros: $('#otros_cond_hc').val(),
-          sentimientos_otros: $('#otros_sent_hc').val(),
-          sensaciones_fisicas_otros: $('#otros_sf_hc').val(),
-          imag_me_veo_otros_hc : $('#otros_img_hc').val(),
-          imag_tengo_otros_hc : $('#otros_img_hc1').val(),
-          pensamiento_otros_hc: $('#otros_pensamiento_hc').val(),
-          prob_emocion_mental: $('#check_prob_emocion_mental_si_hc').is(':checked') ? true : $('#check_prob_emocion_mental_no_hc').is(':checked') ? false : null,
-        }
-
-        console.log(params, 'params');
-
-        $.ajax({
-          type: 'POST',
-          url: "/historia_clinica/agregar_editar_hc/",
-          data: {
-            params: JSON.stringify(params),
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(), // Token CSRF necesario
-          },
-          dataType: "json",
-          success: function(response) {
-            if (response.tipo_mensaje == 'success') {
-              $('#btn_agregar_hc').html(textOriginalBtn);
-              limpiarCampos();
-              $('#modal_hc').modal('hide');
-              swal({
-                title: "",
-                text: response.mensaje,
-                type: response.tipo_mensaje,
-                showCancelButton: false,
-                confirmButtonClass: "btn-success",
-                confirmButtonText: "Aceptar",
-                closeOnConfirm: true
-              },
-              function() {
-                $(document).trigger('actualizar_lista_atenciones');
-              });
-            } else if (response.tipo_mensaje == 'error') {
-              notificacion('Error',response.mensaje, response.tipo_mensaje);
-              $('#btn_agregar_hc').html(textOriginalBtn);
-            }
-          },
-          error: function(response) {
-            notificacion('Error',response.mensaje, response.tipo_mensaje);
-            $('#btn_agregar_hc').html(textOriginalBtn);
+          var params = {
+            accion: accion,
+            id_usuario_autenticado: id_usuario_autenticado,
+            id_atencion: id_atencion,
+            datos: $(this).serializeArray(),
+            detalle_prob_hijo: $('#prob_hijo_hc').val(),
+            detalle_pena_sex: $('#detalle_pena_sex_hc').val(),
+            detalle_vida_sex_satisf: $('#detalle_vida_sex_satisf_hc').val(),
+            detalle_rel_trabj: $('#detalle_rel_trabj_hc').val(),
+            detalle_rech_frac_amor: $('#detalle_rech_frac_amor_hc').val(),
+            detalle_prob_salud_fis: $('#detalle_prob_salud_fis_hc').val(),
+            detalle_ejerc_fis: $('#detalle_ejerc_fis_hc').val(),
+            detalle_operado: $('#detalle_operado_hc').val(),
+            medico_cabecera: $('#check_medico_cabecera_si_hc').is(':checked') ? true : $('#check_medico_cabecera_no_hc').is(':checked') ? false : null,
+            peso_varia: $('#check_peso_varia_si_hc').is(':checked') ? true : $('#check_peso_varia_no_hc').is(':checked') ? false : null,
+            gusta_trabajo: $('#check_gusta_trabajo_si_hc').is(':checked') ? true : $('#check_gusta_trabajo_no_hc').is(':checked') ? false : null,
+            terapia_antes: $('#check_terapia_anterior_si_hc').is(':checked') ? true : $('#check_terapia_anterior_no_hc').is(':checked') ? false : null,
+            hospitalizado: $('#check_hospitalizado_si_hc').is(':checked') ? true : $('#check_hospitalizado_no_hc').is(':checked') ? false : null,
+            hacerse_danio_suicidio: $('#check_danio_suicidio_si_hc').is(':checked') ? true : $('#check_danio_suicidio_no_hc').is(':checked') ? false : null,
+            familia_intento_suicidio: $('#check_intento_suicidio_si_hc').is(':checked') ? true : $('#check_intento_suicidio_no_hc').is(':checked') ? false : null,
+            confia_padres: $('#check_confianza_padres_si_hc').is(':checked') ? true : $('#check_confianza_padres_no_hc').is(':checked') ? false : null,
+            sentir_amor_padres: $('#check_sentir_amor_padres_si_hc').is(':checked') ? true : $('#check_sentir_amor_padres_no_hc').is(':checked') ? false : null,
+            familia_interfiere_matrimonio: $('#check_interferencia_si_hc').is(':checked') ? true : $('#check_interferencia_no_hc').is(':checked') ? false : null,
+            problemas_relajarse: $('#check_prob_relax_si_hc').is(':checked') ? true : $('#check_prob_relax_no_hc').is(':checked') ? false : null,
+            pensamientos_vuelven_vuelven: $('#check_pensamientos_si_hc').is(':checked') ? true : $('#check_pensamientos_no_hc').is(':checked') ? false : null,
+            amigos_facil: $('#check_rel_int_amigos1_si_hc').is(':checked') ? true : $('#check_rel_int_amigos1_no_hc').is(':checked') ? false : null,
+            conserva_amigos: $('#check_rel_int_amigos2_si_hc').is(':checked') ? true : $('#check_rel_int_amigos2_no_hc').is(':checked') ? false : null,
+            citas_secundaria: $('#check_rel_int_cita_sec_si_hc').is(':checked') ? true : $('#check_rel_int_cita_sec_no_hc').is(':checked') ? false : null,
+            citas_preparatoria: $('#check_rel_int_cita_prepa_si_hc').is(':checked') ? true : $('#check_rel_int_cita_prepa_no_hc').is(':checked') ? false : null,
+            hijos_con_problemas: $('#check_hijos_con_prob_si_hc').is(':checked') ? true : $('#check_hijos_con_prob_no_hc').is(':checked') ? false : null,
+            pena_sexo: $('#check_pena_sex_si_hc').is(':checked') ? true : $('#check_pena_sex_no_hc').is(':checked') ? false : null,
+            vida_sexual_satisf: $('#check_vida_sex_satisf_si_hc').is(':checked') ? true : $('#check_vida_sex_satisf_no_hc').is(':checked') ? false : null,
+            problemas_relacion_trabajo: $('#check_rel_trabj_si_hc').is(':checked') ? true : $('#check_rel_trabj_no_hc').is(':checked') ? false : null,
+            problemas_rechazo_amoroso: $('#check_rech_frac_amor_si_hc').is(':checked') ? true : $('#check_rech_frac_amor_no_hc').is(':checked') ? false : null,
+            problemas_salud_fisica: $('#check_prob_salud_fis_si_hc').is(':checked') ? true : $('#check_prob_salud_fis_no_hc').is(':checked') ? false : null,
+            dieta_balanceada: $('#check_dieta_bal_si_hc').is(':checked') ? true : $('#check_dieta_bal_no_hc').is(':checked') ? false : null,
+            pract_ejerc_fisico: $('#check_ejerc_fis_si_hc').is(':checked') ? true : $('#check_ejerc_fis_no_hc').is(':checked') ? false : null,
+            operado: $('#check_operado_si_hc').is(':checked') ? true : $('#check_operado_no_hc').is(':checked') ? false : null,
+            problema_menstruaciones: $('#check_prob_menst_si_hc').is(':checked') ? true : $('#check_prob_menst_no_hc').is(':checked') ? false : null,
+            periodos_regulares: $('#check_per_reg_si_hc').is(':checked') ? true : $('#check_per_reg_no_hc').is(':checked') ? false : null,
+            menst_afecta_animo: $('#check_menst_afecta_animo_si_hc').is(':checked') ? true : $('#check_menst_afecta_animo_no_hc').is(':checked') ? false : null,
+            menstruacion_primera_vez: $('#check_saber_menst_si_hc').is(':checked') ? true : $('#check_saber_menst_no_hc').is(':checked') ? false : null,
+            menstruacion_dolor: $('#check_dolor_menst_si_hc').is(':checked') ? true : $('#check_dolor_menst_no_hc').is(':checked') ? false : null,
+            problema: $('input[name="inlineRadioOptionsDescripProblemaHc"]:checked').val() ? $('input[name="inlineRadioOptionsDescripProblemaHc"]:checked').val() : null,
+            satisfecho_vida: $('input[name="inlineRadioOptionsSatisConSuVidaHc"]:checked').val() ? $('input[name="inlineRadioOptionsSatisConSuVidaHc"]:checked').val() : null,
+            nivel_tension: $('input[name="inlineRadioOptionsTensionHc"]:checked').val() ? $('input[name="inlineRadioOptionsTensionHc"]:checked').val() : null,
+            situaciones_sociales: $('input[name="inlineRadioOptionsSituaSocHc"]:checked').val() ? $('input[name="inlineRadioOptionsSituaSocHc"]:checked').val() : null,
+            satisfaccion_pareja: $('input[name="inlineRadioOptionsSatisParejaHc"]:checked').val() ? $('input[name="inlineRadioOptionsSatisParejaHc"]:checked').val() : null,
+            amigo_familia_pareja: $('input[name="inlineRadioOptionsAmigosFamParejaHc"]:checked').val() ? $('input[name="inlineRadioOptionsAmigosFamParejaHc"]:checked').val() : null,
+            listChecksInfanciaAdoles: listChecksInfanciaAdoles,
+            listChecksConductas: listChecksConductas,
+            listChecksSentimientos: listChecksSentimientos,
+            listChecksSensaFisicas: listChecksSensaFisicas,
+            listChecksImgMeVeo: listChecksImgMeVeo,
+            listChecksImgTengo: listChecksImgTengo,
+            listChecksPensamientos: listChecksPensamientos,
+            infancia_adolescencia_otros: $('#otros_prob_hc').val(),
+            conducta_otros: $('#otros_cond_hc').val(),
+            sentimientos_otros: $('#otros_sent_hc').val(),
+            sensaciones_fisicas_otros: $('#otros_sf_hc').val(),
+            imag_me_veo_otros_hc : $('#otros_img_hc').val(),
+            imag_tengo_otros_hc : $('#otros_img_hc1').val(),
+            pensamiento_otros_hc: $('#otros_pensamiento_hc').val(),
+            prob_emocion_mental: $('#check_prob_emocion_mental_si_hc').is(':checked') ? true : $('#check_prob_emocion_mental_no_hc').is(':checked') ? false : null,
+            hc_cerrada: $('#check_cerrada').is(':checked') ? false : true
           }
-        });
+
+          // Lock the form before submission
+          formLocker.lock();
+          
+          $.ajax({
+            type: 'POST',
+            url: "/historia_clinica/agregar_editar_hc/",
+            data: {
+              params: JSON.stringify(params),
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(), // Token CSRF necesario
+            },
+            dataType: "json",
+            success: function(response) {
+              $('#btn_agregar_hc').html(textOriginalBtn);
+
+              if (response.tipo_mensaje == 'success') {
+                formLocker.unlock();
+                limpiarCampos();
+                $('#modal_hc').modal('hide');
+                swal({
+                  title: "",
+                  text: response.mensaje,
+                  type: response.tipo_mensaje,
+                  showCancelButton: false,
+                  confirmButtonClass: "btn-success",
+                  confirmButtonText: "Aceptar",
+                  closeOnConfirm: true
+                },
+                function() {
+                  $(document).trigger('actualizar_lista_atenciones');
+                });
+              } else if (response.tipo_mensaje == 'error') {
+                formLocker.unlock();
+                notificacion('Error', 'Lo siento. Ha ocurrido un error al guardar la Historia Clínica', 'error');
+              }
+            },
+            error: function(response) {
+              formLocker.unlock();
+              $('#btn_agregar_hc').html(textOriginalBtn);
+              notificacion('Error', 'Lo siento. Ha ocurrido un error al guardar la Historia Clínica', 'error');
+            }
+          });
+        }
       }
     });
 
@@ -555,7 +580,8 @@ var historia_clinica = (function () {
       $.ajax({
         url: "/historia_clinica/get_hc",
         data: {
-          id_atencion: id_atencion
+          id_atencion: id_atencion,
+          id_usuario: $('#user_autenticado').val()
         },
         dataType: "json",
         success: function(response) {
@@ -565,6 +591,14 @@ var historia_clinica = (function () {
           } else {
             $('#modal_hc').modal('show');
             accion = 'editar';
+
+            // si tiene psicoterapeuta asignado y hc abierta
+            if (response.psicoterapeuta == true && response.hc_cerrada == true && response.roles.solicitante == true) {
+              $('#btn_agregar_hc').css('display', 'none');
+            } else {
+              $('#btn_agregar_hc').css('display', 'block');
+            }
+
             llenarCampoAplicadoPor();
             crearSelectsFormularioHc();
 
@@ -586,7 +620,6 @@ var historia_clinica = (function () {
 
             // datos HC
             // seccion 1
-            console.log(response);
             llenarSelectEstados(response.estado_nac ? response.estado_nac.id : '', "#estado_nacimiento_hc");
             llenarSelectViveEn(response.vive_en ? response.vive_en.id : '');
             llenarSelectViveCon(response.vive_con ? response.vive_con.id : '');
@@ -1149,6 +1182,8 @@ var historia_clinica = (function () {
 
             // observaciones
             $('#observaciones_hc').val(response.observaciones);
+            $('#check_cerrada').prop('checked', !response.hc_cerrada);
+            $('#check_cerrada').trigger('change');
           }
         },
         error: function(response) {
@@ -1680,8 +1715,6 @@ var historia_clinica = (function () {
     } else if (($('#municipio_actual_hc').val() == 'sel') || ($('#municipio_actual_hc').val() == '') || ($('#municipio_actual_hc').val() == null)) {
       error = true;
     } else if (($('#direccion_actual_hc').val() == '') || ($('#direccion_actual_hc').val() == null)) {
-      error = true;
-    } else if (($('#parentesco_hc').val() == '') || ($('#parentesco_hc').val() == null)) {
       error = true;
     }
 

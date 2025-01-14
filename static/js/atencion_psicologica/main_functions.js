@@ -2,6 +2,29 @@ var atenciones_psicologicas = function() {
   var $ = jQuery.noConflict();
   var id_municipio = '';
 
+  var columnConfigs = {
+    solicitante: [
+      { data: 'solicitante.nombre' },
+      { data: 'fecha_atencion' },
+      { data: 'tipo_atencion.tipo_atencion' },
+      { data: 'seguimiento.estado.nombre' }
+    ],
+    otros: [
+      { data: 'solicitante.nombre' },
+      { data: 'fecha_atencion' },
+      { data: 'entrevistador.nombre' },
+      { data: 'psicoterapeuta.nombre' },
+      { data: 'instrumentos_aplicados' },
+      { data: 'mst_nivel1.total' },
+      { data: 'mst_nivel1.pregunta11' },
+      { data: 'ssi_beck.total' },
+      { data: 'fpp.total' },
+      { data: 'ingreso_familiar.ingreso' },
+      { data: 'tipo_atencion.tipo_atencion' },
+      { data: 'seguimiento.estado.nombre' }
+    ]
+  };
+
   $('.fecha_atencion_paciente').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
@@ -680,6 +703,15 @@ var atenciones_psicologicas = function() {
 
   /== funcion para crear el listado de atenciones psicologicas ==/
   function listarAtencionesPsicologicas(datos) {
+    var solicitante = datos[0].roles.solicitante;
+    var columns = columnConfigs[solicitante ? 'solicitante' : 'otros'];
+    var columnDefs = [];
+    if (solicitante) {
+      columnDefs.push({ width: '300px', targets: [0]});
+    } else {
+      columnDefs.push({ width: '300px', targets: [0,2,3]}, {width: '200px', targets: [9]});
+    }
+    
     var tabla = $('#tabla_atenciones_psicologicas').DataTable({
       language: {
         "decimal": "",
@@ -709,112 +741,104 @@ var atenciones_psicologicas = function() {
       scrollColapse: true,
       "aLengthMenu": [5, 10, 25, 50],
       order: [[0, 'desc']],
-      columnDefs: [
-        {
-          width: '300px', targets: [0,2,3]
-        },
-        {
-          width: '200px', targets: [9]
-        },
-      ],
+      ordering: true,
+      // columnDefs: [
+      //   {
+      //     width: '300px', targets: [0,2,3]
+      //   },
+      //   {
+      //     width: '200px', targets: [9]
+      //   },
+      // ],
+      columnDefs: columnDefs,
       data: datos,
-      columns: [
-        { data: 'solicitante.nombre' },
-        { data: 'fecha_atencion' },
-        { data: 'entrevistador.nombre' },
-        { data: 'psicoterapeuta.nombre' },
-        { data: 'instrumentos_aplicados' },
-        { data: 'mst_nivel1.total' },
-        { data: 'mst_nivel1.pregunta11' },
-        { data: 'ssi_beck.total' },
-        { data: 'fpp.total' },
-        { data: 'ingreso_familiar.ingreso' },
-        { data: 'tipo_atencion.tipo_atencion' },
-        { data: 'seguimiento.estado.nombre' }
-      ],
+      columns: columns,
+      // columns: [
+      //   { data: 'solicitante.nombre' },
+      //   { data: 'fecha_atencion' },
+      //   { data: 'entrevistador.nombre' },
+      //   { data: 'psicoterapeuta.nombre' },
+      //   { data: 'instrumentos_aplicados' },
+      //   { data: 'mst_nivel1.total' },
+      //   { data: 'mst_nivel1.pregunta11' },
+      //   { data: 'ssi_beck.total' },
+      //   { data: 'fpp.total' },
+      //   { data: 'ingreso_familiar.ingreso' },
+      //   { data: 'tipo_atencion.tipo_atencion' },
+      //   { data: 'seguimiento.estado.nombre' }
+      // ],
       rowCallback: function(row, data) {
-        $($(row).find('td')[0]).html(data.solicitante.nombre + (data.solicitante.segundo_nombre ? ' ' + data.solicitante.segundo_nombre + ' ' : ' ') + data.solicitante.apellido + (data.solicitante.segundo_apellido ? ' ' + data.solicitante.segundo_apellido : ''));
-        $($(row).find('td')[2]).html(data.entrevistador ? data.entrevistador.nombre + (data.entrevistador.segundo_nombre ? ' ' + data.entrevistador.segundo_nombre + ' ' : ' ') + data.entrevistador.apellido + (data.entrevistador.segundo_apellido ? ' ' + data.entrevistador.segundo_apellido : '') : '');
-        $($(row).find('td')[3]).html(data.psicoterapeuta ? data.psicoterapeuta.nombre + (data.psicoterapeuta.segundo_nombre ? ' ' + data.psicoterapeuta.segundo_nombre + ' ' : ' ') + data.psicoterapeuta.apellido + (data.psicoterapeuta.segundo_apellido ? ' ' + data.psicoterapeuta.segundo_apellido : '') : '');
-        $($(row).find('td')[9]).html(data.ingreso_familiar.ingreso + ' - ' + data.ingreso_familiar.nivel);
-        $($(row).find('td')[9]).css('background-color', data.ingreso_familiar.color);
-        $($(row).find('td')[11]).html(data.seguimiento ? data.seguimiento.estado.nombre : '');
-        $($(row).find('td')[10]).html(data.tipo_atencion ? data.tipo_atencion.tipo_atencion : '');
-        $($(row).find('td')[6]).html(data.mst_nivel1 ? data.mst_nivel1.pregunta11 : '');
-        
-        if (data.mst_nivel1) {
-          $($(row).find('td')[5]).html(data.mst_nivel1.total);
-          $($(row).find('td')[5]).css('background-color', data.mst_nivel1.color);
+        if (solicitante) {
+          $($(row).find('td')[0]).html(data.solicitante.nombre + (data.solicitante.segundo_nombre ? ' ' + data.solicitante.segundo_nombre + ' ' : ' ') + data.solicitante.apellido + (data.solicitante.segundo_apellido ? ' ' + data.solicitante.segundo_apellido : ''));
+          $($(row).find('td')[10]).html(data.tipo_atencion ? data.tipo_atencion.tipo_atencion : '');
         } else {
-          $($(row).find('td')[5]).html('');
-        }
+          $($(row).find('td')[0]).html(data.solicitante.nombre + (data.solicitante.segundo_nombre ? ' ' + data.solicitante.segundo_nombre + ' ' : ' ') + data.solicitante.apellido + (data.solicitante.segundo_apellido ? ' ' + data.solicitante.segundo_apellido : ''));
+          $($(row).find('td')[2]).html(data.entrevistador ? data.entrevistador.nombre + (data.entrevistador.segundo_nombre ? ' ' + data.entrevistador.segundo_nombre + ' ' : ' ') + data.entrevistador.apellido + (data.entrevistador.segundo_apellido ? ' ' + data.entrevistador.segundo_apellido : '') : '');
+          $($(row).find('td')[3]).html(data.psicoterapeuta ? data.psicoterapeuta.nombre + (data.psicoterapeuta.segundo_nombre ? ' ' + data.psicoterapeuta.segundo_nombre + ' ' : ' ') + data.psicoterapeuta.apellido + (data.psicoterapeuta.segundo_apellido ? ' ' + data.psicoterapeuta.segundo_apellido : '') : '');
+          $($(row).find('td')[9]).html(data.ingreso_familiar.ingreso + ' - ' + data.ingreso_familiar.nivel);
+          $($(row).find('td')[9]).css('background-color', data.ingreso_familiar.color);
+          $($(row).find('td')[11]).html(data.seguimiento ? data.seguimiento.estado.nombre : '');
+          $($(row).find('td')[10]).html(data.tipo_atencion ? data.tipo_atencion.tipo_atencion : '');
+          $($(row).find('td')[6]).html(data.mst_nivel1 ? data.mst_nivel1.pregunta11 : '');
+          
+          if (data.mst_nivel1) {
+            $($(row).find('td')[5]).html(data.mst_nivel1.total);
+            $($(row).find('td')[5]).css('background-color', data.mst_nivel1.color);
+          } else {
+            $($(row).find('td')[5]).html('');
+          }
 
-        if (data.fpp) {
-          $($(row).find('td')[8]).html(data.fpp.total);
-          // $($(row).find('td')[8]).css('background-color', data.fpp.color);
-        } else {
-          $($(row).find('td')[8]).html('');
-        }
+          if (data.fpp) {
+            $($(row).find('td')[8]).html(data.fpp.total);
+            // $($(row).find('td')[8]).css('background-color', data.fpp.color);
+          } else {
+            $($(row).find('td')[8]).html('');
+          }
 
-        if (data.ssi_beck) {
-          $($(row).find('td')[7]).html(data.ssi_beck.total);
-          $($(row).find('td')[7]).css('background-color', data.ssi_beck.color);
-        } else {
-          $($(row).find('td')[7]).html('');
+          if (data.ssi_beck) {
+            $($(row).find('td')[7]).html(data.ssi_beck.total);
+            $($(row).find('td')[7]).css('background-color', data.ssi_beck.color);
+          } else {
+            $($(row).find('td')[7]).html('');
+          }
         }
       },
-      initComplete: function() {
+      initComplete: function(data) {
         $('#dropdown_acciones_atenciones_psicologicas').css('display', 'none');
 
-        $.ajax({
-          url: "/usuario/get_usuario",
-          data: {
-            'id': $('#user_autenticado').val()
-          },
-          type: "get",
-          dataType: "json",
-          success: function(response) {
-            const rolesArray = JSON.parse(response.roles);
-            const listaRoles = rolesArray.map(rol => rol.fields.nombre);
+        // if (solicitante) {
+        //   $('#tabla_atenciones_psicologicas').addClass('table-width');
 
-            if (listaRoles.length == 1) {
-              if (listaRoles.includes("SOLICITANTE")) {
-                tabla.columns(2).visible(false);
-                tabla.columns(3).visible(false);
-                tabla.columns(4).visible(false);
-                tabla.columns(5).visible(false);
-                tabla.columns(6).visible(false);
-                tabla.columns(7).visible(false);
-                tabla.columns(8).visible(false);
-                tabla.columns(9).visible(false);
-              }
-            }
-          },
-          error: function(response) {
-            console.error("Error al obtener los datos del usuario autenticado");
-          }
-        });
+        // ocultar columnas
+        // tabla.columns([2,3,4,5,6,7,8,9]).visible(false);
+        
+        //   // Ocultar el cuadro de búsqueda global
+        //   $('#tabla_atenciones_psicologicas_wrapper .dataTables_filter').hide();
+        // } else {
+        //   // mostrar el cuadro de búsqueda global
+        //   $('#tabla_atenciones_psicologicas_wrapper .dataTables_filter').show();
+        // }
       }
     });
 
     // Reasignar el evento para seleccionar una fila en la tabla
     $('#tabla_atenciones_psicologicas tbody').off('click', 'tr');
     $('#tabla_atenciones_psicologicas tbody').on('click', 'tr', function(e) {
-        let classList = e.currentTarget.classList;
-        let rowData;
-        if (classList.contains('selected')) {
-            classList.remove('selected');
-            $('#btn_solicitar_atencion').css('display', 'block');
-            $('#dropdown_acciones_atenciones_psicologicas').css('display', 'none');
-            $('#id_atencion').val('');
-        } else {
-            tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
-            classList.add('selected');
-            $('#btn_solicitar_atencion').css('display', 'none');
-            $('#dropdown_acciones_atenciones_psicologicas').css('display', 'block');
-            rowData = tabla.row(this).data();
-            $('#id_atencion').val(rowData.id);
-        }
+      let classList = e.currentTarget.classList;
+      let rowData;
+      if (classList.contains('selected')) {
+        classList.remove('selected');
+        $('#btn_solicitar_atencion').css('display', 'block');
+        $('#dropdown_acciones_atenciones_psicologicas').css('display', 'none');
+        $('#id_atencion').val('');
+      } else {
+        tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+        classList.add('selected');
+        $('#btn_solicitar_atencion').css('display', 'none');
+        $('#dropdown_acciones_atenciones_psicologicas').css('display', 'block');
+        rowData = tabla.row(this).data();
+        $('#id_atencion').val(rowData.id);
+      }
     });
   }
 

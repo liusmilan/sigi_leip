@@ -13,6 +13,36 @@
       </br>
       </div>
 
+      {% with user_roles=request.user.rol.all %}
+        {% if user_roles|length == 1 %}
+            {% if not user_roles.0.nombre == 'SOLICITANTE' %}
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="form-group form-check form-switch mb-1 py-1">
+                      <input class="form-check-input checkCerrada" type="checkbox" value="" id="check_cerrada" checked>
+                      <label class="form-check-label" for="check_cerrada" id="lbl_cerrada">
+                        Abierta
+                      </label>
+                    </div>
+                    </br>
+                  </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="form-group form-check form-switch mb-1 py-1">
+                  <input class="form-check-input checkCerrada" type="checkbox" value="" id="check_cerrada" checked>
+                  <label class="form-check-label" for="check_cerrada" id="lbl_cerrada">
+                    Abierta
+                  </label>
+                </div>
+                </br>
+              </div>
+            </div>
+        {% endif %}
+      {% endwith %}
+
       <div class="row">
         <div class="col-xl-6">
           <div class="form-group mb-1 py-1">

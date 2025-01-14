@@ -24,6 +24,7 @@ from estado_atencion_app.models import estado_atencion
 from tipo_atencion_app.models import tipo_atencion
 from motivo_consulta_app.models import motivo_consulta
 from historia_clinica_app.models import historia_clinica
+from usuario_app.views import existeRol
 from historia_clinica_app.views import getCaracteristicasInfanciaAdolescencia, getModalidadConductas, getModalidadImagenesMeVeo, getModalidadImagenesTengo, getModalidadPensamientos, getModalidadSensacionesFisicas, getModalidadSentimientos
 
 
@@ -151,6 +152,7 @@ class listadoAtencionesPsicologicas(ListView):
     def get(self, request, *args, **kwargs):
         if is_ajax(request):
             lista_atenciones_psicologicas = []
+            id_user = self.request.GET.get('id_user_aut')
 
             for a in self.get_queryset():
                 data = {}
@@ -309,6 +311,7 @@ class listadoAtencionesPsicologicas(ListView):
                 data['tipo_atencion'] = decidir_valoracion
                 data['grado_academico_otro'] = a.grado_academico_otro
                 data['vive_con_otro'] = a.vive_con_otro
+                data['roles'] = {'solicitante': True if existeRol(id_user, 'SOLICITANTE').get('existe') == True and existeRol(id_user, 'SOLICITANTE').get('cant') == 1 else False}
                 lista_atenciones_psicologicas.append(data)
             return HttpResponse(json.dumps(lista_atenciones_psicologicas), 'application/json')
         else:
@@ -658,19 +661,19 @@ def exportarExamen1(atencion, libro, mst1, fpp, motivo_consulta):
         ' ' + atencion.solicitante.apellido + ' ' + \
         (atencion.solicitante.segundo_apellido if atencion.solicitante.segundo_apellido else '')
     email = atencion.solicitante.email
-    licenciatura = atencion.licenciatura.nombre
-    semestre = atencion.semestre.nombre
+    licenciatura = atencion.licenciatura.nombre if atencion.licenciatura else ''
+    semestre = atencion.semestre.nombre if atencion.semestre else ''
     sexo = atencion.solicitante.sexo
-    vive_con = atencion.vive_con.vive_con
+    vive_con = atencion.vive_con.vive_con if atencion.vive_con else ''
     trabaja = atencion.trabaja
     hijos = atencion.hijos
-    municipio = atencion.municipio.nombre
-    grado_academico_padres = atencion.grado_academico.nombre
-    telefono_familiar = atencion.solicitante.telefono_emergencia
-    ingreso_familiar_ingreso = atencion.ingreso_familiar.ingreso
-    ingreso_familiar_nivel = atencion.ingreso_familiar.nivel
+    municipio = atencion.municipio.nombre if atencion.municipio else ''
+    grado_academico_padres = atencion.grado_academico.nombre if atencion.grado_academico else ''
+    telefono_familiar = atencion.solicitante.telefono_emergencia if atencion.solicitante else ''
+    ingreso_familiar_ingreso = atencion.ingreso_familiar.ingreso if atencion.ingreso_familiar else ''
+    ingreso_familiar_nivel = atencion.ingreso_familiar.nivel if atencion.ingreso_familiar else ''
     beca_apoyo_economico = atencion.beca_apoyo_economico
-    fecha_nacimiento = datetime.strftime(atencion.solicitante.fecha_nacimiento, '%d/%m/%Y')
+    fecha_nacimiento = datetime.strftime(atencion.solicitante.fecha_nacimiento, '%d/%m/%Y') if atencion.solicitante.fecha_nacimiento else ''
     codigo_udg = atencion.solicitante.codigo_udg if atencion.solicitante.codigo_udg else None
     
     # crear la hoja
@@ -1449,20 +1452,20 @@ def exportarExamen3(atencion, libro, historia_clinica):
         ' ' + atencion.solicitante.apellido + ' ' + \
         (atencion.solicitante.segundo_apellido if atencion.solicitante.segundo_apellido else '')
     email = atencion.solicitante.email
-    licenciatura = atencion.licenciatura.nombre
-    semestre = atencion.semestre.nombre
+    licenciatura = atencion.licenciatura.nombre if atencion.licenciatura else ''
+    semestre = atencion.semestre.nombre if atencion.semestre else ''
     sexo = atencion.solicitante.sexo
-    vive_con = atencion.vive_con.vive_con
+    vive_con = atencion.vive_con.vive_con if atencion.vive_con else ''
     trabaja = atencion.trabaja
     hijos = atencion.hijos
-    municipio = atencion.municipio.nombre
-    grado_academico_padres = atencion.grado_academico.nombre
+    municipio = atencion.municipio.nombre if atencion.municipio else ''
+    grado_academico_padres = atencion.grado_academico.nombre if atencion.grado_academico else ''
     telefono_familiar = atencion.solicitante.telefono_emergencia
-    ingreso_familiar_ingreso = atencion.ingreso_familiar.ingreso
-    ingreso_familiar_nivel = atencion.ingreso_familiar.nivel
+    ingreso_familiar_ingreso = atencion.ingreso_familiar.ingreso if atencion.ingreso_familiar else ''
+    ingreso_familiar_nivel = atencion.ingreso_familiar.nivel if atencion.ingreso_familiar else ''
     beca_apoyo_economico = atencion.beca_apoyo_economico
-    fecha_nacimiento = datetime.strftime(atencion.solicitante.fecha_nacimiento, '%d/%m/%Y')
-    fecha_atencion = datetime.strftime(atencion.fecha_atencion, '%d/%m/%Y')
+    fecha_nacimiento = datetime.strftime(atencion.solicitante.fecha_nacimiento, '%d/%m/%Y') if atencion.solicitante.fecha_nacimiento else ''
+    fecha_atencion = datetime.strftime(atencion.fecha_atencion, '%d/%m/%Y') if atencion.fecha_atencion else ''
     telefono = atencion.solicitante.telefono
     
     # llenando la hoja de excel
@@ -1554,7 +1557,7 @@ def exportarExamen3(atencion, libro, historia_clinica):
     hoja.write('F8', 'Pasatiempos', green_celd_format1)
     hoja.write('F9', historia_clinica.pasatiempos, white_celd_format)
     hoja.write('G8', 'SI es estudiante, Carrera que cursa', green_celd_format1)
-    hoja.write('G9', historia_clinica.carrera.nombre, white_celd_format)
+    hoja.write('G9', historia_clinica.carrera.nombre if historia_clinica.carrera else '', white_celd_format)
     hoja.write('H8', 'Nombre y número teléfonico de su médico', green_celd_format1)
     hoja.write('H9', historia_clinica.nombre_medico_cabecera + ' ' + historia_clinica.tlf_medico_cabecera, white_celd_format)
     hoja.write('I8', 'Si anteriormente ha estado en terapia, ¿cuándo y dónde fue?', green_celd_format1)
@@ -1596,7 +1599,7 @@ def exportarExamen3(atencion, libro, historia_clinica):
     hoja.write('C14', 'Dirección', green_celd_format1)
     hoja.write('C15', atencion.solicitante.direccion, white_celd_format)
     hoja.write('D14', '¿Con quién vive?', green_celd_format1)
-    hoja.write('D15', historia_clinica.vive_con.vive_con, white_celd_format)
+    hoja.write('D15', vive_con, white_celd_format)
     hoja.merge_range('E14:G14', '¿Qué hace en su trabajo?', green_celd_format1)
     hoja.merge_range('E15:G15', historia_clinica.que_hace_trab, white_celd_format)
     hoja.write('H14', '¿Le gusta su trabajo?', green_celd_format1)
@@ -2012,10 +2015,12 @@ def exportarExamen3(atencion, libro, historia_clinica):
 
 
 def calcularEdad(fecha_nacimiento_str):
-    fecha_nacimiento = datetime.strptime(fecha_nacimiento_str, '%d/%m/%Y').date()
-    fecha_actual = datetime.now().date()
-    edad = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
-    
+    if fecha_nacimiento_str:
+        fecha_nacimiento = datetime.strptime(fecha_nacimiento_str, '%d/%m/%Y').date()
+        fecha_actual = datetime.now().date()
+        edad = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+    else:
+        edad = ''
     return edad
 
 

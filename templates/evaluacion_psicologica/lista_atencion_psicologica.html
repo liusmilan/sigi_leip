@@ -116,119 +116,57 @@
                   Acciones para Agregar
                 </button>
                 <ul class="dropdown-menu">
-                  {% with has_cons=false %}
-                  {% with has_eva=false %}
-                  {% for r in request.user.rol.all %}
-                    {% comment %} {% if r.nombre == 'SOLICITANTE' and r.nombre == 'EVALUACION_PSICOLOGICA'%} {% endcomment %}
-                    {% if r.nombre == 'SOLICITANTE'%}
-                      <li>
-                        <button class="dropdown-item" id='btn_add_motivo_consulta'>
-                          Motivo de Consulta
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_add_mst_n1'>
-                          MST nivel 1
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_add_fpp'>
-                          FPP
-                        </button>
-                      </li>
-                      {% comment %} <li>
-                        <button class="dropdown-item" id='btn_add_autoevaluacion_psicologica'>
-                          Autoevaluación Psicológica
-                        </button>
-                      </li> {% endcomment %}
-                    {% endif %}
-
-                    {% if r.nombre == 'ASIGNAR' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_add_asignar_entrevistador'>
-                          Asignar Entrevistador
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_add_asignar_especialista_psicoterapeuta'>
-                          Asignar Especialista Psicoterapeuta
-                        </button>
-                      </li>
-                    {% endif %}
-
-                    {% if r.nombre == 'EVALUACION_PSICOLOGICA' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_add_mst_n2'>
-                          MST nivel 2
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_add_ssi_beck'>
-                          SSI BECK
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_add_disponibilidad_consulta'>
-                          Disponibilidad Horario para Consulta
-                        </button>
-                      </li>
-                    {% endif %}
-
-                    {% if r.nombre == 'SEGUIMIENTO' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_add_seguimiento_atencion'>
-                          Seguimiento de Atención
-                        </button>
-                      </li>
-                    {% endif %}
-                    
-                    {% if r.nombre == 'VALORACION_PSICOLOGICA' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_add_decidir_valoracion'>
-                          Decidir Valoración Psicológica
-                        </button>
-                      </li>
-                    {% endif %}
-                    
-                    {% if r.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_add_historia_clinica'>
-                          Historia Clínica
-                        </button>
-                      </li>
-                    {% endif %}
-
-                    {% if r.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
-                      {% with has_cons=true %}{% endwith %}
-                    {% endif %}
-                    {% if r.nombre == 'EVALUACION_PSICOLOGICA' %}
-                      {% with has_eva=true %}{% endwith %}
-                    {% endif %}
-                  {% endfor %}
-                  {% endwith %}
-                  {% endwith %}
-
                   {% with user_roles=request.user.rol.all %}
                     {% if user_roles|length == 1 %}
-                        {% if not user_roles.0.nombre == 'SOLICITANTE' %}
-                            <li>
-                              <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
-                                Diagnóstico DSM-5
-                              </button>
-                            </li>
-                        {% endif %}
-                    {% else %}
+                      <!-- tiene un solo rol -->
+                      {% if user_roles.0.nombre == 'SOLICITANTE' %}
                         <li>
-                          <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
-                            Diagnóstico DSM-5
+                          <button class="dropdown-item" id='btn_add_motivo_consulta'>
+                            Motivo de Consulta
                           </button>
                         </li>
-                    {% endif %}
-                  {% endwith %}
-
-                  {% with user_roles=request.user.rol.all %}
-                    {% if user_roles|length > 1 %}
-                        {% if user_roles.0.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
+                        <li>
+                          <button class="dropdown-item" id='btn_add_mst_n1'>
+                            MST nivel 1
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_fpp'>
+                            FPP
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_historia_clinica'>
+                            Historia Clínica
+                          </button>
+                        </li>
+                        <!-- <li>
+                          <button class="dropdown-item" id='btn_add_autoevaluacion_psicologica'>
+                            Autoevaluación Psicológica
+                          </button>
+                        </li> -->
+                      {% else %}
+                        {% if user_roles.0.nombre == 'ADMINISTRADOR' %}
+                          <li>
+                            <button class="dropdown-item" id='btn_add_motivo_consulta'>
+                              Motivo de Consulta
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_mst_n1'>
+                              MST nivel 1
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_fpp'>
+                              FPP
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_historia_clinica'>
+                              Historia Clínica
+                            </button>
+                          </li>
                           <li>
                             <button class="dropdown-item" id='btn_add_mst_n2'>
                               MST nivel 2
@@ -239,7 +177,207 @@
                               SSI BECK
                             </button>
                           </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
+                              Diagnóstico DSM-5
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_disponibilidad_consulta'>
+                              Disponibilidad Horario para Consulta
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_asignar_entrevistador'>
+                              Asignar Entrevistador
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_asignar_especialista_psicoterapeuta'>
+                              Asignar Especialista Psicoterapeuta
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_decidir_valoracion'>
+                              Decidir Valoración Psicológica
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_add_seguimiento_atencion'>
+                              Seguimiento de Atención
+                            </button>
+                          </li>
+                          <!-- <li>
+                            <button class="dropdown-item" id='btn_add_autoevaluacion_psicologica'>
+                              Autoevaluación Psicológica
+                            </button>
+                          </li> -->
                         {% endif %}
+                      {% endif %}
+                    {% else %}
+                      <!-- tiene mas de un rol -->
+                      {% if user_roles.0.nombre == 'ADMINISTRADOR' %}
+                        <li>
+                          <button class="dropdown-item" id='btn_add_motivo_consulta'>
+                            Motivo de Consulta
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_mst_n1'>
+                            MST nivel 1
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_fpp'>
+                            FPP
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_historia_clinica'>
+                            Historia Clínica
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_mst_n2'>
+                            MST nivel 2
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_ssi_beck'>
+                            SSI BECK
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
+                            Diagnóstico DSM-5
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_disponibilidad_consulta'>
+                            Disponibilidad Horario para Consulta
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_asignar_entrevistador'>
+                            Asignar Entrevistador
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_asignar_especialista_psicoterapeuta'>
+                            Asignar Especialista Psicoterapeuta
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_decidir_valoracion'>
+                            Decidir Valoración Psicológica
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_add_seguimiento_atencion'>
+                            Seguimiento de Atención
+                          </button>
+                        </li>
+                        <!-- <li>
+                          <button class="dropdown-item" id='btn_add_autoevaluacion_psicologica'>
+                            Autoevaluación Psicológica
+                          </button>
+                        </li> -->
+                      {% else %}
+                        {% for role in user_roles %}
+                          {% if role.nombre == 'SOLICITANTE' %}
+                            <li>
+                              <button class="dropdown-item" id='btn_add_motivo_consulta'>
+                                Motivo de Consulta
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item" id='btn_add_mst_n1'>
+                                MST nivel 1
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item" id='btn_add_fpp'>
+                                FPP
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item" id='btn_add_historia_clinica'>
+                                Historia Clínica
+                              </button>
+                            </li>
+                          {% else %}
+                            {% if role.nombre == 'EVALUACION_PSICOLOGICA' %}
+                              <li>
+                                <button class="dropdown-item" id='btn_add_mst_n2'>
+                                  MST nivel 2
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item" id='btn_add_ssi_beck'>
+                                  SSI BECK
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
+                                  Diagnóstico DSM-5
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item" id='btn_add_disponibilidad_consulta'>
+                                  Disponibilidad Horario para Consulta
+                                </button>
+                              </li>
+                            {% else %}
+                              {% if role.nombre == 'ASIGNAR' %}
+                                <li>
+                                  <button class="dropdown-item" id='btn_add_asignar_entrevistador'>
+                                    Asignar Entrevistador
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item" id='btn_add_asignar_especialista_psicoterapeuta'>
+                                    Asignar Especialista Psicoterapeuta
+                                  </button>
+                                </li>
+                              {% else %}
+                                {% if role.nombre == 'VALORACION_PSICOLOGICA' %}
+                                  <li>
+                                    <button class="dropdown-item" id='btn_add_decidir_valoracion'>
+                                      Decidir Valoración Psicológica
+                                    </button>
+                                  </li>
+                                {% else %}
+                                  {% if role.nombre == 'SEGUIMIENTO' %}
+                                    <li>
+                                      <button class="dropdown-item" id='btn_add_seguimiento_atencion'>
+                                        Seguimiento de Atención
+                                      </button>
+                                    </li>
+                                  {% else %}
+                                    {% if role.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
+                                      <li>
+                                        <button class="dropdown-item" id='btn_add_mst_n2'>
+                                          MST nivel 2
+                                        </button>
+                                      </li>
+                                      <li>
+                                        <button class="dropdown-item" id='btn_add_ssi_beck'>
+                                          SSI BECK
+                                        </button>
+                                      </li>
+                                      <li>
+                                        <button class="dropdown-item" id='btn_add_diagnostico_provicional_dsm5'>
+                                          Diagnóstico DSM-5
+                                        </button>
+                                      </li>
+                                    {% endif %}
+                                  {% endif %}
+                                {% endif %}
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
                     {% endif %}
                   {% endwith %}
                 </ul>
@@ -251,112 +389,135 @@
                   Acciones para Detalles/Editar
                 </button>
                 <ul class="dropdown-menu">
-                  {% with has_cons_edit=false %}
-                  {% with has_eva_edit=false %}
-                  {% for r in request.user.rol.all %}
-                    {% comment %} {% if r.nombre == 'SOLICITANTE' and r.nombre == 'EVALUACION_PSICOLOGICA'%} {% endcomment %}
-                    {% if r.nombre == 'SOLICITANTE'%}
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_motivo_consulta'>
-                          Motivo de Consulta
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_mst_n1'>
-                          MST nivel 1
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_fpp'>
-                          FPP
-                        </button>
-                      </li>
-                      {% comment %} <li>
-                        <button class="dropdown-item" id='btn_edit_autoevaluacion_psicologica'>
-                          Autoevaluación Psicológica
-                        </button>
-                      </li> {% endcomment %}
-                    {% endif %}
-
-                    {% if r.nombre == 'ASIGNAR' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_asignar_entrevistador'>
-                          Asignar Entrevistador
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_asignar_especialista_psicoterapeuta'>
-                          Asignar Especialista Psicoterapeuta
-                        </button>
-                      </li>
-                    {% endif %}
-
-                    {% if r.nombre == 'EVALUACION_PSICOLOGICA' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_mst_n2'>
-                          MST nivel 2
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_ssi_beck'>
-                          SSI BECK
-                        </button>
-                      </li>
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_disponibilidad_consulta'>
-                          Disponibilidad Horario para Consulta
-                        </button>
-                      </li>
-                    {% endif %}
-
-                    {% if r.nombre == 'VALORACION_PSICOLOGICA' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_decidir_valoracion'>
-                          Decidir Valoración Psicológica
-                        </button>
-                      </li>
-                    {% endif %}
-                    
-                    {% if r.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
-                      <li>
-                        <button class="dropdown-item" id='btn_edit_historia_clinica'>
-                          Historia Clínica
-                        </button>
-                      </li>
-                      {% comment %} <li>
-                        <button class="dropdown-item" id='btn_edit_reportes_consulta'>
-                          Reportes de Consulta
-                        </button>
-                      </li> {% endcomment %}
-                    {% endif %}
-                  {% endfor %}
-                  {% if r.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
-                      {% with has_cons_edit=true %}{% endwith %}
-                  {% endif %}
-                  {% if r.nombre == 'EVALUACION_PSICOLOGICA' %}
-                      {% with has_eva_edit=true %}{% endwith %}
-                  {% endif %}
-                  {% endwith %}
-                  {% endwith %}
-
                   {% with user_roles=request.user.rol.all %}
                     {% if user_roles|length == 1 %}
-                        {% if not user_roles.0.nombre == 'SOLICITANTE' %}
-                            <li>
-                              <button class="dropdown-item" id='btn_historico_seguimiento'>
-                                Histórico de Seguimiento
-                              </button>
-                            </li>
-                            <li>
-                              <button class="dropdown-item" id='btn_edit_diagnostico_provicional_dsm5'>
-                                Diagnóstico DSM-5
-                              </button>
-                            </li>
-                        {% endif %}
-                    {% else %}
+                      <!-- tiene un solo rol -->
+                      {% if user_roles.0.nombre == 'SOLICITANTE' %}
                         <li>
-                          <button class="dropdown-item" id='btn_historico_seguimiento'>
-                            Histórico de Seguimiento
+                          <button class="dropdown-item" id='btn_edit_motivo_consulta'>
+                            Motivo de Consulta
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_mst_n1'>
+                            MST nivel 1
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_fpp'>
+                            FPP
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_historia_clinica'>
+                            Historia Clínica
+                          </button>
+                        </li>
+                        <!-- <li>
+                          <button class="dropdown-item" id='btn_edit_autoevaluacion_psicologica'>
+                            Autoevaluación Psicológica
+                          </button>
+                        </li> -->
+                      {% else %}
+                        {% if user_roles.0.nombre == 'ADMINISTRADOR' %}
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_motivo_consulta'>
+                              Motivo de Consulta
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_mst_n1'>
+                              MST nivel 1
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_fpp'>
+                              FPP
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_historia_clinica'>
+                              Historia Clínica
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_mst_n2'>
+                              MST nivel 2
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_ssi_beck'>
+                              SSI BECK
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_diagnostico_provicional_dsm5'>
+                              Diagnóstico DSM-5
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_disponibilidad_consulta'>
+                              Disponibilidad Horario para Consulta
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_asignar_entrevistador'>
+                              Asignar Entrevistador
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_asignar_especialista_psicoterapeuta'>
+                              Asignar Especialista Psicoterapeuta
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_decidir_valoracion'>
+                              Decidir Valoración Psicológica
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" id='btn_edit_seguimiento_atencion'>
+                              Seguimiento de Atención
+                            </button>
+                          </li>
+                          <!-- <li>
+                            <button class="dropdown-item" id='btn_edit_autoevaluacion_psicologica'>
+                              Autoevaluación Psicológica
+                            </button>
+                          </li> -->
+                        {% endif %}
+                      {% endif %}
+                    {% else %}
+                      <!-- tiene mas de un rol -->
+                      {% if user_roles.0.nombre == 'ADMINISTRADOR' %}
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_motivo_consulta'>
+                            Motivo de Consulta
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_mst_n1'>
+                            MST nivel 1
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_fpp'>
+                            FPP
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_historia_clinica'>
+                            Historia Clínica
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_mst_n2'>
+                            MST nivel 2
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_ssi_beck'>
+                            SSI BECK
                           </button>
                         </li>
                         <li>
@@ -364,22 +525,131 @@
                             Diagnóstico DSM-5
                           </button>
                         </li>
-                    {% endif %}
-                  {% endwith %}
-
-                  {% with user_roles=request.user.rol.all %}
-                    {% if user_roles|length > 1 %}
-                      {% if user_roles.0.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
                         <li>
-                          <button class="dropdown-item" id='btn_add_mst_n2'>
-                            MST nivel 2
+                          <button class="dropdown-item" id='btn_edit_disponibilidad_consulta'>
+                            Disponibilidad Horario para Consulta
                           </button>
                         </li>
                         <li>
-                          <button class="dropdown-item" id='btn_add_ssi_beck'>
-                            SSI BECK
+                          <button class="dropdown-item" id='btn_edit_asignar_entrevistador'>
+                            Asignar Entrevistador
                           </button>
                         </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_asignar_especialista_psicoterapeuta'>
+                            Asignar Especialista Psicoterapeuta
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_decidir_valoracion'>
+                            Decidir Valoración Psicológica
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" id='btn_edit_seguimiento_atencion'>
+                            Seguimiento de Atención
+                          </button>
+                        </li>
+                        <!-- <li>
+                          <button class="dropdown-item" id='btn_edit_autoevaluacion_psicologica'>
+                            Autoevaluación Psicológica
+                          </button>
+                        </li> -->
+                      {% else %}
+                        {% for role in user_roles %}
+                          {% if role.nombre == 'SOLICITANTE' %}
+                            <li>
+                              <button class="dropdown-item" id='btn_edit_motivo_consulta'>
+                                Motivo de Consulta
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item" id='btn_edit_mst_n1'>
+                                MST nivel 1
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item" id='btn_edit_fpp'>
+                                FPP
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item" id='btn_edit_historia_clinica'>
+                                Historia Clínica
+                              </button>
+                            </li>
+                          {% else %}
+                            {% if role.nombre == 'EVALUACION_PSICOLOGICA' %}
+                              <li>
+                                <button class="dropdown-item" id='btn_edit_mst_n2'>
+                                  MST nivel 2
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item" id='btn_edit_ssi_beck'>
+                                  SSI BECK
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item" id='btn_edit_diagnostico_provicional_dsm5'>
+                                  Diagnóstico DSM-5
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item" id='btn_edit_disponibilidad_consulta'>
+                                  Disponibilidad Horario para Consulta
+                                </button>
+                              </li>
+                            {% else %}
+                              {% if role.nombre == 'ASIGNAR' %}
+                                <li>
+                                  <button class="dropdown-item" id='btn_edit_asignar_entrevistador'>
+                                    Asignar Entrevistador
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item" id='btn_edit_asignar_especialista_psicoterapeuta'>
+                                    Asignar Especialista Psicoterapeuta
+                                  </button>
+                                </li>
+                              {% else %}
+                                {% if role.nombre == 'VALORACION_PSICOLOGICA' %}
+                                  <li>
+                                    <button class="dropdown-item" id='btn_edit_decidir_valoracion'>
+                                      Decidir Valoración Psicológica
+                                    </button>
+                                  </li>
+                                {% else %}
+                                  {% if role.nombre == 'SEGUIMIENTO' %}
+                                    <li>
+                                      <button class="dropdown-item" id='btn_edit_seguimiento_atencion'>
+                                        Seguimiento de Atención
+                                      </button>
+                                    </li>
+                                  {% else %}
+                                    {% if role.nombre == 'CONSULTA_PSICOTERAPEUTICA' %}
+                                      <li>
+                                        <button class="dropdown-item" id='btn_edit_mst_n2'>
+                                          MST nivel 2
+                                        </button>
+                                      </li>
+                                      <li>
+                                        <button class="dropdown-item" id='btn_edit_ssi_beck'>
+                                          SSI BECK
+                                        </button>
+                                      </li>
+                                      <li>
+                                        <button class="dropdown-item" id='btn_edit_diagnostico_provicional_dsm5'>
+                                          Diagnóstico DSM-5
+                                        </button>
+                                      </li>
+                                    {% endif %}
+                                  {% endif %}
+                                {% endif %}
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
                       {% endif %}
                     {% endif %}
                   {% endwith %}
@@ -393,18 +663,43 @@
         <table class="table align-middle table-row-dashed table-hover fs-6 gy-1 gs-0" id="tabla_atenciones_psicologicas">
           <thead>
             <tr class='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
-              <th>Solicitante</th>
-              <th>Solicitud de Atención Psicológica</th>
-              <th>Entrevistador Asignado</th>
-              <th>Especialista Asignado</th>
-              <th>Formatos Aplicados</th>
-              <th>MST nivel 1</th>
-              <th>IDS Pregunta 11</th>
-              <th>SSI Beck</th>
-              <th>FPP</th>
-              <th>Ingresos Familiares Mensuales</th>
-              <th>Tipo de Atención</th>
-              <th>Estado de Atención</th>
+              {% with user_roles=request.user.rol.all %}
+                {% if user_roles|length == 1 %}
+                  <!-- tiene un solo rol -->
+                  {% if user_roles.0.nombre == 'SOLICITANTE' %}
+                    <th>Solicitante</th>
+                    <th>Solicitud de Atención Psicológica</th>
+                    <th>Tipo de Atención</th>
+                    <th>Estado de Atención</th>
+                  {% else %}
+                    <th>Solicitante</th>
+                    <th>Solicitud de Atención Psicológica</th>
+                    <th>Entrevistador Asignado</th>
+                    <th>Especialista Asignado</th>
+                    <th>Formatos Aplicados</th>
+                    <th>MST nivel 1</th>
+                    <th>IDS Pregunta 11</th>
+                    <th>SSI Beck</th>
+                    <th>FPP</th>
+                    <th>Ingresos Familiares Mensuales</th>
+                    <th>Tipo de Atención</th>
+                    <th>Estado de Atención</th>
+                  {% endif %}
+                {% else %}
+                  <th>Solicitante</th>
+                  <th>Solicitud de Atención Psicológica</th>
+                  <th>Entrevistador Asignado</th>
+                  <th>Especialista Asignado</th>
+                  <th>Formatos Aplicados</th>
+                  <th>MST nivel 1</th>
+                  <th>IDS Pregunta 11</th>
+                  <th>SSI Beck</th>
+                  <th>FPP</th>
+                  <th>Ingresos Familiares Mensuales</th>
+                  <th>Tipo de Atención</th>
+                  <th>Estado de Atención</th>
+                {% endif %}
+              {% endwith %}
             </tr>
           </thead>
           <tbody class="text-gray-600 fw-bold">
@@ -452,4 +747,5 @@
   <script src="{% static '/js/decidir_valoracion/main_functions.js' %}"></script>
   <script src="{% static '/js/mst_nivel2/main_functions.js' %}"></script>
   <script src="{% static '/js/historia_clinica/main_functions.js' %}"></script>
+  <script src="{% static '/js/historia_clinica/form_lock.js' %}"></script>
 {% endblock %}

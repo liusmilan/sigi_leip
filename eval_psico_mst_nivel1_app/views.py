@@ -107,7 +107,7 @@ class getMstNivel1(TemplateView):
         data = {}
 
         try:
-            evaluador_obj = asignar.objects.get(atencion=atencion_obj)
+            evaluador_obj = asignar.objects.get(atencion=atencion_obj, tipo_persona='entrevistador')
             evaluador = True            
         except asignar.DoesNotExist:
             evaluador = False

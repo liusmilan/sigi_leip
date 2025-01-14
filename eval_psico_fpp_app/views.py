@@ -131,14 +131,11 @@ class getFPP(TemplateView):
         data = {}
         
         try:
-            evaluador_obj = asignar.objects.get(atencion=atencion_obj)
+            evaluador_obj = asignar.objects.get(atencion=atencion_obj, tipo_persona='entrevistador')
             evaluador = True            
         except asignar.DoesNotExist:
             evaluador = False
 
-        print('//////////////////////////////////////////////////////////////////')
-        print(existeRol(id_user, 'SOLICITANTE'))
-        print(existeRol(id_user, 'SOLICITANTE').get('existe'))
         try:
             f = fpp.objects.get(atencion=atencion_obj)
             data['pregunta1'] = f.pregunta1

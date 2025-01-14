@@ -5666,3 +5666,45 @@ label.error {
 .align-left-table {
   padding-right: 0px !important;
 }
+
+/** overlay */
+.disabled-tab {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.form-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  border-radius: 0.375rem;
+}
+
+.form-overlay.active {
+  display: flex;
+}
+
+.form-container {
+  position: relative;
+}
+
+.spinner-container {
+  text-align: center;
+}
+
+.spinner-text {
+  margin-top: 10px;
+  color: #666;
+  font-weight: 500;
+}
+
+.table-width {
+  width: 100% !important;
+}

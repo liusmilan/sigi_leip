@@ -4,9 +4,11 @@ from django.http import JsonResponse
 from datetime import datetime
 from decimal import Decimal
 from django.views.generic import CreateView, TemplateView
+from asignar_app.models import asignar
 from .models import historia_clinica, atencion_psicologica, caracteristicas_infancia_adolescencia, estado, estado_civil, grado_academico, licenciatura, modalidad_conductas, modalidad_imagenes_me_veo, modalidad_imagenes_tengo, modalidad_pensamientos, modalidad_sensaciones_fisicas, modalidad_sentimientos, municipio, persona, religion, vive_con, vive_en
 from usuario_app.models import Usuario
 from persona_app.views import editarPersona
+from usuario_app.views import existeRol
 
 
 # Create your views here.
@@ -25,8 +27,7 @@ def agregarEditarHistoriaClinica(request):
         datos_hc = json.loads(params)
         accion = datos_hc.get('accion')
         id_atencion = datos_hc.get('id_atencion')
-        id_usuario_autenticado = datos_hc.get(
-            'id_usuario_autenticado')  # actualizar la persona
+        id_usuario_autenticado = datos_hc.get('id_usuario_autenticado')  # actualizar la persona
         atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
 
         # listas checkBoxs
@@ -54,7 +55,7 @@ def agregarEditarHistoriaClinica(request):
         id_estado_nac = dataDic['estado_nacimiento_hc']
         id_municipio_nac = dataDic['municipio_nacimiento_hc']
         id_licenciatura = dataDic['carrera_cursa_hc']
-        carrera = licenciatura.objects.get(id=id_licenciatura)
+        carrera = None if id_licenciatura == 'sel' or id_licenciatura == '-' else licenciatura.objects.get(id=id_licenciatura)
         fecha_nacimiento_persona = datetime.strptime(
             dataDic['fecha_nacimiento_hc'], '%d/%m/%Y')
         id_vive_en = dataDic['vive_en_hc']
@@ -88,7 +89,18 @@ def agregarEditarHistoriaClinica(request):
         cant_hermanos = dataDic['cant_hermanos_hc'] if dataDic['cant_hermanos_hc'] != '' else None
         edad_casar_padres = dataDic['padrasto_hc'] if dataDic['padrasto_hc'] != '' else None
         edad_primera_menstruacion = dataDic['edad_menst_hc'] if dataDic['edad_menst_hc'] != '' else None
-
+        
+        # datos de la persona
+        dataPersonaDic['id'] = Usuario.objects.get(id=id_usuario_autenticado).persona.id
+        dataPersonaDic['email'] = dataDic['email_hc']
+        dataPersonaDic['sexo'] = dataDic['inlineRadioOptionsSexoHc']
+        dataPersonaDic['fecha_nacimiento'] = fecha_nacimiento_persona
+        dataPersonaDic['telefono'] = dataDic['telefono_persona_hc']
+        dataPersonaDic['estado'] = dataDic['estado_actual_hc']
+        dataPersonaDic['municipio'] = dataDic['municipio_actual_hc']
+        dataPersonaDic['direccion'] = dataDic['direccion_actual_hc']
+        dataPersonaDic['parentesco'] = dataDic['parentesco_hc']
+        
         try:
             # guardar HC
             if accion == 'agregar':
@@ -165,7 +177,7 @@ def agregarEditarHistoriaClinica(request):
                         'otros_fact_biolg_hc'], observaciones=dataDic['observaciones_hc'], detalle_primera_exp_sexual=dataDic['detalle_primera_exp_sexual_hc'],
                     problemas_de_hijos=datos_hc.get('detalle_prob_hijo'), detalles_probl_relac_personas_trabj=datos_hc.get('detalle_rel_trabj'), detalle_pena_acerca_sexo=datos_hc.get('detalle_pena_sex'), detalles_visa_sexual_satisf=datos_hc.get('detalle_vida_sex_satisf'),
                     detalle_prob_por_rechazo_amoroso=datos_hc.get('detalle_rech_frac_amor'), detalle_prob_salud_fisica=datos_hc.get('detalle_prob_salud_fis'), tipo_frecuencia_ejerc_fisico=datos_hc.get('detalle_ejerc_fis'),
-                    tipo_fecha_cirugia=datos_hc.get('detalle_operado'), aplicado_por=Usuario.objects.get(id=id_usuario_autenticado).persona, atencion=atencion_obj, quien_lo_envia=dataDic['quien_lo_envia_hc'], prob_emocion_mental=datos_hc.get('prob_emocion_mental'), cuales_pensamto_vuelven=dataDic['cuales_pensamto_vuelven_hc'])
+                    tipo_fecha_cirugia=datos_hc.get('detalle_operado'), aplicado_por=Usuario.objects.get(id=id_usuario_autenticado).persona, atencion=atencion_obj, quien_lo_envia=dataDic['quien_lo_envia_hc'], prob_emocion_mental=datos_hc.get('prob_emocion_mental'), cuales_pensamto_vuelven=dataDic['cuales_pensamto_vuelven_hc'], hc_cerrada=datos_hc.get('hc_cerrada'))
 
                 agregarCaracteristicaInfanciaAdolescencia(listChecksInfanciaAdoles, obj, infancia_adolescencia_otros)
                 agregarModalidadConductas(listChecksConductas, obj, conducta_otros)
@@ -174,6 +186,9 @@ def agregarEditarHistoriaClinica(request):
                 agregarModalidadPensamientos(listChecksPensamientos, obj, pensamiento_otros_hc)
                 agregarModalidadSensacionesFisicas(listChecksSensaFisicas, obj, sensaciones_fisicas_otros)
                 agregarModalidadSentimientos(listChecksSentimientos, obj, sentimientos_otros)
+                
+                # modificar persona
+                editarPersona(dataPersonaDic)
 
                 mensaje = 'Se ha guardado correctamente la Historia Clínica.'
                 tipo_mensaje = 'success'
@@ -399,6 +414,7 @@ def agregarEditarHistoriaClinica(request):
                 hc.cuales_pensamto_vuelven = dataDic['cuales_pensamto_vuelven_hc']
                 hc.problemas_de_hijos=datos_hc.get('detalle_prob_hijo')
                 hc.detalle_primera_exp_sexual=dataDic['detalle_primera_exp_sexual_hc']
+                hc.hc_cerrada=datos_hc.get('hc_cerrada')
                 hc.save()
                 
                 # eliminar datos de las relaciones
@@ -417,24 +433,15 @@ def agregarEditarHistoriaClinica(request):
                 agregarModalidadSensacionesFisicas(listChecksSensaFisicas, hc, sensaciones_fisicas_otros)
                 agregarModalidadSentimientos(listChecksSentimientos, hc, sentimientos_otros)
 
+                # modificar persona
+                editarPersona(dataPersonaDic)
+
                 mensaje = 'Se ha editado correctamente la Historia Clínica.'
                 tipo_mensaje = 'success'
                 accion = 'editar'
                 result = JsonResponse(
                     {'mensaje': mensaje, 'tipo_mensaje': tipo_mensaje, 'accion': accion})
                 return result
-
-            # modificar persona
-            dataPersonaDic['id'] = Usuario.objects.get(id=id_usuario_autenticado).persona.id
-            dataPersonaDic['email'] = dataDic['email_hc']
-            dataPersonaDic['sexo'] = dataDic['inlineRadioOptionsSexoHc']
-            dataPersonaDic['fecha_nacimiento'] = fecha_nacimiento_persona
-            dataPersonaDic['telefono'] = dataDic['telefono_persona_hc']
-            dataPersonaDic['estado'] = dataDic['estado_actual_hc']
-            dataPersonaDic['municipio'] = dataDic['municipio_actual_hc']
-            dataPersonaDic['direccion'] = dataDic['direccion_actual_hc']
-            dataPersonaDic['parentesco'] = dataDic['parentesco_hc']
-            editarPersona(dataPersonaDic)
 
         except Exception as e:
             print(e)
@@ -451,7 +458,14 @@ class getHistoriaClinica(TemplateView):
     def get(self, request, *args, **kwargs):
         id_atencion = request.GET.get('id_atencion', '')
         atencion_obj = atencion_psicologica.objects.get(id=id_atencion)
+        id_user = request.GET.get('id_usuario', '')
         data = {}
+        
+        try:
+            psicoterapeuta_obj = asignar.objects.get(atencion=atencion_obj, tipo_persona='psicoterapeuta')
+            psicoterapeuta = True
+        except asignar.DoesNotExist:
+            psicoterapeuta = False
         
         try:
             hc = historia_clinica.objects.get(atencion=atencion_obj)
@@ -697,6 +711,8 @@ class getHistoriaClinica(TemplateView):
             data['cuales_pensamto_vuelven'] = hc.cuales_pensamto_vuelven
             data['detalle_primera_exp_sexual'] = hc.detalle_primera_exp_sexual
             data['menst_afecta_animo'] = hc.menst_afecta_animo
+            data['hc_cerrada'] = hc.hc_cerrada
+            data['psicoterapeuta'] = psicoterapeuta
             data['checksCaractInfanciaAdoles'] = getCaracteristicasInfanciaAdolescencia(hc)
             data['checksConductas'] = getModalidadConductas(hc)
             data['checksImgMeVeo'] = getModalidadImagenesMeVeo(hc)
@@ -705,9 +721,12 @@ class getHistoriaClinica(TemplateView):
             data['checksSensaFisicas'] = getModalidadSensacionesFisicas(hc)
             data['checksSentimientos'] = getModalidadSentimientos(hc)
             data['datos_persona'] = datos_persona
+            data['roles'] = {'solicitante': True if existeRol(id_user, 'SOLICITANTE').get('existe') == True and existeRol(id_user, 'SOLICITANTE').get('cant') == 1 else False}
             data['mensaje'] = 'existe'
             return JsonResponse(data)
         except historia_clinica.DoesNotExist:
+            data['psicoterapeuta'] = psicoterapeuta
+            data['roles'] = {'solicitante': True if existeRol(id_user, 'SOLICITANTE').get('existe') == True and existeRol(id_user, 'SOLICITANTE').get('cant') == 1 else False}
             data['mensaje'] = 'no_existe'
             return JsonResponse(data)
         

@@ -265,6 +265,7 @@ class historia_clinica(models.Model):
     observaciones = models.TextField(blank=True, null=True)
     aplicado_por = models.ForeignKey(
         persona, on_delete=models.CASCADE, blank=True, null=True)
+    hc_cerrada = models.BooleanField(blank=True, null=True)
     atencion = models.OneToOneField(
         atencion_psicologica, on_delete=models.CASCADE, blank=False, null=False)
 
