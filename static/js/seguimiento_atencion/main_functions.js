@@ -6,7 +6,8 @@ var seguimiento_atencion = function() {
   $('.fecha_seguimiento_atencion').datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    todayHighlight: true
+    todayHighlight: true,
+    autoclose: true
   });
   
   function initEvents() {

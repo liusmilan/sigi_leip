@@ -171,24 +171,37 @@ var mst_nivel1 = function() {
             
             $('#observaciones_mst1').val(response.observaciones);
 
+            if (response.roles.solicitante == true) {
+              $('#box_evaluacion_mst1').css('display', 'none');
+            } else {
+              $('#box_evaluacion_mst1').css('display', 'block');
+            }
+            
             if (response.evaluador == true && response.roles.solicitante == true) {
               $('#btn_agregar_mst_nivel1').css('display', 'none');
-              $('#box_evaluacion_mst1').css('display', 'none');
+              $('#box_questions_mst1').find('input, textarea, select, button').prop('disabled', true);
+              // $('#box_evaluacion_mst1').css('display', 'none');
             } else if (response.roles.administrador == true) {
               $('#btn_agregar_mst_nivel1').css('display', 'block');
-              $('#box_evaluacion_mst1').css('display', 'block');
+              // $('#box_evaluacion_mst1').css('display', 'block');
               var clase_span = $('#evaluacion_mst1').attr('class');
               $('#evaluacion_mst1').removeClass(clase_span);
               $('#evaluacion_mst1').text(response.total + ' - ' + response.nivel);
               $('#evaluacion_mst1').addClass('badge bg-badge-' + devolverColor(response.nivel).color);
+              $('#box_questions_fpp').find('input, textarea, select, button').prop('disabled', false);
             } else {
               $('#btn_agregar_mst_nivel1').css('display', 'block');
-              $('#box_evaluacion_mst1').css('display', 'block');
+              // $('#box_evaluacion_mst1').css('display', 'block');
               var clase_span = $('#evaluacion_mst1').attr('class');
               $('#evaluacion_mst1').removeClass(clase_span);
               $('#evaluacion_mst1').text(response.total + ' - ' + response.nivel);
               $('#evaluacion_mst1').addClass('badge bg-badge-' + devolverColor(response.nivel).color);
-              $('#box_questions_mst1').find('input, textarea, select, button').prop('disabled', true);
+
+              if (response.roles.solicitante == true) {
+                $('#box_questions_mst1').find('input, textarea, select, button').prop('disabled', false);
+              } else {
+                $('#box_questions_mst1').find('input, textarea, select, button').prop('disabled', true);
+              }
             }
 
             marcarPreguntas('uno', response.pregunta1);

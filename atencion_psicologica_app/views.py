@@ -1455,7 +1455,7 @@ def exportarExamen3(atencion, libro, historia_clinica):
     licenciatura = atencion.licenciatura.nombre if atencion.licenciatura else ''
     semestre = atencion.semestre.nombre if atencion.semestre else ''
     sexo = atencion.solicitante.sexo
-    vive_con = atencion.vive_con.vive_con if atencion.vive_con else ''
+    vive_con = historia_clinica.vive_con.vive_con if historia_clinica.vive_con else ''
     trabaja = atencion.trabaja
     hijos = atencion.hijos
     municipio = atencion.municipio.nombre if atencion.municipio else ''
