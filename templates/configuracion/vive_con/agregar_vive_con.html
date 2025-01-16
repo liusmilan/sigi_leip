@@ -1,0 +1,33 @@
+<div class="modal fade" id="modal_agregar_editar_vive_con" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Datos de Convivencia</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_vive_con'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_vive_con">
+        <div class="form-group mb-3 py-4">
+          <label for="nombre_vive_con" class="form-label">
+            <span class='required'>
+              Vive con
+            </span>
+            </label>
+          <input type="text" class="form-control" id="nombre_vive_con" placeholder="Vive con" required>
+        </div>
+        <div class="form-group form-check py-4">
+          <input class="form-check-input" type="checkbox" value="" id="estado_vive_con">
+          <label class="form-check-label" for="estado_vive_con">
+            Habilitado
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_vive_con">Cancelar</button>
+        <button type="button" class="btn btn-primary" id='btn_agregar_vive_con'>
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

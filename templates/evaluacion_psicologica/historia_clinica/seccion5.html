@@ -1,0 +1,2687 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<body>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      {% comment %} Conductas {% endcomment %}
+      <div class="accordion" id="accordionConducta">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingConducta">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConducta" aria-expanded="false" aria-controls="collapseConducta">
+              <strong>Conductas</strong>
+            </button>
+          </h2>
+          <div id="collapseConducta" class="accordion-collapse collapse" aria-labelledby="headingConducta" data-bs-parent="#accordionConducta">
+            <div class="accordion-body">
+              <label class="form-label">
+                <strong>De la siguiente lista, marque las que presente actualmente</strong>
+              </label>
+              </br>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_1">
+                    <label class="form-check-label" for="check_cond_1">
+                      Comer de más
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_2">
+                    <label class="form-check-label" for="check_cond_2">
+                      Consumir drogas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_3">
+                    <label class="form-check-label" for="check_cond_3">
+                      No hacer lo que desa o decir lo que piensa
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_4">
+                    <label class="form-check-label" for="check_cond_4">
+                      Conductas incorrectas
+                    </label>
+                  </div>
+                  
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_5">
+                    <label class="form-check-label" for="check_cond_5">
+                      Beber demasiado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_6">
+                    <label class="form-check-label" for="check_cond_6">
+                      Trabajar demasiado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_7">
+                    <label class="form-check-label" for="check_cond_7">
+                      Estar demorando algo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_8">
+                    <label class="form-check-label" for="check_cond_8">
+                      Relaciones impulsivas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_9">
+                    <label class="form-check-label" for="check_cond_9">
+                      Pérdida del control
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_10">
+                    <label class="form-check-label" for="check_cond_10">
+                      Intentos suicidas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_11">
+                    <label class="form-check-label" for="check_cond_11">
+                      Compulsiones
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_12">
+                    <label class="form-check-label" for="check_cond_12">
+                      Fumar
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_13">
+                    <label class="form-check-label" for="check_cond_13">
+                      Haber dejado de hacer algo
+                    </label>
+                  </div>
+                  </br>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_14">
+                    <label class="form-check-label" for="check_cond_14">
+                      Tics nerviosos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_15">
+                    <label class="form-check-label" for="check_cond_15">
+                      Dificultades para concentrarse
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_16">
+                    <label class="form-check-label" for="check_cond_16">
+                      Trastornos del sueño
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_17">
+                    <label class="form-check-label" for="check_cond_17">
+                      Evitación fóbica
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_18">
+                    <label class="form-check-label" for="check_cond_18">
+                      Gastar demasiado dinero
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_19">
+                    <label class="form-check-label" for="check_cond_19">
+                      No poder encontrar trabajo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_20">
+                    <label class="form-check-label" for="check_cond_20">
+                      Insomnio
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_21">
+                    <label class="form-check-label" for="check_cond_21">
+                      Tomar muchos riesgos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_22">
+                    <label class="form-check-label" for="check_cond_22">
+                      Perezoso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_23">
+                    <label class="form-check-label" for="check_cond_23">
+                      Problemas de alimentación
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_24">
+                    <label class="form-check-label" for="check_cond_24">
+                      Conducta agresiva
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_25">
+                    <label class="form-check-label" for="check_cond_25">
+                      Llanto continuo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkConductas" type="checkbox" value="" id="check_cond_26">
+                    <label class="form-check-label" for="check_cond_26">
+                      Muy enojado en ocaciones
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group px-7 py-1">
+                  <label for="otros_cond_hc" class="form-label">
+                    Otros
+                  </label>
+                  <textarea type="text" class="form-control" id="otros_cond_hc" name='otros_cond_hc'></textarea>
+                  </br>
+                </div>              
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="talento_cond_hc" class="form-label">
+                      ¿Cuáles son los talentos o habilidades de los que se puede sentir orgulloso/a?
+                    </label>
+                    <textarea type="text" class="form-control" id="talento_cond_hc" name='talento_cond_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="dejar_hacer_cond_hc" class="form-label">
+                      ¿Qué le gustaría dejar de hacer?
+                    </label>
+                    <textarea type="text" class="form-control" id="dejar_hacer_cond_hc" name='dejar_hacer_cond_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pasatiempo_cond_hc" class="form-label">
+                      ¿Cuáles actividades considera son sus pasatiempos o disfruta usted para relajarse?
+                    </label>
+                    <textarea type="text" class="form-control" id="pasatiempo_cond_hc" name='pasatiempo_cond_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Tiene problemas para relajarse y disfrutar de sus fines de semana o vacaciones?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsProbRelaxHc" id="check_prob_relax_si_hc" value="0">
+                      <label class="form-check-label" for="check_prob_relax_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsProbRelaxHc" id="check_prob_relax_no_hc" value="1">
+                      <label class="form-check-label" for="check_prob_relax_no_hc">No</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="emp_hacer_cond_hc" class="form-label">
+                      ¿Qué le gustaría empezar hacer?
+                    </label>
+                    <textarea type="text" class="form-control" id="emp_hacer_cond_hc" name='emp_hacer_cond_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="tiempo_libre_cond_hc" class="form-label">
+                      ¿Cómo pasa su tiempo libre?
+                    </label>
+                    <textarea type="text" class="form-control" id="tiempo_libre_cond_hc" name='tiempo_libre_cond_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="deseos_cond_hc" class="form-label">
+                      Si pudiera pedir dos deseos, ¿Cuáles serían?
+                    </label>
+                    <textarea type="text" class="form-control" id="deseos_cond_hc" name='deseos_cond_hc'></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      {% comment %} Sentimientos {% endcomment %}
+      <div class="accordion" id="accordionSentimientos">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSentimientos">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSentimientos" aria-expanded="false" aria-controls="collapseSentimientos">
+              <strong>Sentimientos</strong>
+            </button>
+          </h2>
+          <div id="collapseSentimientos" class="accordion-collapse collapse" aria-labelledby="headingSentimientos" data-bs-parent="#accordionSentimientos">
+            <div class="accordion-body">
+              <label class="form-label">
+                <strong>De la siguiente lista, marque las que presente actualmente</strong>
+              </label>
+              </br>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_1">
+                    <label class="form-check-label" for="check_sent_1">
+                      Enojado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_2">
+                    <label class="form-check-label" for="check_sent_2">
+                      Fastidiado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_3">
+                    <label class="form-check-label" for="check_sent_3">
+                      Triste
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_4">
+                    <label class="form-check-label" for="check_sent_4">
+                      Deprimido
+                    </label>
+                  </div>
+                  
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_5">
+                    <label class="form-check-label" for="check_sent_5">
+                      Envidioso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_6">
+                    <label class="form-check-label" for="check_sent_6">
+                      Culpable
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_7">
+                    <label class="form-check-label" for="check_sent_7">
+                      Feliz
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_8">
+                    <label class="form-check-label" for="check_sent_8">
+                      Ansioso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_9">
+                    <label class="form-check-label" for="check_sent_9">
+                      Con miedo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_10">
+                    <label class="form-check-label" for="check_sent_10">
+                      Con pánico
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_11">
+                    <label class="form-check-label" for="check_sent_11">
+                      Energético
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_12">
+                    <label class="form-check-label" for="check_sent_12">
+                      En conflicto
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_13">
+                    <label class="form-check-label" for="check_sent_13">
+                      Avergonzado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_14">
+                    <label class="form-check-label" for="check_sent_14">
+                      Apenado
+                    </label>
+                  </div>
+                  </br>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_15">
+                    <label class="form-check-label" for="check_sent_15">
+                      Esperanzado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_16">
+                    <label class="form-check-label" for="check_sent_16">
+                      Desamparado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_17">
+                    <label class="form-check-label" for="check_sent_17">
+                      Relajado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_18">
+                    <label class="form-check-label" for="check_sent_18">
+                      Celoso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_19">
+                    <label class="form-check-label" for="check_sent_19">
+                      Infeliz
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_20">
+                    <label class="form-check-label" for="check_sent_20">
+                      Aburrido
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_21">
+                    <label class="form-check-label" for="check_sent_21">
+                      Sin descanso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_22">
+                    <label class="form-check-label" for="check_sent_22">
+                      Solitario
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_23">
+                    <label class="form-check-label" for="check_sent_23">
+                      Satisfecho
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_24">
+                    <label class="form-check-label" for="check_sent_24">
+                      Excitado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_25">
+                    <label class="form-check-label" for="check_sent_25">
+                      Optimista
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_26">
+                    <label class="form-check-label" for="check_sent_26">
+                      Tenso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSentimientos" type="checkbox" value="" id="check_sent_27">
+                    <label class="form-check-label" for="check_sent_27">
+                      Sin esperanza
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group px-7 py-1">
+                  <label for="otros_sent_hc" class="form-label">
+                    Otros
+                  </label>
+                  <textarea type="text" class="form-control" id="otros_sent_hc" name='otros_sent_hc'></textarea>
+                  </br>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="miedos_sent_hc" class="form-label">
+                      Anote sus cinco (5) principales miedos
+                    </label>
+                    <textarea type="text" class="form-control" id="miedos_sent_hc" name='miedos_sent_hc' rows="5"></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="control_sent_hc" class="form-label">
+                      ¿Cómo es más probable que usted pierda el control sobre sus sentimientos?
+                    </label>
+                    <textarea type="text" class="form-control" id="control_sent_hc" name='control_sent_hc'></textarea>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="posit_sent_hc" class="form-label">
+                      ¿Cuáles son algunos sentimientos positivos que haya experimentado recientemente?
+                    </label>
+                    <textarea type="text" class="form-control" id="posit_sent_hc" name='posit_sent_hc' rows="5"></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="situacion_sent_hc" class="form-label">
+                      Describa una situación en la que se sienta calmado/a y relajado/a
+                    </label>
+                    <textarea type="text" class="form-control" id="situacion_sent_hc" name='situacion_sent_hc'></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      {% comment %} Sensaciones Físicas {% endcomment %}
+      <div class="accordion" id="accordionSensacFisicas">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSensacFisicas">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSensacFisicas" aria-expanded="false" aria-controls="collapseSensacFisicas">
+              <strong>Sensaciones Físicas</strong>
+            </button>
+          </h2>
+          <div id="collapseSensacFisicas" class="accordion-collapse collapse" aria-labelledby="headingSensacFisicas" data-bs-parent="#accordionSensacFisicas">
+            <div class="accordion-body">
+              <label class="form-label">
+                <strong>De la siguiente lista, marque las que presente actualmente</strong>
+              </label>
+              </br>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_1">
+                    <label class="form-check-label" for="check_sf_1">
+                      Dolor abdominal
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_2">
+                    <label class="form-check-label" for="check_sf_2">
+                      Dolor o ardor al orinar
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_3">
+                    <label class="form-check-label" for="check_sf_3">
+                      Dolor durante la menstruación
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_33">
+                    <label class="form-check-label" for="check_sf_33">
+                      Dolor de cabeza
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_4">
+                    <label class="form-check-label" for="check_sf_4">
+                      Mareos
+                    </label>
+                  </div>
+                  
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_5">
+                    <label class="form-check-label" for="check_sf_5">
+                      Palpitaciones
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_6">
+                    <label class="form-check-label" for="check_sf_6">
+                      Espasmos musculares
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_7">
+                    <label class="form-check-label" for="check_sf_7">
+                      Tensiones
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_8">
+                    <label class="form-check-label" for="check_sf_8">
+                      Trastornos sexuales
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_9">
+                    <label class="form-check-label" for="check_sf_9">
+                      Incapacidad para relajarse
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_10">
+                    <label class="form-check-label" for="check_sf_10">
+                      Alteraciones intestinales
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_11">
+                    <label class="form-check-label" for="check_sf_11">
+                      Hormigueos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_12">
+                    <label class="form-check-label" for="check_sf_12">
+                      Problemas de la piel
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_13">
+                    <label class="form-check-label" for="check_sf_13">
+                      Boca seca
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_14">
+                    <label class="form-check-label" for="check_sf_14">
+                      Sensación de quemadura o comezón de la piel
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_15">
+                    <label class="form-check-label" for="check_sf_15">
+                      Latidos cardiacos rápidos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_16">
+                    <label class="form-check-label" for="check_sf_16">
+                      No le gusta ser tocado(a)
+                    </label>
+                  </div>
+                  </br>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_17">
+                    <label class="form-check-label" for="check_sf_17">
+                      Entumecimiento
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_18">
+                    <label class="form-check-label" for="check_sf_18">
+                      Problemas estocamales
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_19">
+                    <label class="form-check-label" for="check_sf_19">
+                      Tics
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_20">
+                    <label class="form-check-label" for="check_sf_20">
+                      Fatiga
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_21">
+                    <label class="form-check-label" for="check_sf_21">
+                      Dolor de espalda
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_22">
+                    <label class="form-check-label" for="check_sf_22">
+                      Temblores
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_23">
+                    <label class="form-check-label" for="check_sf_23">
+                      Desmayos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_24">
+                    <label class="form-check-label" for="check_sf_24">
+                      Escuchar ruidos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_25">
+                    <label class="form-check-label" for="check_sf_25">
+                      Ojos llorosos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_26">
+                    <label class="form-check-label" for="check_sf_26">
+                      Catarro
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_27">
+                    <label class="form-check-label" for="check_sf_27">
+                      Náuseas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_28">
+                    <label class="form-check-label" for="check_sf_28">
+                      Vértigo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_29">
+                    <label class="form-check-label" for="check_sf_29">
+                      Sudoración excesiva
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_30">
+                    <label class="form-check-label" for="check_sf_30">
+                      Alteraciones visuales
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_31">
+                    <label class="form-check-label" for="check_sf_31">
+                      Problemas de audición
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkSensaFisicas" type="checkbox" value="" id="check_sf_32">
+                    <label class="form-check-label" for="check_sf_32">
+                      Variación de peso
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group px-7 py-1">
+                  <label for="otros_sf_hc" class="form-label">
+                    Otros
+                  </label>
+                  <textarea type="text" class="form-control" id="otros_sf_hc" name='otros_sf_hc'></textarea>
+                  </br>
+                </div>              
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="posit_sent_si_hc" class="form-label">
+                      ¿Qué sensaciones Sí son placenteras para usted?
+                    </label>
+                    <textarea type="text" class="form-control" id="posit_sent_si_hc" name='posit_sent_si_hc'></textarea>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="posit_sent_no_hc" class="form-label">
+                      ¿Qué sensaciones No son placenteras para usted?
+                    </label>
+                    <textarea type="text" class="form-control" id="posit_sent_no_hc" name='posit_sent_no_hc'></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      {% comment %} Imágenes {% endcomment %}
+      <div class="accordion" id="accordionImagenes">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingImagenes">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseImagenes" aria-expanded="false" aria-controls="collapseImagenes">
+              <strong>Imágenes</strong>
+            </button>
+          </h2>
+          <div id="collapseImagenes" class="accordion-collapse collapse" aria-labelledby="headingImagenes" data-bs-parent="#accordionImagenes">
+            <div class="accordion-body">
+              <label class="form-label">
+                <strong>De la siguiente lista, marque las imágenes que presente actualmente</strong>
+              </label>
+              </br>
+              <label class="form-label">
+                Yo me veo...
+              </label>
+              </br>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_1">
+                    <label class="form-check-label" for="check_img_1">
+                      Siendo feliz
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_2">
+                    <label class="form-check-label" for="check_img_2">
+                      Siendo herido en mis sentimientos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_3">
+                    <label class="form-check-label" for="check_img_3">
+                      Incapaz de afrontar problemas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_4">
+                    <label class="form-check-label" for="check_img_4">
+                      Exitoso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_5">
+                    <label class="form-check-label" for="check_img_5">
+                      Perdiendo el control
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_6">
+                    <label class="form-check-label" for="check_img_6">
+                      Siendo seguido
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_7">
+                    <label class="form-check-label" for="check_img_7">
+                      Que hablan de mí
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_8">
+                    <label class="form-check-label" for="check_img_8">
+                      Desamparado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_9">
+                    <label class="form-check-label" for="check_img_9">
+                      Lastimando a otros
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_10">
+                    <label class="form-check-label" for="check_img_10">
+                      Estando a cargo de las cosas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_11">
+                    <label class="form-check-label" for="check_img_11">
+                      Fallando
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_12">
+                    <label class="form-check-label" for="check_img_12">
+                      Atrapado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_13">
+                    <label class="form-check-label" for="check_img_13">
+                      Siendo promiscuo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgMeVeo" type="checkbox" value="" id="check_img_14">
+                    <label class="form-check-label" for="check_img_14">
+                      Siendo agresivo
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group px-7 py-1">
+                  <label for="otros_img_hc" class="form-label">
+                    Otros
+                  </label>
+                  <textarea type="text" class="form-control" id="otros_img_hc" name='otros_img_hc'></textarea>
+                  </br>
+                </div>
+              </div>
+
+              <label label class="form-label">
+                <strong>De la siguiente lista, marque las imágenes que presente actualmente</strong>
+              </label>
+              </br>
+              <label class="form-label">
+                Yo tengo...
+              </label>
+              </br>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgTengo" type="checkbox" value="" id="check_img_15">
+                    <label class="form-check-label" for="check_img_15">
+                      Imágenes sexuales placenteras
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgTengo" type="checkbox" value="" id="check_img_16">
+                    <label class="form-check-label" for="check_img_16">
+                      Imágenes desagradables de mi infancia
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgTengo" type="checkbox" value="" id="check_img_17">
+                    <label class="form-check-label" for="check_img_17">
+                      Imágen corporal negativa
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgTengo" type="checkbox" value="" id="check_img_18">
+                    <label class="form-check-label" for="check_img_18">
+                      Me imagino siendo amado
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgTengo" type="checkbox" value="" id="check_img_19">
+                    <label class="form-check-label" for="check_img_19">
+                      Imágenes sexuales no placenteras
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgTengo" type="checkbox" value="" id="check_img_20">
+                    <label class="form-check-label" for="check_img_20">
+                      Imágenes de soledad
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkImgTengo" type="checkbox" value="" id="check_img_21">
+                    <label class="form-check-label" for="check_img_21">
+                      Imágenes de seducción
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group px-7 py-1">
+                  <label for="otros_img_hc1" class="form-label">
+                    Otros
+                  </label>
+                  <textarea type="text" class="form-control" id="otros_img_hc1" name='otros_img_hc1'></textarea>
+                  </br>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="img_placentera_hc" class="form-label">
+                      Describa una imagen o fantasía muy placentera
+                    </label>
+                    <textarea type="text" class="form-control" id="img_placentera_hc" name='img_placentera_hc'></textarea>
+                    </br>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="img_moleste_hc" class="form-label">
+                      Describa la imagen persistente que le moleste o interfiera con su funcionamiento cotidiano
+                    </label>
+                    <textarea type="text" class="form-control" id="img_moleste_hc" name='img_moleste_hc'></textarea>
+                    </br>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="img_nada_placentera_hc" class="form-label">
+                      Describa una imagen o fantasía nada placentera
+                    </label>
+                    <textarea type="text" class="form-control" id="img_nada_placentera_hc" name='img_nada_placentera_hc'></textarea>
+                    </br>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="img_pesadillas_hc" class="form-label">
+                      ¿Qué tan seguido tiene pesadillas?
+                    </label>
+                    <textarea type="text" class="form-control" id="img_pesadillas_hc" name='img_pesadillas_hc'></textarea>
+                    </br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      {% comment %} Pensamientos {% endcomment %}
+      <div class="accordion" id="accordionPensamientos">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingPensamientos">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePensamientos" aria-expanded="false" aria-controls="collapsePensamientos">
+              <strong>Pensamientos</strong>
+            </button>
+          </h2>
+          <div id="collapsePensamientos" class="accordion-collapse collapse" aria-labelledby="headingPensamientos" data-bs-parent="#accordionPensamientos">
+            <div class="accordion-body">
+              <label class="form-label">
+                <strong>De la siguiente lista, marque las aseveraciones que presente actualmente</strong>
+              </label>
+              </br>
+              
+              <div class="row">
+                <div class="col-xl-3">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_1">
+                    <label class="form-check-label" for="check_pensamiento_1">
+                      Inteligente
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_2">
+                    <label class="form-check-label" for="check_pensamiento_2">
+                      Confidente
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_3">
+                    <label class="form-check-label" for="check_pensamiento_3">
+                      Que valgo la pena
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_4">
+                    <label class="form-check-label" for="check_pensamiento_4">
+                      Ambicioso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_5">
+                    <label class="form-check-label" for="check_pensamiento_5">
+                      Sensitivo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_6">
+                    <label class="form-check-label" for="check_pensamiento_6">
+                      Leal
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_7">
+                    <label class="form-check-label" for="check_pensamiento_7">
+                      Confiable, fidedigno
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_8">
+                    <label class="form-check-label" for="check_pensamiento_8">
+                      Lleno de penas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_9">
+                    <label class="form-check-label" for="check_pensamiento_9">
+                      Indigno
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_10">
+                    <label class="form-check-label" for="check_pensamiento_10">
+                      Un don nadie
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_11">
+                    <label class="form-check-label" for="check_pensamiento_11">
+                      Inútil
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_12">
+                    <label class="form-check-label" for="check_pensamiento_12">
+                      Malo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_13">
+                    <label class="form-check-label" for="check_pensamiento_13">
+                      Loco
+                    </label>
+                  </div>
+                  </br>
+                </div>
+
+                <div class="col-xl-3">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_14">
+                    <label class="form-check-label" for="check_pensamiento_14">
+                      Estúpido
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_15">
+                    <label class="form-check-label" for="check_pensamiento_15">
+                      Ingenuo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_16">
+                    <label class="form-check-label" for="check_pensamiento_16">
+                      Honesto
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_17">
+                    <label class="form-check-label" for="check_pensamiento_17">
+                      Incompetente
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_18">
+                    <label class="form-check-label" for="check_pensamiento_18">
+                      Con pensamientos horribles
+                    </label>
+                  </div>
+                  
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_19">
+                    <label class="form-check-label" for="check_pensamiento_19">
+                      Con desviaciones
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_20">
+                    <label class="form-check-label" for="check_pensamiento_20">
+                      Sin atractivos
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_21">
+                    <label class="form-check-label" for="check_pensamiento_21">
+                      Sin cariño
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_22">
+                    <label class="form-check-label" for="check_pensamiento_22">
+                      Inadecuado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_23">
+                    <label class="form-check-label" for="check_pensamiento_23">
+                      Confuso
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_24">
+                    <label class="form-check-label" for="check_pensamiento_24">
+                      Flojo
+                    </label>
+                  </div>
+                  
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_25">
+                    <label class="form-check-label" for="check_pensamiento_25">
+                      No digno de confianza
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_26">
+                    <label class="form-check-label" for="check_pensamiento_26">
+                      Deshonesto
+                    </label>
+                  </div>                  
+                </div>
+
+                <div class="col-xl-4">
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_27">
+                    <label class="form-check-label" for="check_pensamiento_27">
+                      Con ideas suicidas
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_28">
+                    <label class="form-check-label" for="check_pensamiento_28">
+                      Perseverante
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_29">
+                    <label class="form-check-label" for="check_pensamiento_29">
+                      Con buen sentido del humor
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_30">
+                    <label class="form-check-label" for="check_pensamiento_30">
+                      Que trabajo duro
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_31">
+                    <label class="form-check-label" for="check_pensamiento_31">
+                      Indeseable
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_32">
+                    <label class="form-check-label" for="check_pensamiento_32">
+                      En conflicto
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_33">
+                    <label class="form-check-label" for="check_pensamiento_33">
+                      Con dificultades para concentrarme
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_34">
+                    <label class="form-check-label" for="check_pensamiento_34">
+                      Con problemas de memoria
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_35">
+                    <label class="form-check-label" for="check_pensamiento_35">
+                      Atractivo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_36">
+                    <label class="form-check-label" for="check_pensamiento_36">
+                      Que no puedo tomar decisiones
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_37">
+                    <label class="form-check-label" for="check_pensamiento_37">
+                      Feo
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_38">
+                    <label class="form-check-label" for="check_pensamiento_38">
+                      Considerado
+                    </label>
+                  </div>
+
+                  <div class="form-group form-check px-10 py-2">
+                    <input class="form-check-input checkPensamientos" type="checkbox" value="" id="check_pensamiento_39">
+                    <label class="form-check-label" for="check_pensamiento_39">
+                      Degenerado
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group px-7 py-1">
+                  <label for="otros_pensamiento_hc" class="form-label">
+                    Otros
+                  </label>
+                  <textarea type="text" class="form-control" id="otros_pensamiento_hc" name='otros_pensamiento_hc'></textarea>
+                  </br>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="idea_mas_loca_hc" class="form-label">
+                      ¿Cuál cree que haya sido su idea más local?
+                    </label>
+                    <textarea type="text" class="form-control" id="idea_mas_loca_hc" name='idea_mas_loca_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="afectar_negativamente_humor_hc" class="form-label">
+                      ¿Quá le preocupa que pueda afectar negaticamente su humor o cunducta?
+                    </label>
+                    <textarea type="text" class="form-control" id="afectar_negativamente_humor_hc" name='afectar_negativamente_humor_hc'></textarea>
+                    </br>
+                  </div> 
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Se ha molestado por pensamientos que vuelven y vuelven?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsPensamientosVuelven" id="check_pensamientos_si_hc" value="0">
+                      <label class="form-check-label" for="check_pensamientos_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsPensamientosVuelven" id="check_pensamientos_no_hc" value="1">
+                      <label class="form-check-label" for="check_pensamientos_no_hc">No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      Si contestó Sí ¿Cuáles?
+                    </label>
+                    <textarea type="text" class="form-control" id="cuales_pensamto_vuelven_hc" name='cuales_pensamto_vuelven_hc'></textarea>
+                    </br>
+                  </div> 
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="form-label">
+                  <strong>De las siguientes aseveraciones, marque lo que refleje más adecuadamente su opinión, de acuerdo con el siguiente puntaje</strong>
+                </label>
+                </br>
+                <div class="form-group mb-1 py-1">
+                  <ol>
+                    <li>
+                      En total desacuerdo
+                    </li>
+                    <li>
+                      En desacuerdo
+                    </li>
+                    <li>
+                      Neutral
+                    </li>
+                    <li>
+                      De acuerdo
+                    </li>
+                    <li>
+                      Completamente de acuerdo
+                    </li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-4">
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_1" class="form-label">
+                      No debo cometer errores
+                    </label>
+                    <select class='form-control' id='pensamiento_select_1' name='pensamiento_select_1'></select>
+                  </div>
+                  
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_2" class="form-label">
+                      Debo ser bueno en todo lo que haga
+                    </label>
+                    <select class='form-control' id='pensamiento_select_2' name='pensamiento_select_2'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_4" class="form-label">
+                      No debo relevar información personal
+                    </label>
+                    <select class='form-control' id='pensamiento_select_4' name='pensamiento_select_4'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_3" class="form-label">
+                      Cuando no sepa algo, debo aparentar que sí lo sé
+                    </label>
+                    <select class='form-control' id='pensamiento_select_3' name='pensamiento_select_3'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_5" class="form-label">
+                      Soy una víctima de las circunstancias
+                    </label>
+                    <select class='form-control' id='pensamiento_select_5' name='pensamiento_select_5'></select>
+                  </div>
+                </div>
+
+                <div class="col-xl-4">
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_7" class="form-label">
+                      Otras personas son más felices que yo
+                    </label>
+                    <select class='form-control' id='pensamiento_select_7' name='pensamiento_select_7'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_8" class="form-label">
+                      Es muy importante complacer a otras personas
+                    </label>
+                    <select class='form-control' id='pensamiento_select_8' name='pensamiento_select_8'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_9" class="form-label">
+                      Hay que llevársela tranquila, no tomar riesgos
+                    </label>
+                    <select class='form-control' id='pensamiento_select_9' name='pensamiento_select_9'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_6" class="form-label">
+                      Mi vida se encuentra controlada por fuerzas externas
+                    </label>
+                    <select class='form-control' id='pensamiento_select_6' name='pensamiento_select_6'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_10" class="form-label">
+                      No merezco ser feliz
+                    </label>
+                    <select class='form-control' id='pensamiento_select_10' name='pensamiento_select_10'></select>
+                  </div>
+                </div>
+
+                <div class="col-xl-4">
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_11" class="form-label">
+                      Si ignoro mis problemas desaparecerán
+                    </label>
+                    <select class='form-control' id='pensamiento_select_11' name='pensamiento_select_11'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_12" class="form-label">
+                      Es mi responsabilidad hacer felices a otros
+                    </label>
+                    <select class='form-control' id='pensamiento_select_12' name='pensamiento_select_12'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_13" class="form-label">
+                      Debo trabajar muy duro para lograr la perfección
+                    </label>
+                    <select class='form-control' id='pensamiento_select_13' name='pensamiento_select_13'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_14" class="form-label">
+                      Básicamente hay dos formas de hacer las cosas: la correcta y la equivocada
+                    </label>
+                    <select class='form-control' id='pensamiento_select_14' name='pensamiento_select_14'></select>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="pensamiento_select_15" class="form-label">
+                      Nunca debo estar molesto
+                    </label>
+                    <select class='form-control' id='pensamiento_select_15' name='pensamiento_select_15'></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      {% comment %} Relaciones Interpersonales {% endcomment %}
+      <div class="accordion" id="accordionRelacInter">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingRelacInter">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelacInter" aria-expanded="false" aria-controls="collapseRelacInter">
+              <strong>Relaciones Interpersonales</strong>
+            </button>
+          </h2>
+          <div id="collapseRelacInter" class="accordion-collapse collapse" aria-labelledby="headingRelacInter" data-bs-parent="#accordionRelacInter">
+            <div class="accordion-body">
+              <div class="bg-primary-cust">
+                <label>
+                  <strong>Amistades</strong>
+                </label>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Hace usted amigos fácilmente?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntAmigos1" id="check_rel_int_amigos1_si_hc" value="0">
+                      <label class="form-check-label" for="check_rel_int_amigos1_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntAmigos1" id="check_rel_int_amigos1_no_hc" value="1">
+                      <label class="form-check-label" for="check_rel_int_amigos1_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Conserva sus amigos?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntAmigos2" id="check_rel_int_amigos2_si_hc" value="0">
+                      <label class="form-check-label" for="check_rel_int_amigos2_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntAmigos2" id="check_rel_int_amigos2_no_hc" value="1">
+                      <label class="form-check-label" for="check_rel_int_amigos2_no_hc">No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_int_relacion_alergia_hc" class="form-label">
+                      Describa una relación que le da alergias
+                    </label>
+                    <textarea type="text" class="form-control" id="rel_int_relacion_alergia_hc" name='rel_int_relacion_alergia_hc'></textarea>
+                    </br>
+                    </br>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Tenía citas frecuentes cuando era estudiante en la secundaria?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntCitaSec" id="check_rel_int_cita_sec_si_hc" value="0">
+                      <label class="form-check-label" for="check_rel_int_cita_sec_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntCitaSec" id="check_rel_int_cita_sec_no_hc" value="1">
+                      <label class="form-check-label" for="check_rel_int_cita_sec_no_hc">No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Tenía citas frecuentes cuando era estudiante en la preparatoria?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntCitaPrepa" id="check_rel_int_cita_prepa_si_hc" value="0">
+                      <label class="form-check-label" for="check_rel_int_cita_prepa_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelIntCitaPrepa" id="check_rel_int_cita_prepa_no_hc" value="1">
+                      <label class="form-check-label" for="check_rel_int_cita_prepa_no_hc">No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_int_relacion_problema_hc" class="form-label">
+                      Describa una relación que le da problemas
+                    </label>
+                    <textarea type="text" class="form-control" id="rel_int_relacion_problema_hc" name='rel_int_relacion_problema_hc'></textarea>
+                    </br>
+                  </div>
+                </div>
+              </div>
+
+              <div class='row'>
+                <div class="form-group mb-1 py-1">
+                  <label class="form-label">
+                    <strong>Marque el grado en el que se sienta en situaciones sociales.</strong> Siendo 1 muy relajado/a y 5 muy ansioso/a
+                  </label>
+                  </br>
+                  <label class="form-label" style="padding: 20px">
+                    <strong>Muy Relajado</strong>
+                  </label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSituaSocHc" id="check_ss_hc_1" value="1">
+                    <label class="form-check-label" for="check_ss_hc_1">1</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSituaSocHc" id="check_ss_hc_2" value="2">
+                    <label class="form-check-label" for="check_ss_hc_2">2</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSituaSocHc" id="check_ss_hc_3" value="3">
+                    <label class="form-check-label" for="check_ss_hc_3">3</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSituaSocHc" id="check_ss_hc_4" value="4">
+                    <label class="form-check-label" for="check_ss_hc_4">4</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSituaSocHc" id="check_ss_hc_5" value="5">
+                    <label class="form-check-label" for="check_ss_hc_5">5</label>
+                  </div>
+                  <label class="form-label">
+                    <strong>Muy ansioso</strong>
+                  </label>
+                </div>
+              </div>
+
+              <div class="bg-primary-cust">
+                <label>
+                  <strong>Relación de pareja o matrimonio</strong> (considera para contestar la relación en la que está actualmente)
+                </label>
+              </div>
+              
+              <div class='row'>
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_inte_parj_casado_hc" class="form-label">
+                      Si está casado, ¿cuánto tiempo conoció a su pareja antes de casarse?
+                    </label>
+                    <input type="text" class="form-control" id="rel_inte_parj_casado_hc" name='rel_inte_parj_casado_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_inte_tiempo_mujer_hc" class="form-label">
+                      ¿Cuánto tiempo a estado con su mujer?
+                    </label>
+                    <input type="text" class="form-control" id="rel_inte_tiempo_mujer_hc" name='rel_inte_tiempo_mujer_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_inte_ocup_pareja_hc" class="form-label">
+                      ¿Cuál es la ocupación de su pareja?
+                    </label>
+                    <input type="text" class="form-control" id="rel_inte_ocup_pareja_hc" name='rel_inte_ocup_pareja_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_int_gusta_pareja_hc" class="form-label">
+                      ¿Qué es lo que más le gusta de su pareja?
+                    </label>
+                    <textarea type="text" class="form-control" id="rel_int_gusta_pareja_hc" name='rel_int_gusta_pareja_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_int_satisf_pareja_hc" class="form-label">
+                      ¿Qué factores disminuyen su satisfacción de pareja?
+                    </label>
+                    <textarea type="text" class="form-control" id="rel_int_satisf_pareja_hc" name='rel_int_satisf_pareja_hc'></textarea>
+                    </br>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_inte_comp_casado_hc" class="form-label">
+                      Si está casado, ¿cuánto tiempo estuvo comprometido/a antes de casarse?
+                    </label>
+                    <input type="text" class="form-control" id="rel_inte_comp_casado_hc" name='rel_inte_comp_casado_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_inte_edad_pareja_hc" class="form-label">
+                      ¿Cuál es la edad de su pareja?
+                    </label>
+                    <input type="text" class="form-control" id="rel_inte_edad_pareja_hc" name='rel_inte_edad_pareja_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_inte_perso_pareja_hc" class="form-label">
+                      Describa la personalidad de su pareja
+                    </label>
+                    <input type="text" class="form-control" id="rel_inte_perso_pareja_hc" name='rel_inte_perso_pareja_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_int_gusta_pareja_menos_hc" class="form-label">
+                      ¿Qué es lo que menos le gusta de su pareja?
+                    </label>
+                    <textarea type="text" class="form-control" id="rel_int_gusta_pareja_menos_hc" name='rel_int_gusta_pareja_menos_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="rel_int_pareja_anterior_hc" class="form-label">
+                      ¿Algún detalle significativo de su pareja anterior?
+                    </label>
+                    <textarea type="text" class="form-control" id="rel_int_pareja_anterior_hc" name='rel_int_pareja_anterior_hc'></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group mb-1 py-1">
+                  <label class="form-label">
+                    <strong>Marque el grado satisfacción de su pareja.</strong> Siendo 1 nada satisfactorio y 7 muy satisfactorio
+                  </label>
+                  </br>
+                  <label class="form-label" style="padding: 20px">
+                    <strong>Nada satisfactorio</strong>
+                  </label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisParejaHc" id="check_sat_pareja_hc_1" value="1">
+                    <label class="form-check-label" for="check_sat_pareja_hc_1">1</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisParejaHc" id="check_sat_pareja_hc_2" value="2">
+                    <label class="form-check-label" for="check_sat_pareja_hc_2">2</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisParejaHc" id="check_sat_pareja_hc_3" value="3">
+                    <label class="form-check-label" for="check_sat_pareja_hc_3">3</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisParejaHc" id="check_sat_pareja_hc_4" value="4">
+                    <label class="form-check-label" for="check_sat_pareja_hc_4">4</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisParejaHc" id="check_sat_pareja_hc_5" value="5">
+                    <label class="form-check-label" for="check_sat_pareja_hc_5">5</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisParejaHc" id="check_sat_pareja_hc_6" value="6">
+                    <label class="form-check-label" for="check_sat_pareja_hc_6">6</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsSatisParejaHc" id="check_sat_pareja_hc_7" value="7">
+                    <label class="form-check-label" for="check_sat_pareja_hc_7">7</label>
+                  </div>
+                  <label class="form-label">
+                    <strong>Muy satisfactorio</strong>
+                  </label>
+                </div>
+
+                <div class="form-group mb-1 py-1">
+                  <label class="form-label">
+                    <strong>¿Cómo se lleva con los amigos y familiares de su pareja?</strong> Siendo 1 muy mal y 7 muy bien
+                  </label>
+                  </br>
+                  <label class="form-label" style="padding: 20px">
+                    <strong>Muy mal</strong>
+                  </label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsAmigosFamParejaHc" id="check_amg_fam_pareja_hc_1" value="1">
+                    <label class="form-check-label" for="check_amg_fam_pareja_hc_1">1</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsAmigosFamParejaHc" id="check_amg_fam_pareja_hc_2" value="2">
+                    <label class="form-check-label" for="check_amg_fam_pareja_hc_2">2</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsAmigosFamParejaHc" id="check_amg_fam_pareja_hc_3" value="3">
+                    <label class="form-check-label" for="check_amg_fam_pareja_hc_3">3</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsAmigosFamParejaHc" id="check_amg_fam_pareja_hc_4" value="4">
+                    <label class="form-check-label" for="check_amg_fam_pareja_hc_4">4</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsAmigosFamParejaHc" id="check_amg_fam_pareja_hc_5" value="5">
+                    <label class="form-check-label" for="check_amg_fam_pareja_hc_5">5</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsAmigosFamParejaHc" id="check_amg_fam_pareja_hc_6" value="6">
+                    <label class="form-check-label" for="check_amg_fam_pareja_hc_6">6</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptionsAmigosFamParejaHc" id="check_amg_fam_pareja_hc_7" value="7">
+                    <label class="form-check-label" for="check_amg_fam_pareja_hc_7">7</label>
+                  </div>
+                  <label class="form-label">
+                    <strong>Muy bien</strong>
+                  </label>
+                </div>
+              </div>
+
+              <div class='row'>
+                <hr>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="cant_hijos_hc" class="form-label">
+                      ¿Cuántos hijos/as tiene? Por favor indique el(los) nombre(s) y edad(es)
+                    </label>
+                    <textarea type="text" class="form-control" id="cant_hijos_hc" name='cant_hijos_hc' rows="5"></textarea>
+                  </div>                  
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      Alguno de sus hijos/as tiene problemas?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsHijosProb" id="check_hijos_con_prob_si_hc" value="0">
+                      <label class="form-check-label" for="check_hijos_con_prob_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsHijosProb" id="check_hijos_con_prob_no_hc" value="1">
+                      <label class="form-check-label" for="check_hijos_con_prob_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="prob_hijo_hc" class="form-label">
+                      Si respondió sí, por favor descríbalos
+                    </label>
+                    <input type="text" class="form-control" id="prob_hijo_hc" name='prob_hijo_hc' disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      {% comment %} Relaciones Sexuales {% endcomment %}
+      <div class="accordion" id="accordionRelacSex">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingRelacSex">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelacSex" aria-expanded="false" aria-controls="collapseRelacSex">
+              <strong>Relaciones Sexuales</strong>
+            </button>
+          </h2>
+          <div id="collapseRelacSex" class="accordion-collapse collapse" aria-labelledby="headingRelacSex" data-bs-parent="#accordionRelacSex">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="act_padres_sex_hc" class="form-label">
+                      Describa la actitud de sus padres hacia el sexo
+                    </label>
+                    <textarea type="text" class="form-control" id="act_padres_sex_hc" name='act_padres_sex_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="conoc_sex_hc" class="form-label">
+                      ¿Cuándo y cómo tuvo sus primeros conocimientos acerca del sexo?
+                    </label>
+                    <textarea type="text" class="form-control" id="conoc_sex_hc" name='conoc_sex_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Ha presentado alguna vez ansiedad o pena acerca del sexo o de la masturbación?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsAnsiedadPenaSex" id="check_pena_sex_si_hc" value="0">
+                      <label class="form-check-label" for="check_pena_sex_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsAnsiedadPenaSex" id="check_pena_sex_no_hc" value="1">
+                      <label class="form-check-label" for="check_pena_sex_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_pena_sex_hc" class="form-label">
+                      Si marcó Sí, por favor explique
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_pena_sex_hc" name='detalle_pena_sex_hc' disabled></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="relac_homo_sex_hc" class="form-label">
+                      ¿Ha tenido alguna reacción o relación homosexual?
+                    </label>
+                    <textarea type="text" class="form-control" id="relac_homo_sex_hc" name='relac_homo_sex_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Tiene problemas para relacionarse con personas en su trabajo?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelTrabaj" id="check_rel_trabj_si_hc" value="0">
+                      <label class="form-check-label" for="check_rel_trabj_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRelTrabaj" id="check_rel_trabj_no_hc" value="1">
+                      <label class="form-check-label" for="check_rel_trabj_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_rel_trabj_hc" class="form-label">
+                      Si marcó Sí, por favor describa
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_rel_trabj_hc" name='detalle_rel_trabj_hc' disabled></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="alterar_alguien_hc" class="form-label">
+                      Yo podría alterar a alguien haciendo
+                    </label>
+                    <textarea type="text" class="form-control" id="alterar_alguien_hc" name='alterar_alguien_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="amigo_piensa_soy_hc" class="form-label">
+                      Mi mejor amigo(a) piensa que soy
+                    </label>
+                    <textarea type="text" class="form-control" id="amigo_piensa_soy_hc" name='amigo_piensa_soy_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Actualmente tiene problemas por algún rechazo o fracaso amoroso?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRechFracAmor" id="check_rech_frac_amor_si_hc" value="0">
+                      <label class="form-check-label" for="check_rech_frac_amor_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsRechFracAmor" id="check_rech_frac_amor_no_hc" value="1">
+                      <label class="form-check-label" for="check_rech_frac_amor_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_rech_frac_amor_hc" class="form-label">
+                      Si marcó Sí, por favor describa
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_rech_frac_amor_hc" name='detalle_rech_frac_amor_hc' disabled></textarea>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_sex_hc" class="form-label">
+                      ¿Hablaban sobre el sexo en casa? Detalle
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_sex_hc" name='detalle_sex_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="impulso_sex_hc" class="form-label">
+                      ¿Cuándo se dió cuenta por primera vez de sus impulsos sexuales?
+                    </label>
+                    <textarea type="text" class="form-control" id="impulso_sex_hc" name='impulso_sex_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Su vida sexual actual es satisfactoria?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsVidaSexSatisf" id="check_vida_sex_satisf_si_hc" value="0">
+                      <label class="form-check-label" for="check_vida_sex_satisf_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsVidaSexSatisf" id="check_vida_sex_satisf_no_hc" value="1">
+                      <label class="form-check-label" for="check_vida_sex_satisf_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_vida_sex_satisf_hc" class="form-label">
+                      Si marcó No, por favor explique
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_vida_sex_satisf_hc" name='detalle_vida_sex_satisf_hc' disabled></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="info_extra_relev_hc" class="form-label">
+                      Anote información relacionada con el área sexual que no haya sido preguntada anteriormente en este formulario y que considere relevante
+                    </label>
+                    <textarea type="text" class="form-control" id="info_extra_relev_hc" name='info_extra_relev_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="gente_lastima_hc" class="form-label">
+                      Una forma en que la gente me lastima es
+                    </label>
+                    <textarea type="text" class="form-control" id="gente_lastima_hc" name='gente_lastima_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="describe_como_hc" class="form-label">
+                      Mi esposo(a) (novio o pareja) me describe como
+                    </label>
+                    <textarea type="text" class="form-control" id="describe_como_hc" name='describe_como_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="gente_no_gusta_hc" class="form-label">
+                      La gente que no me gusta es
+                    </label>
+                    <textarea type="text" class="form-control" id="gente_no_gusta_hc" name='gente_no_gusta_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_primera_exp_sexual_hc" class="form-label">
+                      ¿Algun detalle relevante respecto de su primera experiencia sexual o de alguna experiencia posterior?
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_primera_exp_sexual_hc" name='detalle_primera_exp_sexual_hc'></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      {% comment %} Factores Biológicos {% endcomment %}
+      <div class="accordion" id="accordionFacBiolg">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFacBiolg">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFacBiolg" aria-expanded="false" aria-controls="collapseFacBiolg">
+              <strong>Factores Biológicos</strong>
+            </button>
+          </h2>
+          <div id="collapseFacBiolg" class="accordion-collapse collapse" aria-labelledby="headingFacBiolg" data-bs-parent="#accordionFacBiolg">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Tienes algún problema de salud física?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsProbSaludFis" id="check_prob_salud_fis_si_hc" value="0">
+                      <label class="form-check-label" for="check_prob_salud_fis_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsProbSaludFis" id="check_prob_salud_fis_no_hc" value="1">
+                      <label class="form-check-label" for="check_prob_salud_fis_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_prob_salud_fis_hc" class="form-label">
+                      Si marcó Sí, por favor explique
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_prob_salud_fis_hc" name='detalle_prob_salud_fis_hc' disabled></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Lleva una dieta balanceada tres veces al día?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsDietaBal" id="check_dieta_bal_si_hc" value="0">
+                      <label class="form-check-label" for="check_dieta_bal_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsDietaBal" id="check_dieta_bal_no_hc" value="1">
+                      <label class="form-check-label" for="check_dieta_bal_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="prob_medic_hc" class="form-label">
+                      Haga una lista de los problemas médicos que haya padecido
+                    </label>
+                    <textarea type="text" class="form-control" id="prob_medic_hc" name='prob_medic_hc'></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Lo han operado?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsOperado" id="check_operado_si_hc" value="0">
+                      <label class="form-check-label" for="check_operado_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsOperado" id="check_operado_no_hc" value="1">
+                      <label class="form-check-label" for="check_operado_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_operado_hc" class="form-label">
+                      Si marcó Sí, indique el tipo de cirugía y la fecha
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_operado_hc" name='detalle_operado_hc' rows="5" disabled></textarea>
+                  </div>
+                </br>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="medica_toma_hc" class="form-label">
+                      Anote los medicamentos que toma actualmente
+                    </label>
+                    <textarea type="text" class="form-control" id="medica_toma_hc" name='medica_toma_hc' rows="5"></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Practica regularmente algún tipo de ejercicio físico?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsEjercFisico" id="check_ejerc_fis_si_hc" value="0">
+                      <label class="form-check-label" for="check_ejerc_fis_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsEjercFisico" id="check_ejerc_fis_no_hc" value="1">
+                      <label class="form-check-label" for="check_ejerc_fis_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="detalle_ejerc_fis_hc" class="form-label">
+                      Si marcó Sí, ¿de qué tipo y con qué frecuencia?
+                    </label>
+                    <textarea type="text" class="form-control" id="detalle_ejerc_fis_hc" name='detalle_ejerc_fis_hc' rows="5" disabled></textarea>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="prob_med_familia_hc" class="form-label">
+                      Haga una lista de los problemas médicos que haya padecido su familia
+                    </label>
+                    <textarea type="text" class="form-control" id="prob_med_familia_hc" name='prob_med_familia_hc' rows="5"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="bg-primary-cust">
+                  <label>
+                    <strong>Historia Menstrual</strong>
+                  </label>
+                </div>
+                
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label for="edad_menst_hc" class="form-label">
+                      Edad a la que presento su primera menstruación
+                    </label>
+                    <input type="text" class="form-control input-number" id="edad_menst_hc" name='edad_menst_hc' maxLength="2">
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Sus primeras menstruaciones significaron un problema?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsProbMenst" id="check_prob_menst_si_hc" value="0">
+                      <label class="form-check-label" for="check_prob_menst_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsProbMenst" id="check_prob_menst_no_hc" value="1">
+                      <label class="form-check-label" for="check_prob_menst_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Sus períodos son regulares?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsPeriodReg" id="check_per_reg_si_hc" value="0">
+                      <label class="form-check-label" for="check_per_reg_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsPeriodReg" id="check_per_reg_no_hc" value="1">
+                      <label class="form-check-label" for="check_per_reg_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="fecha_ultima_menst_hc" class="form-label">
+                      Fecha de su último período menstrual
+                    </label>
+                    <div class='input-group date fecha_ultimo_periodo_menst_hc'>
+                      <span class='input-group-addon'></span>
+                      <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_ultima_menst_hc' name='fecha_ultima_menst_hc'>
+                    </div>
+                  </div>
+                  </br>
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Sabía lo que era la menstruación cuando se le presentó por primera vez?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsSaberMenst" id="check_saber_menst_si_hc" value="0">
+                      <label class="form-check-label" for="check_saber_menst_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsSaberMenst" id="check_saber_menst_no_hc" value="1">
+                      <label class="form-check-label" for="check_saber_menst_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Su menstruación se acompaña de dolor?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsDolorMenst" id="check_dolor_menst_si_hc" value="0">
+                      <label class="form-check-label" for="check_dolor_menst_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsDolorMenst" id="check_dolor_menst_no_hc" value="1">
+                      <label class="form-check-label" for="check_dolor_menst_no_hc">No</label>
+                    </div> 
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label for="durac_period_hc" class="form-label">
+                      Duración de sus períodos
+                    </label>
+                    <input type="text" class="form-control" id="durac_period_hc" name='durac_period_hc'>
+                  </div>
+
+                  <div class="form-group mb-1 py-1">
+                    <label class="form-label">
+                      ¿Su menstruación afecta su estado de ánimo?
+                    </label>
+                    </br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsMensAfectaAnimo" id="check_menst_afecta_animo_si_hc" value="0">
+                      <label class="form-check-label" for="check_menst_afecta_animo_si_hc">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsMensAfectaAnimo" id="check_menst_afecta_animo_no_hc" value="1">
+                      <label class="form-check-label" for="check_menst_afecta_animo_no_hc">No</label>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+              <label class="form-label">
+                <strong>Seleccione las opciones que correspondan con su persona</strong>
+              </label>
+              </br>
+
+              <div class="row">
+                <div class="col-xl-4">
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_1" class="form-label">
+                      Debilidad muscular
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_1' name='fac_biolg_select_1'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_2" class="form-label">
+                      Tranquilizantes
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_2' name='fac_biolg_select_2'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_3" class="form-label">
+                      Diuréticos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_3' name='fac_biolg_select_3'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_4" class="form-label">
+                      Pastillas para adelgazar
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_4' name='fac_biolg_select_4'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_5" class="form-label">
+                      Marihuana
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_5' name='fac_biolg_select_5'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_6" class="form-label">
+                      Hormonas
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_6' name='fac_biolg_select_6'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_7" class="form-label">
+                      Pastillas para dormir
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_7' name='fac_biolg_select_7'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_8" class="form-label">
+                      Aspirina
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_8' name='fac_biolg_select_8'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_9" class="form-label">
+                      Cocaína
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_9' name='fac_biolg_select_9'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_10" class="form-label">
+                      Analgésicos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_10' name='fac_biolg_select_10'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_11" class="form-label">
+                      Narcóticos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_11' name='fac_biolg_select_11'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_12" class="form-label">
+                      Estimulantes
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_12' name='fac_biolg_select_12'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_13" class="form-label">
+                      Alucinógenos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_13' name='fac_biolg_select_13'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_14" class="form-label">
+                      Laxantes
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_14' name='fac_biolg_select_14'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_15" class="form-label">
+                      Cigarrillos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_15' name='fac_biolg_select_15'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_16" class="form-label">
+                      Tabaco
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_16' name='fac_biolg_select_16'></select>
+                  </div>
+                  </br>
+                </div>
+
+                <div class="col-xl-4">
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_17" class="form-label">
+                      Café
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_17' name='fac_biolg_select_17'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_18" class="form-label">
+                      Alcohol
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_18' name='fac_biolg_select_18'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_19" class="form-label">
+                      Anticonceptivos orales
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_19' name='fac_biolg_select_19'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_20" class="form-label">
+                      Vitaminas
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_20' name='fac_biolg_select_20'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_21" class="form-label">
+                      Escasa alimentación
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_21' name='fac_biolg_select_21'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_22" class="form-label">
+                      Alimentación abundante
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_22' name='fac_biolg_select_22'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_23" class="form-label">
+                      Comida "chatarra"
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_23' name='fac_biolg_select_23'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_24" class="form-label">
+                      Diarrea
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_24' name='fac_biolg_select_24'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_25" class="form-label">
+                      Estreñimiento
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_25' name='fac_biolg_select_25'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_26" class="form-label">
+                      Gases
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_26' name='fac_biolg_select_26'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_27" class="form-label">
+                      Indigestión
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_27' name='fac_biolg_select_27'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_28" class="form-label">
+                      Náuseas
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_28' name='fac_biolg_select_28'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_29" class="form-label">
+                      Vómitos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_29' name='fac_biolg_select_29'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_30" class="form-label">
+                      Agruras
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_30' name='fac_biolg_select_30'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_31" class="form-label">
+                      Mareos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_31' name='fac_biolg_select_31'></select>
+                  </div>
+                </div>
+
+                <div class="col-xl-4">
+                  <div class="form-group mb-1 py-1">
+                    <label for="fac_biolg_select_32" class="form-label">
+                      Palpitaciones
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_32' name='fac_biolg_select_32'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_33" class="form-label">
+                      Fatiga
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_33' name='fac_biolg_select_33'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_34" class="form-label">
+                      Alergias
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_34' name='fac_biolg_select_34'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_35" class="form-label">
+                      Presión arterial alta
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_35' name='fac_biolg_select_35'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_36" class="form-label">
+                      Dolor en el pecho
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_36' name='fac_biolg_select_36'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_37" class="form-label">
+                      Respiración cortada
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_37' name='fac_biolg_select_37'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_38" class="form-label">
+                      Insomnio
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_38' name='fac_biolg_select_38'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_39" class="form-label">
+                      Dormir más tiempo
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_39' name='fac_biolg_select_39'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_40" class="form-label">
+                      Dormir a ratos
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_40' name='fac_biolg_select_40'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_41" class="form-label">
+                      Despertarse muy temprano
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_41' name='fac_biolg_select_41'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_42" class="form-label">
+                      Dolores de oído
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_42' name='fac_biolg_select_42'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_44" class="form-label">
+                      Dolores de cabeza
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_44' name='fac_biolg_select_44'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_45" class="form-label">
+                      Dolores de Espalda
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_45' name='fac_biolg_select_45'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_46" class="form-label">
+                      Moretones o sangrados
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_46' name='fac_biolg_select_46'></select>
+                  </div>
+
+                  <div class="form-group px-1 py-1">
+                    <label for="fac_biolg_select_47" class="form-label">
+                      Problemas de peso
+                    </label>
+                    <select class='form-control' id='fac_biolg_select_47' name='fac_biolg_select_47'></select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group mb-1 py-1">
+                    <label for="otros_fact_biolg_hc" class="form-label">
+                      Otros
+                    </label>
+                    <textarea type="text" class="form-control" id="otros_fact_biolg_hc" name='otros_fact_biolg_hc'></textarea>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

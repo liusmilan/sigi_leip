@@ -1,0 +1,41 @@
+<div class="modal fade" id="modal_agregar_editar_licenciatura" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Licenciatura</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_licenciatura'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_licenciatura">
+        <div class="form-group mb-3 py-4">
+          <label for="nombre_licenciatura" class="form-label">
+            <span class='required'>
+              Nombre
+            </span>
+            </label>
+          <input type="text" class="form-control" id="nombre_licenciatura" placeholder="Nombre" required>
+        </div>
+        <div class="form-group mb-3 py-4">
+          <label for="tipo_licenciatura" class="form-label">
+            <span class='required'>
+              Tipo Licenciatura-Postgrado
+            </span>
+          </label>
+          <select class='form-control' id='tipo_licenciatura' name='tipo_licenciatura' required></select>
+        </div>
+        <div class="form-group form-check py-4">
+          <input class="form-check-input" type="checkbox" value="" id="estado_licenciatura">
+          <label class="form-check-label" for="estado_licenciatura">
+            Habilitado
+          </label>
+        </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_licenciatura">Cancelar</button>
+        <button type="button" class="btn btn-primary" id='btn_agregar_licenciatura'>
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

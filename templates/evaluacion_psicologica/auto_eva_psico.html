@@ -1,0 +1,1054 @@
+<div class="modal fade" id="modal_auto_eva_psico" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal_50">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Autoevaluación Psicológica</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_auto_eva_psico'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_auto_eva_psico">
+        <input type="hidden" class="form-control" id="id_usuario_autenticado">
+
+        <div class="card shadow-sm card-light-background">
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <span>
+                Siendo cinsero, elige una de las opciones frente a cada una de las frases en listas
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 1 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>1</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He expresado afecto o alegría</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta1" id="auto_eva_psico_check_pregunta_uno_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_uno_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta1" id="auto_eva_psico_check_pregunta_uno_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_uno_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta1" id="auto_eva_psico_check_pregunta_uno_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_uno_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta1" id="auto_eva_psico_check_pregunta_uno_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_uno_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 2 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>2</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He platicado</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta2" id="auto_eva_psico_check_pregunta_dos_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dos_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta2" id="auto_eva_psico_check_pregunta_dos_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dos_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta2" id="auto_eva_psico_check_pregunta_dos_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dos_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta2" id="auto_eva_psico_check_pregunta_dos_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dos_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 3 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>3</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He comido bien</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta3" id="auto_eva_psico_check_pregunta_tres_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_tres_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta3" id="auto_eva_psico_check_pregunta_tres_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_tres_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta3" id="auto_eva_psico_check_pregunta_tres_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_tres_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta3" id="auto_eva_psico_check_pregunta_tres_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_tres_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 4 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>4</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He oído música agradable</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta4" id="auto_eva_psico_check_pregunta_cuatro_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cuatro_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta4" id="auto_eva_psico_check_pregunta_cuatro_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cuatro_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta4" id="auto_eva_psico_check_pregunta_cuatro_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cuatro_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta4" id="auto_eva_psico_check_pregunta_cuatro_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cuatro_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 5 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>5</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He dormido bien</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta5" id="auto_eva_psico_check_pregunta_cinco_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cinco_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta5" id="auto_eva_psico_check_pregunta_cinco_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cinco_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta5" id="auto_eva_psico_check_pregunta_cinco_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cinco_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta5" id="auto_eva_psico_check_pregunta_cinco_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_cinco_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 6 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>6</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He hecho ejercicio</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta6" id="auto_eva_psico_check_pregunta_seis_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_seis_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta6" id="auto_eva_psico_check_pregunta_seis_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_seis_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta6" id="auto_eva_psico_check_pregunta_seis_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_seis_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta6" id="auto_eva_psico_check_pregunta_seis_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_seis_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 7 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>7</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He salido a divertirme</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta7" id="auto_eva_psico_check_pregunta_siete_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_siete_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta7" id="auto_eva_psico_check_pregunta_siete_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_siete_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta7" id="auto_eva_psico_check_pregunta_siete_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_siete_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta7" id="auto_eva_psico_check_pregunta_siete_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_siete_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 8 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>8</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He jugado</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta8" id="auto_eva_psico_check_pregunta_ocho_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_ocho_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta8" id="auto_eva_psico_check_pregunta_ocho_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_ocho_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta8" id="auto_eva_psico_check_pregunta_ocho_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_ocho_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta8" id="auto_eva_psico_check_pregunta_ocho_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_ocho_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 9 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>9</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He tenido convivencia con mis seres queridos</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta9" id="auto_eva_psico_check_pregunta_nueve_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_nueve_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta9" id="auto_eva_psico_check_pregunta_nueve_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_nueve_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta9" id="auto_eva_psico_check_pregunta_nueve_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_nueve_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta9" id="auto_eva_psico_check_pregunta_nueve_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_nueve_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 10 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>10</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He estado en lugares agradables</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta10" id="auto_eva_psico_check_pregunta_diez_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diez_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta10" id="auto_eva_psico_check_pregunta_diez_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diez_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta10" id="auto_eva_psico_check_pregunta_diez_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diez_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta10" id="auto_eva_psico_check_pregunta_diez_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diez_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 11 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>11</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He avanzado en mis propósitos</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta11" id="auto_eva_psico_check_pregunta_once_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_once_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta11" id="auto_eva_psico_check_pregunta_once_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_once_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta11" id="auto_eva_psico_check_pregunta_once_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_once_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta11" id="auto_eva_psico_check_pregunta_once_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_once_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 12 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>12</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He sentido confianza en alguien</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta12" id="auto_eva_psico_check_pregunta_doce_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_doce_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta12" id="auto_eva_psico_check_pregunta_doce_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_doce_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta12" id="auto_eva_psico_check_pregunta_doce_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_doce_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta12" id="auto_eva_psico_check_pregunta_doce_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_doce_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 13 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>13</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He mantenido el buen humor</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta13" id="auto_eva_psico_check_pregunta_trece_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_trece_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta13" id="auto_eva_psico_check_pregunta_trece_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_trece_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta13" id="auto_eva_psico_check_pregunta_trece_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_trece_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta13" id="auto_eva_psico_check_pregunta_trece_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_trece_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 14 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>14</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He superado errores u obstáculos</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta14" id="auto_eva_psico_check_pregunta_catorce_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_catorce_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta14" id="auto_eva_psico_check_pregunta_catorce_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_catorce_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta14" id="auto_eva_psico_check_pregunta_catorce_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_catorce_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta14" id="auto_eva_psico_check_pregunta_catorce_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_catorce_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {% comment %} 15 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>15</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He expresado reconocimiento a otros</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta15" id="auto_eva_psico_check_pregunta_quince_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_quince_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta15" id="auto_eva_psico_check_pregunta_quince_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_quince_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta15" id="auto_eva_psico_check_pregunta_quince_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_quince_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta15" id="auto_eva_psico_check_pregunta_quince_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_quince_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 16 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>16</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He entendido otros puntos de vista</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta16" id="auto_eva_psico_check_pregunta_dieciseis_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciseis_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta16" id="auto_eva_psico_check_pregunta_dieciseis_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciseis_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta16" id="auto_eva_psico_check_pregunta_dieciseis_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciseis_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta16" id="auto_eva_psico_check_pregunta_dieciseis_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciseis_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 17 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>17</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He respetado opiniones que no comparto</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta17" id="auto_eva_psico_check_pregunta_diecisiete_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecisiete_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta17" id="auto_eva_psico_check_pregunta_diecisiete_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecisiete_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta17" id="auto_eva_psico_check_pregunta_diecisiete_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecisiete_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta17" id="auto_eva_psico_check_pregunta_diecisiete_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecisiete_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 18 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>18</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He expresado lo que pienso</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta18" id="auto_eva_psico_check_pregunta_dieciocho_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciocho_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta18" id="auto_eva_psico_check_pregunta_dieciocho_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciocho_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta18" id="auto_eva_psico_check_pregunta_dieciocho_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciocho_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta18" id="auto_eva_psico_check_pregunta_dieciocho_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_dieciocho_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {% comment %} 19 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>19</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He hecho bien mi trabajo</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta19" id="auto_eva_psico_check_pregunta_diecinueve_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecinueve_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta19" id="auto_eva_psico_check_pregunta_diecinueve_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecinueve_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta19" id="auto_eva_psico_check_pregunta_diecinueve_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecinueve_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta19" id="auto_eva_psico_check_pregunta_diecinueve_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_diecinueve_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 20 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>20</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Se me han ocurrido cosas nuevas</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta20" id="auto_eva_psico_check_pregunta_veinte_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinte_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta20" id="auto_eva_psico_check_pregunta_veinte_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinte_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta20" id="auto_eva_psico_check_pregunta_veinte_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinte_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta20" id="auto_eva_psico_check_pregunta_veinte_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinte_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 21 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>21</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He logrado éxitos</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta21" id="auto_eva_psico_check_pregunta_veintiuno_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiuno_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta21" id="auto_eva_psico_check_pregunta_veintiuno_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiuno_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta21" id="auto_eva_psico_check_pregunta_veintiuno_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiuno_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta21" id="auto_eva_psico_check_pregunta_veintiuno_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiuno_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 22 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>22</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He tenido iniciativa</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta22" id="auto_eva_psico_check_pregunta_veintidos_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintidos_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta22" id="auto_eva_psico_check_pregunta_veintidos_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintidos_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta22" id="auto_eva_psico_check_pregunta_veintidos_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintidos_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta22" id="auto_eva_psico_check_pregunta_veintidos_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintidos_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 23 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>23</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He dejado a cada quién su responsabilidad</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta23" id="auto_eva_psico_check_pregunta_veintitres_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintitres_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta23" id="auto_eva_psico_check_pregunta_veintitres_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintitres_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta23" id="auto_eva_psico_check_pregunta_veintitres_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintitres_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta23" id="auto_eva_psico_check_pregunta_veintitres_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintitres_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 24 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>24</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He sido prudente o cuidadoso</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta24" id="auto_eva_psico_check_pregunta_veinticuatro_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticuatro_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta24" id="auto_eva_psico_check_pregunta_veinticuatro_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticuatro_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta24" id="auto_eva_psico_check_pregunta_veinticuatro_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticuatro_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta24" id="auto_eva_psico_check_pregunta_veinticuatro_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticuatro_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 25 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>25</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He sido generoso</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta25" id="auto_eva_psico_check_pregunta_veinticinco_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticinco_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta25" id="auto_eva_psico_check_pregunta_veinticinco_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticinco_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta25" id="auto_eva_psico_check_pregunta_veinticinco_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticinco_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta25" id="auto_eva_psico_check_pregunta_veinticinco_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veinticinco_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 26 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>26</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He logrado ser respetado</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta26" id="auto_eva_psico_check_pregunta_veintiseis_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiseis_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta26" id="auto_eva_psico_check_pregunta_veintiseis_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiseis_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta26" id="auto_eva_psico_check_pregunta_veintiseis_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiseis_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta26" id="auto_eva_psico_check_pregunta_veintiseis_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiseis_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 27 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>27</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He actuado de acuerdo a lo que creo</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta27" id="auto_eva_psico_check_pregunta_veintisiete_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintisiete_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta27" id="auto_eva_psico_check_pregunta_veintisiete_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintisiete_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta27" id="auto_eva_psico_check_pregunta_veintisiete_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintisiete_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta27" id="auto_eva_psico_check_pregunta_veintisiete_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintisiete_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 28 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>28</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He llegado a acuerdos con otros</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta28" id="auto_eva_psico_check_pregunta_veintiocho_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiocho_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta28" id="auto_eva_psico_check_pregunta_veintiocho_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiocho_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta28" id="auto_eva_psico_check_pregunta_veintiocho_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiocho_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta28" id="auto_eva_psico_check_pregunta_veintiocho_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintiocho_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 29 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>29</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He cuidado el medio ambiente</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta29" id="auto_eva_psico_check_pregunta_veintinueve_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintinueve_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta29" id="auto_eva_psico_check_pregunta_veintinueve_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintinueve_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta29" id="auto_eva_psico_check_pregunta_veintinueve_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintinueve_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta29" id="auto_eva_psico_check_pregunta_veintinueve_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_veintinueve_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 30 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>30</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He estado informado sobre mi país</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta30" id="auto_eva_psico_check_pregunta_treinta_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treinta_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta30" id="auto_eva_psico_check_pregunta_treinta_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treinta_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta30" id="auto_eva_psico_check_pregunta_treinta_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treinta_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta30" id="auto_eva_psico_check_pregunta_treinta_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treinta_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 31 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>31</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>He sabido de personas formidable</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta31" id="auto_eva_psico_check_pregunta_treintauno_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintauno_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta31" id="auto_eva_psico_check_pregunta_treintauno_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintauno_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta31" id="auto_eva_psico_check_pregunta_treintauno_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintauno_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta31" id="auto_eva_psico_check_pregunta_treintauno_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintauno_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 32 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>32</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Me he esforzado por mis ideales</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta32" id="auto_eva_psico_check_pregunta_treintados_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintados_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta32" id="auto_eva_psico_check_pregunta_treintados_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintados_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta32" id="auto_eva_psico_check_pregunta_treintados_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintados_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta32" id="auto_eva_psico_check_pregunta_treintados_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintados_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} 33 {% endcomment %}
+        <div class="card shadow-sm">
+          <span class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-primary" style='color: white'>33</span>
+          <div class="card-body">
+            <div class="form-group mb-1 py-2">
+              <label class="form-label">
+                <span class='required'>
+                  <strong>Ha patocopado en acciones sociales voluntarias</strong>
+                </span>
+              </label>
+              </br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta33" id="auto_eva_psico_check_pregunta_treintatres_uno" value="1">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintatres_uno">Muy Bien o Bastante</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta33" id="auto_eva_psico_check_pregunta_treintatres_dos" value="2">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintatres_dos">Regular</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta33" id="auto_eva_psico_check_pregunta_treintatres_tres" value="3">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintatres_tres">Poco</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptionsAutoEvaPsicoPregunta33" id="auto_eva_psico_check_pregunta_treintatres_cuatro" value="4">
+                <label class="form-check-label" for="auto_eva_psico_check_pregunta_treintatres_cuatro">Nada</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_auto_eva_psico">Cancelar</button>
+          <button type="button" class="btn btn-primary" id='btn_agregar_auto_eva_psico'>
+            Guardar
+          </button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>

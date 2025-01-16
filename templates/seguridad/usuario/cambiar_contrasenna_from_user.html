@@ -1,0 +1,38 @@
+<div class="modal fade" id="modal_cambiar_contrasenna_from_user" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Cambiar Contraseña</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_cambiar_contrasenna_fu'></button>
+      </div>
+      <div class="modal-body">
+        <form id="form_contrasenna_fu" name='form_contrasenna_fu'>
+          {% csrf_token %}
+
+          <div class="form-group mb-3 py-4">
+            <label for="nueva_contrasenna_usuario_fu" class="form-label">
+              <span class='required'>
+                Nueva Contraseña
+              </span>
+              </label>
+            <input type="password" class="form-control" id="nueva_contrasenna_usuario_fu" name="nueva_contrasenna_usuario_fu" placeholder="Contraseña" required>
+          </div>
+
+          <div class="form-group mb-3 py-4">
+            <label for="confirmar_nueva_contrasenna_usuario_fu" class="form-label">
+              <span class='required'>
+                Confirmar Contraseña
+              </span>
+              </label>
+            <input type="password" class="form-control" id="confirmar_nueva_contrasenna_usuario_fu" name="confirmar_nueva_contrasenna_usuario_fu" placeholder="Confirmar Contraseña" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id='btn_guardar_contrasenna_fu'>Cambiar</button>
+            <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_cambiar_contrasenna_fu">Cancelar</button>
+          </div>
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>

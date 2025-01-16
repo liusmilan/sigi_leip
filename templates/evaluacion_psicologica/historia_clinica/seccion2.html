@@ -1,0 +1,394 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<body>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <label class="form-label">
+        <strong>PADRE</strong>
+      </label>
+      </br>
+
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="nombre_padre_hc" class="form-label">
+              Nombre(s) y Apellido(s)
+            </label>
+            <input type="text" class="form-control" id="nombre_padre_hc" name='nombre_padre_hc' placeholder="Nombre y Apellidos">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="ocupacion_padre_hc" class="form-label">
+              Ocupación
+            </label>
+            <input type="text" class="form-control" id="ocupacion_padre_hc" name='ocupacion_padre_hc' placeholder="Ocupación">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="estado_salud_padre_hc" class="form-label">
+              Estado de salud
+            </label>
+            <input type="text" class="form-control" id="estado_salud_padre_hc" name='estado_salud_padre_hc' placeholder="Estado de salud">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="causa_muerte_padre_hc" class="form-label">
+              Causa de la muerte
+            </label>
+            <input type="text" class="form-control" id="causa_muerte_padre_hc" name='causa_muerte_padre_hc' placeholder="Causa de la muerte">
+          </div>
+        </div>
+
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="edad_padre_hc" class="form-label">
+              Edad
+            </label>
+            <input type="text" class="form-control input-number" id="edad_padre_hc" name='edad_padre_hc' placeholder="Edad" maxLength="3">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="estudios_padre_hc" class="form-label">
+              Máximo grado de estudios de su padre
+            </label>
+            <input type="text" class="form-control" id="estudios_padre_hc" name='estudios_padre_hc' placeholder="Estudios">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="edad_muerte_padre_hc" class="form-label">
+              Si ya murió, edad al morir
+            </label>
+            <input type="text" class="form-control input-number" id="edad_muerte_padre_hc" name='edad_muerte_padre_hc' placeholder="Edad al morir" maxLength="3">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="edad_usted_morir_padre_hc" class="form-label">
+              Edad de usted al morir su padre
+            </label>
+            <input type="text" class="form-control input-number" id="edad_usted_morir_padre_hc" name='edad_usted_morir_padre_hc' placeholder="Edad al morir su padre" maxLength="3">
+          </div>
+        </br>
+        </div>
+      </div>
+
+      <label class="form-label">
+        <strong>MADRE</strong>
+      </label>
+      </br>
+
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="nombre_madre_hc" class="form-label">
+              Nombre(s) y Apellido(s)
+            </label>
+            <input type="text" class="form-control" id="nombre_madre_hc" name='nombre_madre_hc' placeholder="Nombre y Apellidos">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="ocupacion_madre_hc" class="form-label">
+              Ocupación
+            </label>
+            <input type="text" class="form-control" id="ocupacion_madre_hc" name='ocupacion_madre_hc' placeholder="Ocupación">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="estado_salud_madre_hc" class="form-label">
+              Estado de salud
+            </label>
+            <input type="text" class="form-control" id="estado_salud_madre_hc" name='estado_salud_madre_hc' placeholder="Estado de salud">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="causa_muerte_madre_hc" class="form-label">
+              Causa de la muerte
+            </label>
+            <input type="text" class="form-control" id="causa_muerte_madre_hc" name='causa_muerte_madre_hc' placeholder="Causa de la muerte">
+          </div>
+        </div>
+
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="edad_madre_hc" class="form-label">
+              Edad
+            </label>
+            <input type="text" class="form-control input-number" id="edad_madre_hc" name='edad_madre_hc' placeholder="Edad" maxLength="3">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="estudios_madre_hc" class="form-label">
+              Máximo grado de estudios de su madre
+            </label>
+            <input type="text" class="form-control" id="estudios_madre_hc" name='estudios_madre_hc' placeholder="Estudios">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="edad_muerte_madre_hc" class="form-label">
+              Si ya murió, edad al morir
+            </label>
+            <input type="text" class="form-control input-number" id="edad_muerte_madre_hc" name='edad_muerte_madre_hc' placeholder="Edad al morir" maxLength="3">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="edad_usted_morir_madre_hc" class="form-label">
+              Edad de usted al morir su madre
+            </label>
+            <input type="text" class="form-control input-number" id="edad_usted_morir_madre_hc" name='edad_usted_morir_madre_hc' placeholder="Edad al morir su madre" maxLength="3">
+          </div>
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="cant_hermanos_hc" class="form-label">
+              ¿Cuántos hermanos y hermanas tiene?
+            </label>
+            <input type="text" class="form-control input-number" id="cant_hermanos_hc" name='cant_hermanos_hc' placeholder="Hermanos y hermanas" maxLength="2">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="detalles_sig_hermanos_hc" class="form-label">
+              Algunos detalles significativos de sus padres y sus hermanos
+            </label>
+            <textarea type="text" class="form-control" id="detalles_sig_hermanos_hc" name='detalles_sig_hermanos_hc'></textarea>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="pers_act_padre_hc" class="form-label">
+              Por favor, describa la personalidad y actitudes de su Padre hacia usted (pasado y presente)
+            </label>
+            <textarea type="text" class="form-control" id="pers_act_padre_hc" name='pers_act_padre_hc'></textarea>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="forma_castigo_padre_hc" class="form-label">
+              ¿De qué forma era disciplinado o castigado por sus padres?
+            </label>
+            <textarea type="text" class="form-control" id="forma_castigo_padre_hc" name='forma_castigo_padre_hc'></textarea>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="confianza_padres_hc" class="form-label">
+              ¿Era o es usted capaz de confiar en sus padres?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsConfPareHc" id="check_confianza_padres_si_hc" value="0">
+              <label class="form-check-label" for="check_confianza_padres_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsConfPareHc" id="check_confianza_padres_no_hc" value="1">
+              <label class="form-check-label" for="check_confianza_padres_no_hc">No</label>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="padrasto_hc" class="form-label">
+              Si tiene padrastro o madrasta, escriba la edad de usted al volverse a casar o juntar su Madre o Padre
+            </label>
+            <input type="text" class="form-control input-number" id="padrasto_hc" name='padrasto_hc' placeholder="" maxLength="2">
+          </div>
+        </div>
+
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="edad_hermanos_hc" class="form-label">
+              ¿Cuáles son sus edades?
+            </label>
+            <input type="text" class="form-control" id="edad_hermanos_hc" name='edad_hermanos_hc' placeholder="">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="crecio_con_hc" class="form-label">
+              Si usted no creció con sus padres, ¿Con quién creció y durante cuantos años?
+            </label>
+            <textarea type="text" class="form-control" id="crecio_con_hc" name='crecio_con_hc'></textarea>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="pers_act_madre_hc" class="form-label">
+              Por favor, describa la personalidad y actitudes de su MADRE hacia usted (pasado y presente)
+            </label>
+            <textarea type="text" class="form-control" id="pers_act_madre_hc" name='pers_act_madre_hc'></textarea>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="imp_atm_casa_hc" class="form-label">
+              Describa sus impresiones acerca de la Atmósfera de sus casa. Mencione si existía compatibilidad entre los padres y los hijos
+            </label>
+            <textarea type="text" class="form-control" id="imp_atm_casa_hc" name='imp_atm_casa_hc'></textarea>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="sentir_amor_por_padres_hc" class="form-label">
+              ¿Sentía o siente amor por sus padres?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsSentirAmorPadresHc" id="check_sentir_amor_padres_si_hc" value="0">
+              <label class="form-check-label" for="check_sentir_amor_padres_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsSentirAmorPadresHc" id="check_sentir_amor_padres_no_hc" value="1">
+              <label class="form-check-label" for="check_sentir_amor_padres_no_hc">No</label>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="interferencia_hc" class="form-label">
+              ¿Alguien como mamá y/o papá, parientes o amigos han interferido con su matrimonio, ocupación, etc..?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsInterferenciaHc" id="check_interferencia_si_hc" value="0">
+              <label class="form-check-label" for="check_interferencia_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsInterferenciaHc" id="check_interferencia_no_hc" value="1">
+              <label class="form-check-label" for="check_interferencia_no_hc">No</label>
+            </div>
+          </div>
+          </br>
+        </div>
+      </div>
+
+      <label class="form-label">
+        <strong>De las siguientes aseveraciones, marque la que corresponda a las características de su infancia y adolescencia</strong>
+      </label>
+      </br>
+
+      <div class="row">
+        <div class="col-xl-6">
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_infancia_feliz_hc">
+              <label class="form-check-label" for="check_infancia_feliz_hc">
+                Infancia feliz
+              </label>
+            </div>
+
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_infancia_infeliz_hc">
+              <label class="form-check-label" for="check_infancia_infeliz_hc">
+                Infancia infeliz
+              </label>
+            </div>
+
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_prob_emoc_cond_hc">
+              <label class="form-check-label" for="check_prob_emoc_cond_hc">
+                Problemas emocionales o de conductas
+              </label>
+            </div>
+
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_prob_leg_hc">
+              <label class="form-check-label" for="check_prob_leg_hc">
+                Problemas legales
+              </label>
+            </div>
+            
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_muerte_familia_hc">
+              <label class="form-check-label" for="check_muerte_familia_hc">
+                Muerte en familia
+              </label>
+            </div>
+
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_prob_med_hc">
+              <label class="form-check-label" for="check_prob_med_hc">
+                Problemas médicos
+              </label>
+            </div>
+
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_ignorado_hc">
+              <label class="form-check-label" for="check_ignorado_hc">
+                Ignorado
+              </label>
+            </div>
+            
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_pocos_amigos_hc">
+              <label class="form-check-label" for="check_pocos_amigos_hc">
+                muy pocos amigos
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_prob_escuela_hc">
+              <label class="form-check-label" for="check_prob_escuela_hc">
+                Problemas en la escuela
+              </label>
+            </div>
+            </br>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_convicciones_religiosas_hc">
+              <label class="form-check-label" for="check_convicciones_religiosas_hc">
+                Convicciones religiosas fuertes
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_uso_drogas_hc">
+              <label class="form-check-label" for="check_uso_drogas_hc">
+                Uso de drogas
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_uso_alcohol_hc">
+              <label class="form-check-label" for="check_uso_alcohol_hc">
+                Uso de alcohol
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_castigado_sev_hc">
+              <label class="form-check-label" for="check_castigado_sev_hc">
+                Castigado severamente
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_abusado_sex_hc">
+              <label class="form-check-label" for="check_abusado_sex_hc">
+                Abusado sexualmente
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_prob_financieros_hc">
+              <label class="form-check-label" for="check_prob_financieros_hc">
+                Problemas financieros
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_int_mol_sev_hc">
+              <label class="form-check-label" for="check_int_mol_sev_hc">
+                Intimidado o molestado severamente
+              </label>
+            </div>
+            <div class="form-group form-check px-10 py-2">
+              <input class="form-check-input checksInfanciaAdoles" type="checkbox" value="" id="check_prob_alim_hc">
+              <label class="form-check-label" for="check_prob_alim_hc">
+                Problemas de alimentación
+              </label>
+            </div>
+        </div>
+
+        <div class="form-group px-7 py-1">
+          <label for="otros_prob_hc" class="form-label">
+            Otros
+          </label>
+          <textarea type="text" class="form-control" id="otros_prob_hc" name='otros_prob_hc'></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

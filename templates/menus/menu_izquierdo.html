@@ -1,0 +1,303 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<body>
+  <!-- variables -->
+  {% url "inicio:dashboard" as dashboard_url %}
+  {% url "tipo_atencion:inicio_tipo_atencion" as lista_tipo_atencion_url %}
+  {% comment %} {% url "tipo_instrumento:inicio_tipo_instrumento" as lista_tipo_instrumento_url %} {% endcomment %}
+  {% url "estado:inicio_estado" as lista_estado_url %}
+  {% url "municipio:inicio_municipio" as lista_municipio_url %}
+  {% url "ingreso_familiar:inicio_ingreso_familiar" as lista_ingreso_familiar_url %}
+  {% url "licenciatura:inicio_licenciatura" as lista_licenciatura_url %}
+  {% url "semestre:inicio_semestre" as lista_semestre_url %}
+  {% url "estado_atencion:inicio_estado_atencion" as lista_estado_atencion_url %}
+  {% url "institucion:inicio_institucion" as lista_institucion_url %}
+  {% url "vive_con:inicio_vive_con" as lista_vive_con_url %}
+  {% url "vive_en:inicio_vive_en" as lista_vive_en_url %}
+  {% url "categoria_trastorno:inicio_categoria_trastorno" as lista_categoria_trastorno_url %}
+  {% url "grupo_trastorno:inicio_grupo_trastorno" as lista_grupo_trastorno_url %}
+  {% url "diagnostico:inicio_diagnostico" as lista_diagnostico_url %}
+  {% url "grado_academico:inicio_grado_academico" as lista_grado_academico_url %}
+  {% url "taller:inicio_taller" as lista_taller_url %}
+  {% url "persona:inicio_persona" as lista_persona_url %}
+  {% url "usuario:inicio_usuario" as lista_usuario_url %}
+  {% url "rol:inicio_rol" as lista_rol_url %}
+  {% url "atencion_psicologica:inicio_atencion_psicologica" as lista_atencion_psicologica_url %}
+  {% url "horario:inicio_horario_cita_valoracion" as horario_cita_valoracion_url %}
+  {% url "horario:inicio_horario_consulta_psicoterapeutica" as horario_consulta_psicoterapeutica_url %}
+  {% url "religion:inicio_religion" as lista_religion_url %}
+  {% url "estado_civil:inicio_estado_civil" as lista_estado_civil_url %}
+  {% url "tipo_persona_udg:inicio_tipo_persona_udg" as lista_tipo_persona_udg_url %}
+
+  <!-- Configuracion URLs -->
+  {% if lista_tipo_atencion_url in request.path or lista_estado_url in request.path or lista_municipio_url in request.path or lista_ingreso_familiar_url in request.path or lista_licenciatura_url in request.path or lista_semestre_url in request.path or lista_estado_atencion_url in request.path or lista_institucion_url in request.path or lista_vive_con_url in request.path or lista_vive_en_url in request.path or lista_categoria_trastorno_url in request.path or lista_grupo_trastorno_url in request.path or lista_diagnostico_url in request.path or lista_grado_academico_url in request.path or horario_cita_valoracion_url in request.path or horario_consulta_psicoterapeutica_url in request.path or lista_taller_url in request.path or lista_religion_url in request.path or lista_estado_civil_url in request.path or lista_tipo_persona_udg_url in request.path %}
+    {% firstof 'activo' as activo_conf_menu %}
+  {% else %}
+    {% firstof 'no activo' as activo_conf_menu %}
+  {% endif %}
+
+  <!-- Seguridad URLs -->
+  {% if lista_rol_url in request.path or lista_persona_url in request.path or lista_usuario_url in request.path %}
+    {% firstof 'activo' as activo_seg_menu %}
+  {% else %}
+    {% firstof 'no activo' as activo_seg_menu %}
+  {% endif %}
+
+  <!-- Valoracion y Seguimiento -->
+  {% if lista_atencion_psicologica_url in request.path %}
+    {% firstof 'activo' as activo_val_seg %}
+  {% else %}
+    {% firstof 'no activo' as activo_val_seg %}
+  {% endif %}
+
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <!-- inicio -->
+      {% comment %} <li class="nav-item">
+        <a class="nav-link " href="{{dashboard_url}}">
+          <i class=" bx bx-home"></i>
+          <span>Inicio</span>
+        </a>
+      </li> {% endcomment %}
+
+      {% with user_roles=request.user.rol.all %}
+        {% if not user_roles.0.nombre == 'ADMINISTRADOR' %}
+              <!-- Atención Psicológica -->
+              <li class="nav-item">
+                <a class="nav-link {% if activo_val_seg != 'activo' %} collapsed {% endif %}" href="{{lista_atencion_psicologica_url}}">
+                  <i class="bi bi-journal-check"></i>
+                  <span>Atención Psicológica</span>
+                </a>
+                {% comment %}<a class="nav-link collapsed" data-bs-target="#val-seg-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-clipboard-check"></i><span>Valoración y Seguimiento</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="val-seg-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                    <a href="components-breadcrumbs.html">
+                      <i class="bi bi-circle"></i><span>Realizar Valoración</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="components-buttons.html">
+                      <i class="bi bi-circle"></i><span>Realizar Seguimiento</span>
+                    </a>
+                  </li>
+                </ul> {% endcomment %}
+              </li>
+        {% else %}
+          <!-- Configuracion -->
+          <li class="nav-item">
+            <a class="nav-link {% if activo_conf_menu != 'activo' %} collapsed {% endif %}" data-bs-target="#configuracion-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-gear"></i><span>Configuración</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="configuracion-nav" class="nav-content collapse {% if activo_conf_menu == 'activo' %} show {% endif %}" data-bs-parent="#sidebar-nav">
+              {% comment %} {% if user.rol %} {% endcomment %}
+              <li>
+                <a {% if lista_tipo_atencion_url in request.path %} class='active' {% endif %} href="{{lista_tipo_atencion_url}}">
+                  <i class="bi bi-circle"></i><span>Tipo de Atención</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_estado_atencion_url in request.path %} class='active' {% endif %} href="{{lista_estado_atencion_url}}">
+                  <i class="bi bi-circle"></i><span>Estado de Atención</span>
+                </a>
+              </li>
+              {% comment %} <li>
+                <a {% if lista_tipo_instrumento_url in request.path %} class='active' {% endif %} href="{{lista_tipo_instrumento_url}}">
+                  <i class="bi bi-circle"></i><span>Tipo de Instrumento Psicológico</span>
+                </a>
+              </li> {% endcomment %}
+              <li>
+                <a {% if lista_tipo_persona_udg_url in request.path %} class='active' {% endif %} href="{{lista_tipo_persona_udg_url}}">
+                  <i class="bi bi-circle"></i><span>Tipo de Persona en UDG</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_licenciatura_url in request.path %} class='active' {% endif %} href="{{lista_licenciatura_url}}">
+                  <i class="bi bi-circle"></i><span>Licenciatura-Postgrado</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_semestre_url in request.path %} class='active' {% endif %} href="{{lista_semestre_url}}">
+                  <i class="bi bi-circle"></i><span>Semestres</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_grado_academico_url in request.path %} class='active' {% endif %} href="{{lista_grado_academico_url}}">
+                  <i class="bi bi-circle"></i><span>Grado Académico</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_ingreso_familiar_url in request.path %} class='active' {% endif %} href="{{lista_ingreso_familiar_url}}">
+                  <i class="bi bi-circle"></i><span>Ingreso familiar</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_estado_url in request.path %} class="active" {% endif %} href="{{lista_estado_url}}">
+                  <i class="bi bi-circle"></i><span>Estados</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_municipio_url in request.path %} class='active' {% endif %} href="{{lista_municipio_url}}">
+                  <i class="bi bi-circle"></i><span>Municipios</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_institucion_url in request.path %} class='active' {% endif %} href="{{lista_institucion_url}}">
+                  <i class="bi bi-circle"></i><span>Instituciones para Derivar</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_vive_con_url in request.path %} class='active' {% endif %} href="{{lista_vive_con_url}}">
+                  <i class="bi bi-circle"></i><span>Vive con</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_vive_en_url in request.path %} class='active' {% endif %} href="{{lista_vive_en_url}}">
+                  <i class="bi bi-circle"></i><span>Vive en</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_categoria_trastorno_url in request.path %} class='active' {% endif %} href="{{lista_categoria_trastorno_url}}">
+                  <i class="bi bi-circle"></i><span>Categoría de Transtorno</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_grupo_trastorno_url in request.path %} class='active' {% endif %} href="{{lista_grupo_trastorno_url}}">
+                  <i class="bi bi-circle"></i><span>Grupo de Transtorno</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_diagnostico_url in request.path %} class='active' {% endif %} href="{{lista_diagnostico_url}}">
+                  <i class="bi bi-circle"></i><span>Diagnóstico</span>
+                </a>
+              </li>
+              <li>
+                <a {% if horario_cita_valoracion_url in request.path %} class='active' {% endif %} href="{{horario_cita_valoracion_url}}">
+                  <i class="bi bi-circle"></i><span>Horario Cita de Valoración</span>
+                </a>
+              </li>
+              <li>
+                <a {% if horario_consulta_psicoterapeutica_url in request.path %} class='active' {% endif %} href="{{horario_consulta_psicoterapeutica_url}}">
+                  <i class="bi bi-circle"></i><span>Horario Consulta Psicoterapéutica</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_estado_civil_url in request.path %} class='active' {% endif %} href="{{lista_estado_civil_url}}">
+                  <i class="bi bi-circle"></i><span>Estado civil</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_taller_url in request.path %} class='active' {% endif %} href="{{lista_taller_url}}">
+                  <i class="bi bi-circle"></i><span>Talleres</span>
+                </a>
+              </li>
+              <li>
+              <li>
+                <a {% if lista_religion_url in request.path %} class='active' {% endif %} href="{{lista_religion_url}}">
+                  <i class="bi bi-circle"></i><span>Religión</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Seguridad -->
+          <li class="nav-item">
+            <a class="nav-link {% if activo_seg_menu != 'activo' %} collapsed {% endif %}" data-bs-target="#seguridad-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-shield-lock-fill"></i><span>Seguridad</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="seguridad-nav" class="nav-content collapse {% if activo_seg_menu == 'activo' %} show {% endif %}" data-bs-parent="#sidebar-nav">
+              <li>
+                <a {% if lista_persona_url in request.path %} class='active' {% endif %} href="{{lista_persona_url}}">
+                  <i class="bi bi-circle"></i><span>Persona</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_usuario_url in request.path %} class='active' {% endif %} href="{{lista_usuario_url}}">
+                  <i class="bi bi-circle"></i><span>Usuario</span>
+                </a>
+              </li>
+              <li>
+                <a {% if lista_rol_url in request.path %} class='active' {% endif %} href="{{lista_rol_url}}">
+                  <i class="bi bi-circle"></i><span>Rol</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Atención Psicológica -->
+          <li class="nav-item">
+            <a class="nav-link {% if activo_val_seg != 'activo' %} collapsed {% endif %}" href="{{lista_atencion_psicologica_url}}">
+              <i class="bi bi-journal-check"></i>
+              <span>Atención Psicológica</span>
+            </a>
+            {% comment %}<a class="nav-link collapsed" data-bs-target="#val-seg-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-clipboard-check"></i><span>Valoración y Seguimiento</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="val-seg-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="components-breadcrumbs.html">
+                  <i class="bi bi-circle"></i><span>Realizar Valoración</span>
+                </a>
+              </li>
+              <li>
+                <a href="components-buttons.html">
+                  <i class="bi bi-circle"></i><span>Realizar Seguimiento</span>
+                </a>
+              </li>
+            </ul> {% endcomment %}
+          </li>
+        {% endif %}
+      {% endwith %}
+
+      
+
+      <!-- Evaluación Psicológica -->
+      {% comment %} <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-journal-check"></i>
+          <span>Evaluación Psicológica</span>
+        </a>
+      </li> {% endcomment %}
+
+      <!-- Atención Psicológica -->
+      
+
+      <!-- Consulta Psicoterapéutica -->
+      {% comment %} <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-journal-medical"></i>
+          <span>Consulta Psicoterapéutica</span>
+        </a>
+      </li> {% endcomment %}
+
+      <!-- Encuestas de Satisfacción -->
+      {% comment %} <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-list-ol"></i>
+          <span>Encuestas de Satisfacción</span>
+        </a>
+      </li> {% endcomment %}
+
+      <!-- Informes -->
+      {% comment %} <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-journals"></i>
+          <span>Informes</span>
+        </a>
+      </li> {% endcomment %}
+
+      <!-- Expediente del Solicitante -->
+      {% comment %} <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-file-text"></i>
+          <span>Expediente del Solicitante</span>
+        </a>
+      </li> {% endcomment %}
+    </ul>
+
+  </aside>
+</body>
+
+</html>
