@@ -1,0 +1,471 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<body>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <label class="form-label">
+        <strong>Datos personales</strong>
+      </label>
+      </br>
+
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="nombre_persona_hc" class="form-label">
+              <span class='required'>
+                Nombre(s) y Apellido(s)
+              </span>
+            </label>
+            <input type="text" class="form-control" id="nombre_persona_hc" name='nombre_persona_hc' placeholder="Nombre y Apellidos" required disabled>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="fecha_nacimiento_hc" class="form-label">
+              <span class='required'>
+                Fecha de Nacimiento
+              </span>
+            </label>
+            <div class='input-group date fecha_nacimiento_seccion1_hc'>
+              <span class='input-group-addon'></span>
+              <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_nacimiento_hc' name='fecha_nacimiento_hc' required>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="edad_hc" class="form-label">
+              Edad: 
+            </label>
+            <label id="edad_hc" class="form-label"></label>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="sexo" class="form-label">
+              <span class='required'>
+                Sexo
+              </span>
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsSexoHc" id="check_sexo_hombre_hc" value="H">
+              <label class="form-check-label" for="check_sexo_hombre_hc">Hombre</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsSexoHc" id="check_sexo_mujer_hc" value="M">
+              <label class="form-check-label" for="check_sexo_mujer_hc">Mujer</label>
+            </div>
+          </div>
+          </br>
+        </div>
+
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="email_hc" class="form-label">
+              <span class='required'>
+                Correo electrónico
+              </span>
+            </label>
+            <input type="email" class="form-control" id="email_hc" name='email_hc' placeholder="_@_" required>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="telefono_persona_hc" class="form-label">
+              <span class='required'>
+                Teléfono de contacto
+              </span>
+            </label>
+            <input type="text" class="form-control input-number" id="telefono_persona_hc" name='telefono_persona_hc' required>
+          </div>
+        </div>
+        </br>
+      </div>
+
+      <label class="form-label">
+        <strong>Dirección Actual</strong>
+      </label>
+      </br>
+
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="estado_actual_hc" class="form-label">
+              <span class='required'>
+                Estado
+              </span>
+            </label>
+            <select class='form-control' id='estado_actual_hc' name='estado_actual_hc' required></select>
+          </div>
+        </div>
+
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="municipio_actual_hc" class="form-label">
+              <span class='required'>
+                Municipio
+              </span>
+            </label>
+            <select class='form-control' id='municipio_actual_hc' name='municipio_actual_hc' required></select>
+          </div>
+        </div>
+
+        <div class="form-group mb-1 py-1">
+          <label for="direccion_actual_hc" class="form-label">
+            <span class='required'>
+              Dirección
+            </span>
+          </label>
+          <textarea type="text" class="form-control" id="direccion_actual_hc" name='direccion_actual_hc' required></textarea>
+          </br>
+        </div>
+      </div>
+
+      <label class="form-label">
+        <strong>Lugar de nacimiento</strong>
+      </label>
+      </br>
+
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="estado_nacimiento_hc" class="form-label">
+              Estado
+            </label>
+            <select class='form-control' id='estado_nacimiento_hc' name='estado_nacimiento_hc'></select>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="municipio_nacimiento_hc" class="form-label">
+              Municipio
+            </label>
+            <select class='form-control' id='municipio_nacimiento_hc' name='municipio_nacimiento_hc'></select>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="estado_civil_hc" class="form-label">
+              Estado Civil
+            </label>
+            <select class='form-control' id='estado_civil_hc' name='estado_civil_hc'></select>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="ocupacion_hc" class="form-label">
+              Ocupación
+            </label>
+            <input type="text" class="form-control" id="ocupacion_hc" name='ocupacion_hc' placeholder="Ocupación">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="carrera_cursa_hc" class="form-label">
+              Carrera que cursa (si es estudiante)
+            </label>
+            <select class='form-control' id='carrera_cursa_hc' name='carrera_cursa_hc'></select>
+          </div>
+          </br>
+        </div>
+
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="vive_en_hc" class="form-label">
+              Vive en
+            </label>
+            <select class='form-control' id='vive_en_hc' name='vive_en_hc'></select>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="vive_con_hc" class="form-label">
+              ¿Con quién vive?
+            </label>
+            <select class='form-control' id='vive_con_hc' name='vive_con_hc'></select>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="religion_hc" class="form-label">
+              Religión
+            </label>
+            <select class='form-control' id='religion_hc' name='religion_hc'></select>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="grado_academico_hc" class="form-label">
+              ¿Cuál es su máximo grado de estudios? (si no es estudiante)
+            </label>
+            <select class='form-control' id='grado_academico_hc' name='grado_academico_hc'></select>
+          </div>
+        </div>
+      </div>
+
+      <label class="form-label">
+        <strong>Contacto de emergencia</strong>
+      </label>
+      </br>
+
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="nombre_contacto_hc" class="form-label">
+              Nombre(s) y Apellido(s)
+            </label>
+            <input type="text" class="form-control" id="nombre_contacto_hc" name='nombre_contacto_hc' placeholder="Nombre y Apellidos">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="telefono_contacto_hc" class="form-label">
+              Teléfono de contacto
+            </label>
+            <input type="text" class="form-control input-number" id="telefono_contacto_hc" name='telefono_contacto_hc'>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="quien_lo_envia_hc" class="form-label">
+                ¿Quién lo envía?
+            </label>
+            <input type="text" class="form-control" id="quien_lo_envia_hc" name='quien_lo_envia_hc'>
+          </div>
+          </br>
+        </div>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="parentesco_hc" class="form-label">
+              Parentesco              
+            </label>
+            <input type="text" class="form-control" id="parentesco_hc" name='parentesco_hc' placeholder="Parentesco">
+          </div>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="pasatiempos_hc" class="form-label">
+              Pasatiempos
+            </label>
+            <textarea type="text" class="form-control" id="pasatiempos_hc" name='pasatiempos_hc'></textarea>
+          </div>
+          </br>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group mb-1 py-1">
+            <label for="peso_hc" class="form-label">
+              Peso (kg)
+            </label>
+            <input type="text" class="form-control input-number" id="peso_hc" name='peso_hc' placeholder="Peso">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="peso_varia_hc" class="form-label">
+              ¿Su peso varía?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsPesoVariaHc" id="check_peso_varia_si_hc" value="0">
+              <label class="form-check-label" for="check_peso_varia_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsPesoVariaHc" id="check_peso_varia_no_hc" value="1">
+              <label class="form-check-label" for="check_peso_varia_no_hc">No</label>
+            </div>
+          </div>
+          </br>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group mb-1 py-1">
+            <label for="estatura_hc" class="form-label">
+              Estatura (cm)
+            </label>
+            <input type="text" class="form-control input-number" id="estatura_hc" name='estatura_hc' placeholder="Estatura">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="medico_cabecera_hc" class="form-label">
+              ¿Tiene médico de cabecera?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsMedicoCabeceraHc" id="check_medico_cabecera_si_hc" value="0">
+              <label class="form-check-label" for="check_medico_cabecera_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsMedicoCabeceraHc" id="check_medico_cabecera_no_hc" value="1">
+              <label class="form-check-label" for="check_medico_cabecera_no_hc">No</label>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="nombre_medico_cabecera_hc" class="form-label">
+              Nombre(s) y Apellido(s)
+            </label>
+            <input type="text" class="form-control" id="nombre_medico_cabecera_hc" name='nombre_medico_cabecera_hc' placeholder="Nombre y Apellidos">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="telefono_medico_cabecera_hc" class="form-label">
+              Teléfono de contacto
+            </label>
+            <input type="text" class="form-control input-number" id="telefono_medico_cabecera_hc" name='telefono_medico_cabecera_hc'>
+          </div>
+          </br>
+        </div>
+
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="gusta_trabajo_hc" class="form-label">
+              ¿Le gusta su trabajo?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsGustaTrabajoHc" id="check_gusta_trabajo_si_hc" value="0">
+              <label class="form-check-label" for="check_gusta_trabajo_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsGustaTrabajoHc" id="check_gusta_trabajo_no_hc" value="1">
+              <label class="form-check-label" for="check_gusta_trabajo_no_hc">No</label>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="hace_trabajo_hc" class="form-label">
+              ¿Qué hace en su trabajo?
+            </label>
+            <input type="text" class="form-control" id="hace_trabajo_hc" name='hace_trabajo_hc' placeholder="">
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="trabajos_pasados_hc" class="form-label">
+              ¿Qué trabajos (Labor) ha tenido en el pasado?
+            </label>
+            <input type="text" class="form-control" id="trabajos_pasados_hc" name='trabajos_pasados_hc' placeholder="">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="terapia_anterior_hc" class="form-label">
+              ¿Ha estado en terapia antes?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsTerapiaAnteriorHc" id="check_terapia_anterior_si_hc" value="0">
+              <label class="form-check-label" for="check_terapia_anterior_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsTerapiaAnteriorHc" id="check_terapia_anterior_no_hc" value="1">
+              <label class="form-check-label" for="check_terapia_anterior_no_hc">No</label>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="terapias_anteriores_hc" class="form-label">
+              Si anteriormente ha estado en terapia, ¿Cuándo y dónde fue?
+            </label>
+            <textarea type="text" class="form-control" id="terapias_anteriores_hc" name='terapias_anteriores_hc'></textarea>
+          </div>
+        </br>
+        </div>
+        <div class="col-xl-6">
+          <div class="form-group mb-1 py-1">
+            <label for="tipo_ayuda_hc" class="form-label">
+              ¿Qué tipo de ayuda a buscado para su problema?
+            </label>
+            <textarea type="text" class="form-control" id="tipo_ayuda_hc" name='tipo_ayuda_hc'></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="form-group mb-1 py-1">
+            <label for="hospitalizado_hc" class="form-label">
+              ¿Ha estado hospitalizado/a por problemas psicológicos o psiquiátricos?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsHospitalizadoHc" id="check_hospitalizado_si_hc" value="0">
+              <label class="form-check-label" for="check_hospitalizado_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsHospitalizadoHc" id="check_hospitalizado_no_hc" value="1">
+              <label class="form-check-label" for="check_hospitalizado_no_hc">No</label>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="hospitalizado_anterior_hc" class="form-label">
+              Si anteriormente ha estado hospitalizado/a por problemas psicológicos o psiquiátricos, ¿Cuándo y dónde fue?
+            </label>
+            <textarea type="text" class="form-control" id="hospitalizado_anterior_hc" name='hospitalizado_anterior_hc'></textarea>
+            </br>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="danio_suicidio_hc" class="form-label">
+              ¿Ha intentado hacerse daño o suicidarse?
+            </label>
+            </br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsDanioSuicidioHc" id="check_danio_suicidio_si_hc" value="0">
+              <label class="form-check-label" for="check_danio_suicidio_si_hc">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptionsDanioSuicidioHc" id="check_danio_suicidio_no_hc" value="1">
+              <label class="form-check-label" for="check_danio_suicidio_no_hc">No</label>
+            </div>
+          </div>
+
+          <div class="form-group mb-1 py-1">
+            <label for="danio_afirm_hc" class="form-label">
+              Si la respuesta anterior es afirmativa, ¿Hace cuánto tiempo y de qué forma?
+            </label>
+            <textarea type="text" class="form-control" id="danio_afirm_hc" name='danio_afirm_hc'></textarea>
+          </br>
+          </div>
+
+          <div class='row'>
+            <div class="col-xl-6">
+              <div class="form-group mb-1 py-1">
+                <label for="intento_suicidio_hc" class="form-label">
+                  ¿Algún miembro de su familia ha intentado suicidarse?
+                </label>
+                </br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsIntentoSuicidioHc" id="check_intento_suicidio_si_hc" value="0">
+                  <label class="form-check-label" for="check_intento_suicidio_si_hc">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsIntentoSuicidioHc" id="check_intento_suicidio_no_hc" value="1">
+                  <label class="form-check-label" for="check_intento_suicidio_no_hc">No</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="form-group mb-1 py-1">
+                <label for="prob_emocion_mental" class="form-label">
+                  ¿Algún miembro de su familia sufre de problemas emocionales o mentales?
+                </label>
+                </br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsProbEmocionMentalHc" id="check_prob_emocion_mental_si_hc" value="0">
+                  <label class="form-check-label" for="check_prob_emocion_mental_si_hc">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptionsProbEmocionMentalHc" id="check_prob_emocion_mental_no_hc" value="1">
+                  <label class="form-check-label" for="check_prob_emocion_mental_no_hc">No</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

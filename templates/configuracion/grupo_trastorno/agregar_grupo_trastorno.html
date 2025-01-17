@@ -1,0 +1,43 @@
+<div class="modal fade" id="modal_agregar_editar_grupo_trastorno" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Grupo de Trastornos del MSD-5</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_grupo_trastorno'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_grupo_trastorno">
+        <div class="form-group mb-3 py-4">
+          <label for="nombre_grupo_trastorno" class="form-label">
+            <span class='required'>
+              Grupo de Trastorno
+            </span>
+          </label>
+          <input type="text" class="form-control" id="nombre_grupo_trastorno" placeholder="Grupo de Trastorno" required>
+        </div>
+
+        <div class="form-group mb-3 py-4">
+          <label for="categoria_grupo" class="form-label">
+            <span class='required'>
+              Categoría de Trastorno
+            </span>
+          </label>
+          <select class='form-control' id='categoria_grupo' required></select>
+        </div>
+
+        <div class="form-group form-check py-4">
+          <input class="form-check-input" type="checkbox" value="" id="estado_grupo_trastorno">
+          <label class="form-check-label" for="estado_grupo_trastorno">
+            Habilitado
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_grupo_trastorno">Cancelar</button>
+        <button type="button" class="btn btn-primary" id='btn_agregar_grupo_trastorno'>
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="modal fade" id="modal_agregar_editar_taller" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Taller</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_taller'></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="id_taller">
+        <div class="form-group mb-3 py-4">
+          <label for="nombre_taller" class="form-label">
+            <span class='required'>
+              Taller
+            </span>
+          </label>
+          <input type="text" class="form-control" id="nombre_taller" placeholder="Taller" required>
+        </div>
+
+        <div class="form-group mb-3 py-4">
+          <label for="modalidad_taller" class="form-label">
+            <span class='required'>
+              Modalidad
+            </span>
+          </label>
+          <select class='form-control' id='modalidad_taller' required></select>
+        </div>
+
+        <div class="form-group mb-3 py-4">
+          <label for="especialista_taller" class="form-label">
+            <span class='required'>
+              Nombre y Apellidos del Especialista
+            </span>
+          </label>
+          <input type="text" class="form-control" id="especialista_taller" placeholder="Especialista" required>
+        </div>
+
+        <div class="form-group mb-3 py-4">
+          <label for="fecha_inicio" class="form-label">
+            <span class='required'>
+              Fecha de inicio
+            </span>
+          </label>
+          <div class='input-group date fecha_inicio_taller'>
+            <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_inicio' name='fecha_inicio' required readOnly>
+            <div class='input-group-append'>
+              <span class='input-group-text'><i class='bi bi-calendar'></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 py-4">
+          <label for="hora_inicio" class="form-label">
+            <span class='required'>
+              Hora de inicio
+            </span>
+          </label>
+          <div class='input-group'>
+            <input type='text' class='form-control timepicker' id='hora_inicio' placeholder='HH:mm'>
+            <div class='input-group-append'>
+              <span class='input-group-text'><i class='bi bi-clock'></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 py-4">
+          <label for="fecha_fin" class="form-label">
+            <span class='required'>
+              Fecha de fin
+            </span>
+          </label>
+          <div class='input-group date fecha_fin_taller'>
+            <input type='text' class='form-control' placeholder='dd/mm/aaaa' id='fecha_fin' name='fecha_fin' required readOnly>
+            <div class='input-group-append'>
+              <span class='input-group-text'><i class='bi bi-calendar'></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group form-check py-4">
+          <input class="form-check-input" type="checkbox" value="" id="estado_taller">
+          <label class="form-check-label" for="estado_taller">
+            Habilitado
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_taller">Cancelar</button>
+        <button type="button" class="btn btn-primary" id='btn_agregar_taller'>Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>

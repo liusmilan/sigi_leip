@@ -1,0 +1,36 @@
+<div class="modal fade" id="modal_historico_seguimiento" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog size_modal_50">
+    <div class="modal-content">
+      <div class="modal-header modal_head_bg">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Histórico de Seguimiento de Atención</h1>
+        <button type="button" class="btn-close" aria-label="Close" id='btn_cerrar_modal_historico_seguimiento'></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-end" id='seccion_botones_tabla_historico_seguimiento'>
+          <div class='btn-group'>
+            <button type="button" class="btn btn-danger" id="btn_eliminar_historico_seguimiento">-</button>
+          </div>
+        </div>
+        
+        <table class="table align-middle table-row-dashed table-hover fs-6 gy-5 gs-5" id='tabla_historico_seguimiento'>
+          <thead>
+            <tr class='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
+              <th>id</th>
+              <th scope="col">Fecha de Seguimiento</th>
+              <th scope="col">Realizado por</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Observaciones</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 fw-bold">
+
+          </tbody>
+        </table>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_historico_seguimiento">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
